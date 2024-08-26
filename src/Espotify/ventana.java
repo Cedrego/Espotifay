@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package pantalla;
+package Espotify;
 
 /**
  *
@@ -172,7 +172,7 @@ public class ventana extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 204, 102));
-        jLabel2.setText("Creado por: Camilo,  Franco, Lucas, Thiago y Enzo");
+        jLabel2.setText("Creado por: Camilo, Franco, Lucas, Thiago y Enzo");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
