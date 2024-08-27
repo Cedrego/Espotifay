@@ -1,22 +1,17 @@
 package Espotify;
 
-import java.io.Serializable;
-
-
-
 /**
  * Representa a un usuario en el sistema con nombre, apellido y cédula de identidad.
- * @author TProg2017
- *
+ * @author Camilo
  */
 
-public class Usuario implements Serializable {
+public class Usuario {
 
     private String nickname;
     private String nombre;
     private String apellido;
     private String correo;
-    //private Date fecha;
+    //private DTfecha fecha;
     //private imagen
     
     //@GeneratedValue(strategy = GenerationType.AUTO)
