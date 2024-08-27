@@ -31,15 +31,16 @@ public class ventana extends javax.swing.JFrame {
         EXIT = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        AltaPerfil = new javax.swing.JButton();
+        AltaAlbum = new javax.swing.JButton();
+        PublicarLista = new javax.swing.JButton();
+        SeguirUsuario = new javax.swing.JButton();
+        DejarSeguir = new javax.swing.JButton();
+        GuardarTLA = new javax.swing.JButton();
+        EliminarTLA = new javax.swing.JButton();
+        ConsultarPerfil = new javax.swing.JButton();
+        ConsultarAlbum = new javax.swing.JButton();
+        ConsultarLista = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,60 +74,65 @@ public class ventana extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 313, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
 
-        jButton2.setBackground(new java.awt.Color(0, 204, 102));
-        jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton2.setText("Alta de Perfil");
-        jButton2.setBorderPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        AltaPerfil.setBackground(new java.awt.Color(0, 204, 102));
+        AltaPerfil.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        AltaPerfil.setText("Alta de Perfil");
+        AltaPerfil.setBorderPainted(false);
+        AltaPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                AltaPerfilActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 204, 102));
-        jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton3.setText("Alta de Album");
-        jButton3.setBorderPainted(false);
+        AltaAlbum.setBackground(new java.awt.Color(0, 204, 102));
+        AltaAlbum.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        AltaAlbum.setText("Alta de Album");
+        AltaAlbum.setBorderPainted(false);
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 102));
-        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton1.setText("Publicar Lista");
-        jButton1.setBorderPainted(false);
+        PublicarLista.setBackground(new java.awt.Color(0, 204, 102));
+        PublicarLista.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        PublicarLista.setText("Publicar Lista");
+        PublicarLista.setBorderPainted(false);
 
-        jButton4.setBackground(new java.awt.Color(0, 204, 102));
-        jButton4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton4.setText("Seguir Usuario");
-        jButton4.setBorderPainted(false);
+        SeguirUsuario.setBackground(new java.awt.Color(0, 204, 102));
+        SeguirUsuario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        SeguirUsuario.setText("Seguir Usuario");
+        SeguirUsuario.setBorderPainted(false);
 
-        jButton5.setBackground(new java.awt.Color(0, 204, 102));
-        jButton5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton5.setText("Dejar de Seguir");
-        jButton5.setBorderPainted(false);
+        DejarSeguir.setBackground(new java.awt.Color(0, 204, 102));
+        DejarSeguir.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        DejarSeguir.setText("Dejar de Seguir");
+        DejarSeguir.setBorderPainted(false);
 
-        jButton6.setBackground(new java.awt.Color(0, 204, 102));
-        jButton6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton6.setText("Guardar T/L/A");
-        jButton6.setBorderPainted(false);
+        GuardarTLA.setBackground(new java.awt.Color(0, 204, 102));
+        GuardarTLA.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        GuardarTLA.setText("Guardar T/L/A");
+        GuardarTLA.setBorderPainted(false);
 
-        jButton7.setBackground(new java.awt.Color(0, 204, 102));
-        jButton7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton7.setText("Eliminar T/L/A");
-        jButton7.setBorderPainted(false);
+        EliminarTLA.setBackground(new java.awt.Color(0, 204, 102));
+        EliminarTLA.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        EliminarTLA.setText("Eliminar T/L/A");
+        EliminarTLA.setBorderPainted(false);
 
-        jButton8.setBackground(new java.awt.Color(0, 204, 102));
-        jButton8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton8.setText("Consultar Usuario");
-        jButton8.setBorderPainted(false);
+        ConsultarPerfil.setBackground(new java.awt.Color(0, 204, 102));
+        ConsultarPerfil.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ConsultarPerfil.setText("Consultar Perfil");
+        ConsultarPerfil.setBorderPainted(false);
 
-        jButton9.setBackground(new java.awt.Color(0, 204, 102));
-        jButton9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton9.setText("Consultar Album");
-        jButton9.setBorderPainted(false);
+        ConsultarAlbum.setBackground(new java.awt.Color(0, 204, 102));
+        ConsultarAlbum.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ConsultarAlbum.setText("Consultar Album");
+        ConsultarAlbum.setBorderPainted(false);
+
+        ConsultarLista.setBackground(new java.awt.Color(0, 204, 102));
+        ConsultarLista.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ConsultarLista.setText("Consultar Lista");
+        ConsultarLista.setBorderPainted(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -135,39 +141,42 @@ public class ventana extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(AltaPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AltaAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PublicarLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(SeguirUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DejarSeguir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(GuardarTLA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(EliminarTLA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ConsultarPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(ConsultarAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ConsultarLista, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2)
+                .addComponent(AltaPerfil)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(AltaAlbum)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(PublicarLista)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(SeguirUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(DejarSeguir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
+                .addComponent(GuardarTLA)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
+                .addComponent(EliminarTLA)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
+                .addComponent(ConsultarPerfil)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addComponent(ConsultarAlbum)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ConsultarLista)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -225,9 +234,10 @@ public class ventana extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void AltaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaPerfilActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_AltaPerfilActionPerformed
 
     private void EXITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EXITActionPerformed
         // TODO add your handling code here:
@@ -271,17 +281,18 @@ public class ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AltaAlbum;
+    private javax.swing.JButton AltaPerfil;
+    private javax.swing.JButton ConsultarAlbum;
+    private javax.swing.JButton ConsultarLista;
+    private javax.swing.JButton ConsultarPerfil;
+    private javax.swing.JButton DejarSeguir;
     private javax.swing.JButton EXIT;
+    private javax.swing.JButton EliminarTLA;
+    private javax.swing.JButton GuardarTLA;
     private javax.swing.JLabel Logo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton PublicarLista;
+    private javax.swing.JButton SeguirUsuario;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
