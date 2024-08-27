@@ -6,7 +6,7 @@ package Espotify;
 
 /**
  *
- * @author camin
+ * @author Camilo
  */
 public class ventana extends javax.swing.JFrame {
 
