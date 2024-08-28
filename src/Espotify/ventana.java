@@ -732,8 +732,6 @@ public class ventana extends javax.swing.JFrame {
         ComboBox2.setVisible(true);
         ComboBox3.setVisible(true);
         ComboBox4.setVisible(true);
-        ComboBox5.setVisible(true);
-        
     }//GEN-LAST:event_AltaPerfilActionPerformed
 
     private void EXITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EXITActionPerformed
@@ -756,7 +754,7 @@ public class ventana extends javax.swing.JFrame {
     private void ComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox4ActionPerformed
         // TODO add your handling code here:
         String value = (ComboBox4.getSelectedItem()).toString();
-        if(value == "Cliente"){
+        if(value != "Artista"){
             Text7.setVisible(false);
             TextField5.setVisible(false);
             Text8.setVisible(false);
