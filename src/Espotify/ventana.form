@@ -67,7 +67,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="Text14" pref="1037" max="32767" attributes="0"/>
+                          <Component id="Text14" pref="1015" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="EXIT" min="-2" pref="135" max="-2" attributes="0"/>
                       </Group>
@@ -141,73 +141,70 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="ComboBox1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="ComboBox2" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="Button2" min="-2" pref="54" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="Button3" min="-2" pref="54" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="ComboBox3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="Text2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Text3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Text4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Text5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="TextField3" alignment="0" min="-2" pref="296" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="Text1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="TextField1" alignment="0" pref="296" max="32767" attributes="0"/>
-                                                  <Component id="TextField2" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="Text9" min="-2" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="ComboBox5" min="-2" pref="107" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="Button1" min="-2" pref="79" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                      <Component id="ComboBox4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Text6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="TextField5" alignment="0" min="-2" pref="290" max="-2" attributes="0"/>
-                                              <Component id="Text7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="Text8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="TextField6" alignment="0" min="-2" pref="290" max="-2" attributes="0"/>
-                                              <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jScrollBar1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="TextField4" alignment="0" min="-2" pref="296" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="Text10" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="ACEPTAR" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="ComboBox1" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="ComboBox2" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="Button2" min="-2" pref="54" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="Button3" min="-2" pref="54" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="ComboBox3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="Text2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Text3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Text4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Text5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TextField3" alignment="0" min="-2" pref="296" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="Text1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="TextField1" alignment="0" pref="296" max="32767" attributes="0"/>
+                                              <Component id="TextField2" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="Text9" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="ComboBox5" min="-2" pref="107" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="Button1" min="-2" pref="79" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Component id="ComboBox4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Text6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="TextField5" alignment="0" min="-2" pref="290" max="-2" attributes="0"/>
+                                          <Component id="Text7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="Text8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TextField6" alignment="0" min="-2" pref="290" max="-2" attributes="0"/>
+                                          <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jScrollBar1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="TextField4" alignment="0" min="-2" pref="296" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -826,10 +823,13 @@
                           <Component id="DejarSeguir" alignment="0" max="32767" attributes="0"/>
                           <Component id="GuardarTLA" alignment="0" max="32767" attributes="0"/>
                           <Component id="EliminarTLA" alignment="0" max="32767" attributes="0"/>
-                          <Component id="ConsultarPerfil" pref="144" max="32767" attributes="0"/>
+                          <Component id="ConsultarPerfil" max="32767" attributes="0"/>
                           <Component id="ConsultarAlbum" alignment="0" max="32767" attributes="0"/>
                           <Component id="ConsultarLista" alignment="1" max="32767" attributes="0"/>
                           <Component id="AltaGenero" alignment="0" max="32767" attributes="0"/>
+                          <Component id="AgregarTemasListas" alignment="1" max="32767" attributes="0"/>
+                          <Component id="QuitarTemasListas" alignment="1" max="32767" attributes="0"/>
+                          <Component id="PublicarLista" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -846,6 +846,12 @@
                       <Component id="AltaAlbum" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="CrearLista" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="AgregarTemasListas" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="QuitarTemasListas" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="PublicarLista" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="SeguirUsuario" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -1029,6 +1035,51 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AltaGeneroActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="AgregarTemasListas">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="cc" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Agregar Temas a Listas"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AgregarTemasListasActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="QuitarTemasListas">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="cc" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Quitar Temas a Listas"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="QuitarTemasListasActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="PublicarLista">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="cc" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Publicar Lista"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PublicarListaActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
