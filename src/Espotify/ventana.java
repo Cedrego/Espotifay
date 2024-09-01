@@ -98,6 +98,8 @@ public class ventana extends javax.swing.JFrame {
         Text12 = new javax.swing.JLabel();
         Text13 = new javax.swing.JLabel();
         jScrollBar1 = new javax.swing.JScrollBar();
+        ComboBox6 = new javax.swing.JComboBox<String>();
+        Text14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         AltaPerfil = new javax.swing.JButton();
         AltaAlbum = new javax.swing.JButton();
@@ -113,7 +115,6 @@ public class ventana extends javax.swing.JFrame {
         AgregarTemasListas = new javax.swing.JButton();
         QuitarTemasListas = new javax.swing.JButton();
         PublicarLista = new javax.swing.JButton();
-        Text14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ESPOTIFY");
@@ -200,6 +201,11 @@ public class ventana extends javax.swing.JFrame {
         TextField3.setForeground(new java.awt.Color(255, 255, 255));
         TextField3.setText("TextField3");
         TextField3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextField3ActionPerformed(evt);
+            }
+        });
 
         TextField4.setBackground(new java.awt.Color(102, 102, 102));
         TextField4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -355,6 +361,21 @@ public class ventana extends javax.swing.JFrame {
         jScrollBar1.setBackground(new java.awt.Color(102, 102, 102));
         jScrollBar1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
+        ComboBox6.setBackground(new java.awt.Color(102, 102, 102));
+        ComboBox6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ComboBox6.setForeground(new java.awt.Color(255, 255, 255));
+        ComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        ComboBox6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        ComboBox6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBox6ActionPerformed(evt);
+            }
+        });
+
+        Text14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text14.setForeground(new java.awt.Color(255, 255, 255));
+        Text14.setText("Text14");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -412,7 +433,12 @@ public class ventana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(TextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(660, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Text14))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -471,7 +497,11 @@ public class ventana extends javax.swing.JFrame {
                         .addComponent(Text8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 95, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Text14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 43, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -674,10 +704,6 @@ public class ventana extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        Text14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        Text14.setForeground(new java.awt.Color(0, 204, 102));
-        Text14.setText("Creado por: Camilo, Franco, Lucas, Thiago y Enzo");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -693,8 +719,7 @@ public class ventana extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Text14, javax.swing.GroupLayout.DEFAULT_SIZE, 1015, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(EXIT, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -703,11 +728,9 @@ public class ventana extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(EXIT)
-                        .addComponent(Logo))
-                    .addComponent(Text14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EXIT)
+                    .addComponent(Logo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -746,6 +769,7 @@ public class ventana extends javax.swing.JFrame {
         Text11.setVisible(false);
         Text12.setVisible(false);
         Text13.setVisible(false);
+        Text14.setVisible(false);
         
         //espacios de texto
         TextField1.setVisible(false);
@@ -761,6 +785,7 @@ public class ventana extends javax.swing.JFrame {
         ComboBox3.setVisible(false);
         ComboBox4.setVisible(false);
         ComboBox5.setVisible(false);
+        ComboBox6.setVisible(false);
         
         //vaciar comboboxes
         ComboBox1.removeAllItems();
@@ -768,6 +793,7 @@ public class ventana extends javax.swing.JFrame {
         ComboBox3.removeAllItems();
         ComboBox4.removeAllItems();
         ComboBox5.removeAllItems();
+        ComboBox6.removeAllItems();
         
         //vacia los espacios de texto
         TextField1.setText("");
@@ -955,7 +981,6 @@ public class ventana extends javax.swing.JFrame {
         
         if (selectedItem == "Por defecto") {
             ComboBox1.removeAllItems();
-            
             Text5.setText("Genero:");
             Text5.setVisible(true);
             //ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(genders));
@@ -971,6 +996,20 @@ public class ventana extends javax.swing.JFrame {
                 Text5.setVisible(false);
                 ComboBox1.setVisible(false);
             }
+        }
+        
+        if(selectedItem == "Genero"){
+            ComboBox4.removeAllItems();
+            //agregar la lisa de generos a ComboBox4
+            ComboBox4.addItem("Rock");
+            ComboBox4.addItem("Metal");
+            ComboBox4.addItem("Pop");
+        } else {
+            ComboBox4.removeAllItems();
+            //agregar la lisa de artistas a ComboBox4
+            ComboBox4.addItem("Cuarteto de Nos");
+            ComboBox4.addItem("Evanecense");
+            ComboBox4.addItem("Justin Biever");
         }
     }//GEN-LAST:event_ComboBox5ActionPerformed
 
@@ -991,57 +1030,110 @@ public class ventana extends javax.swing.JFrame {
     private void SeguirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeguirUsuarioActionPerformed
         // TODO add your handling code here:
         hideAll();
+        
+        Text9.setText("Cliente:");
+        Text5.setText("Usuario a Seguir:");
+        Text9.setVisible(true);
+        Text5.setVisible(true);
+        ComboBox5.setVisible(true);
+        ComboBox1.setVisible(true);
     }//GEN-LAST:event_SeguirUsuarioActionPerformed
 
     private void DejarSeguirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DejarSeguirActionPerformed
         // TODO add your handling code here:
         hideAll();
+        
+        Text9.setText("Cliente:");
+        Text5.setText("Usuario a dejar de Seguir:");
+        Text9.setVisible(true);
+        Text5.setVisible(true);
+        ComboBox5.setVisible(true);
+        ComboBox1.setVisible(true);
     }//GEN-LAST:event_DejarSeguirActionPerformed
 
     private void GuardarTLAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarTLAActionPerformed
         // TODO add your handling code here:
         hideAll();
+        
+        Text9.setText("Cliente:");
+        Text5.setText("Que desea agregar a favoritos?");
+        ComboBox1.addItem("Tema");
+        ComboBox1.addItem("Lista");
+        ComboBox1.addItem("Album");
+        Text9.setVisible(true);
+        Text5.setVisible(true);
+        ComboBox5.setVisible(true);
+        ComboBox1.setVisible(true);
     }//GEN-LAST:event_GuardarTLAActionPerformed
 
     private void EliminarTLAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarTLAActionPerformed
         // TODO add your handling code here:
         hideAll();
+        
+        Text9.setText("Cliente:");
+        Text5.setText("Eliminar de favoritos;");
+        Text9.setVisible(true);
+        Text5.setVisible(true);
+        ComboBox5.setVisible(true);
+        ComboBox1.setVisible(true);
     }//GEN-LAST:event_EliminarTLAActionPerformed
 
     private void ConsultarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarPerfilActionPerformed
         // TODO add your handling code here:
         hideAll();
+        
+        Text9.setText("Cliente:");
+        Text9.setVisible(true);
+        ComboBox5.setVisible(true);
     }//GEN-LAST:event_ConsultarPerfilActionPerformed
 
     private void ConsultarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarAlbumActionPerformed
         // TODO add your handling code here:
         hideAll();
+        
+        Text9.setText("Filtrar por:");
+        Text6.setText("Album:");
+        ComboBox5.addItem("Genero");
+        ComboBox5.addItem("Artista");
+        Text9.setVisible(true);
+        Text6.setVisible(true);
+        ComboBox5.setVisible(true);
+        ComboBox4.setVisible(true);
     }//GEN-LAST:event_ConsultarAlbumActionPerformed
 
     private void ConsultarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarListaActionPerformed
         // TODO add your handling code here:
         hideAll();
+        
+        Text9.setText("Filtrar por:");
+        Text6.setText("Lista:");
+        ComboBox5.addItem("Genero");
+        ComboBox5.addItem("Artista");
+        Text9.setVisible(true);
+        Text6.setVisible(true);
+        ComboBox5.setVisible(true);
+        ComboBox4.setVisible(true);
     }//GEN-LAST:event_ConsultarListaActionPerformed
 
     private void Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button1ActionPerformed
         // TODO add your handling code here:
         if (ComboBox5.getSelectedItem() == null) {
-            //nada
-        } else {
-            Text2.setText("Nombre del Album:");
+            Text3.setText("Nombre del Album:");
             Text5.setText("Año de salida:");
             Button2.setText("+");
             Button3.setText("-");
             jPanel4.setVisible(true);
             jScrollBar1.setVisible(true);
-            Text2.setVisible(true);
-            TextField2.setVisible(true);
+            Text3.setVisible(true);
+            TextField3.setVisible(true);
             Text5.setVisible(true);
             ComboBox1.setVisible(true);
             ComboBox1.setVisible(true);
             Button2.setVisible(true);
             Button3.setVisible(true);
             ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(years));
+        } else {
+            //nada
         }
     }//GEN-LAST:event_Button1ActionPerformed
 
@@ -1082,7 +1174,37 @@ public class ventana extends javax.swing.JFrame {
         ComboBox4.setVisible(true);
     }
     
+    if(selectedItem == "Tema"){
+        ComboBox4.removeAllItems();
+        Text6.setText("Elige tema:");
+        //ComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(temas));
+        Text6.setVisible(true);
+        ComboBox4.setVisible(true);
+    } else {
+        if(selectedItem == "Lista"){
+            ComboBox4.removeAllItems();
+            Text6.setText("Elige lista:");
+            //ComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(listas));
+            Text6.setVisible(true);
+            ComboBox4.setVisible(true);
+        } else {
+            if(selectedItem == "Album"){
+                ComboBox4.removeAllItems();
+                Text6.setText("Elige Album:");
+                //ComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(albumes));
+                Text6.setVisible(true);
+                ComboBox4.setVisible(true);
+            }
+        }
+    }
     
+    if(selectedItem == "Genero"){
+        ComboBox4.removeAllItems();
+        //agregarle las lista de generos a ComboBox4
+    } else {
+        ComboBox4.removeAllItems();
+        //agregarle las lista de artistas a ComboBox4
+    }
     }//GEN-LAST:event_ComboBox1ActionPerformed
 
     private void ComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox2ActionPerformed
@@ -1132,7 +1254,7 @@ public class ventana extends javax.swing.JFrame {
         
         Text9.setText("Propietario:");
         Text5.setText("Lista:");
-        Text6.setText("Cancion:");
+        Text6.setText("Cancion a Agrgar:");
         Text9.setVisible(true);
         Text5.setVisible(true);
         Text6.setVisible(true);
@@ -1141,16 +1263,54 @@ public class ventana extends javax.swing.JFrame {
         ComboBox5.setVisible(true);
         ComboBox1.setVisible(true);
         ComboBox4.setVisible(true);
-        
     }//GEN-LAST:event_AgregarTemasListasActionPerformed
 
     private void QuitarTemasListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarTemasListasActionPerformed
         // TODO add your handling code here:
+        hideAll();
+        
+        Text9.setText("Propietario:");
+        Text5.setText("Lista:");
+        Text6.setText("Cancion a Eliminar:");
+        Text9.setVisible(true);
+        Text5.setVisible(true);
+        Text6.setVisible(true);
+        
+        //ComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(clients));
+        ComboBox5.setVisible(true);
+        ComboBox1.setVisible(true);
+        ComboBox4.setVisible(true);
     }//GEN-LAST:event_QuitarTemasListasActionPerformed
 
     private void PublicarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PublicarListaActionPerformed
         // TODO add your handling code here:
+        hideAll();
+        
+        Text9.setText("Propietario:");
+        Text5.setText("Lista:");
+        ComboBox5.setVisible(true);
+        ComboBox1.setVisible(true);
+        Text9.setVisible(true);
+        Text5.setVisible(true);
     }//GEN-LAST:event_PublicarListaActionPerformed
+
+    private void ComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox6ActionPerformed
+        // TODO add your handling code here:
+        Object selectedItem = ComboBox2.getSelectedItem();
+    if (selectedItem != null && !selectedItem.toString().isEmpty()) {
+        String selectedText = selectedItem.toString();
+        System.out.println("Selected item: " + selectedText);
+        // Utiliza selectedText según sea necesario
+    } else {
+        System.out.println("No item selected or item is empty.");
+    }
+    
+    
+    }//GEN-LAST:event_ComboBox6ActionPerformed
+
+    private void TextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextField3ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -1201,6 +1361,7 @@ public class ventana extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboBox3;
     private javax.swing.JComboBox<String> ComboBox4;
     private javax.swing.JComboBox<String> ComboBox5;
+    private javax.swing.JComboBox<String> ComboBox6;
     private javax.swing.JButton ConsultarAlbum;
     private javax.swing.JButton ConsultarLista;
     private javax.swing.JButton ConsultarPerfil;
