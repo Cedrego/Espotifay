@@ -5,13 +5,20 @@ package Espotify;
  * @author Camilo
  */
 
+//@Entity
 public class Usuario {
-
+    
+    //@Id
+    //@Column (name="NICK");
     private String nickname;
+    //@Column (name="NOMBRE");
     private String nombre;
+    //@Column (name="APELLIDO");
     private String apellido;
+    //@Column (name="MAIL");
     private String correo;
-    //private DTfecha fecha;
+    //@Column (name="NAC");
+    private DTFecha fecha;
     //private imagen
     
     //@GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,12 +26,12 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nick, String nom, String ape, String mail, String fech) {
+    public Usuario(String nick, String nom, String ape, String mail, DTFecha fech) {
         this.nickname = nick;
         this.nombre = nom;
         this.apellido = ape;
         this.correo = mail;
-        //this.fecha = fech;
+        this.fecha = fech;
         //this.imagen = picture;
         
     }
@@ -57,23 +64,23 @@ public class Usuario {
     
     //Set variables
     public void setNombre(String nom) {
-        nombre = nom;
+        this.nombre = nom;
     }
 
     public void setApellido(String ape) {
-        apellido = ape;
+        this.apellido = ape;
     }
 
     public void setNickname(String nick) {
-        nickname = nick;
+        this.nickname = nick;
     }
     
     public void setCorreo(String mail) {
-        correo = mail;
+        this.correo = mail;
     }
-    /*
-    public void setFecha(Date fech) {
-        fecha = fech;
+    
+    public void setFecha(DTFecha fech) {
+        this.fecha = fech;
     }
     /*
     public void setImagen(String picture) {

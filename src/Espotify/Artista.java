@@ -4,24 +4,34 @@
  */
 package Espotify;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Camilo
  */
+
+//@Entity
 public class Artista extends Usuario {
     
+    //VER BIEN COMO FUNCIONA CON CLASES EXTENDIDAS
+    //@Column (name="SITIO WEB");
     private String SitioWeb;
+    //@Column (name="BIOGRAFIA");
     private String Biografia;
-    //private puntero Compone;
+    //@OneToMany
+    //aca va una join table
+    private List<Album> albumes;
     
     
     public Artista() {
     }
 
     public Artista(String webSite, String bio) {
-        SitioWeb = webSite;
-        Biografia = bio;
-        //Compone = composes;
+        this.SitioWeb = webSite;
+        this.Biografia = bio;
+        this.albumes = new ArrayList<>(); //inicializa lista de albumes
     }
     
     //Get variables
@@ -33,8 +43,25 @@ public class Artista extends Usuario {
         return Biografia;
     }
     
+    public List<Album> getAlbumes(){
+        return albumes;
+    }
+    
     //Set variables
     public void setSitioWeb(String webSite) {
-        SitioWeb = webSite;
+        this.SitioWeb = webSite;
+    }
+    
+    public void setBiografia(String bio){
+        this.Biografia=bio;
+    }
+    
+    public void setAlbumes(List<Album> alb){
+        this.albumes = alb;
+    }
+    
+    //agregar a lista
+    public void addAlbum(Album alb){
+        this.albumes.add(alb);
     }
 }

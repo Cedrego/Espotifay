@@ -8,7 +8,9 @@ package Espotify;
  *
  * @author cedre
  */
+//@Entity
 public class Particular extends Playlist {
+    //@Column (name="PRRIVADO");
     private boolean privado;
     
     public Particular(){}
@@ -20,6 +22,6 @@ public class Particular extends Playlist {
         return privado;
     }
     public void setPrivado(boolean EsPrivado){
-        privado = EsPrivado;
+        this.privado = EsPrivado;
     }
 }

@@ -8,6 +8,8 @@ package Espotify;
  *
  * @author cedre
  */
+//@Entity
 public class porDefecto extends Playlist {
-    
+    //@OneToOne
+    private Genero genero;
 }
