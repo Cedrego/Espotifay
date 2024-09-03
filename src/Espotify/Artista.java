@@ -8,11 +8,18 @@ package Espotify;
  *
  * @author Camilo
  */
+
+//@Entity
 public class Artista extends Usuario {
     
+    //VER BIEN COMO FUNCIONA CON CLASES EXTENDIDAS
+    //@Column (name="SITIO WEB");
     private String SitioWeb;
+    //@Column (name="BIOGRAFIA");
     private String Biografia;
-    //private puntero Compone;
+    //@OneToMany
+    //aca va una join table
+    private Album compone;
     
     
     public Artista() {

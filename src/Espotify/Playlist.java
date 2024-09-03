@@ -8,8 +8,14 @@ package Espotify;
  *
  * @author cedre
  */
+
+//@Entity
 public class Playlist {
+    //@Id
+    //@Column (name="NOMBRE");
     protected String nombre;
+    //@OneToMany
+    private Tema temas;
     //imagen;
     public Playlist(){}
     public Playlist(String NuevoNombre){
@@ -19,6 +25,6 @@ public class Playlist {
         return nombre;
     }
     public void setNombre(String NuevoNombre){
-        nombre = NuevoNombre;
+        this.nombre = NuevoNombre;
     }
 }

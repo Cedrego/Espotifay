@@ -10,8 +10,12 @@ import java.io.Serializable;
  *
  * @author Franco
  */
+//@Entity
 public class Album implements Serializable{
+    //@Id
+    //@Column (name="NOMBRE");
     private String nombre;
+    //@Column (name="CREACION");
     private DTFecha creacion;
     //punteros a tema y genero?
     

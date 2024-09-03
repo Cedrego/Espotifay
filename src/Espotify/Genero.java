@@ -8,8 +8,12 @@ package Espotify;
  *
  * @author Franco
  */
+//@Entity
 public class Genero {
+    //@Id
+    //@Column (name="NOMBRE");
     private String nombre;
+    //@Column (name="SUBGENERO DE");
     private Genero subgeneroDe; //en  realidad es una lista, ver despues
     
     public String getNombre(){
@@ -20,7 +24,7 @@ public class Genero {
     }
     
     public void setNombre(String nom){
-        nombre = nom;
+        this.nombre = nom;
     }
     public void setSubgenero(Genero gen){
         //add subgenero a la lista
