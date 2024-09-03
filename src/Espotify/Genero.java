@@ -4,6 +4,8 @@
  */
 package Espotify;
 
+import java.util.List;
+
 /**
  *
  * @author Franco
@@ -14,19 +16,26 @@ public class Genero {
     //@Column (name="NOMBRE");
     private String nombre;
     //@Column (name="SUBGENERO DE");
-    private Genero subgeneroDe; //en  realidad es una lista, ver despues
+    private List<Genero> subgeneroDe; 
     
+    //getters
     public String getNombre(){
         return nombre;
     }
-    public Genero getSubgenero(){
-        return subgeneroDe; //tengo que ver como se devuelve una lista en java
+    public List<Genero> getSubgenero(){
+        return subgeneroDe; 
     }
     
+    //setters
     public void setNombre(String nom){
         this.nombre = nom;
     }
-    public void setSubgenero(Genero gen){
-        //add subgenero a la lista
+    public void setSubgenero(List<Genero> gen){
+        this.subgeneroDe=gen;
+    }
+    
+    //agregar a la lista
+    public void addSubgenero(Genero gen){
+        this.subgeneroDe.add(gen);
     }
 }

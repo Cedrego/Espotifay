@@ -5,6 +5,8 @@
 package Espotify;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,15 +18,18 @@ public class Album implements Serializable{
     //@Column (name="NOMBRE");
     private String nombre;
     //@Column (name="CREACION");
-    private DTFecha creacion;
-    //punteros a tema y genero?
+    private int creacion;
+    private List<Tema> temas;
+    private List<Genero> generos;
     
     public Album() {
     }
 
-    public Album(String nombreAlbum,DTFecha fechaCreacion) {
-        nombre = nombreAlbum;
-        creacion = fechaCreacion;  
+    public Album(String nombreAlbum,int anioCreacion) {
+        this.nombre = nombreAlbum;
+        this.creacion = anioCreacion;
+        this.temas = new ArrayList<>(); // Inicializa la lista de temas
+        this.generos = new ArrayList<>(); // Inicializa la lista de generos
     }
     
     //Get variables
@@ -32,17 +37,44 @@ public class Album implements Serializable{
         return nombre;
     }
     
-    //Get variables
-    public DTFecha getCreacion() {
+ 
+    public int getCreacion() {
         return creacion;
     }
     
-    //Set variables
-    public void setNombre(String nom) {
-        nombre = nom;
+    public List<Tema> getTemas(){
+        return temas;
     }
     
-    public void setFecha(DTFecha fech) {
-        creacion = fech;
+    public List<Genero> getGeneros(){
+        return generos;
+    }
+    
+    
+    //Set variables
+    public void setNombre(String nom) {
+        this.nombre = nom;
+    }
+    
+    public void setFecha(int fech) {
+        this.creacion = fech;
+    }
+    
+    public void setTemas(List<Tema> tem){
+        this.temas = tem;
+    }
+    
+    public void setGeneros (List<Genero> gen){
+        this.generos = gen;
+    }
+    
+    //Agregar a listas
+    
+    public void addGenero(Genero gen){
+        this.generos.add(gen);
+    }
+    
+    public void addTemas(Tema tem){
+        this.temas.add(tem);
     }
 }
