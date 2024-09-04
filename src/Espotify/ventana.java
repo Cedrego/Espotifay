@@ -66,7 +66,7 @@ public class ventana extends javax.swing.JFrame {
 
     String[] months = {
         "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-
+    int option;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -128,7 +128,6 @@ public class ventana extends javax.swing.JFrame {
         AgregarTemasListas = new javax.swing.JButton();
         QuitarTemasListas = new javax.swing.JButton();
         PublicarLista = new javax.swing.JButton();
-        mondongo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ESPOTIFY");
@@ -666,16 +665,6 @@ public class ventana extends javax.swing.JFrame {
             }
         });
 
-        mondongo.setBackground(new java.awt.Color(0, 204, 102));
-        mondongo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        mondongo.setText("Caso Uso");
-        mondongo.setBorderPainted(false);
-        mondongo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mondongoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -696,8 +685,7 @@ public class ventana extends javax.swing.JFrame {
                     .addComponent(AltaGenero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(AgregarTemasListas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(QuitarTemasListas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PublicarLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mondongo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(PublicarLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -731,8 +719,6 @@ public class ventana extends javax.swing.JFrame {
                 .addComponent(ConsultarAlbum)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ConsultarLista)
-                .addGap(66, 66, 66)
-                .addComponent(mondongo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -901,6 +887,7 @@ public class ventana extends javax.swing.JFrame {
     private void AltaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaPerfilActionPerformed
         // TODO add your handling code here:
         hideAll();
+        option = 1;
         ACEPTAR.setVisible(true);
 
         //asignar palabras
@@ -1345,14 +1332,10 @@ public class ventana extends javax.swing.JFrame {
 
     private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
         // TODO add your handling code here:
-        llamarAltaUsuario();
+        if(option == 1){
+            llamarAltaUsuario();
+        }
     }//GEN-LAST:event_ACEPTARActionPerformed
-
-    private void mondongoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mondongoActionPerformed
-        // TODO add your handling code here:
-        hideAll();
-        
-    }//GEN-LAST:event_mondongoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1441,6 +1424,5 @@ public class ventana extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollBar jScrollBar1;
-    private javax.swing.JButton mondongo;
     // End of variables declaration//GEN-END:variables
 }

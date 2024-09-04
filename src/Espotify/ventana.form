@@ -882,7 +882,6 @@
                           <Component id="AgregarTemasListas" alignment="1" max="32767" attributes="0"/>
                           <Component id="QuitarTemasListas" alignment="1" max="32767" attributes="0"/>
                           <Component id="PublicarLista" alignment="0" max="32767" attributes="0"/>
-                          <Component id="mondongo" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -919,8 +918,6 @@
                       <Component id="ConsultarAlbum" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ConsultarLista" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                      <Component id="mondongo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -1135,21 +1132,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PublicarListaActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="mondongo">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="cc" red="0" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="12" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Caso Uso"/>
-                <Property name="borderPainted" type="boolean" value="false"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mondongoActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
