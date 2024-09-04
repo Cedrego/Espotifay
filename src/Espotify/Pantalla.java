@@ -6,7 +6,7 @@ package Espotify;
 
 /**
  *
- * @author camin
+ * @author Camilo
  */
 public class Pantalla {
 

@@ -935,6 +935,7 @@ public class ventana extends javax.swing.JFrame {
     private void AltaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaAlbumActionPerformed
         // TODO add your handling code here:
         hideAll();
+        option = 3;
         //jPanel2.setLayout(new GridLayout(0, 3, 10, 10)); // 3 columnas, número dinámico de filas
         ACEPTAR.setVisible(false);
         Text9.setText("Selecione Artista:");
@@ -977,6 +978,7 @@ public class ventana extends javax.swing.JFrame {
     private void AltaGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaGeneroActionPerformed
         // TODO add your handling code here:
         hideAll();
+        option = 2;
 
         ACEPTAR.setVisible(true);
         Text1.setText("Nombre del Genero:");
@@ -1034,6 +1036,7 @@ public class ventana extends javax.swing.JFrame {
     private void CrearListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearListaActionPerformed
         // TODO add your handling code here:
         hideAll();
+        option = 4;
 
         Text1.setText("Nombre de la Lista:");
         Text1.setVisible(true);
@@ -1048,6 +1051,7 @@ public class ventana extends javax.swing.JFrame {
     private void SeguirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeguirUsuarioActionPerformed
         // TODO add your handling code here:
         hideAll();
+        option = 9;
 
         Text9.setText("Cliente:");
         Text5.setText("Usuario a Seguir:");
@@ -1072,6 +1076,7 @@ public class ventana extends javax.swing.JFrame {
     private void GuardarTLAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarTLAActionPerformed
         // TODO add your handling code here:
         hideAll();
+        option = 10;
 
         Text9.setText("Cliente:");
         Text5.setText("Que desea agregar a favoritos?");
@@ -1087,6 +1092,7 @@ public class ventana extends javax.swing.JFrame {
     private void EliminarTLAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarTLAActionPerformed
         // TODO add your handling code here:
         hideAll();
+        option = 11;
 
         Text9.setText("Cliente:");
         Text5.setText("Eliminar de favoritos;");
@@ -1099,6 +1105,7 @@ public class ventana extends javax.swing.JFrame {
     private void ConsultarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarPerfilActionPerformed
         // TODO add your handling code here:
         hideAll();
+        option = 12;
 
         Text9.setText("Cliente:");
         Text9.setVisible(true);
@@ -1108,6 +1115,7 @@ public class ventana extends javax.swing.JFrame {
     private void ConsultarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarAlbumActionPerformed
         // TODO add your handling code here:
         hideAll();
+        option = 13;
 
         Text9.setText("Filtrar por:");
         Text6.setText("Album:");
@@ -1122,6 +1130,7 @@ public class ventana extends javax.swing.JFrame {
     private void ConsultarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarListaActionPerformed
         // TODO add your handling code here:
         hideAll();
+        option = 14;
 
         Text9.setText("Filtrar por:");
         Text6.setText("Lista:");
@@ -1269,6 +1278,7 @@ public class ventana extends javax.swing.JFrame {
     private void AgregarTemasListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarTemasListasActionPerformed
         // TODO add your handling code here:
         hideAll();
+        option = 5;
 
         Text9.setText("Propietario:");
         Text5.setText("Lista:");
@@ -1286,6 +1296,7 @@ public class ventana extends javax.swing.JFrame {
     private void QuitarTemasListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarTemasListasActionPerformed
         // TODO add your handling code here:
         hideAll();
+        option = 6;
 
         Text9.setText("Propietario:");
         Text5.setText("Lista:");
@@ -1303,6 +1314,7 @@ public class ventana extends javax.swing.JFrame {
     private void PublicarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PublicarListaActionPerformed
         // TODO add your handling code here:
         hideAll();
+        option = 7;
 
         Text9.setText("Propietario:");
         Text5.setText("Lista:");
@@ -1332,8 +1344,49 @@ public class ventana extends javax.swing.JFrame {
 
     private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
         // TODO add your handling code here:
-        if(option == 1){
-            llamarAltaUsuario();
+        switch(option){
+            case 1:
+                llamarAltaUsuario();
+            break;
+            case 2:
+                //llamarAltaUsuario();
+            break;
+            case 3:
+                //llamarAltaAlbum();
+            break;
+            case 4:
+                //llamarCrearLista();
+            break;
+            case 5:
+                //llamarAgregarTemasLista();
+            break;
+            case 6:
+                //llamarQuitarTemasLista();
+            break;
+            case 7:
+                //llamarPublicarLista();
+            break;
+            case 8:
+                //llamarSeguirUsuario();
+            break;
+            case 9:
+                //llamarDejarSeguirUsuario();
+            break;
+            case 10:
+                //llamarGuardarTLA();
+            break;
+            case 11:
+                //llamarEliminarTLA();
+            break;
+            case 12:
+                //llamarConsultarPerfil();
+            break;
+            case 13:
+                //llamarConsultarAlbum();
+            break;
+            case 14:
+                //llamarConsultarLista();
+            break;
         }
     }//GEN-LAST:event_ACEPTARActionPerformed
 
