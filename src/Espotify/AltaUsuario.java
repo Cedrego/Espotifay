@@ -6,7 +6,7 @@ package Espotify;
 import Espotify.Usuario;
 /**
  *
- * @author camin
+ * @author Camilo
  */
 public class AltaUsuario {
     String nickname;
