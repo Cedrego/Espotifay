@@ -4,6 +4,7 @@
  */
 package Espotify;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,26 +17,27 @@ public class Genero {
     //@Column (name="NOMBRE");
     private String nombre;
     //@Column (name="SUBGENERO DE");
-    private List<Genero> subgeneroDe; 
+    private Genero padre;
+    
+    public Genero(String nom){
+        this.nombre=nom;
+        this.padre = null;
+    }
     
     //getters
     public String getNombre(){
         return nombre;
     }
-    public List<Genero> getSubgenero(){
-        return subgeneroDe; 
+    public Genero getPadre(){
+        return padre; 
     }
     
     //setters
     public void setNombre(String nom){
         this.nombre = nom;
     }
-    public void setSubgenero(List<Genero> gen){
-        this.subgeneroDe=gen;
+    public void setPadre(Genero gen){
+        this.padre=gen;
     }
     
-    //agregar a la lista
-    public void addSubgenero(Genero gen){
-        this.subgeneroDe.add(gen);
-    }
 }

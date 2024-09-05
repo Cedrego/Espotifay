@@ -48,6 +48,10 @@ public class ventana extends javax.swing.JFrame {
         AltaUsuario altaUsuario = new AltaUsuario(nickname, nombre, apellido, correo, dias, meses, anios);
     }
     
+    private void llamarAltaAlbum(){
+        
+    }
+    
     int opcion = 0;
     
     String[] years = {

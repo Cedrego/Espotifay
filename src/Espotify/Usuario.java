@@ -52,8 +52,8 @@ public class Usuario {
     public String getCorreo() {
         return correo;
     }
-    /*
-    public Date getFecha() {
+    
+    public DTFecha getFecha() {
         return fecha;
     }
     /*

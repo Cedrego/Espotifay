@@ -4,6 +4,9 @@
  */
 package Espotify;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *
@@ -14,7 +17,7 @@ public class Tema {
     private String nombre;
     private String duracion;
     private int ordenAlbum;
-    //puntero a genero?
+    private List<Genero> generos;
     
     public Tema() {
     }
@@ -23,6 +26,7 @@ public class Tema {
         this.nombre = nombreTema;
         this.duracion = duracionTema;
         this.ordenAlbum = ordenAlbumT;
+        this.generos = new ArrayList<>(); //inicializa lista de generos
     }
     
     //Get variables
@@ -38,16 +42,29 @@ public class Tema {
         return ordenAlbum;
     }
     
+    public List<Genero> getGeneros(){
+        return generos;
+    }
+    
     //Set variables
     public void setNombre(String nom) {
-        nombre = nom;
+        this.nombre = nom;
     }
 
     public void setDuracion(String dur) {
-        duracion = dur;
+        this.duracion = dur;
     }
     
     public void setNombre(int orden) {
-        ordenAlbum = orden;
+        this.ordenAlbum = orden;
+    }
+    
+    public void setGeneros(List<Genero> gen){
+        this.generos=gen;
+    }
+    
+    //agregar a la  lista
+    public void addGenero(Genero gen){
+        this.generos.add(gen);
     }
 }

@@ -3,12 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package logica;
-import Espotify.ventana
+import Espotify.ventana;
 /**
  *
  * @author Camilo
  */
 public class AltaPerfil {
-    Object nombre = Espotify.ventana.TextField1.getText();
+    //Object nombre = Espotify.ventana.TextField1.getText();
     
 }
