@@ -4,13 +4,16 @@
  */
 package Espotify;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 /**
  *
  * @author cedre
  */
 @Entity
 public class Particular extends Playlist {
-    @Column (name="PRRIVADO");
+    @Column (name="PRRIVADO")
     private boolean privado;
     
     public Particular(){}
