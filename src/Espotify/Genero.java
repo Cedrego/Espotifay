@@ -4,20 +4,33 @@
  */
 package Espotify;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 /**
  *
  * @author Franco
  */
-//@Entity
-public class Genero {
-    //@Id
-    //@Column (name="NOMBRE");
+@Entity
+public class Genero implements Serializable {
+    @Id
+    @Column (name="NOMBRE")
     private String nombre;
-    //@Column (name="SUBGENERO DE");
+    @JoinColumn (name="SUBGENERO DE")
     private Genero padre;
+
+    public Genero() {
+    }
+    
+    public Genero(String nombre, Genero padre) {
+        this.nombre = nombre;
+        this.padre = padre;
+    }
     
     public Genero(String nom){
         this.nombre=nom;

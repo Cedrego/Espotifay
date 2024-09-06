@@ -4,17 +4,26 @@
  */
 package Espotify;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
 /**
  *
  * @author Franco
  */
-public class DTFecha {
+@Embeddable
+public class DTFecha implements Serializable {
+    @Column(name="DIA")
     private int dia;
+    @Column(name="MES")
     private int mes;
+    @Column(name="ANIO")
     private int anio;
     
     
     public DTFecha(){};
+    
     public DTFecha(int diaDT, int mesDT, int anioDT){
         this.dia = diaDT;
         this.mes = mesDT;
@@ -31,6 +40,18 @@ public class DTFecha {
     
     public int getAnio(){
         return anio;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
     }
     
     

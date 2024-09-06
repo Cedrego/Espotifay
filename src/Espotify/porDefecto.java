@@ -4,12 +4,30 @@
  */
 package Espotify;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
 /**
  *
  * @author cedre
  */
-//@Entity
+@Entity
 public class porDefecto extends Playlist {
-    //@OneToOne
+    @OneToOne
     private Genero genero;
+
+    public porDefecto() {
+    }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
+    
+    
+    
+    
 }

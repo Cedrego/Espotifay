@@ -4,21 +4,25 @@
  */
 package Espotify;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 
 /**
  *
  * @author Franco
  */
-public class Tema {
-    
+@Entity
+public class Tema implements Serializable {
+    @Id
     private String nombre;
     private String duracion;
     private int ordenAlbum;
     private List<Genero> generos;
-    
+
     public Tema() {
     }
 

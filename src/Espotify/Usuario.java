@@ -1,23 +1,34 @@
 package Espotify;
 
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 /**
  * Representa a un usuario en el sistema con nombre, apellido y cédula de identidad.
  * @author Camilo
  */
 
-//@Entity
-public class Usuario {
-    
-    //@Id
-    //@Column (name="NICK");
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class Usuario implements Serializable {
+    @Id
+    @Column (name="NICK")
     private String nickname;
-    //@Column (name="NOMBRE");
+    @Basic
+    @Column (name="NOMBRE")
     private String nombre;
-    //@Column (name="APELLIDO");
+    @Column (name="APELLIDO")
     private String apellido;
-    //@Column (name="MAIL");
+    @Column (name="MAIL")
     private String correo;
-    //@Column (name="NAC");
+    @Column (name="NAC")
     private DTFecha fecha;
     //private imagen
     

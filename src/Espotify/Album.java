@@ -7,19 +7,24 @@ package Espotify;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author Franco
  */
-//@Entity
+@Entity
 public class Album implements Serializable{
-    //@Id
-    //@Column (name="NOMBRE");
+    @Id
+    @Column (name="NOMBRE")
     private String nombre;
-    //@Column (name="CREACION");
+    @Column (name="CREACION")
     private int creacion;
+    @Column (name="TEMAS")
     private List<Tema> temas;
+    @Column (name="GENEROS")
     private List<Genero> generos;
     
     public Album() {
