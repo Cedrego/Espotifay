@@ -942,9 +942,9 @@ public class ventana extends javax.swing.JFrame {
         option = 3;
         //jPanel2.setLayout(new GridLayout(0, 3, 10, 10)); // 3 columnas, número dinámico de filas
         ACEPTAR.setVisible(false);
-        Text9.setText("Selecione Artista:");
-        Text9.setVisible(true);
-        ComboBox5.setVisible(true);
+        Text1.setText("Selecione Artista:");
+        Text1.setVisible(true);
+        TextField1.setVisible(true);
         Button1.setText("Confirmar");
         Button1.setVisible(true);
     }//GEN-LAST:event_AltaAlbumActionPerformed
@@ -1025,15 +1025,9 @@ public class ventana extends javax.swing.JFrame {
         if (selectedItem == "Genero") {
             ComboBox4.removeAllItems();
             //agregar la lisa de generos a ComboBox4
-            ComboBox4.addItem("Rock");
-            ComboBox4.addItem("Metal");
-            ComboBox4.addItem("Pop");
         } else {
             ComboBox4.removeAllItems();
             //agregar la lisa de artistas a ComboBox4
-            ComboBox4.addItem("Cuarteto de Nos");
-            ComboBox4.addItem("Evanecense");
-            ComboBox4.addItem("Justin Biever");
         }
     }//GEN-LAST:event_ComboBox5ActionPerformed
 
