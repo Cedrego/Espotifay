@@ -1,27 +1,32 @@
 package Espotify;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Representa a un usuario en el sistema con nombre, apellido y cédula de identidad.
  * @author Camilo
  */
 
-//@Entity
+@Entity
 public class Usuario {
     
-    //@Id
-    //@Column (name="NICK");
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column (name="NICK")
     private String nickname;
-    //@Column (name="NOMBRE");
+    @Column (name="NOMBRE")
     private String nombre;
-    //@Column (name="APELLIDO");
+    @Column (name="APELLIDO")
     private String apellido;
-    //@Column (name="MAIL");
+    @Column (name="MAIL")
     private String correo;
-    //@Column (name="NAC");
+    @Column (name="NAC")
     private DTFecha fecha;
-    //private imagen
-    
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    //private imagen picture;
     
     public Usuario() {
     }

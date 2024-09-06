@@ -6,21 +6,24 @@ package Espotify;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Camilo
  */
 
-//@Entity
+@Entity
 public class Artista extends Usuario {
     
     //VER BIEN COMO FUNCIONA CON CLASES EXTENDIDAS
-    //@Column (name="SITIO WEB");
+    @Column (name="SITIO WEB")
     private String SitioWeb;
-    //@Column (name="BIOGRAFIA");
+    @Column (name="BIOGRAFIA")
     private String Biografia;
-    //@OneToMany
+    @OneToMany
     //aca va una join table
     private List<Album> albumes;
     

@@ -4,29 +4,32 @@
  */
 package Espotify;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 /**
  *
  * @author Camilo
  */
-//@Entity
+@Entity
 public class Cliente extends Usuario {
     
     
-    //@Column (name="PLAYLISTS");
+    @Column (name="PLAYLISTS")
     private Particular particular; //coleccion
     
-    //@Column (name="SIGUE A");
+    @Column (name="SIGUE A")
     private Usuario SigueA;
-    //@Column (name="SEGUIDO POR");
+    @Column (name="SEGUIDO POR")
     private Usuario SeguidoPor;
     
-    //@Column (name="ALBUMES FAVORITOS");
+    @Column (name="ALBUMES FAVORITOS")
     private Album albumFav; //coleccion
     
-    //@Column (name="TEMAS FAVORITOS");
+    @Column (name="TEMAS FAVORITOS")
     private Tema temasFAV; //coleccion
     
-    //@Column (name="PLAYLISTS FAVORITAS");
+    @Column (name="PLAYLISTS FAVORITAS")
     private Playlist playFav; //coleccion
     
 }

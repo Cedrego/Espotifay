@@ -9,12 +9,12 @@ package Espotify;
  * @author cedre
  */
 
-//@Entity
+@Entity
 public class Playlist {
-    //@Id
-    //@Column (name="NOMBRE");
+    @Id
+    @Column (name="NOMBRE");
     protected String nombre;
-    //@OneToMany
+    @OneToMany
     private Tema temas;
     //imagen;
     public Playlist(){}

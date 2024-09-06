@@ -8,9 +8,9 @@ package Espotify;
  *
  * @author cedre
  */
-//@Entity
+@Entity
 public class Particular extends Playlist {
-    //@Column (name="PRRIVADO");
+    @Column (name="PRRIVADO");
     private boolean privado;
     
     public Particular(){}

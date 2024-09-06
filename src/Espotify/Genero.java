@@ -11,12 +11,12 @@ import java.util.List;
  *
  * @author Franco
  */
-//@Entity
+@Entity
 public class Genero {
-    //@Id
-    //@Column (name="NOMBRE");
+    @Id
+    @Column (name="NOMBRE");
     private String nombre;
-    //@Column (name="SUBGENERO DE");
+    @Column (name="SUBGENERO DE");
     private Genero padre;
     
     public Genero(String nom){
@@ -39,5 +39,4 @@ public class Genero {
     public void setPadre(Genero gen){
         this.padre=gen;
     }
-    
 }
