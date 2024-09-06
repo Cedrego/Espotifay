@@ -19,10 +19,13 @@ public class AltaUsuario {
     int meses;
     int anios;
             
-    public AltaUsuario(String nick, String nom, String ape, String mail, Object dia, Object mes, Object anio){
+    public AltaUsuario(String nick, String nom, String ape, String mail, Object dia, Object mes, Object anio, String bio, String web){
         nickname = nick;
         nombre = nom;
         apellido = ape;
+        correo = mail;
+        biografia = bio;
+        pagina = web;
         dias = Integer.parseInt((String) dia);
         switch ((String) mes) {
             case "Enero": meses = 1; break;
@@ -47,5 +50,13 @@ public class AltaUsuario {
         System.out.println("Apellido: " + apellido);
         System.out.println("Correo: " + correo);
         System.out.println("Fecha: " + dias + "/" + meses + "/" + anios);
+        System.out.println("Fecha: " + dias + "/" + meses + "/" + anios);
+        System.out.println("Fecha: " + dias + "/" + meses + "/" + anios);
+        if(biografia != null){
+            System.out.println("Biografia: " + biografia);
+        }
+        if(pagina != null){
+            System.out.println("Pagina Web: " + pagina);
+        }
     }
 }
