@@ -38,7 +38,6 @@ public class Usuario {
         this.correo = mail;
         this.fecha = fech;
         //this.imagen = picture;
-        
     }
     
     //Get variables
