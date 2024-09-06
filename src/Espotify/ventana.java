@@ -36,16 +36,18 @@ public class ventana extends javax.swing.JFrame {
         hideAll();
     }
     
-    private void llamarAltaUsuario() {
+    public void llamarAltaUsuario() {
         String nickname = TextField1.getText();
         String nombre = TextField2.getText();
         String apellido = TextField3.getText();
         String correo = TextField4.getText();
+        String biografia = TextField5.getText();
+        String pagina = TextField6.getText();
         Object dias = ComboBox1.getSelectedItem();
         Object meses = ComboBox2.getSelectedItem();
         Object anios = ComboBox3.getSelectedItem();
         
-        AltaUsuario altaUsuario = new AltaUsuario(nickname, nombre, apellido, correo, dias, meses, anios);
+        AltaUsuario altaUsuario = new AltaUsuario(nickname, nombre, apellido, correo, dias, meses, anios, biografia, pagina);
     }
     
     private void llamarAltaAlbum(){
@@ -500,9 +502,9 @@ public class ventana extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Text10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ACEPTAR, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ACEPTAR)
+                            .addComponent(Text10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Button2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -731,13 +733,10 @@ public class ventana extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(Logo)))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -818,12 +817,12 @@ public class ventana extends javax.swing.JFrame {
         ComboBox6.removeAllItems();
 
         //vacia los espacios de texto
-        TextField1.setText("");
-        TextField2.setText("");
-        TextField3.setText("");
-        TextField4.setText("");
-        TextField5.setText("");
-        TextField6.setText("");
+        TextField1.setText(null);
+        TextField2.setText(null);
+        TextField3.setText(null);
+        TextField4.setText(null);
+        TextField5.setText(null);
+        TextField6.setText(null);
 
         //botones
         ACEPTAR.setVisible(false);
@@ -1344,7 +1343,47 @@ public class ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
         switch(option){
             case 1:
-                llamarAltaUsuario();
+                if (TextField1.getText().isEmpty()) {
+                    Text10.setText("ERROR: campo Nickname vacio");
+                    Text10.setVisible(true);
+                }else{
+                    if (TextField2.getText().isEmpty()) {
+                    Text10.setText("ERROR: campo Nombre vacio");
+                    Text10.setVisible(true);
+                    }else{
+                        if (TextField3.getText().isEmpty()) {
+                            Text10.setText("ERROR: campo Apellido vacio");
+                            Text10.setVisible(true);
+                        }else{
+                            if(TextField4.getText().isEmpty()){
+                                Text10.setText("ERROR: campo Correo vacio");
+                                Text10.setVisible(true);
+                            }else{
+                                if(ComboBox4.getSelectedItem() == "Artista"){
+                                    if(TextField5.getText().isEmpty()){
+                                        Text10.setText("ERROR: campo Biografia vacio");
+                                        Text10.setVisible(true);
+                                    }else{
+                                        if(TextField6.getText().isEmpty()){
+                                            Text10.setText("ERROR: campo Pagina web vacio");
+                                            Text10.setVisible(true);
+                                        }else{
+                                            Text10.setVisible(false);
+                                            llamarAltaUsuario();
+                                        }
+                                    }
+                                }else{
+                                    Text10.setVisible(false);
+                                    llamarAltaUsuario();
+                                }
+                            }
+                        }
+                    }
+                }
+                Object dias = ComboBox1.getSelectedItem();
+                Object meses = ComboBox2.getSelectedItem();
+                Object anios = ComboBox3.getSelectedItem();
+                
             break;
             case 2:
                 //llamarAltaUsuario();
