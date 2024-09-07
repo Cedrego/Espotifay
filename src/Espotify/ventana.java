@@ -36,20 +36,6 @@ public class ventana extends javax.swing.JFrame {
         hideAll();
     }
     
-    public void llamarAltaUsuario() {
-        String nickname = TextField1.getText();
-        String nombre = TextField2.getText();
-        String apellido = TextField3.getText();
-        String correo = TextField4.getText();
-        String biografia = TextField5.getText();
-        String pagina = TextField6.getText();
-        Object dias = ComboBox1.getSelectedItem();
-        Object meses = ComboBox2.getSelectedItem();
-        Object anios = ComboBox3.getSelectedItem();
-        
-        AltaUsuario altaUsuario = new AltaUsuario(nickname, nombre, apellido, correo, dias, meses, anios, biografia, pagina);
-    }
-    
     private void llamarAltaAlbum(){
         
     }
@@ -982,7 +968,7 @@ public class ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
         hideAll();
         option = 2;
-
+        
         ACEPTAR.setVisible(true);
         Text1.setText("Nombre del Genero:");
         Text1.setVisible(true);
@@ -990,6 +976,7 @@ public class ventana extends javax.swing.JFrame {
         Text9.setVisible(true);
         TextField1.setVisible(true);
         ComboBox5.setVisible(true);
+        
     }//GEN-LAST:event_AltaGeneroActionPerformed
 
     private void ComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox5ActionPerformed
@@ -1343,50 +1330,53 @@ public class ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
         switch(option){
             case 1:
-                if (TextField1.getText().isEmpty()) {
+                String nickname = TextField1.getText();
+                String nombre = TextField2.getText();
+                String apellido = TextField3.getText();
+                String correo = TextField4.getText();
+                String biografia = TextField5.getText();
+                String pagina = TextField6.getText();
+                Object diasObj = ComboBox1.getSelectedItem();
+                Object mesesObj = ComboBox2.getSelectedItem();
+                Object aniosObj = ComboBox3.getSelectedItem();
+
+                // Validar campos
+                if (nickname.isEmpty()) {
                     Text10.setText("ERROR: campo Nickname vacio");
                     Text10.setVisible(true);
-                }else{
-                    if (TextField2.getText().isEmpty()) {
+                } else if (nombre.isEmpty()) {
                     Text10.setText("ERROR: campo Nombre vacio");
                     Text10.setVisible(true);
-                    }else{
-                        if (TextField3.getText().isEmpty()) {
-                            Text10.setText("ERROR: campo Apellido vacio");
+                } else if (apellido.isEmpty()) {
+                    Text10.setText("ERROR: campo Apellido vacio");
+                    Text10.setVisible(true);
+                } else if (correo.isEmpty()) {
+                    Text10.setText("ERROR: campo Correo vacio");
+                    Text10.setVisible(true);
+                } else {
+                    boolean isArtista = ComboBox4.getSelectedItem().equals("Artista");
+                    if (isArtista) {
+                        if (biografia.isEmpty()) {
+                            Text10.setText("ERROR: campo Biografia vacio");
                             Text10.setVisible(true);
-                        }else{
-                            if(TextField4.getText().isEmpty()){
-                                Text10.setText("ERROR: campo Correo vacio");
-                                Text10.setVisible(true);
-                            }else{
-                                if(ComboBox4.getSelectedItem() == "Artista"){
-                                    if(TextField5.getText().isEmpty()){
-                                        Text10.setText("ERROR: campo Biografia vacio");
-                                        Text10.setVisible(true);
-                                    }else{
-                                        if(TextField6.getText().isEmpty()){
-                                            Text10.setText("ERROR: campo Pagina web vacio");
-                                            Text10.setVisible(true);
-                                        }else{
-                                            Text10.setVisible(false);
-                                            llamarAltaUsuario();
-                                        }
-                                    }
-                                }else{
-                                    Text10.setVisible(false);
-                                    llamarAltaUsuario();
-                                }
-                            }
+                        } else if (pagina.isEmpty()) {
+                            Text10.setText("ERROR: campo Pagina web vacio");
+                            Text10.setVisible(true);
+                        } else {
+                            Text10.setVisible(false);
+                            // Crear una instancia de AltaUsuario
+                            Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, biografia, pagina);
                         }
+                    } else {
+                        Text10.setVisible(false);
+                        // Crear una instancia de AltaUsuario sin biografía y página web
+                        Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, null, null);
                     }
                 }
-                Object dias = ComboBox1.getSelectedItem();
-                Object meses = ComboBox2.getSelectedItem();
-                Object anios = ComboBox3.getSelectedItem();
-                
             break;
             case 2:
-                //llamarAltaUsuario();
+                //llamarAltaGenero();
+                
             break;
             case 3:
                 //llamarAltaAlbum();
