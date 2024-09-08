@@ -6,12 +6,12 @@ package Espotify;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
@@ -19,10 +19,10 @@ import javax.persistence.OneToMany;
  */
 
 @Entity
+@Table (name = "Playlist")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Playlist implements Serializable {
     @Id
-    @Column (name="NOMBRE")
     protected String nombre;
     @OneToMany
     private List<Tema> temas;

@@ -4,88 +4,111 @@
  */
 package Espotify;
 
-import javax.persistence.Column;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  *
  * @author Camilo
  */
 @Entity
+@Table(name = "Cliente")
+@PrimaryKeyJoinColumn(name = "NICK")
 public class Cliente extends Usuario {
-    
-    @Column (name="PLAYLISTS")
-    private Particular particular; //coleccion
-    @Column (name="SIGUE A")
-    private Usuario SigueA;
-    @Column (name="SEGUIDO POR")
-    private Usuario SeguidoPor;
-    @Column (name="ALBUMES FAVORITOS")
-    private Album albumFav; //coleccion
-    @Column (name="TEMAS FAVORITOS")
-    private Tema temasFAV; //coleccion
-    @Column (name="PLAYLISTS FAVORITAS")
-    private Playlist playFav; //coleccion
 
-    public Cliente(Particular particular, Usuario SigueA, Usuario SeguidoPor, Album albumFav, Tema temasFAV, Playlist playFav) {
-        this.particular = particular;
-        this.SigueA = SigueA;
-        this.SeguidoPor = SeguidoPor;
-        this.albumFav = albumFav;
-        this.temasFAV = temasFAV;
-        this.playFav = playFav;
-    }
+    @OneToMany
+    private List<Particular> particular; //coleccion
+    
+     // Relación autoreferencial para seguir a otros clientes
+    @ManyToMany
+    @JoinTable(
+        name = "cliente_sigue",
+        joinColumns = @JoinColumn(name = "cliente_id"),
+        inverseJoinColumns = @JoinColumn(name = "sigue_a_id")
+    )
+    private List<Cliente> sigueA;
+
+    @ManyToMany(mappedBy = "sigueA")
+    private List<Cliente> seguidoPor;
+    
+    @OneToMany
+    private List<Album> albumFav; //coleccion
+    
+    @OneToMany
+    private List<Tema> temasFAV; //coleccion
+    
+    @OneToMany
+    private List<Playlist> playFav; //coleccion
 
     public Cliente() {
     }
 
-    public Particular getParticular() {
-        return particular;
+    public Cliente(String nick, String nom, String ape, String mail, DTFecha fech) {
+        super(nick, nom, ape, mail, fech);
+        this.particular = new ArrayList();
+        this.sigueA = new ArrayList();
+        this.seguidoPor = new ArrayList();
+        this.albumFav = new ArrayList();
+        this.temasFAV = new ArrayList();
+        this.playFav = new ArrayList();
     }
 
-    public Usuario getSigueA() {
-        return SigueA;
-    }
-
-    public Usuario getSeguidoPor() {
-        return SeguidoPor;
-    }
-
-    public Album getAlbumFav() {
-        return albumFav;
-    }
-
-    public Tema getTemasFAV() {
-        return temasFAV;
-    }
-
-    public Playlist getPlayFav() {
-        return playFav;
-    }
-
-    public void setParticular(Particular particular) {
+    public void setParticular(List<Particular> particular) {
         this.particular = particular;
     }
 
-    public void setSigueA(Usuario SigueA) {
-        this.SigueA = SigueA;
+    public void setSigueA(List<Cliente> sigueA) {
+        this.sigueA = sigueA;
     }
 
-    public void setSeguidoPor(Usuario SeguidoPor) {
-        this.SeguidoPor = SeguidoPor;
+    public void setSeguidoPor(List<Cliente> seguidoPor) {
+        this.seguidoPor = seguidoPor;
     }
 
-    public void setAlbumFav(Album albumFav) {
+    
+    public void setAlbumFav(List<Album> albumFav) {
         this.albumFav = albumFav;
     }
 
-    public void setTemasFAV(Tema temasFAV) {
+    public void setTemasFAV(List<Tema> temasFAV) {
         this.temasFAV = temasFAV;
     }
 
-    public void setPlayFav(Playlist playFav) {
+    public void setPlayFav(List<Playlist> playFav) {
         this.playFav = playFav;
-    }
     
+    }
+
+    public List<Particular> getParticular() {
+        return particular;
+    }
+
+    public List<Cliente> getSigueA() {
+        return sigueA;
+    }
+
+    public List<Cliente> getSeguidoPor() {
+        return seguidoPor;
+    }
+
+    public List<Album> getAlbumFav() {
+        return albumFav;
+    }
+
+    public List<Tema> getTemasFAV() {
+        return temasFAV;
+    }
+
+    public List<Playlist> getPlayFav() {
+        return playFav;
+    }
     
 }

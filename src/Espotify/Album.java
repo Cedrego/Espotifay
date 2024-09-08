@@ -10,11 +10,9 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
-/**
- *
- * @author Franco
- */
 @Entity
 public class Album implements Serializable{
     @Id
@@ -22,38 +20,39 @@ public class Album implements Serializable{
     private String nombre;
     @Column (name="CREACION")
     private int creacion;
-    @Column (name="TEMAS")
+    @JoinColumn(name = "TEMAS")
     private List<Tema> temas;
-    @Column (name="GENEROS")
+    @OneToMany
     private List<Genero> generos;
     
     public Album() {
     }
 
-    public Album(String nombreAlbum,int anioCreacion) {
-        this.nombre = nombreAlbum;
-        this.creacion = anioCreacion;
-        this.temas = new ArrayList<>(); // Inicializa la lista de temas
-        this.generos = new ArrayList<>(); // Inicializa la lista de generos
+    public Album(String nombre, int creacion) {
+        this.nombre = nombre;
+        this.creacion = creacion;
+        this.temas = new ArrayList();
+        this.generos = new ArrayList();
     }
-    
+
+   
     //Get variables
     public String getNombre() {
         return nombre;
     }
-    
  
     public int getCreacion() {
         return creacion;
     }
-    
-    public List<Tema> getTemas(){
+
+    public List<Tema> getTemas() {
         return temas;
     }
-    
-    public List<Genero> getGeneros(){
+
+    public List<Genero> getGeneros() {
         return generos;
     }
+
     
     
     //Set variables
@@ -64,15 +63,15 @@ public class Album implements Serializable{
     public void setFecha(int fech) {
         this.creacion = fech;
     }
-    
-    public void setTemas(List<Tema> tem){
-        this.temas = tem;
+
+    public void setTemas(List<Tema> temas) {
+        this.temas = temas;
     }
-    
-    public void setGeneros (List<Genero> gen){
-        this.generos = gen;
+
+    public void setGeneros(List<Genero> generos) {
+        this.generos = generos;
     }
-    
+
     //Agregar a listas
     
     public void addGenero(Genero gen){

@@ -7,8 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
 
 /**
  * Representa a un usuario en el sistema con nombre, apellido y cédula de identidad.
@@ -28,7 +27,7 @@ public abstract class Usuario implements Serializable {
     private String apellido;
     @Column (name="MAIL")
     private String correo;
-    @Column (name="NAC")
+    @JoinColumn (name="FECNAC")
     private DTFecha fecha;
     //private imagen
     

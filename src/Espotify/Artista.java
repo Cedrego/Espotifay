@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  *
@@ -17,6 +18,7 @@ import javax.persistence.OneToMany;
  */
 
 @Entity
+@PrimaryKeyJoinColumn(name = "NICK")
 public class Artista extends Usuario {
     
     //VER BIEN COMO FUNCIONA CON CLASES EXTENDIDAS
@@ -24,9 +26,8 @@ public class Artista extends Usuario {
     private String SitioWeb;
     @Column (name="BIOGRAFIA")
     private String Biografia;
-    @OneToMany
     //aca va una join table
-    @JoinColumn
+    @OneToMany
     private List<Album> albumes;
     
     

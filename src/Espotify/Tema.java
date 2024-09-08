@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 
 /**
@@ -21,6 +23,7 @@ public class Tema implements Serializable {
     private String nombre;
     private String duracion;
     private int ordenAlbum;
+    @ManyToMany
     private List<Genero> generos;
 
     public Tema() {
@@ -30,7 +33,7 @@ public class Tema implements Serializable {
         this.nombre = nombreTema;
         this.duracion = duracionTema;
         this.ordenAlbum = ordenAlbumT;
-        this.generos = new ArrayList<>(); //inicializa lista de generos
+        this.generos = new ArrayList(); //inicializa lista de generos
     }
     
     //Get variables
@@ -45,10 +48,11 @@ public class Tema implements Serializable {
     public int getOrdenAlbum() {
         return ordenAlbum;
     }
-    
-    public List<Genero> getGeneros(){
+
+    public List<Genero> getGeneros() {
         return generos;
     }
+
     
     //Set variables
     public void setNombre(String nom) {
@@ -62,11 +66,11 @@ public class Tema implements Serializable {
     public void setNombre(int orden) {
         this.ordenAlbum = orden;
     }
-    
-    public void setGeneros(List<Genero> gen){
-        this.generos=gen;
+
+    public void setGeneros(List<Genero> generos) {
+        this.generos = generos;
     }
-    
+
     //agregar a la  lista
     public void addGenero(Genero gen){
         this.generos.add(gen);
