@@ -36,18 +36,6 @@ public class ventana extends javax.swing.JFrame {
         hideAll();
     }
     
-    private void llamarAltaUsuario() {
-        String nickname = TextField1.getText();
-        String nombre = TextField2.getText();
-        String apellido = TextField3.getText();
-        String correo = TextField4.getText();
-        Object dias = ComboBox1.getSelectedItem();
-        Object meses = ComboBox2.getSelectedItem();
-        Object anios = ComboBox3.getSelectedItem();
-        
-        AltaUsuario altaUsuario = new AltaUsuario(nickname, nombre, apellido, correo, dias, meses, anios);
-    }
-    
     private void llamarAltaAlbum(){
         
     }
@@ -68,8 +56,7 @@ public class ventana extends javax.swing.JFrame {
     String[] days30 = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"};
     String[] days29 = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29"};
 
-    String[] months = {
-        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+    String[] months = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
     int option;
     /**
      * This method is called from within the constructor to initialize the form.
@@ -117,6 +104,7 @@ public class ventana extends javax.swing.JFrame {
         jScrollBar1 = new javax.swing.JScrollBar();
         ComboBox6 = new javax.swing.JComboBox<String>();
         Text14 = new javax.swing.JLabel();
+        Text15 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         AltaPerfil = new javax.swing.JButton();
         AltaAlbum = new javax.swing.JButton();
@@ -398,6 +386,10 @@ public class ventana extends javax.swing.JFrame {
         Text14.setForeground(new java.awt.Color(255, 255, 255));
         Text14.setText("Text14");
 
+        Text15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text15.setForeground(new java.awt.Color(0, 204, 102));
+        Text15.setText("Text15");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -407,6 +399,8 @@ public class ventana extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Text15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Text10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ACEPTAR)
@@ -500,9 +494,10 @@ public class ventana extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Text10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ACEPTAR, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ACEPTAR)
+                            .addComponent(Text10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Text15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Button2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -528,6 +523,15 @@ public class ventana extends javax.swing.JFrame {
         );
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel3.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jPanel3AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         AltaPerfil.setBackground(new java.awt.Color(0, 204, 102));
         AltaPerfil.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -731,13 +735,10 @@ public class ventana extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(Logo)))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -792,7 +793,8 @@ public class ventana extends javax.swing.JFrame {
         Text12.setVisible(false);
         Text13.setVisible(false);
         Text14.setVisible(false);
-
+        Text15.setVisible(false);
+        
         //espacios de texto
         TextField1.setVisible(false);
         TextField2.setVisible(false);
@@ -800,7 +802,7 @@ public class ventana extends javax.swing.JFrame {
         TextField4.setVisible(false);
         TextField5.setVisible(false);
         TextField6.setVisible(false);
-
+        
         //selectores multiple opcoion(ComboBoxes)
         ComboBox1.setVisible(false);
         ComboBox2.setVisible(false);
@@ -808,7 +810,7 @@ public class ventana extends javax.swing.JFrame {
         ComboBox4.setVisible(false);
         ComboBox5.setVisible(false);
         ComboBox6.setVisible(false);
-
+        
         //vaciar comboboxes
         ComboBox1.removeAllItems();
         ComboBox2.removeAllItems();
@@ -816,29 +818,29 @@ public class ventana extends javax.swing.JFrame {
         ComboBox4.removeAllItems();
         ComboBox5.removeAllItems();
         ComboBox6.removeAllItems();
-
+        
         //vacia los espacios de texto
-        TextField1.setText("");
-        TextField2.setText("");
-        TextField3.setText("");
-        TextField4.setText("");
-        TextField5.setText("");
-        TextField6.setText("");
-
+        TextField1.setText(null);
+        TextField2.setText(null);
+        TextField3.setText(null);
+        TextField4.setText(null);
+        TextField5.setText(null);
+        TextField6.setText(null);
+        
         //botones
         ACEPTAR.setVisible(false);
         Button1.setVisible(false);
         Button2.setVisible(false);
         Button3.setVisible(false);
-
+        
         //vacia los botones
         Button1.setText("");
         Button2.setText("");
         Button3.setText("");
-
+        
         //scroll bars
         jScrollBar1.setVisible(false);
-
+        
         //paneles
         jPanel4.setVisible(false);
     }
@@ -910,7 +912,7 @@ public class ventana extends javax.swing.JFrame {
         ComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(years));
         ComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(months));
         ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(days31));
-
+        
         //setear visibilidad
         Text1.setVisible(true);
         Text2.setVisible(true);
@@ -942,9 +944,9 @@ public class ventana extends javax.swing.JFrame {
         option = 3;
         //jPanel2.setLayout(new GridLayout(0, 3, 10, 10)); // 3 columnas, número dinámico de filas
         ACEPTAR.setVisible(false);
-        Text9.setText("Selecione Artista:");
-        Text9.setVisible(true);
-        ComboBox5.setVisible(true);
+        Text1.setText("Selecione Artista:");
+        Text1.setVisible(true);
+        TextField1.setVisible(true);
         Button1.setText("Confirmar");
         Button1.setVisible(true);
     }//GEN-LAST:event_AltaAlbumActionPerformed
@@ -980,17 +982,27 @@ public class ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void AltaGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaGeneroActionPerformed
-        // TODO add your handling code here:
+        ManejadorMusica mm = ManejadorMusica.getInstance();
         hideAll();
         option = 2;
-
+        
+        
         ACEPTAR.setVisible(true);
         Text1.setText("Nombre del Genero:");
         Text1.setVisible(true);
+        
         Text9.setText("Genero Padre:");
         Text9.setVisible(true);
         TextField1.setVisible(true);
+        ComboBox5.addItem("");
+        if(mm.getGeneros() == null){
+        }else{
+            for (Genero gen: mm.getGeneros()){
+                ComboBox5.addItem(gen.getNombre());
+            }
+        }
         ComboBox5.setVisible(true);
+        
     }//GEN-LAST:event_AltaGeneroActionPerformed
 
     private void ComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox5ActionPerformed
@@ -1025,15 +1037,9 @@ public class ventana extends javax.swing.JFrame {
         if (selectedItem == "Genero") {
             ComboBox4.removeAllItems();
             //agregar la lisa de generos a ComboBox4
-            ComboBox4.addItem("Rock");
-            ComboBox4.addItem("Metal");
-            ComboBox4.addItem("Pop");
         } else {
             ComboBox4.removeAllItems();
             //agregar la lisa de artistas a ComboBox4
-            ComboBox4.addItem("Cuarteto de Nos");
-            ComboBox4.addItem("Evanecense");
-            ComboBox4.addItem("Justin Biever");
         }
     }//GEN-LAST:event_ComboBox5ActionPerformed
 
@@ -1068,7 +1074,7 @@ public class ventana extends javax.swing.JFrame {
     private void DejarSeguirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DejarSeguirActionPerformed
         // TODO add your handling code here:
         hideAll();
-
+        
         Text9.setText("Cliente:");
         Text5.setText("Usuario a dejar de Seguir:");
         Text9.setVisible(true);
@@ -1347,13 +1353,86 @@ public class ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_TextField3ActionPerformed
 
     private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
+        
         // TODO add your handling code here:
         switch(option){
             case 1:
-                llamarAltaUsuario();
+                String nickname = TextField1.getText();
+                String nombre = TextField2.getText();
+                String apellido = TextField3.getText();
+                String correo = TextField4.getText();
+                String biografia = TextField5.getText();
+                String pagina = TextField6.getText();
+                Object diasObj = ComboBox1.getSelectedItem();
+                Object mesesObj = ComboBox2.getSelectedItem();
+                Object aniosObj = ComboBox3.getSelectedItem();
+
+                // Validar campos
+                if (nickname.isEmpty()) {
+                    Text10.setText("ERROR: campo Nickname vacio");
+                    Text13.setVisible(false);
+                    Text10.setVisible(true);
+                } else if (nombre.isEmpty()) {
+                    Text10.setText("ERROR: campo Nombre vacio");
+                    Text13.setVisible(false);
+                    Text10.setVisible(true);
+                } else if (apellido.isEmpty()) {
+                    Text10.setText("ERROR: campo Apellido vacio");
+                    Text13.setVisible(false);
+                    Text10.setVisible(true);
+                } else if (correo.isEmpty()) {
+                    Text10.setText("ERROR: campo Correo vacio");
+                    Text13.setVisible(false);
+                    Text10.setVisible(true);
+                } else {
+                    boolean isArtista = ComboBox4.getSelectedItem().equals("Artista");
+                    if (isArtista) {
+                        if (biografia.isEmpty()) {
+                            Text10.setText("ERROR: campo Biografia vacio");
+                            Text13.setVisible(false);
+                            Text10.setVisible(true);
+                        } else if (pagina.isEmpty()) {
+                            Text10.setText("ERROR: campo Pagina web vacio");
+                            Text13.setVisible(false);
+                            Text10.setVisible(true);
+                        } else {
+                            Text10.setVisible(false);
+                            Text15.setText("Ingresado con exito");
+                            Text15.setVisible(true);
+                            // Crear una instancia de AltaUsuario
+                            Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, biografia, pagina);
+                        }
+                    } else {
+                        Text10.setVisible(false);
+                        Text15.setText("Ingresado con exito");
+                        Text15.setVisible(true);
+                        // Crear una instancia de AltaUsuario sin biografía y página web
+                        Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, null, null);
+                    }
+                }
             break;
             case 2:
-                //llamarAltaUsuario();
+                ManejadorMusica mm = ManejadorMusica.getInstance();
+                String nombreGenero = TextField1.getText();
+                String nombrePadre = ComboBox5.getSelectedItem().toString();
+                
+                if (TextField1.getText().isEmpty()) {
+                    Text10.setText("ERROR: campo Nombre vacio");
+                    Text10.setVisible(true);
+                    Text15.setVisible(false);
+                }else{
+                    if(mm.buscarGenero(TextField1.getText())!=null){
+                    Text10.setText("Error, genero "+TextField1.getText()+" ya existe");
+                    Text10.setVisible(true);
+                    Text15.setVisible(false);
+                    }else{
+                        Text10.setVisible(false);
+                        Text15.setText("Ingresado con exito");
+                        Text15.setVisible(true);
+                        //Espotify.AltaGenero altaGenero = new altaGenero(nombreGenero,nombrePadre);
+                    }
+                }
+                //llamarAltaGenero();
             break;
             case 3:
                 //llamarAltaAlbum();
@@ -1393,6 +1472,10 @@ public class ventana extends javax.swing.JFrame {
             break;
         }
     }//GEN-LAST:event_ACEPTARActionPerformed
+
+    private void jPanel3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel3AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel3AncestorAdded
 
     /**
      * @param args the command line arguments
@@ -1462,6 +1545,7 @@ public class ventana extends javax.swing.JFrame {
     private javax.swing.JLabel Text12;
     private javax.swing.JLabel Text13;
     private javax.swing.JLabel Text14;
+    private javax.swing.JLabel Text15;
     private javax.swing.JLabel Text2;
     private javax.swing.JLabel Text3;
     private javax.swing.JLabel Text4;

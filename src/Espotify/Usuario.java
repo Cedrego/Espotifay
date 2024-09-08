@@ -20,7 +20,6 @@ public abstract class Usuario implements Serializable {
     @Id
     @Column (name="NICK")
     private String nickname;
-    @Basic
     @Column (name="NOMBRE")
     private String nombre;
     @Column (name="APELLIDO")
@@ -29,9 +28,7 @@ public abstract class Usuario implements Serializable {
     private String correo;
     @JoinColumn (name="FECNAC")
     private DTFecha fecha;
-    //private imagen
-    
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    //private imagen picture;
     
     public Usuario() {
     }
@@ -43,7 +40,6 @@ public abstract class Usuario implements Serializable {
         this.correo = mail;
         this.fecha = fech;
         //this.imagen = picture;
-        
     }
     
     //Get variables
