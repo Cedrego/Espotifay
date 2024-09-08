@@ -449,7 +449,7 @@ public class ventana extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(TextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(660, Short.MAX_VALUE))
+                        .addContainerGap(98, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -944,7 +944,7 @@ public class ventana extends javax.swing.JFrame {
         option = 3;
         //jPanel2.setLayout(new GridLayout(0, 3, 10, 10)); // 3 columnas, número dinámico de filas
         ACEPTAR.setVisible(false);
-        Text1.setText("Selecione Artista:");
+        Text1.setText("Artista:");
         Text1.setVisible(true);
         TextField1.setVisible(true);
         Button1.setText("Confirmar");
@@ -1154,7 +1154,12 @@ public class ventana extends javax.swing.JFrame {
 
     private void Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button1ActionPerformed
         // TODO add your handling code here:
-        if (ComboBox5.getSelectedItem() == null) {
+        if (TextField1.getText().isEmpty()) {
+            Text10.setText("ERROR: campo Artista vacio");
+            Text10.setVisible(true);
+            Text15.setVisible(false);
+        } else {
+            Text10.setVisible(false);
             Text3.setText("Nombre del Album:");
             Text5.setText("Año de salida:");
             Button2.setText("+");
@@ -1162,15 +1167,14 @@ public class ventana extends javax.swing.JFrame {
             jPanel4.setVisible(true);
             jScrollBar1.setVisible(true);
             Text3.setVisible(true);
-            TextField3.setVisible(true);
             Text5.setVisible(true);
+            TextField3.setVisible(true);
             ComboBox1.setVisible(true);
             ComboBox1.setVisible(true);
             Button2.setVisible(true);
             Button3.setVisible(true);
+            ACEPTAR.setVisible(true);
             ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(years));
-        } else {
-            //nada
         }
     }//GEN-LAST:event_Button1ActionPerformed
 
@@ -1202,8 +1206,8 @@ public class ventana extends javax.swing.JFrame {
         } else {
             System.out.println("No item selected or item is empty.");
         }
-
-        if (selectedItem == "Por defecto") {
+        
+        if (option == 4 && selectedItem == "Por defecto") {
             ComboBox4.removeAllItems();
             Text6.setText("Genero:");
             //ComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(genders));
@@ -1236,10 +1240,10 @@ public class ventana extends javax.swing.JFrame {
         }
 
         if (selectedItem == "Genero") {
-            ComboBox4.removeAllItems();
+            //ComboBox4.removeAllItems();
             //agregarle las lista de generos a ComboBox4
         } else {
-            ComboBox4.removeAllItems();
+            //ComboBox4.removeAllItems();
             //agregarle las lista de artistas a ComboBox4
         }
     }//GEN-LAST:event_ComboBox1ActionPerformed
@@ -1436,6 +1440,9 @@ public class ventana extends javax.swing.JFrame {
             break;
             case 3:
                 //llamarAltaAlbum();
+                if(TextField1.getText().isEmpty()){
+                    
+                }
             break;
             case 4:
                 //llamarCrearLista();
