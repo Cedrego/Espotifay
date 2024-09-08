@@ -56,8 +56,7 @@ public class ventana extends javax.swing.JFrame {
     String[] days30 = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"};
     String[] days29 = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29"};
 
-    String[] months = {
-        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+    String[] months = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
     int option;
     /**
      * This method is called from within the constructor to initialize the form.
@@ -516,6 +515,15 @@ public class ventana extends javax.swing.JFrame {
         );
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel3.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jPanel3AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         AltaPerfil.setBackground(new java.awt.Color(0, 204, 102));
         AltaPerfil.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -895,7 +903,7 @@ public class ventana extends javax.swing.JFrame {
         ComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(years));
         ComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(months));
         ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(days31));
-
+        
         //setear visibilidad
         Text1.setVisible(true);
         Text2.setVisible(true);
@@ -975,8 +983,8 @@ public class ventana extends javax.swing.JFrame {
         Text9.setText("Genero Padre:");
         Text9.setVisible(true);
         TextField1.setVisible(true);
-        ComboBox5.setVisible(true);
         
+        ComboBox5.setVisible(true);
     }//GEN-LAST:event_AltaGeneroActionPerformed
 
     private void ComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox5ActionPerformed
@@ -1048,7 +1056,7 @@ public class ventana extends javax.swing.JFrame {
     private void DejarSeguirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DejarSeguirActionPerformed
         // TODO add your handling code here:
         hideAll();
-
+        
         Text9.setText("Cliente:");
         Text5.setText("Usuario a dejar de Seguir:");
         Text9.setVisible(true);
@@ -1416,6 +1424,10 @@ public class ventana extends javax.swing.JFrame {
             break;
         }
     }//GEN-LAST:event_ACEPTARActionPerformed
+
+    private void jPanel3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel3AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel3AncestorAdded
 
     /**
      * @param args the command line arguments
