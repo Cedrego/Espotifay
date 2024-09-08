@@ -1,7 +1,6 @@
 package Espotify;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,9 +12,8 @@ import javax.persistence.JoinColumn;
  * Representa a un usuario en el sistema con nombre, apellido y cédula de identidad.
  * @author Camilo
  */
-
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Usuario implements Serializable {
     @Id
     @Column (name="NICK")
