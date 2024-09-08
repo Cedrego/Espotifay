@@ -50,6 +50,17 @@ public class ventana extends javax.swing.JFrame {
         AltaUsuario altaUsuario = new AltaUsuario(nickname, nombre, apellido, correo, dias, meses, anios, biografia, pagina);
     }
     
+    public void llamarAltaGenero(){
+        ManejadorMusica mm = ManejadorMusica.getInstance();
+        String nombre = TextField1.getText();
+        String genero = ComboBox5.getSelectedItem().toString();
+        if(genero.isEmpty()){
+            genero = "Genero";
+        } 
+        //AltaAlbum altaAlbum = new altaAlbum(nombre,genero);
+        
+    }
+    
     private void llamarAltaAlbum(){
         
     }
@@ -979,17 +990,24 @@ public class ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void AltaGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaGeneroActionPerformed
-        // TODO add your handling code here:
+        ManejadorMusica mm = ManejadorMusica.getInstance();
         hideAll();
         option = 2;
-
+        
+        
         ACEPTAR.setVisible(true);
         Text1.setText("Nombre del Genero:");
         Text1.setVisible(true);
+        
         Text9.setText("Genero Padre:");
         Text9.setVisible(true);
         TextField1.setVisible(true);
+        ComboBox5.addItem("");
+        for (Genero gen: mm.getGeneros()){
+            ComboBox5.addItem(gen.getNombre());
+        }
         ComboBox5.setVisible(true);
+        
     }//GEN-LAST:event_AltaGeneroActionPerformed
 
     private void ComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox5ActionPerformed
@@ -1340,6 +1358,7 @@ public class ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_TextField3ActionPerformed
 
     private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
+        
         // TODO add your handling code here:
         switch(option){
             case 1:
@@ -1386,7 +1405,18 @@ public class ventana extends javax.swing.JFrame {
                 
             break;
             case 2:
-                //llamarAltaUsuario();
+                ManejadorMusica mm = ManejadorMusica.getInstance();
+                
+                if (TextField1.getText().isEmpty()) {
+                    Text10.setText("ERROR: campo Nombre vacio");
+                    Text10.setVisible(true);
+                }
+                
+                if(mm.buscarGenero(TextField1.getText())!=null){
+                    Text10.setText("Error, genero "+TextField1.getText()+" ya existe");
+                    Text10.setVisible(true);
+                }
+                //llamarAltaGenero();
             break;
             case 3:
                 //llamarAltaAlbum();

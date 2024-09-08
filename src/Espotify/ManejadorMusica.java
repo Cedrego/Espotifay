@@ -4,25 +4,28 @@
  */
 package Espotify;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Franco
  */
 public class ManejadorMusica {
-    private Map<String, Album> albumesGen;
-    private Map<String, Tema> temasGen;
-    private Map<String, Genero> generosGen;
+    private List<Album> albumesGen;
+    private List<Tema> temasGen;
+    private List<Genero> generosGen;
     
     private static ManejadorMusica instancia = null;
     
     //inicializo ambas colecciones en formato de mapa para guardar junto con sus nicknames
     private ManejadorMusica(){
-        albumesGen = new HashMap<String, Album>();
-        temasGen = new HashMap<String, Tema>();
-        generosGen = new HashMap<String, Genero>();
+        this.albumesGen = new ArrayList<>();
+        this.temasGen = new ArrayList<>();
+        this.generosGen = new ArrayList<>();
+        
+        //Genero gen = new Genero("Genero");
+        //this.generosGen.add(gen);
     }
     
     //creo una instancia si no existe una, de lo contrario devuelvo la existente (solo existe una)
@@ -35,29 +38,48 @@ public class ManejadorMusica {
     
     
     public void addAlbum(Album alb){
-        String nombre = alb.getNombre();
-        albumesGen.put(nombre, alb);
+        this.albumesGen.add(alb);
     }
     
     public void addTema(Tema tem){
-        String nombre = tem.getNombre();
-        temasGen.put(nombre, tem);
+        this.temasGen.add(tem);
     }
     
     public void addGenero(Genero gen){
-        String nombre = gen.getNombre();
-        generosGen.put(nombre, gen);
+        this.generosGen.add(gen);
     }
     
     public Album buscarAlbum(String nom){
-        return ((Album) albumesGen.get(nom));
+        for (Album alb : this.albumesGen){
+            if(alb.getNombre().equalsIgnoreCase(nom)){
+                return alb;
+            }
+        }
+        return null;
     }
     
     public Tema buscarTema(String nom){
-        return ((Tema) temasGen.get(nom));
+        for (Tema tem : this.temasGen){
+            if(tem.getNombre().equalsIgnoreCase(nom)){
+                return tem;
+            }
+        }
+        return null;
     }
     
     public Genero buscarGenero(String nom){
-        return ((Genero) generosGen.get(nom));
+        for (Genero gen : this.generosGen){
+            if(gen.getNombre().equalsIgnoreCase(nom)){
+                return gen;
+            }
+        }
+        return null;
+    }
+    
+    public List<Genero> getGeneros(){
+        if(generosGen.isEmpty()){
+            return null;
+        }
+        return generosGen;
     }
 }

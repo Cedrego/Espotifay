@@ -4,7 +4,6 @@
  */
 package Espotify;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,73 +12,32 @@ import java.util.List;
  */
 public class Ctrl{
 
-    private List<Album> albumesCtrl;
-    private List<Genero> generosCtrl;
     
-    public Ctrl(){
-        //se inicializan todas las listas
-        this.albumesCtrl = new ArrayList<>();
-
-        this.generosCtrl = new ArrayList<>();
-    }
+    public Ctrl(){}
     
-    //agregar un album a la lista de albumes
-    public void addAlbum(Album alb){
-        this.albumesCtrl.add(alb);
-    }
     
-   
-    
-    //agregar un genero a la lista de generos
-    public void addGenero(Genero gen){
-        this.generosCtrl.add(gen);
-    }
-    
-    //buscar un album en la lista, retorna null en caso contrario
-    public Album buscarAlbum(String nom){
-        for (Album album : this.albumesCtrl){
-            if(album.getNombre().equalsIgnoreCase(nom)){
-                return album;
-            }
-        }
-        return null;
-    }
-    
-    //buscar un artista en la lista, retorna null en caso contrario
-    public Artista buscarArtista(String nick){
-        for (Artista art : this.artistasCtrl){
-            if(art.getNickname().equalsIgnoreCase(nick)){
-                return art;
-            }
-        }
-        return null;
-    }
-    
-    //buscar un genero en la lista, retorna null en caso contrario
-    public Genero buscarGenero(String nomG){
-        for (Genero gen : this.generosCtrl){
-            if(gen.getNombre().equalsIgnoreCase(nomG)){
-                return gen;
-            }
-        }
-        return null;
-    }
     
     //crear un objeto de tipo album 
     public Album CrearAlbum (String nombreA, int anioA, List<Genero> generosA, List<Tema> temasA){
-        //hay que ver si se usa un manejador o no
-        Album albumNuevo = new Album(nombreA,anioA); //creo un album, ya inicializa las listas de genero y temas
+        ManejadorMusica mm = ManejadorMusica.getInstance(); //creo que esto va afuera porque es un control
+        if(mm.buscarAlbum(nombreA)!=null){
+             System.out.println("El album " +nombreA +" ya existe");
+        }else{
         
-        for (Genero genero : generosA){
-            albumNuevo.addGenero(genero);
+            Album albumNuevo = new Album(nombreA,anioA); //creo un album, ya inicializa las listas de genero y temas
+
+            for (Genero genero : generosA){
+                albumNuevo.addGenero(genero);
+            }
+
+            for (Tema tema : temasA){
+                albumNuevo.addTemas(tema);
+            }
+
+            mm.addAlbum(albumNuevo); //puede que esto vaya afuera también
+            return albumNuevo;
         }
-        
-        for (Tema tema : temasA){
-            albumNuevo.addTemas(tema);
-        }
-        
-        //si se usa un manejador habrá que agregarlo a su colección, creo
-        return albumNuevo;
+        return null;
     };
     
     public Tema CrearTema (String nomT, String duraT, int ordT, List<Genero> generosT){

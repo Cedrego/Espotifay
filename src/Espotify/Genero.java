@@ -6,17 +6,23 @@ package Espotify;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Franco
  */
 @Entity
-public class Genero {
+public class Genero implements Serializable{
     @Id
-    @Column (name="NOMBRE");
+    @Column (name="NOMBRE")
     private String nombre;
-    @Column (name="SUBGENERO DE");
+    @Column (name="SUBGENERO DE")
+    @OneToOne
     private Genero padre;
     
     public Genero(String nom){

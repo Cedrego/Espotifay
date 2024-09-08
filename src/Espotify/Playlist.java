@@ -4,15 +4,21 @@
  */
 package Espotify;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 /**
  *
  * @author cedre
  */
 
 @Entity
-public class Playlist {
+public class Playlist implements Serializable{
     @Id
-    @Column (name="NOMBRE");
+    @Column (name="NOMBRE")
     protected String nombre;
     @OneToMany
     private Tema temas;
