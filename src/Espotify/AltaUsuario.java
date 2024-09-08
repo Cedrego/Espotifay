@@ -9,23 +9,11 @@ import Espotify.Usuario;
  * @author Camilo
  */
 public class AltaUsuario {
-    String nickname;
-    String nombre;
-    String apellido;
-    String correo;
-    String biografia;
-    String pagina;
     int dias;
     int meses;
     int anios;
             
     public AltaUsuario(String nick, String nom, String ape, String mail, Object dia, Object mes, Object anio, String bio, String web){
-        nickname = nick;
-        nombre = nom;
-        apellido = ape;
-        correo = mail;
-        biografia = bio;
-        pagina = web;
         dias = Integer.parseInt((String) dia);
         switch ((String) mes) {
             case "Enero": meses = 1; break;
@@ -45,18 +33,16 @@ public class AltaUsuario {
         anios = Integer.parseInt((String) anio);
         //usuario u = new usuario
         
-        System.out.println("Nickname: " + nickname);
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Correo: " + correo);
+        System.out.println("Nickname: " + nick);
+        System.out.println("Nombre: " + nom);
+        System.out.println("Apellido: " + ape);
+        System.out.println("Correo: " + mail);
         System.out.println("Fecha: " + dias + "/" + meses + "/" + anios);
-        System.out.println("Fecha: " + dias + "/" + meses + "/" + anios);
-        System.out.println("Fecha: " + dias + "/" + meses + "/" + anios);
-        if(biografia != null){
-            System.out.println("Biografia: " + biografia);
+        if(bio != null){
+            System.out.println("Biografia: " + bio);
         }
-        if(pagina != null){
-            System.out.println("Pagina Web: " + pagina);
+        if(bio != null){
+            System.out.println("Pagina Web: " + web);
         }
     }
 }
