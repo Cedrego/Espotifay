@@ -17,6 +17,10 @@ import Espotify.AltaUsuario;
  * @author Camilo
  */
 public class ventana extends javax.swing.JFrame {
+    
+    // Inicialización
+    Factory fabrica = Factory.getInstance();
+    private ICtrl IC= fabrica.getICtrl();
 
     public List<JTextField> textFields; // Lista para almacenar los JTextFields añadidos
 
@@ -1429,7 +1433,7 @@ public class ventana extends javax.swing.JFrame {
                         Text10.setVisible(false);
                         Text15.setText("Ingresado con exito");
                         Text15.setVisible(true);
-                        //Espotify.AltaGenero altaGenero = new altaGenero(nombreGenero,nombrePadre);
+                        Espotify.AltaGenero altaGenero = new Espotify.AltaGenero(IC,nombreGenero,nombrePadre);
                     }
                 }
                 //llamarAltaGenero();

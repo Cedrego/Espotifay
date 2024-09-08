@@ -10,14 +10,15 @@ import java.util.List;
  *
  * @author Franco
  */
-public class Ctrl{
+public class Ctrl implements ICtrl{
 
     
     public Ctrl(){}
     
     
     
-    //crear un objeto de tipo album 
+    //crear un objeto de tipo album
+    @Override
     public Album CrearAlbum (String nombreA, int anioA, List<Genero> generosA, List<Tema> temasA){
         ManejadorMusica mm = ManejadorMusica.getInstance(); //creo que esto va afuera porque es un control
         if(mm.buscarAlbum(nombreA)!=null){
@@ -50,6 +51,7 @@ public class Ctrl{
         return temaNuevo;
     }
     
+    @Override
     public Genero crearGenero(String nomG, Genero padre){
         Genero generoNuevo = new Genero(nomG);
         
