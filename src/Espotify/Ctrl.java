@@ -51,4 +51,21 @@ public class Ctrl implements ICtrl{
         
         return generoNuevo;
     }
+    
+    public Artista crearArtista(String nick, String nom, String ape, String mail, int dia, int mes, int anio, String bio, String web){
+        
+        DTFecha dtfecha = new DTFecha(dia, mes, anio);
+        
+        Artista nuevoArtista = new Artista(nick, nom, ape, mail, dtfecha, bio, web);
+        
+        return nuevoArtista;
+    }
+    
+    public Cliente crearCliente(String nick, String nom, String ape, String mail, int dia, int mes, int anio){
+        DTFecha dtfecha = new DTFecha(dia, mes, anio);
+        
+        Cliente nuevoCliente = new Cliente(nick, nom, ape, mail, dtfecha);
+        
+        return nuevoCliente;
+    }
 }
