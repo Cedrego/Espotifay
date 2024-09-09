@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Espotify;
-import Espotify.Usuario;
+//import Espotify.Usuario;
 /**
  *
  * @author Camilo
@@ -37,11 +37,11 @@ public class AltaUsuario {
         anios = Integer.parseInt((String) anio);
         
         
-        if(bio != null){
-            Cliente nuevoCliente = ic.crearCliente(nick, nom, ape, mail, dias, meses, anios);
+        if(bio == null){
+            Cliente nuevoCliente = ictrl.crearCliente(nick, nom, ape, mail, dias, meses, anios);
             mu.addCliente(nuevoCliente);
         }else{
-            Artista nuevoArtista = ic.crearArtista(nick, nom, ape, mail, dias, meses, anios, bio, web);
+            Artista nuevoArtista = ictrl.crearArtista(nick, nom, ape, mail, dias, meses, anios, bio, web);
             mu.addArtista(nuevoArtista);
         }
     }
