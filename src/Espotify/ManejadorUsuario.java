@@ -71,8 +71,10 @@ public class ManejadorUsuario {
     
     public List<Cliente> getAllCliente(){
         if(clientesGen.isEmpty()){
+            System.out.print("lista vacia");
             return null;
         } else{
+            System.out.print("lista llena");
             return clientesGen; //puede que tenga que devolver un array?
         }
     }
