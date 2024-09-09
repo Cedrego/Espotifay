@@ -17,6 +17,7 @@ public class AltaUsuario {
     public AltaUsuario(ICtrl ic, String nick, String nom, String ape, String mail, Object dia, Object mes, Object anio, String bio, String web){
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         ictrl = ic;
+        
         dias = Integer.parseInt((String) dia);
         switch ((String) mes) {
             case "Enero": meses = 1; break;
@@ -34,18 +35,14 @@ public class AltaUsuario {
             default: meses = 0; break; // Manejo de caso por defecto
         }
         anios = Integer.parseInt((String) anio);
-        //usuario u = new usuario
         
-        System.out.println("Nickname: " + nick);
-        System.out.println("Nombre: " + nom);
-        System.out.println("Apellido: " + ape);
-        System.out.println("Correo: " + mail);
-        System.out.println("Fecha: " + dias + "/" + meses + "/" + anios);
+        
         if(bio != null){
-            System.out.println("Biografia: " + bio);
-        }
-        if(bio != null){
-            System.out.println("Pagina Web: " + web);
+            Cliente nuevoCliente = ic.crearCliente(nick, nom, ape, mail, dias, meses, anios);
+            mu.addCliente(nuevoCliente);
+        }else{
+            Artista nuevoArtista = ic.crearArtista(nick, nom, ape, mail, dias, meses, anios, bio, web);
+            mu.addArtista(nuevoArtista);
         }
     }
 }
