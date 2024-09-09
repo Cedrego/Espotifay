@@ -14,4 +14,5 @@ public interface ICtrl {
     
     public abstract Album CrearAlbum (String nombreA, int anioA, List<Genero> generosA, List<Tema> temasA);
     public abstract Genero crearGenero(String nomG, Genero padre);
+    
 }
