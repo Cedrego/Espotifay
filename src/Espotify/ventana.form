@@ -891,7 +891,7 @@
                           <Component id="ConsultarAlbum" alignment="0" max="32767" attributes="0"/>
                           <Component id="ConsultarLista" alignment="1" max="32767" attributes="0"/>
                           <Component id="AltaGenero" alignment="0" max="32767" attributes="0"/>
-                          <Component id="AgregarTemasListas" alignment="1" max="32767" attributes="0"/>
+                          <Component id="AgregarTemasListas" alignment="1" pref="185" max="32767" attributes="0"/>
                           <Component id="QuitarTemasListas" alignment="1" max="32767" attributes="0"/>
                           <Component id="PublicarLista" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -930,7 +930,7 @@
                       <Component id="ConsultarAlbum" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="ConsultarLista" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="97" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

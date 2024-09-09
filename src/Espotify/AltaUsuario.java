@@ -9,11 +9,14 @@ import Espotify.Usuario;
  * @author Camilo
  */
 public class AltaUsuario {
+    private ICtrl ictrl;
     int dias;
     int meses;
     int anios;
             
-    public AltaUsuario(String nick, String nom, String ape, String mail, Object dia, Object mes, Object anio, String bio, String web){
+    public AltaUsuario(ICtrl ic, String nick, String nom, String ape, String mail, Object dia, Object mes, Object anio, String bio, String web){
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        ictrl = ic;
         dias = Integer.parseInt((String) dia);
         switch ((String) mes) {
             case "Enero": meses = 1; break;

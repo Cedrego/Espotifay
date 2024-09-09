@@ -9,17 +9,20 @@ import java.util.List;
  * @author Franco
  */
 public class AltaAlbum {
-    /*
-    private JTextField nombreAlbum;
-    private JTextField anioAlbum;
-    private JTextField generosAlbum;
-    private JTextField temasAlbum;
-    private JLabel ingresarNombre;
-    private JLabel ingresarAnio;
-    private JLabel ingresarGeneros;
-    private JLabel ingresarTemas;
-    */
+    private ICtrl ictrl;
     
+    public AltaAlbum (ICtrl ic, String nombreArtista, String nombreAlbum, int anioCreacion, List<Genero> generos, List<Tema> temas){
+        ManejadorMusica mm = ManejadorMusica.getInstance(); //consigo instancia de manejador de musica
+        ManejadorUsuario mu = ManejadorUsuario.getInstance(); //consigo instancia de manejador de usuarios
+        ictrl = ic; //inicializo controlador
+        
+        Album albumNuevo = ictrl.CrearAlbum(nombreAlbum, anioCreacion, generos, temas); //creo la instancia de album        
+        mm.addAlbum(albumNuevo); //agrego la instancia a la lista de albumes del manejador
+        
+        Artista artista = mu.buscarArtista(nombreArtista); //busco el artista
+        artista.addAlbum(albumNuevo); //agrego la instancia a la lista de albumes del artista
+        
+    }  
     
     
 }

@@ -17,6 +17,10 @@ import Espotify.AltaUsuario;
  * @author Camilo
  */
 public class ventana extends javax.swing.JFrame {
+    
+    // Inicialización
+    Factory fabrica = Factory.getInstance();
+    private ICtrl IC= fabrica.getICtrl();
 
     public List<JTextField> textFields; // Lista para almacenar los JTextFields añadidos
 
@@ -691,7 +695,7 @@ public class ventana extends javax.swing.JFrame {
                     .addComponent(ConsultarAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ConsultarLista, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(AltaGenero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AgregarTemasListas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AgregarTemasListas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                     .addComponent(QuitarTemasListas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PublicarLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -727,7 +731,7 @@ public class ventana extends javax.swing.JFrame {
                 .addComponent(ConsultarAlbum)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ConsultarLista)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -947,6 +951,7 @@ public class ventana extends javax.swing.JFrame {
         Text1.setText("Artista:");
         Text1.setVisible(true);
         TextField1.setVisible(true);
+        
         Button1.setText("Confirmar");
         Button1.setVisible(true);
     }//GEN-LAST:event_AltaAlbumActionPerformed
@@ -1176,28 +1181,41 @@ public class ventana extends javax.swing.JFrame {
 
     private void Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button1ActionPerformed
         // TODO add your handling code here:
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        
         if (TextField1.getText().isEmpty()) {
             Text10.setText("ERROR: campo Artista vacio");
             Text10.setVisible(true);
             Text15.setVisible(false);
-        } else {
-            Text10.setVisible(false);
-            Text3.setText("Nombre del Album:");
-            Text5.setText("Año de salida:");
-            Button2.setText("+");
-            Button3.setText("-");
-            jPanel4.setVisible(true);
-            jScrollBar1.setVisible(true);
-            Text3.setVisible(true);
-            Text5.setVisible(true);
-            TextField3.setVisible(true);
-            ComboBox1.setVisible(true);
-            ComboBox1.setVisible(true);
-            Button2.setVisible(true);
-            Button3.setVisible(true);
-            ACEPTAR.setVisible(true);
-            ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(years));
-        }
+        }else{
+            /*
+            if(mu.buscarArtista(TextField1.getText())==null){
+            Text10.setText("Error, artista "+TextField1.getText()+" no existe");
+            Text10.setVisible(true);
+            Text15.setVisible(false);
+            }else {*/
+                Text10.setVisible(false);
+                Text3.setText("Nombre del Album:");
+                Text5.setText("Año de salida:");
+                Button2.setText("+");
+                Button3.setText("-");
+                
+                jPanel4.setVisible(true);
+                jScrollBar1.setVisible(true);
+                Text3.setVisible(true);
+                Text5.setVisible(true);
+                
+                TextField3.setVisible(true);
+                ComboBox1.setVisible(true);
+                ComboBox1.setVisible(true);
+                
+                Button2.setVisible(true);
+                Button3.setVisible(true);
+                
+                ACEPTAR.setVisible(true);
+                ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(years));
+            }
+        //}
     }//GEN-LAST:event_Button1ActionPerformed
 
     private void Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button2ActionPerformed
@@ -1382,7 +1400,8 @@ public class ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_TextField3ActionPerformed
 
     private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
-        
+        ManejadorMusica mm = ManejadorMusica.getInstance();
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
         // TODO add your handling code here:
         switch(option){
             case 1:
@@ -1429,19 +1448,19 @@ public class ventana extends javax.swing.JFrame {
                             Text15.setText("Ingresado con exito");
                             Text15.setVisible(true);
                             // Crear una instancia de AltaUsuario
-                            Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, biografia, pagina);
+                            Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(IC,nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, biografia, pagina);
                         }
                     } else {
                         Text10.setVisible(false);
                         Text15.setText("Ingresado con exito");
                         Text15.setVisible(true);
                         // Crear una instancia de AltaUsuario sin biografía y página web
-                        Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, null, null);
+                        Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(IC,nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, null, null);
                     }
                 }
             break;
             case 2:
-                ManejadorMusica mm = ManejadorMusica.getInstance();
+                
                 String nombreGenero = TextField1.getText();
                 String nombrePadre = ComboBox5.getSelectedItem().toString();
                 
@@ -1458,23 +1477,17 @@ public class ventana extends javax.swing.JFrame {
                         Text10.setVisible(false);
                         Text15.setText("Ingresado con exito");
                         Text15.setVisible(true);
-                        //Espotify.AltaGenero altaGenero = new altaGenero(nombreGenero,nombrePadre);
+                        Espotify.AltaGenero altaGenero = new Espotify.AltaGenero(IC,nombreGenero,nombrePadre);
                     }
                 }
-                //llamarAltaGenero();
+                
             break;
             case 3:
-                //llamarAltaAlbum();
-                if(TextField1.getText().isEmpty()){
-                    Text10.setText("ERROR: campo Artista vacio");
-                    Text10.setVisible(true);
-                }else if (TextField2.getText().isEmpty()){
-                    Text10.setText("ERROR: campo Nombre vacio");
-                    Text10.setVisible(true);
-                }/*else if (campos de cancion vacios){
-                    Text10.setText("ERROR: campo Cancion vacio");
-                    Text10.setVisible(true);
-                }*/
+                
+                String nombreArtista = TextField1.getText();
+                
+                
+                
             break;
             case 4:
                 //llamarCrearLista();
