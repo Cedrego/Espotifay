@@ -33,6 +33,7 @@ public class Ctrl implements ICtrl{
         return albumNuevo;
     };
     
+    @Override
     public Tema CrearTema (String nomT, String duraT, int ordT, List<Genero> generosT){
         Tema temaNuevo = new Tema(nomT, duraT, ordT);
         

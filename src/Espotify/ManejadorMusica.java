@@ -24,8 +24,8 @@ public class ManejadorMusica {
         this.temasGen = new ArrayList<>();
         this.generosGen = new ArrayList<>();
         
-        Genero gen = new Genero("Genero");
-        this.generosGen.add(gen);
+        //Genero gen = new Genero("Genero");
+        //this.generosGen.add(gen);
     }
     
     //creo una instancia si no existe una, de lo contrario devuelvo la existente (solo existe una)

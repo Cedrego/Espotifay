@@ -1197,17 +1197,16 @@ public class ventana extends javax.swing.JFrame {
                 Text10.setVisible(false);
                 Text3.setText("Nombre del Album:");
                 Text5.setText("Año de salida:");
-                Button2.setText("+");
-                Button3.setText("-");
+                //Button2.setText("+");
+                //Button3.setText("-");
                 
-                jPanel4.setVisible(true);
-                jScrollBar1.setVisible(true);
+                //jPanel4.setVisible(true);
+                //jScrollBar1.setVisible(true);
                 Text3.setVisible(true);
                 Text5.setVisible(true);
                 
-                TextField3.setVisible(true);
-                ComboBox1.setVisible(true);
-                ComboBox1.setVisible(true);
+                TextField3.setVisible(true); //nombre de album
+                ComboBox1.setVisible(true); //año de creacion
                 
                 Button2.setVisible(true);
                 Button3.setVisible(true);
