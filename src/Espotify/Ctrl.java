@@ -52,6 +52,7 @@ public class Ctrl implements ICtrl{
         return generoNuevo;
     }
     
+    @Override
     public Artista crearArtista(String nick, String nom, String ape, String mail, int dia, int mes, int anio, String bio, String web){
         
         DTFecha dtfecha = new DTFecha(dia, mes, anio);
@@ -61,6 +62,7 @@ public class Ctrl implements ICtrl{
         return nuevoArtista;
     }
     
+    @Override
     public Cliente crearCliente(String nick, String nom, String ape, String mail, int dia, int mes, int anio){
         DTFecha dtfecha = new DTFecha(dia, mes, anio);
         
