@@ -9,7 +9,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
@@ -20,9 +23,11 @@ public class Genero implements Serializable {
     @Id
     @Column (name="NOMBRE")
     private String nombre;
-    @JoinColumn (name="SUBGENERO DE")
+    
+    @ManyToOne
+    @JoinColumn(name = "SUBGENERO_DE") // Columna que guarda el ID del padre
     private Genero padre;
-
+    
     public Genero() {
     }
     
