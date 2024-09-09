@@ -1021,7 +1021,7 @@ public class ventana extends javax.swing.JFrame {
             System.out.println("No item selected or item is empty.");
         }
 
-        if (selectedItem == "Por defecto") {
+        if (option == 4 && selectedItem == "Por defecto") {
             ComboBox1.removeAllItems();
             Text5.setText("Genero:");
             Text5.setVisible(true);
@@ -1038,14 +1038,35 @@ public class ventana extends javax.swing.JFrame {
                 ComboBox1.setVisible(false);
             }
         }
-
-        if (selectedItem == "Genero") {
-            ComboBox4.removeAllItems();
-            //agregar la lisa de generos a ComboBox4
-        } else {
-            ComboBox4.removeAllItems();
-            //agregar la lisa de artistas a ComboBox4
+        
+        if(option == 5 && selectedItem == "Particular"){
+            Text5.setText("Cliente:");
+            Text6.setText("Lista:");
+            Text14.setText("Cancion a Agrgar:");
+            Text5.setVisible(true);
+            Text6.setVisible(true);
+            Text14.setVisible(true);
+            
+            //lista de clientes
+            ComboBox1.setVisible(true);
+            //lista de playlists de clinetes
+            ComboBox4.setVisible(true);
+        }else if(option == 5 && selectedItem == "Por Defecto"){
+            Text5.setText("Genero:");
+            Text6.setText("Lista:");
+            Text14.setText("Cancion a Agrgar:");
+            Text5.setVisible(true);
+            Text6.setVisible(true);
+            Text14.setVisible(true);
+            
+            //lista de generos
+            ComboBox1.setVisible(true);
+            //lista de playlists por defecto
+            ComboBox4.setVisible(true);
+            
         }
+        //lista de canciones
+        ComboBox6.setVisible(true);
     }//GEN-LAST:event_ComboBox5ActionPerformed
 
     private void CrearListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearListaActionPerformed
@@ -1061,6 +1082,7 @@ public class ventana extends javax.swing.JFrame {
         Text9.setText("Tipo de Lista:");
         Text9.setVisible(true);
         ComboBox5.setVisible(true);
+        ACEPTAR.setVisible(true);
     }//GEN-LAST:event_CrearListaActionPerformed
 
     private void SeguirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeguirUsuarioActionPerformed
@@ -1312,17 +1334,20 @@ public class ventana extends javax.swing.JFrame {
         hideAll();
         option = 5;
 
-        Text9.setText("Propietario:");
+        Text9.setText("Tipo de Lista:");
         Text5.setText("Lista:");
         Text6.setText("Cancion a Agrgar:");
         Text9.setVisible(true);
         Text5.setVisible(true);
         Text6.setVisible(true);
-
-        //ComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(clients));
+        
+        ComboBox5.addItem("Particular");
+        ComboBox5.addItem("Por Defecto");
         ComboBox5.setVisible(true);
         ComboBox1.setVisible(true);
         ComboBox4.setVisible(true);
+        
+        ACEPTAR.setVisible(true);
     }//GEN-LAST:event_AgregarTemasListasActionPerformed
 
     private void QuitarTemasListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarTemasListasActionPerformed
@@ -1466,6 +1491,12 @@ public class ventana extends javax.swing.JFrame {
             break;
             case 4:
                 //llamarCrearLista();
+                if(TextField1.getText().isEmpty()){
+                    Text10.setText("ERROR: campo Nombre vacio");
+                    Text10.setVisible(true);
+                } else {
+                    //lamar funcion
+                }
             break;
             case 5:
                 //llamarAgregarTemasLista();
