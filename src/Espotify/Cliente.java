@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -46,7 +45,10 @@ public class Cliente extends Usuario {
     private List<Tema> temasFAV; //coleccion
     
     @OneToMany
-    private List<Playlist> playFav; //coleccion
+    private List<porDefecto> playFavPD; //coleccion
+    
+    @JoinColumn
+    private List<Particular> playFavPart; //coleccion
 
     public Cliente() {
     }
@@ -58,7 +60,8 @@ public class Cliente extends Usuario {
         this.seguidoPor = new ArrayList();
         this.albumFav = new ArrayList();
         this.temasFAV = new ArrayList();
-        this.playFav = new ArrayList();
+        this.playFavPD = new ArrayList();
+        this.playFavPart = new ArrayList();
     }
 
     public void setParticular(List<Particular> particular) {
@@ -82,9 +85,12 @@ public class Cliente extends Usuario {
         this.temasFAV = temasFAV;
     }
 
-    public void setPlayFav(List<Playlist> playFav) {
-        this.playFav = playFav;
-    
+    public void setPlayFavPD(List<porDefecto> playFavPD) {
+        this.playFavPD = playFavPD;
+    }
+
+    public void setPlayFavPart(List<Particular> playFavPart) {
+        this.playFavPart = playFavPart;
     }
 
     public List<Particular> getParticular() {
@@ -107,8 +113,12 @@ public class Cliente extends Usuario {
         return temasFAV;
     }
 
-    public List<Playlist> getPlayFav() {
-        return playFav;
+    public List<porDefecto> getPlayFavPD() {
+        return playFavPD;
+    }
+
+    public List<Particular> getPlayFavPart() {
+        return playFavPart;
     }
     
 }

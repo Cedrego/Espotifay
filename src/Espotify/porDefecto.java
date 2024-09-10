@@ -5,7 +5,6 @@
 package Espotify;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -16,7 +15,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @PrimaryKeyJoinColumn(name = "NOMBRE_PLAYLIST")
 public class porDefecto extends Playlist {
-    @OneToOne 
+    @OneToOne
     private Genero genero;
 
     public porDefecto() {

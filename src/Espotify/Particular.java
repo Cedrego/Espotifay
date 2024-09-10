@@ -4,7 +4,6 @@
  */
 package Espotify;
 
-import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +15,7 @@ import javax.persistence.Entity;
 @Entity
 @PrimaryKeyJoinColumn(name = "NOMBRE_PLAYLIST")
 public class Particular extends Playlist {
-    @Column (name="PRRIVADO")
+    @Column (name="PRIVADO")
     private boolean privado;
     
     public Particular(){}
