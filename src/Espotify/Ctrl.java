@@ -82,4 +82,15 @@ public class Ctrl implements ICtrl{
             System.out.println(seguidor.getNickname() + " ya sigue a " + cliente.getNickname());
         }
     }
+
+    @Override
+    public void dejarSeguidor(Cliente usuario, Cliente seguidor) {
+        if(usuario.getSeguidoPor().contains(seguidor)){
+            usuario.getSeguidoPor().remove(seguidor);
+            seguidor.getSigueA().remove(usuario);
+            System.out.println("ahora, "+seguidor.getNickname()+ " ya no sigue a " +usuario.getNickname());
+        } else {
+            System.out.println("no puedes dejar de seguir a alguen que no sigues");
+        }
+    }
 }

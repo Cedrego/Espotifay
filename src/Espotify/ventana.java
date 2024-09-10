@@ -1052,6 +1052,40 @@ public class ventana extends javax.swing.JFrame {
                 ComboBox1.setVisible(false);
             }
         }
+        
+        if (option == 9) {
+            ComboBox1.removeAllItems();
+            ComboBox1.addItem("");
+            
+            //Cliente clienteSeleccionado = buscarCliente(selectedItem);  // Obtener el cliente seleccionado por su nickname
+            
+            if (selectedItem != null) {
+                for (Cliente cli: mu.getAllCliente()) {  // Obtener la lista de clientes seguidos
+                    ComboBox1.addItem(cli.getNickname());;  // Agregar nickname de los seguidos al ComboBox
+                }
+            }
+            // Mostrar u ocultar elementos según si hay un cliente seleccionado
+            if (selectedItem != null) {
+                Text5.setVisible(true);
+                ComboBox1.setVisible(true);
+            } else {
+                Text5.setVisible(false);
+                ComboBox1.setVisible(false);
+            }
+        }
+        
+        if (option == 9) {
+            ComboBox1.removeAllItems();
+            ComboBox1.addItem("");
+
+            Cliente clienteSeleccionado = obtenerClienteSeleccionado();  // Método que selecciona un cliente
+
+            if (clienteSeleccionado != null) {
+                for (Cliente seguido : clienteSeleccionado.getSigueA()) {  // Obtener la lista de clientes que ha seguido
+                    ComboBox1.addItem(seguido.getNickname());
+                }
+            }
+        }
     }//GEN-LAST:event_ComboBox5ActionPerformed
 
     private void CrearListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearListaActionPerformed
