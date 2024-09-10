@@ -9,12 +9,13 @@ package Espotify;
  * @author cedre
  */
 public class ConsultarPerfil {
-    
+    /*El caso de uso comienza cuando el administrador desea consultar el perfil de un cliente. Para
+    ello el sistema muestra la lista de todos los clientes y el administrador elige uno. Luego, el
+    sistema muestra todos los datos básicos del cliente, incluyendo, sí tiene, su imagen asociada.
+    Además, se muestran los nickname de todos los seguidores que tiene, de los usuarios a los
+    que sigue (identificando si son clientes o artistas), se muestran las listas de reproducción que
+    creó y las preferencias que tiene guardadas. */
     public ConsultarPerfil (ICtrl ic, String nombreG, String nombreP){
-        ManejadorMusica mm = ManejadorMusica.getInstance(); //inicializar/obtener manejador
-        ICtrl ictrl = ic; //inicializar controlador
-        Genero Padre = mm.buscarGenero(nombreP); //busco el genero padre en la lista del manejador
-        Genero generoNuevo = ictrl.crearGenero(nombreG, Padre); //creo la instancia de genero
-        mm.addGenero(generoNuevo); //agrego la nueva instancia a la lista
+        
     }
 }
