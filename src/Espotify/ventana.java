@@ -21,9 +21,12 @@ public class ventana extends javax.swing.JFrame {
     // Inicialización
     Factory fabrica = Factory.getInstance();
     private ICtrl IC= fabrica.getICtrl();
-
+    
     public List<JTextField> textFields; // Lista para almacenar los JTextFields añadidos
-
+    
+    List<Genero> generosAlbum = new ArrayList<>(); //lista de generos para usar en alta album
+    List<Tema> temasAlbum = new ArrayList<>(); //lista de tenas para usar en alta album
+    
     //private List<JTextField> textFields; // Lista para almacenar los JTextFields añadidos
     /**
      * Creates new form ventana
@@ -40,9 +43,6 @@ public class ventana extends javax.swing.JFrame {
         hideAll();
     }
     
-    private void llamarAltaAlbum(){
-        
-    }
     
     int opcion = 0;
     
@@ -99,16 +99,17 @@ public class ventana extends javax.swing.JFrame {
         ComboBox5 = new javax.swing.JComboBox<>();
         ACEPTAR = new javax.swing.JButton();
         Button1 = new javax.swing.JButton();
-        Button2 = new javax.swing.JButton();
-        Button3 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        Text11 = new javax.swing.JLabel();
-        Text12 = new javax.swing.JLabel();
-        Text13 = new javax.swing.JLabel();
-        jScrollBar1 = new javax.swing.JScrollBar();
         ComboBox6 = new javax.swing.JComboBox<String>();
         Text14 = new javax.swing.JLabel();
         Text15 = new javax.swing.JLabel();
+        Text11 = new javax.swing.JLabel();
+        TextField7 = new javax.swing.JTextField();
+        Text12 = new javax.swing.JLabel();
+        TextField8 = new javax.swing.JTextField();
+        Text13 = new javax.swing.JLabel();
+        TextField9 = new javax.swing.JTextField();
+        Button2 = new javax.swing.JButton();
+        Button3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         AltaPerfil = new javax.swing.JButton();
         AltaAlbum = new javax.swing.JButton();
@@ -198,12 +199,22 @@ public class ventana extends javax.swing.JFrame {
         TextField1.setForeground(new java.awt.Color(255, 255, 255));
         TextField1.setText("TextField1");
         TextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextField1ActionPerformed(evt);
+            }
+        });
 
         TextField2.setBackground(new java.awt.Color(102, 102, 102));
         TextField2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         TextField2.setForeground(new java.awt.Color(255, 255, 255));
         TextField2.setText("TextField2");
         TextField2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextField2ActionPerformed(evt);
+            }
+        });
 
         TextField3.setBackground(new java.awt.Color(102, 102, 102));
         TextField3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -309,72 +320,6 @@ public class ventana extends javax.swing.JFrame {
             }
         });
 
-        Button2.setBackground(new java.awt.Color(0, 204, 102));
-        Button2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Button2.setText("Button2");
-        Button2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        Button2.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                Button2ComponentShown(evt);
-            }
-        });
-        Button2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button2ActionPerformed(evt);
-            }
-        });
-
-        Button3.setBackground(new java.awt.Color(0, 204, 102));
-        Button3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Button3.setText("Button3");
-        Button3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        Button3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button3ActionPerformed(evt);
-            }
-        });
-
-        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
-
-        Text11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Text11.setForeground(new java.awt.Color(255, 255, 255));
-        Text11.setText("Text11");
-
-        Text12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Text12.setForeground(new java.awt.Color(255, 255, 255));
-        Text12.setText("Text12");
-
-        Text13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Text13.setForeground(new java.awt.Color(255, 255, 255));
-        Text13.setText("Text13");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Text11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Text12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Text13)
-                .addContainerGap(351, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Text11)
-                    .addComponent(Text12)
-                    .addComponent(Text13))
-                .addContainerGap(152, Short.MAX_VALUE))
-        );
-
-        jScrollBar1.setBackground(new java.awt.Color(102, 102, 102));
-        jScrollBar1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-
         ComboBox6.setBackground(new java.awt.Color(102, 102, 102));
         ComboBox6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         ComboBox6.setForeground(new java.awt.Color(255, 255, 255));
@@ -394,6 +339,61 @@ public class ventana extends javax.swing.JFrame {
         Text15.setForeground(new java.awt.Color(0, 204, 102));
         Text15.setText("Text15");
 
+        Text11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text11.setForeground(new java.awt.Color(255, 255, 255));
+        Text11.setText("Text11");
+
+        TextField7.setBackground(new java.awt.Color(102, 102, 102));
+        TextField7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        TextField7.setForeground(new java.awt.Color(255, 255, 255));
+        TextField7.setText("TextField7");
+        TextField7.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextField7ActionPerformed(evt);
+            }
+        });
+
+        Text12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text12.setForeground(new java.awt.Color(255, 255, 255));
+        Text12.setText("Text12");
+
+        TextField8.setBackground(new java.awt.Color(102, 102, 102));
+        TextField8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        TextField8.setForeground(new java.awt.Color(255, 255, 255));
+        TextField8.setText("TextField8");
+        TextField8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        Text13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text13.setForeground(new java.awt.Color(255, 255, 255));
+        Text13.setText("Text13");
+
+        TextField9.setBackground(new java.awt.Color(102, 102, 102));
+        TextField9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        TextField9.setForeground(new java.awt.Color(255, 255, 255));
+        TextField9.setText("TextField9");
+        TextField9.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        Button2.setBackground(new java.awt.Color(0, 204, 102));
+        Button2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Button2.setText("Button2");
+        Button2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button2ActionPerformed(evt);
+            }
+        });
+
+        Button3.setBackground(new java.awt.Color(0, 204, 102));
+        Button3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Button3.setText("Button3");
+        Button3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Button3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -402,63 +402,72 @@ public class ventana extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Text15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Text10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ACEPTAR)
-                        .addGap(6, 6, 6))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(Text14)
+                            .addComponent(ComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 934, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Text11))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Text12)
+                                    .addComponent(TextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(TextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Button3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(Text13)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(ComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(ComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(ComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(ComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(Text2)
+                                    .addComponent(Text3)
+                                    .addComponent(Text4)
+                                    .addComponent(Text5)
+                                    .addComponent(TextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(Button2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(Text1)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(TextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                                                .addComponent(TextField2, javax.swing.GroupLayout.Alignment.LEADING)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(Button3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Text2)
-                            .addComponent(Text3)
-                            .addComponent(Text4)
-                            .addComponent(Text5)
-                            .addComponent(TextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Text1)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(TextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
-                                        .addComponent(TextField2, javax.swing.GroupLayout.Alignment.LEADING)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Text9)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(Text9)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(ComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(Button1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(ComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(Button1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(ComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Text6)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Button2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(Text6)
                                     .addComponent(TextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Text7)
                                     .addComponent(Text8)
                                     .addComponent(TextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(TextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(Text15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(TextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(98, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Text14))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(Text10)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ACEPTAR)
+                        .addGap(6, 6, 6))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,43 +482,32 @@ public class ventana extends javax.swing.JFrame {
                     .addComponent(ComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Button1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Text2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Text3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Text4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Text5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Text6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Text2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Text3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Text4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Text5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ACEPTAR)
-                            .addComponent(Text10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Text15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(ComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Text6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Button2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Button3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Button2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Text7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -522,7 +520,25 @@ public class ventana extends javax.swing.JFrame {
                         .addComponent(Text14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 43, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Text11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(Text12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(Text13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Button3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ACEPTAR)
+                    .addComponent(Text10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Text15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -806,6 +822,9 @@ public class ventana extends javax.swing.JFrame {
         TextField4.setVisible(false);
         TextField5.setVisible(false);
         TextField6.setVisible(false);
+        TextField7.setVisible(false);
+        TextField8.setVisible(false);
+        TextField9.setVisible(false);
         
         //selectores multiple opcoion(ComboBoxes)
         ComboBox1.setVisible(false);
@@ -830,6 +849,9 @@ public class ventana extends javax.swing.JFrame {
         TextField4.setText(null);
         TextField5.setText(null);
         TextField6.setText(null);
+        TextField7.setText(null);
+        TextField8.setText(null);
+        TextField9.setText(null);
         
         //botones
         ACEPTAR.setVisible(false);
@@ -841,57 +863,6 @@ public class ventana extends javax.swing.JFrame {
         Button1.setText("");
         Button2.setText("");
         Button3.setText("");
-        
-        //scroll bars
-        jScrollBar1.setVisible(false);
-        
-        //paneles
-        jPanel4.setVisible(false);
-    }
-
-    private void agregarNuevosCampos() {
-        JTextField nuevoNombreTema = new JTextField(20);
-        nuevoNombreTema.setBackground(new java.awt.Color(102, 102, 102));
-        nuevoNombreTema.setFont(new java.awt.Font("Arial", 1, 12));
-        nuevoNombreTema.setForeground(new java.awt.Color(255, 255, 255));
-        nuevoNombreTema.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        JTextField nuevaDuracion = new JTextField(10);
-        nuevaDuracion.setBackground(new java.awt.Color(102, 102, 102));
-        nuevaDuracion.setFont(new java.awt.Font("Arial", 1, 12));
-        nuevaDuracion.setForeground(new java.awt.Color(255, 255, 255));
-        nuevaDuracion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        JTextField nuevosGeneros = new JTextField(20);
-        nuevosGeneros.setBackground(new java.awt.Color(102, 102, 102));
-        nuevosGeneros.setFont(new java.awt.Font("Arial", 1, 12));
-        nuevosGeneros.setForeground(new java.awt.Color(255, 255, 255));
-        nuevosGeneros.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        jPanel4.add(nuevoNombreTema);
-        jPanel4.add(nuevaDuracion);
-        jPanel4.add(nuevosGeneros);
-
-        textFields.add(nuevoNombreTema);
-        textFields.add(nuevaDuracion);
-        textFields.add(nuevosGeneros);
-
-        jPanel4.revalidate(); // Refrescar el panel para mostrar los nuevos JTextFields
-        jPanel4.repaint(); // Redibujar el panel
-    }
-
-    private void eliminarUltimoCampo() {
-        if (!textFields.isEmpty()) {
-            // Elimina los últimos tres JTextFields añadidos
-            for (int i = 0; i < 3; i++) {
-                if (!textFields.isEmpty()) {
-                    JTextField tf = textFields.remove(textFields.size() - 1);
-                    jPanel4.remove(tf);
-                }
-            }
-            jPanel4.revalidate(); // Refrescar el panel para mostrar los cambios
-            jPanel4.repaint(); // Redibujar el panel
-        }
     }
 
     private void AltaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaPerfilActionPerformed
@@ -1022,16 +993,23 @@ public class ventana extends javax.swing.JFrame {
         }
 
         if (option == 4 && selectedItem == "Por defecto") {
+            ManejadorMusica mm = ManejadorMusica.getInstance();
             ComboBox1.removeAllItems();
             Text5.setText("Genero:");
             Text5.setVisible(true);
-            //ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(genders));
+            for (Genero gen: mm.getGeneros()){
+                ComboBox1.addItem(gen.getNombre());
+            }
             ComboBox1.setVisible(true);
         } else {
-            if (selectedItem == "Particular") {
+            if (option == 4 && selectedItem == "Particular") {
+                ManejadorUsuario mu = ManejadorUsuario.getInstance();
+                ComboBox1.removeAllItems();
                 Text5.setText("Nombre del propietario:");
                 Text5.setVisible(true);
-                //ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(genders));
+                for (Cliente cli: mu.getAllCliente()){
+                    ComboBox1.addItem(cli.getNickname());
+                }
                 ComboBox1.setVisible(true);
             } else {
                 Text5.setVisible(false);
@@ -1182,59 +1160,54 @@ public class ventana extends javax.swing.JFrame {
     private void Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button1ActionPerformed
         // TODO add your handling code here:
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        ManejadorMusica mm = ManejadorMusica.getInstance();
         
         if (TextField1.getText().isEmpty()) {
             Text10.setText("ERROR: campo Artista vacio");
             Text10.setVisible(true);
             Text15.setVisible(false);
         }else{
-            /*
             if(mu.buscarArtista(TextField1.getText())==null){
             Text10.setText("Error, artista "+TextField1.getText()+" no existe");
             Text10.setVisible(true);
             Text15.setVisible(false);
-            }else {*/
+            }else {
                 Text10.setVisible(false);
                 Text3.setText("Nombre del Album:");
                 Text5.setText("Año de salida:");
-                //Button2.setText("+");
-                //Button3.setText("-");
-                
-                //jPanel4.setVisible(true);
-                //jScrollBar1.setVisible(true);
+                Text6.setText("Genero:");
+                Button2.setText("Agregar Genero");
+                Button3.setText("Agregar Cancion");
                 Text3.setVisible(true);
                 Text5.setVisible(true);
+                Text6.setVisible(true);
                 
-                TextField3.setVisible(true); //nombre de album
-                ComboBox1.setVisible(true); //año de creacion
-                
+                TextField3.setVisible(true);
+                ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(years));
+                ComboBox1.setVisible(true);
+                for (Genero gen: mm.getGeneros()){
+                    ComboBox4.addItem(gen.getNombre());
+                }
+                ComboBox4.setVisible(true);
                 Button2.setVisible(true);
                 Button3.setVisible(true);
                 
+                Text11.setText("Nombre");
+                Text12.setText("Duracion (xx:xx)");
+                Text13.setText("Posicion en el Album");
+                Text11.setVisible(true);
+                Text12.setVisible(true);
+                Text13.setVisible(true);
+                
+                TextField7.setVisible(true);
+                TextField8.setVisible(true);
+                TextField9.setVisible(true);
+                
                 ACEPTAR.setVisible(true);
-                ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(years));
+                
             }
-        //}
+        }
     }//GEN-LAST:event_Button1ActionPerformed
-
-    private void Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button2ActionPerformed
-        // TODO add your handling code here:
-        jPanel4.setLayout(new GridLayout(0, 3, 10, 10)); // 3 columnas, tantas filas como sean necesarias
-
-        Text11.setText("Nombre de la Cancion");
-        Text12.setText("Duracion (xx:xx)");
-        Text13.setText("Genero (genero1,genero2,etc)");
-
-        Text11.setVisible(true);
-        Text12.setVisible(true);
-        Text13.setVisible(true);
-        agregarNuevosCampos();
-    }//GEN-LAST:event_Button2ActionPerformed
-
-    private void Button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button3ActionPerformed
-        // TODO add your handling code here:
-        eliminarUltimoCampo();
-    }//GEN-LAST:event_Button3ActionPerformed
 
     private void ComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox1ActionPerformed
         Object selectedItem = ComboBox1.getSelectedItem();
@@ -1323,10 +1296,6 @@ public class ventana extends javax.swing.JFrame {
             System.out.println("No item selected or item is empty.");
         }
     }//GEN-LAST:event_ComboBox3ActionPerformed
-
-    private void Button2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_Button2ComponentShown
-
-    }//GEN-LAST:event_Button2ComponentShown
 
     private void AgregarTemasListasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarTemasListasActionPerformed
         // TODO add your handling code here:
@@ -1417,30 +1386,30 @@ public class ventana extends javax.swing.JFrame {
                 // Validar campos
                 if (nickname.isEmpty()) {
                     Text10.setText("ERROR: campo Nickname vacio");
-                    Text13.setVisible(false);
+                    Text15.setVisible(false);
                     Text10.setVisible(true);
                 } else if (nombre.isEmpty()) {
                     Text10.setText("ERROR: campo Nombre vacio");
-                    Text13.setVisible(false);
+                    Text15.setVisible(false);
                     Text10.setVisible(true);
                 } else if (apellido.isEmpty()) {
                     Text10.setText("ERROR: campo Apellido vacio");
-                    Text13.setVisible(false);
+                    Text15.setVisible(false);
                     Text10.setVisible(true);
                 } else if (correo.isEmpty()) {
                     Text10.setText("ERROR: campo Correo vacio");
-                    Text13.setVisible(false);
+                    Text15.setVisible(false);
                     Text10.setVisible(true);
                 } else {
                     boolean isArtista = ComboBox4.getSelectedItem().equals("Artista");
                     if (isArtista) {
                         if (biografia.isEmpty()) {
                             Text10.setText("ERROR: campo Biografia vacio");
-                            Text13.setVisible(false);
+                            Text15.setVisible(false);
                             Text10.setVisible(true);
                         } else if (pagina.isEmpty()) {
                             Text10.setText("ERROR: campo Pagina web vacio");
-                            Text13.setVisible(false);
+                            Text15.setVisible(false);
                             Text10.setVisible(true);
                         } else {
                             Text10.setVisible(false);
@@ -1484,8 +1453,26 @@ public class ventana extends javax.swing.JFrame {
             case 3:
                 
                 String nombreArtista = TextField1.getText();
+                String nombreAlbum = TextField3.getText();
+                String anio = ComboBox1.getSelectedItem().toString();
+                int anioCreacion = Integer.parseInt((String) anio);
                 
-                
+                if (TextField1.getText().isEmpty()) {
+                    Text10.setText("ERROR: campo Nombre vacio");
+                    Text10.setVisible(true);
+                    Text15.setVisible(false);
+                }else{
+                        Text10.setVisible(false);
+                        Text15.setText("Ingresado con exito");
+                        Text15.setVisible(true);
+                        Espotify.AltaAlbum altaAlbum = new AltaAlbum (IC, nombreArtista, nombreAlbum, anioCreacion, generosAlbum, temasAlbum);
+                        
+                        for (Tema tem : temasAlbum){
+                            mm.addTema(tem);
+                        }
+                        temasAlbum.clear();
+                        generosAlbum.clear();
+                }
                 
             break;
             case 4:
@@ -1533,6 +1520,67 @@ public class ventana extends javax.swing.JFrame {
     private void jPanel3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel3AncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel3AncestorAdded
+
+    private void Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button2ActionPerformed
+        // TODO add your handling code here:
+        ManejadorMusica mm = ManejadorMusica.getInstance();
+        
+        String genero = ComboBox4.getSelectedItem().toString();
+      
+        Genero gen = mm.buscarGenero(genero);
+        
+        for(Genero gene : generosAlbum){
+            if (gene.getNombre().equalsIgnoreCase(genero)){
+                Text10.setText("Genero ya aniadido");
+                Text10.setVisible(true);
+                Text15.setVisible(false);
+            } else{
+                Text15.setText("Genero aniadido");
+                Text15.setVisible(true);
+                Text10.setVisible(false);
+                generosAlbum.add(gen);
+            }
+        }
+       
+    }//GEN-LAST:event_Button2ActionPerformed
+
+    private void Button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button3ActionPerformed
+        // TODO add your handling code here:
+        String nombreC = TextField7.getText();
+        String duracionC = TextField8.getText();
+        String posC = TextField9.getText();
+        int posicionC = Integer.parseInt((String) posC);
+        
+        
+        for(Tema tem : temasAlbum){
+            if (tem.getNombre().equalsIgnoreCase(nombreC)){
+                Text10.setText("Tema ya aniadido");
+                Text10.setVisible(true);
+                Text15.setVisible(false);
+            } else{
+                //no voy a hacer un alta tema solo para poner esta singular linea
+                Tema temaNuevo = IC.CrearTema(nombreC, duracionC, posicionC, generosAlbum);
+                //agrego a la lista "global" de temas (se borra despues de usarse)
+                temasAlbum.add(temaNuevo);
+                Text15.setText("Tema aniadido");
+                Text15.setVisible(true);
+                Text10.setVisible(false);
+            }
+        }
+        
+    }//GEN-LAST:event_Button3ActionPerformed
+
+    private void TextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextField7ActionPerformed
+
+    private void TextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextField1ActionPerformed
+
+    private void TextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextField2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1617,10 +1665,11 @@ public class ventana extends javax.swing.JFrame {
     private javax.swing.JTextField TextField4;
     private javax.swing.JTextField TextField5;
     private javax.swing.JTextField TextField6;
+    private javax.swing.JTextField TextField7;
+    private javax.swing.JTextField TextField8;
+    private javax.swing.JTextField TextField9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollBar jScrollBar1;
     // End of variables declaration//GEN-END:variables
 }
