@@ -33,7 +33,6 @@ public class ventana extends javax.swing.JFrame {
      */
     public ventana() {
         initComponents();
-        datosPrueba();
     }
     
     int opcion = 0;
