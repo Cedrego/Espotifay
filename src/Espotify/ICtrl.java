@@ -17,4 +17,5 @@ public interface ICtrl {
     public abstract Genero crearGenero(String nomG, Genero padre);
     public abstract Cliente crearCliente(String nick, String nom, String ape, String mail, int dia, int mes, int anio);
     public abstract Artista crearArtista(String nick, String nom, String ape, String mail, int dia, int mes, int anio, String bio, String web);
+    public abstract void agregarSeguidor(Cliente usuario, Cliente seguidor);
 }

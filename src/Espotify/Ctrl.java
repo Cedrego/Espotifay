@@ -71,4 +71,15 @@ public class Ctrl implements ICtrl{
         
         return nuevoCliente;
     }
+    
+    @Override
+    public void agregarSeguidor(Cliente cliente, Cliente seguidor) {
+        if (!cliente.getSeguidoPor().contains(seguidor)) {
+            cliente.getSeguidoPor().add(seguidor);
+            seguidor.getSigueA().add(cliente);
+            System.out.println("ahora, "+seguidor.getNickname()+ " sigue a " +cliente.getNickname());
+        } else {
+            System.out.println(seguidor.getNickname() + " ya sigue a " + cliente.getNickname());
+        }
+    }
 }

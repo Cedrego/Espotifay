@@ -33,16 +33,8 @@ public class ventana extends javax.swing.JFrame {
      */
     public ventana() {
         initComponents();
-        configurarVentana();
+        datosPrueba();
     }
-
-    private void configurarVentana() {
-        // Inicializa la lista de JTextFields
-        textFields = new ArrayList<>();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        hideAll();
-    }
-    
     
     int opcion = 0;
     
@@ -424,42 +416,39 @@ public class ventana extends javax.swing.JFrame {
                                         .addComponent(Button3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(Text13)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(ComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Text2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Text1)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(TextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                                        .addComponent(TextField2, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Text9)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(ComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(ComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(ComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(Text2)
-                                    .addComponent(Text3)
-                                    .addComponent(Text4)
-                                    .addComponent(Text5)
-                                    .addComponent(TextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(Text1)
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(TextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
-                                                .addComponent(TextField2, javax.swing.GroupLayout.Alignment.LEADING)))
+                                        .addComponent(ComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(Text9)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(ComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(Button1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(ComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(Button2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(Text6)
-                                    .addComponent(TextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Text7)
-                                    .addComponent(Text8)
-                                    .addComponent(TextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(Button1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(ComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Button2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Text6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextField5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Text7, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text8, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextField6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(Text15)
@@ -467,7 +456,7 @@ public class ventana extends javax.swing.JFrame {
                                 .addComponent(Text10)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ACEPTAR)
-                        .addGap(6, 6, 6))))
+                        .addGap(23, 23, 23))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -834,6 +823,12 @@ public class ventana extends javax.swing.JFrame {
         ComboBox5.setVisible(false);
         ComboBox6.setVisible(false);
         
+        //botones
+        ACEPTAR.setVisible(false);
+        Button1.setVisible(false);
+        Button2.setVisible(false);
+        Button3.setVisible(false);
+        
         //vaciar comboboxes
         ComboBox1.removeAllItems();
         ComboBox2.removeAllItems();
@@ -853,18 +848,12 @@ public class ventana extends javax.swing.JFrame {
         TextField8.setText(null);
         TextField9.setText(null);
         
-        //botones
-        ACEPTAR.setVisible(false);
-        Button1.setVisible(false);
-        Button2.setVisible(false);
-        Button3.setVisible(false);
-        
         //vacia los botones
         Button1.setText("");
         Button2.setText("");
         Button3.setText("");
     }
-
+    
     private void AltaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaPerfilActionPerformed
         // TODO add your handling code here:
         hideAll();
@@ -954,7 +943,6 @@ public class ventana extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
         hideAll();
-
     }//GEN-LAST:event_formWindowActivated
 
     private void AltaGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaGeneroActionPerformed
@@ -983,6 +971,8 @@ public class ventana extends javax.swing.JFrame {
 
     private void ComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox5ActionPerformed
         // TODO add your handling code here:
+        ManejadorMusica mm = ManejadorMusica.getInstance();
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
         Object selectedItem = ComboBox5.getSelectedItem();
         if (selectedItem != null && !selectedItem.toString().isEmpty()) {
             String selectedText = selectedItem.toString();
@@ -993,7 +983,6 @@ public class ventana extends javax.swing.JFrame {
         }
 
         if (option == 4 && selectedItem == "Por defecto") {
-            ManejadorMusica mm = ManejadorMusica.getInstance();
             ComboBox1.removeAllItems();
             Text5.setText("Genero:");
             Text5.setVisible(true);
@@ -1003,7 +992,6 @@ public class ventana extends javax.swing.JFrame {
             ComboBox1.setVisible(true);
         } else {
             if (option == 4 && selectedItem == "Particular") {
-                ManejadorUsuario mu = ManejadorUsuario.getInstance();
                 ComboBox1.removeAllItems();
                 Text5.setText("Nombre del propietario:");
                 Text5.setVisible(true);
@@ -1029,6 +1017,8 @@ public class ventana extends javax.swing.JFrame {
             ComboBox1.setVisible(true);
             //lista de playlists de clinetes
             ComboBox4.setVisible(true);
+            //lista de canciones
+            ComboBox6.setVisible(true);
         }else if(option == 5 && selectedItem == "Por Defecto"){
             Text5.setText("Genero:");
             Text6.setText("Lista:");
@@ -1040,11 +1030,29 @@ public class ventana extends javax.swing.JFrame {
             //lista de generos
             ComboBox1.setVisible(true);
             //lista de playlists por defecto
-            ComboBox4.setVisible(true);
-            
+            ComboBox4.setVisible(true); 
+            //lista de canciones
+            ComboBox6.setVisible(true);
         }
-        //lista de canciones
-        ComboBox6.setVisible(true);
+        
+        if(option == 8){
+            ComboBox1.removeAllItems();
+            ComboBox1.addItem("");
+            for (Cliente cli: mu.getAllCliente()){
+                if(selectedItem == cli.getNickname()){
+                    //no  agregar
+                }else{
+                    ComboBox1.addItem(cli.getNickname());
+                }
+            }
+            if(selectedItem != null){
+                Text5.setVisible(true);
+                ComboBox1.setVisible(true);
+            }else{
+                Text5.setVisible(false);
+                ComboBox1.setVisible(false);
+            }
+        }
     }//GEN-LAST:event_ComboBox5ActionPerformed
 
     private void CrearListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearListaActionPerformed
@@ -1065,27 +1073,37 @@ public class ventana extends javax.swing.JFrame {
 
     private void SeguirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeguirUsuarioActionPerformed
         // TODO add your handling code here:
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
         hideAll();
-        option = 9;
-
+        
+        option = 8;
+        
         Text9.setText("Cliente:");
         Text5.setText("Usuario a Seguir:");
         Text9.setVisible(true);
         Text5.setVisible(true);
+        ComboBox5.addItem("");
+        for (Cliente cli: mu.getAllCliente()){
+            ComboBox5.addItem(cli.getNickname());
+        }
         ComboBox5.setVisible(true);
-        ComboBox1.setVisible(true);
+        ACEPTAR.setVisible(true);
     }//GEN-LAST:event_SeguirUsuarioActionPerformed
 
     private void DejarSeguirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DejarSeguirActionPerformed
         // TODO add your handling code here:
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
         hideAll();
+        
+        option = 9;
         
         Text9.setText("Cliente:");
         Text5.setText("Usuario a dejar de Seguir:");
         Text9.setVisible(true);
         Text5.setVisible(true);
-        ComboBox5.setVisible(true);
-        ComboBox1.setVisible(true);
+        ComboBox5.setVisible(true);for (Cliente cli: mu.getAllCliente()){
+            ComboBox5.addItem(cli.getNickname());
+        }
     }//GEN-LAST:event_DejarSeguirActionPerformed
 
     private void GuardarTLAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarTLAActionPerformed
@@ -1250,14 +1268,6 @@ public class ventana extends javax.swing.JFrame {
                 }
             }
         }
-
-        if (selectedItem == "Genero") {
-            //ComboBox4.removeAllItems();
-            //agregarle las lista de generos a ComboBox4
-        } else {
-            //ComboBox4.removeAllItems();
-            //agregarle las lista de artistas a ComboBox4
-        }
     }//GEN-LAST:event_ComboBox1ActionPerformed
 
     private void ComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox2ActionPerformed
@@ -1351,7 +1361,7 @@ public class ventana extends javax.swing.JFrame {
 
     private void ComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox6ActionPerformed
         // TODO add your handling code here:
-        Object selectedItem = ComboBox2.getSelectedItem();
+        Object selectedItem = ComboBox6.getSelectedItem();
         if (selectedItem != null && !selectedItem.toString().isEmpty()) {
             String selectedText = selectedItem.toString();
             System.out.println("Selected item: " + selectedText);
@@ -1495,6 +1505,21 @@ public class ventana extends javax.swing.JFrame {
             break;
             case 8:
                 //llamarSeguirUsuario();
+                String cliente = ComboBox5.getSelectedItem().toString();
+                String seguidor = ComboBox1.getSelectedItem().toString();
+                if(cliente.isEmpty()){
+                    Text10.setText("ERROR: no se eligio cliente");
+                    Text10.setVisible(true);
+                    Text13.setVisible(false);
+                }else if(seguidor.isEmpty()){
+                    Text10.setText("ERROR: no se eligio seguidor");
+                    Text10.setVisible(true);
+                    Text13.setVisible(false);
+                }else{
+                   Text10.setVisible(false);
+                   Text13.setText("Se agregó seguidor con exito"); 
+                   Text13.setVisible(true);
+                }
             break;
             case 9:
                 //llamarDejarSeguirUsuario();
@@ -1616,7 +1641,7 @@ public class ventana extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ACEPTAR;
     private javax.swing.JButton AgregarTemasListas;
@@ -1673,3 +1698,4 @@ public class ventana extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
+
