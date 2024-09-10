@@ -1509,15 +1509,15 @@ public class ventana extends javax.swing.JFrame {
                 if(cliente.isEmpty()){
                     Text10.setText("ERROR: no se eligio cliente");
                     Text10.setVisible(true);
-                    Text13.setVisible(false);
+                    Text15.setVisible(false);
                 }else if(seguidor.isEmpty()){
                     Text10.setText("ERROR: no se eligio seguidor");
                     Text10.setVisible(true);
-                    Text13.setVisible(false);
+                    Text15.setVisible(false);
                 }else{
                    Text10.setVisible(false);
                    Text13.setText("Se agregó seguidor con exito"); 
-                   Text13.setVisible(true);
+                   Text15.setVisible(true);
                 }
             break;
             case 9:
