@@ -21,7 +21,7 @@ public abstract class Playlist{
     @Id
     protected String nombre;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Tema> temas;
+    protected List<Tema> temas;
     //imagen;
     
     public Playlist(){
