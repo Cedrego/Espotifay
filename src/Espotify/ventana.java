@@ -1073,19 +1073,6 @@ public class ventana extends javax.swing.JFrame {
                 ComboBox1.setVisible(false);
             }
         }
-        
-        if (option == 9) {
-            ComboBox1.removeAllItems();
-            ComboBox1.addItem("");
-
-            Cliente clienteSeleccionado = obtenerClienteSeleccionado();  // Método que selecciona un cliente
-
-            if (clienteSeleccionado != null) {
-                for (Cliente seguido : clienteSeleccionado.getSigueA()) {  // Obtener la lista de clientes que ha seguido
-                    ComboBox1.addItem(seguido.getNickname());
-                }
-            }
-        }
     }//GEN-LAST:event_ComboBox5ActionPerformed
 
     private void CrearListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearListaActionPerformed
