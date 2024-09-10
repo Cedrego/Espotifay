@@ -972,6 +972,7 @@ public class ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
         ManejadorMusica mm = ManejadorMusica.getInstance();
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        
         Object selectedItem = ComboBox5.getSelectedItem();
         if (selectedItem != null && !selectedItem.toString().isEmpty()) {
             String selectedText = selectedItem.toString();
@@ -1057,11 +1058,13 @@ public class ventana extends javax.swing.JFrame {
             ComboBox1.removeAllItems();
             ComboBox1.addItem("");
             
-            //Cliente clienteSeleccionado = buscarCliente(selectedItem);  // Obtener el cliente seleccionado por su nickname
+            String nom = ComboBox5.getSelectedItem().toString();
+            Cliente clienteSeleccionado = mu.buscarCliente(nom);  // Obtener el cliente seleccionado por su nickname
             
-            if (selectedItem != null) {
-                for (Cliente cli: mu.getAllCliente()) {  // Obtener la lista de clientes seguidos
-                    ComboBox1.addItem(cli.getNickname());;  // Agregar nickname de los seguidos al ComboBox
+            if (clienteSeleccionado != null) {
+                // Agregar al ComboBox los nicknames de los clientes que sigue el cliente seleccionado
+                for (Cliente cliSeguido : clienteSeleccionado.getSigueA()) {  
+                    ComboBox1.addItem(cliSeguido.getNickname());
                 }
             }
             // Mostrar u ocultar elementos según si hay un cliente seleccionado
@@ -1527,6 +1530,7 @@ public class ventana extends javax.swing.JFrame {
                 //llamarSeguirUsuario();
                 String cliente = ComboBox5.getSelectedItem().toString();
                 String seguidor = ComboBox1.getSelectedItem().toString();
+                
                 if(cliente.isEmpty()){
                     Text10.setText("ERROR: no se eligio cliente");
                     Text10.setVisible(true);
@@ -1539,6 +1543,7 @@ public class ventana extends javax.swing.JFrame {
                    Text10.setVisible(false);
                    Text13.setText("Se agregó seguidor con exito"); 
                    Text15.setVisible(true);
+                   Espotify.AltaSeguir
                 }
             break;
             case 9:
