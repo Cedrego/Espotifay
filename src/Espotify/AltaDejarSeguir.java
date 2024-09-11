@@ -8,15 +8,15 @@ package Espotify;
  *
  * @author Camilo
  */
-public class AltaSeguirUsuario {
+public class AltaDejarSeguir {
     private ICtrl ictrl;
             
-    public AltaSeguirUsuario(ICtrl ic, String usuario, String seguidor){
+    public AltaDejarSeguir(ICtrl ic, String usuario, String seguidor){
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         ictrl = ic;
         
         Cliente cli = mu.buscarCliente(usuario);
         Cliente seg = mu.buscarCliente(seguidor);
-        ictrl.agregarSeguidor(cli, seg);
+        ictrl.dejarSeguidor(cli, seg);
     }
 }
