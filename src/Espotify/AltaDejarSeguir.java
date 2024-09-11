@@ -17,6 +17,6 @@ public class AltaDejarSeguir {
         
         Cliente cli = mu.buscarCliente(usuario);
         Cliente seg = mu.buscarCliente(seguidor);
-        ic.dejarSeguidor(cli, seg);
+        ictrl.dejarSeguidor(cli, seg);
     }
 }

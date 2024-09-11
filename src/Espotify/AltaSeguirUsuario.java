@@ -17,6 +17,6 @@ public class AltaSeguirUsuario {
         
         Cliente cli = mu.buscarCliente(usuario);
         Cliente seg = mu.buscarCliente(seguidor);
-        ic.agregarSeguidor(cli, seg);
+        ictrl.agregarSeguidor(cli, seg);
     }
 }

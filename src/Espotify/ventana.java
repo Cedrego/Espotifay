@@ -1127,6 +1127,7 @@ public class ventana extends javax.swing.JFrame {
         ComboBox5.setVisible(true);for (Cliente cli: mu.getAllCliente()){
             ComboBox5.addItem(cli.getNickname());
         }
+        ACEPTAR.setVisible(true);
     }//GEN-LAST:event_DejarSeguirActionPerformed
 
     private void GuardarTLAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarTLAActionPerformed
@@ -1528,8 +1529,8 @@ public class ventana extends javax.swing.JFrame {
             break;
             case 8:
                 //llamarSeguirUsuario();
-                String cliente = ComboBox5.getSelectedItem().toString();
-                String seguidor = ComboBox1.getSelectedItem().toString();
+                String seguidor = ComboBox5.getSelectedItem().toString();
+                String cliente = ComboBox1.getSelectedItem().toString();
                 
                 if(cliente.isEmpty()){
                     Text10.setText("ERROR: no se eligio cliente");
@@ -1543,11 +1544,28 @@ public class ventana extends javax.swing.JFrame {
                    Text10.setVisible(false);
                    Text13.setText("Se agregó seguidor con exito"); 
                    Text15.setVisible(true);
-                   Espotify.AltaSeguir
+                   Espotify.AltaSeguirUsuario seguirUsr = new Espotify.AltaSeguirUsuario(IC, cliente, seguidor);
                 }
             break;
             case 9:
                 //llamarDejarSeguirUsuario();
+                String seguidor1 = ComboBox5.getSelectedItem().toString();
+                String cliente1 = ComboBox1.getSelectedItem().toString();
+                
+                if(cliente1.isEmpty()){
+                    Text10.setText("ERROR: no se eligio cliente");
+                    Text10.setVisible(true);
+                    Text15.setVisible(false);
+                }else if(seguidor1.isEmpty()){
+                    Text10.setText("ERROR: no se eligio seguidor");
+                    Text10.setVisible(true);
+                    Text15.setVisible(false);
+                }else{
+                   Text10.setVisible(false);
+                   Text13.setText("Se agregó seguidor con exito"); 
+                   Text15.setVisible(true);
+                   Espotify.AltaDejarSeguir noSeguir = new Espotify.AltaDejarSeguir(IC, cliente1, seguidor1);
+                }
             break;
             case 10:
                 //llamarGuardarTLA();
