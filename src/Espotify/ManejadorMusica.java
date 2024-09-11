@@ -79,4 +79,8 @@ public class ManejadorMusica {
     public List<Genero> getGeneros(){
         return generosGen;
     }
+    
+    public List<Album> getAlbumes(){
+        return albumesGen;
+    }
 }

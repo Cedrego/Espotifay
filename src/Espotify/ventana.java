@@ -925,6 +925,8 @@ public class ventana extends javax.swing.JFrame {
     private void AltaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaAlbumActionPerformed
         // TODO add your handling code here:
         hideAll();
+        generosAlbum.clear(); //por las dudas
+        temasAlbum.clear();
         option = 3;
         //jPanel2.setLayout(new GridLayout(0, 3, 10, 10)); // 3 columnas, número dinámico de filas
         ACEPTAR.setVisible(false);
@@ -1111,6 +1113,14 @@ public class ventana extends javax.swing.JFrame {
                     ComboBox1.addItem(art.getNickname());
                 }  
             }
+            if( selectedItem == "Genero"){
+                ComboBox1.removeAllItems();
+                Text5.setText("Generos:");
+                Text5.setVisible(true);
+                for (Genero gen : mm.getGeneros()){
+                    ComboBox1.addItem(gen.getNombre());
+                }  
+            }
             ComboBox1.setVisible(true);
         }
     }//GEN-LAST:event_ComboBox5ActionPerformed
@@ -1292,6 +1302,7 @@ public class ventana extends javax.swing.JFrame {
 
     private void ComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox1ActionPerformed
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        ManejadorMusica mm = ManejadorMusica.getInstance();
         Object selectedItem = ComboBox1.getSelectedItem();
         String caso13 = Text5.getText();
         
@@ -1344,6 +1355,24 @@ public class ventana extends javax.swing.JFrame {
             Button2.setText("Seleccionar");
             for (Album alb : art.getAlbumes()){
                 ComboBox4.addItem(alb.getNombre());
+            }
+            
+            ComboBox4.setVisible(true);
+            Text6.setVisible(true);
+            Button2.setVisible(true);
+        }
+        
+        if (option == 13 && caso13.equalsIgnoreCase("Generos:")){
+            String nomGen = selectedItem.toString();
+            
+            Genero gen = mm.buscarGenero(nomGen);
+            ComboBox4.removeAllItems();
+            Text6.setText("Album:");
+            Button2.setText("Seleccionar");
+            for (Album alb : mm.getAlbumes()){
+                if(alb.getGeneros().contains(gen)){
+                    ComboBox4.addItem(alb.getNombre());
+                }
             }
             
             ComboBox4.setVisible(true);
