@@ -84,4 +84,7 @@ public class ManejadorMusica {
        
         return temasGen;
     }
+    public List<Album> getAlbumes(){
+        return albumesGen;
+    }
 }
