@@ -72,6 +72,29 @@ public class Ctrl implements ICtrl{
         return nuevoCliente;
     }
     
+   
+    @Override
+    public void agregarSeguidor(Cliente cliente, Cliente seguidor) {
+        if (!seguidor.getSigueA().contains(cliente)) {
+            seguidor.getSigueA().add(cliente);
+            cliente.getSeguidoPor().add(seguidor);
+            System.out.println("ahora, "+seguidor.getNickname()+ " sigue a " +cliente.getNickname());
+        } else {
+            System.out.println(seguidor.getNickname() + " ya sigue a " + cliente.getNickname());
+        }
+    }
+
+    @Override
+    public void dejarSeguidor(Cliente usuario, Cliente seguidor) {
+        if(usuario.getSeguidoPor().contains(seguidor)){
+            usuario.getSeguidoPor().remove(seguidor);
+            seguidor.getSigueA().remove(usuario);
+            System.out.println("ahora, "+seguidor.getNickname()+ " ya no sigue a " +usuario.getNickname());
+        } else {
+            System.out.println("no puedes dejar de seguir a alguen que no sigues");
+        }
+    }
+    
     @Override
     public Particular CrearListParticular(String nombre){
         Particular nuevoParticular = new Particular(nombre);

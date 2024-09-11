@@ -14,6 +14,8 @@ import java.util.List;
 public class ManejadorUsuario {
     private List<Artista> artistasGen;
     private List<Cliente> clientesGen;
+    private List<Cliente> seguidores;
+    private List<Cliente> seguidos;
     
     private static ManejadorUsuario instancia = null;
     
@@ -21,6 +23,8 @@ public class ManejadorUsuario {
     private ManejadorUsuario(){
         artistasGen = new ArrayList<>();
         clientesGen = new ArrayList<>();
+        seguidores = new ArrayList<>();
+        seguidos = new ArrayList<>();
     }
     
     //creo una instancia si no existe una, de lo contrario devuelvo la existente (solo existe una)
@@ -39,6 +43,12 @@ public class ManejadorUsuario {
     //agrego un cliente a la coleccion de clientes
     public void addCliente(Cliente cli){
         this.clientesGen.add(cli);
+    }
+    
+//agrego un cliente a la coleccion de clientes
+    public void addSeguidor(Cliente cli, Cliente seg){
+        this.seguidores.add(seg);
+        this.seguidos.add(cli);
     }
     
     //busco un artista en la colección usando su nickname (creo)
@@ -62,20 +72,10 @@ public class ManejadorUsuario {
     }
     
     public List<Artista> getAllArtista(){
-        if(artistasGen.isEmpty()){
-            return null;
-        } else{
-            return artistasGen; //puede que tenga que devolver un array?
-        }
+        return artistasGen; //puede que tenga que devolver un array?
     }
     
     public List<Cliente> getAllCliente(){
-        if(clientesGen.isEmpty()){
-            System.out.print("lista vacia");
-            return null;
-        } else{
-            System.out.print("lista llena");
-            return clientesGen; //puede que tenga que devolver un array?
-        }
+        return clientesGen; //puede que tenga que devolver un array?
     }
 }
