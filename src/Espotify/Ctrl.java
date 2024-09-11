@@ -71,4 +71,18 @@ public class Ctrl implements ICtrl{
         
         return nuevoCliente;
     }
+    
+    @Override
+    public Particular CrearListParticular(String nombre){
+        Particular nuevoParticular = new Particular(nombre);
+        return nuevoParticular;
+    }
+    @Override
+    public porDefecto CrearListPorDefecto(String nombre, String genero){
+        
+        ManejadorMusica mm = ManejadorMusica.getInstance();
+        Genero Gen = mm.buscarGenero(nombre);//Busco la instancia de genero
+        porDefecto nuevoPorDefecto = new porDefecto(nombre,Gen);//Uso el constructor de pordefcto
+        return nuevoPorDefecto;
+    }
 }

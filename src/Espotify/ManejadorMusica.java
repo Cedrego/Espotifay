@@ -77,9 +77,11 @@ public class ManejadorMusica {
     }
     
     public List<Genero> getGeneros(){
-        if(generosGen.isEmpty()){
-            return null;
-        }
+       
         return generosGen;
+    }
+    public List<Tema> getTema(){
+       
+        return temasGen;
     }
 }

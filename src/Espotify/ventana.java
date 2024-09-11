@@ -983,6 +983,11 @@ public class ventana extends javax.swing.JFrame {
 
     private void ComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox5ActionPerformed
         // TODO add your handling code here:
+        
+        ManejadorMusica mm = ManejadorMusica.getInstance();
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
+        
         Object selectedItem = ComboBox5.getSelectedItem();
         if (selectedItem != null && !selectedItem.toString().isEmpty()) {
             String selectedText = selectedItem.toString();
@@ -991,9 +996,7 @@ public class ventana extends javax.swing.JFrame {
         } else {
             System.out.println("No item selected or item is empty.");
         }
-
         if (option == 4 && selectedItem == "Por defecto") {
-            ManejadorMusica mm = ManejadorMusica.getInstance();
             ComboBox1.removeAllItems();
             Text5.setText("Genero:");
             Text5.setVisible(true);
@@ -1003,7 +1006,6 @@ public class ventana extends javax.swing.JFrame {
             ComboBox1.setVisible(true);
         } else {
             if (option == 4 && selectedItem == "Particular") {
-                ManejadorUsuario mu = ManejadorUsuario.getInstance();
                 ComboBox1.removeAllItems();
                 Text5.setText("Nombre del propietario:");
                 Text5.setVisible(true);
@@ -1026,9 +1028,28 @@ public class ventana extends javax.swing.JFrame {
             Text14.setVisible(true);
             
             //lista de clientes
+            ComboBox1.removeAllItems();
+            for (Cliente cli: mu.getAllCliente()){
+                    ComboBox1.addItem(cli.getNickname());
+                }
             ComboBox1.setVisible(true);
+            
             //lista de playlists de clinetes
+            ComboBox4.removeAllItems();
+            String clie = ComboBox1.getSelectedItem().toString();//Cliente a elejir
+            Cliente cli = mu.buscarCliente(clie);//Cliente en particular
+            List<Particular> playlistsParticulares = cli.getParticular();//lista particular del cliente
+             for (Particular playlist : playlistsParticulares) {
+                ComboBox4.addItem(playlist.getNombre()); // Agrega el nombre de la playlist
+            }
             ComboBox4.setVisible(true);
+            
+            //lista de canciones
+            ComboBox6.removeAllItems();
+            for (Tema tem: mm.getTema()){
+                ComboBox6.addItem(tem.getNombre());
+            }
+            ComboBox6.setVisible(true);
         }else if(option == 5 && selectedItem == "Por Defecto"){
             Text5.setText("Genero:");
             Text6.setText("Lista:");
@@ -1036,15 +1057,30 @@ public class ventana extends javax.swing.JFrame {
             Text5.setVisible(true);
             Text6.setVisible(true);
             Text14.setVisible(true);
-            
+
             //lista de generos
+            ComboBox1.removeAllItems();
+             for (Genero gen: mm.getGeneros()){
+                ComboBox1.addItem(gen.getNombre());
+            }
             ComboBox1.setVisible(true);
-            //lista de playlists por defecto
-            ComboBox4.setVisible(true);
             
+            //lista de playlists por defecto
+            ComboBox4.removeAllItems();
+            List<porDefecto> playlistPorDefecto = mp.getListPorDefecto();//lista particular del cliente
+            for(porDefecto playlist : playlistPorDefecto){
+                ComboBox4.addItem(playlist.getNombre());
+            }
+            ComboBox4.setVisible(true); 
+            
+             //lista de canciones
+            ComboBox6.removeAllItems();
+            for (Tema tem: mm.getTema()){
+                ComboBox6.addItem(tem.getNombre());
+            }
+            ComboBox6.setVisible(true);
         }
-        //lista de canciones
-        ComboBox6.setVisible(true);
+       
     }//GEN-LAST:event_ComboBox5ActionPerformed
 
     private void CrearListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearListaActionPerformed
@@ -1477,15 +1513,22 @@ public class ventana extends javax.swing.JFrame {
             break;
             case 4:
                 //llamarCrearLista();
-                if(TextField1.getText().isEmpty()){
+                ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
+                String name = TextField1.getText();
+                if(name.isEmpty()){//Caso que Ingrese vacio 
                     Text10.setText("ERROR: campo Nombre vacio");
                     Text10.setVisible(true);
-                } else {
-                    //lamar funcion
+                }else{
+                    String Tipo = ComboBox5.getSelectedItem().toString();//Particular o por defecto
+                    String GoP =  ComboBox1.getSelectedItem().toString();//Genero o Propietario
+                    Espotify.CrearLista crearlista = new CrearLista(IC, name, Tipo, GoP);   
+                    Text15.setText("Ingresado con exito");
+                    Text15.setVisible(true);
                 }
             break;
             case 5:
                 //llamarAgregarTemasLista();
+                
             break;
             case 6:
                 //llamarQuitarTemasLista();
