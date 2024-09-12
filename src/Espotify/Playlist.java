@@ -40,8 +40,19 @@ public abstract class Playlist{
         return nombre;
     }
     
+    public List<Tema> getTemas(){
+        return temas;
+    }
+    
     public void setNombre(String NuevoNombre){
         this.nombre = NuevoNombre;
     }
+    
+    public void setTemas(List<Tema> nuevosTemas){
+        this.temas = nuevosTemas;
+    }
+    
+    
+    
     
 }

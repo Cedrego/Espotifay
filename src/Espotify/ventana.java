@@ -1157,6 +1157,7 @@ public class ventana extends javax.swing.JFrame {
                 ComboBox1.setVisible(false);
             }
         }
+        
         if (option == 13) {
             if( selectedItem == "Artista"){
                 ComboBox1.removeAllItems();
@@ -1164,6 +1165,26 @@ public class ventana extends javax.swing.JFrame {
                 Text5.setVisible(true);
                 for (Artista art : mu.getAllArtista()){
                     ComboBox1.addItem(art.getNickname());
+                }  
+            }
+            if( selectedItem == "Genero"){
+                ComboBox1.removeAllItems();
+                Text5.setText("Generos:");
+                Text5.setVisible(true);
+                for (Genero gen : mm.getGeneros()){
+                    ComboBox1.addItem(gen.getNombre());
+                }  
+            }
+            ComboBox1.setVisible(true);
+        }
+        
+        if (option == 14) {
+            if( selectedItem == "Cliente"){
+                ComboBox1.removeAllItems();
+                Text5.setText("Clientes:");
+                Text5.setVisible(true);
+                for (Cliente cli : mu.getAllCliente()){
+                    ComboBox1.addItem(cli.getNickname());
                 }  
             }
             if( selectedItem == "Genero"){
@@ -1275,7 +1296,7 @@ public class ventana extends javax.swing.JFrame {
         option = 13;
 
         Text9.setText("Filtrar por:");
-        ComboBox5.addItem("");
+        
         ComboBox5.addItem("Genero");
         ComboBox5.addItem("Artista");
         Text9.setVisible(true);
@@ -1292,13 +1313,13 @@ public class ventana extends javax.swing.JFrame {
         option = 14;
 
         Text9.setText("Filtrar por:");
-        Text6.setText("Lista:");
+        
         ComboBox5.addItem("Genero");
-        ComboBox5.addItem("Artista");
+        ComboBox5.addItem("Cliente");
         Text9.setVisible(true);
-        Text6.setVisible(true);
+       
         ComboBox5.setVisible(true);
-        ComboBox4.setVisible(true);
+        
     }//GEN-LAST:event_ConsultarListaActionPerformed
 
     private void Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button1ActionPerformed
@@ -1356,8 +1377,9 @@ public class ventana extends javax.swing.JFrame {
     private void ComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox1ActionPerformed
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         ManejadorMusica mm = ManejadorMusica.getInstance();
+        ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
         Object selectedItem = ComboBox1.getSelectedItem();
-        String caso13 = Text5.getText();
+        String texto5 = Text5.getText();
         
         if (selectedItem != null && !selectedItem.toString().isEmpty()) {
             String selectedText = selectedItem.toString();
@@ -1399,39 +1421,66 @@ public class ventana extends javax.swing.JFrame {
             }
         }
         
-        if (option == 13 && caso13.equalsIgnoreCase("Artistas:")){
-            String nickArt = selectedItem.toString();
-            
-            Artista art = mu.buscarArtista(nickArt);
-            ComboBox4.removeAllItems();
-            Text6.setText("Album:");
-            Button2.setText("Seleccionar");
-            for (Album alb : art.getAlbumes()){
-                ComboBox4.addItem(alb.getNombre());
+        if (option == 13){
+            if(texto5.equalsIgnoreCase("Artistas:")){
+                String nickArt = selectedItem.toString();
+
+                Artista art = mu.buscarArtista(nickArt);
+                ComboBox4.removeAllItems();
+                Text6.setText("Album:");
+                Button2.setText("Seleccionar");
+                for (Album alb : art.getAlbumes()){
+                    ComboBox4.addItem(alb.getNombre());
+                }
             }
-            
+            if (texto5.equalsIgnoreCase("Generos:")){
+                String nomGen = selectedItem.toString();
+
+                Genero gen = mm.buscarGenero(nomGen);
+                ComboBox4.removeAllItems();
+                Text6.setText("Album:");
+                Button2.setText("Seleccionar");
+                for (Album alb : mm.getAlbumes()){
+                    if(alb.getGeneros().contains(gen)){
+                        ComboBox4.addItem(alb.getNombre());
+                    }
+                }
+            }
             ComboBox4.setVisible(true);
             Text6.setVisible(true);
             Button2.setVisible(true);
         }
         
-        if (option == 13 && caso13.equalsIgnoreCase("Generos:")){
-            String nomGen = selectedItem.toString();
-            
-            Genero gen = mm.buscarGenero(nomGen);
-            ComboBox4.removeAllItems();
-            Text6.setText("Album:");
-            Button2.setText("Seleccionar");
-            for (Album alb : mm.getAlbumes()){
-                if(alb.getGeneros().contains(gen)){
-                    ComboBox4.addItem(alb.getNombre());
+        if (option == 14){
+            if(texto5.equalsIgnoreCase("Clientes:")){
+                String nickCli = selectedItem.toString();
+
+                Cliente cli = mu.buscarCliente(nickCli);
+                ComboBox4.removeAllItems();
+                Text6.setText("Listas:");
+                Button2.setText("Seleccionar");
+                for (Particular part : cli.getParticular()){
+                    ComboBox4.addItem(part.getNombre());
                 }
             }
-            
+            if (texto5.equalsIgnoreCase("Generos:")){
+                String nomGen = selectedItem.toString();
+
+                ComboBox4.removeAllItems();
+                Text6.setText("Listas:");
+                Button2.setText("Seleccionar");
+                for (porDefecto pordef : mp.getListPorDefecto()){
+                    if(pordef.getGenero().getNombre().equalsIgnoreCase(nomGen)){
+                        ComboBox4.addItem(pordef.getNombre());
+                    }
+                }
+            }
             ComboBox4.setVisible(true);
             Text6.setVisible(true);
             Button2.setVisible(true);
         }
+        
+        
     }//GEN-LAST:event_ComboBox1ActionPerformed
 
     private void ComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox2ActionPerformed
@@ -1739,6 +1788,9 @@ public class ventana extends javax.swing.JFrame {
     private void Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button2ActionPerformed
         // TODO add your handling code here:
         ManejadorMusica mm = ManejadorMusica.getInstance();
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
+        String texto5 = Text5.getText();
         
         if(option == 3){
             String genero = ComboBox4.getSelectedItem().toString();
@@ -1799,7 +1851,7 @@ public class ventana extends javax.swing.JFrame {
                 jPanel4.add(info);
             }
 
-            // Actualizar la interfaz
+           
             Text7.setVisible(true);
             Text8.setVisible(true);
             Text14.setVisible(true);
@@ -1807,6 +1859,100 @@ public class ventana extends javax.swing.JFrame {
             jPanel4.setVisible(true);
             jPanel4.revalidate();
             jPanel4.repaint();
+        }
+        
+        if(option == 14){
+            String nombreList = ComboBox4.getSelectedItem().toString();
+            Object selectedItem = ComboBox1.getSelectedItem();
+            
+            if(texto5.equalsIgnoreCase("Clientes:")){
+                Particular lista = mp.buscarListP(nombreList);
+                String nickCli = selectedItem.toString();
+                Cliente cli = mu.buscarCliente(nickCli);
+                
+                Text7.setText("Nombre Playlist: "+lista.getNombre());
+                Text8.setText("Cliente creador: "+cli.getNickname());
+                
+                Text11.setText("Posicion || Nombre || Duracion");
+            
+                jPanel4.removeAll();
+                jPanel4.setLayout(new BoxLayout(jPanel4, BoxLayout.Y_AXIS));
+                
+                for(Tema tem : lista.getTemas()){
+                    // Crear un nuevo panel para cada tema
+                    JPanel info = new JPanel();
+                    info.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+                    JLabel labelNombre = new JLabel(tem.getNombre() + " - ");
+                    labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                    labelNombre.setForeground(Color.BLACK);
+
+                    JLabel labelDuracion = new JLabel(tem.getDuracion() + " mins" + "  ");
+                    labelDuracion.setFont(new Font("Arial", Font.PLAIN, 12));
+                    labelDuracion.setForeground(Color.BLACK);
+
+                    JLabel labelOrden = new JLabel(tem.getOrdenAlbum() + " - ");
+                    labelOrden.setFont(new Font("Arial", Font.PLAIN, 12));
+                    labelOrden.setForeground(Color.BLACK);
+
+                    // Agregar etiquetas al panel de tema
+                    info.add(labelOrden); //el niño mimado pidio que modificara como se muestra
+                    info.add(labelNombre);
+                    info.add(labelDuracion);
+
+
+                    // Añadir el panel del tema al jPanel4
+                    jPanel4.add(info);
+                }
+                
+            }
+            
+            if(texto5.equalsIgnoreCase("Generos:")){
+                porDefecto lista = mp.buscarListPD(nombreList);
+                String nomGen = selectedItem.toString();
+                Genero gen = mm.buscarGenero(nomGen);
+                
+                Text7.setText("Nombre Playlist: "+lista.getNombre());
+                Text8.setText("Genero: "+gen.getNombre());
+                Text11.setText("Posicion || Nombre || Duracion");
+                
+                for(Tema tem : lista.getTemas()){
+                    // Crear un nuevo panel para cada tema
+                    JPanel info = new JPanel();
+                    info.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+                    JLabel labelNombre = new JLabel(tem.getNombre() + " - ");
+                    labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                    labelNombre.setForeground(Color.BLACK);
+
+                    JLabel labelDuracion = new JLabel(tem.getDuracion() + " mins" + "  ");
+                    labelDuracion.setFont(new Font("Arial", Font.PLAIN, 12));
+                    labelDuracion.setForeground(Color.BLACK);
+
+                    JLabel labelOrden = new JLabel(tem.getOrdenAlbum() + " - ");
+                    labelOrden.setFont(new Font("Arial", Font.PLAIN, 12));
+                    labelOrden.setForeground(Color.BLACK);
+
+                    // Agregar etiquetas al panel de tema
+                    info.add(labelOrden); //el niño mimado pidio que modificara como se muestra
+                    info.add(labelNombre);
+                    info.add(labelDuracion);
+
+
+                    // Añadir el panel del tema al jPanel4
+                    jPanel4.add(info);
+                }
+                
+            }
+            
+            
+        Text7.setVisible(true);
+        Text8.setVisible(true);
+        Text14.setVisible(true);
+        Text11.setVisible(true);
+        jPanel4.setVisible(true);
+        jPanel4.revalidate();
+        jPanel4.repaint();
         }
     }//GEN-LAST:event_Button2ActionPerformed
 

@@ -38,11 +38,25 @@ public class ManejadorPlaylist {
         this.porDefectpList.add(def);
     }
     
-    public List<Particular> buscarListP(Cliente cli){
-         // Retorna la lista de playlists particulares del cliente
-        return cli.getParticular();
+    public Particular buscarListP(String nom){
+        for (Particular part : this.PartList){
+            if(part.getNombre().equalsIgnoreCase(nom)){
+                return part;
+            }
+        }
+        return null;
     }
-     public List<porDefecto> getListPorDefecto(){
+    
+    public porDefecto buscarListPD(String nom){
+        for (porDefecto pd : this.porDefectpList){
+            if(pd.getNombre().equalsIgnoreCase(nom)){
+                return pd;
+            }
+        }
+        return null;
+    }
+    
+    public List<porDefecto> getListPorDefecto(){
          // Retorna la lista de playlists por defecto del amenjador
         return this.porDefectpList;
     }
