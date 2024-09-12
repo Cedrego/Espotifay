@@ -4,6 +4,8 @@
  */
 package Espotify;
 
+import Persistencia.ClienteJpaController;
+import Persistencia.ArtistaJpaController;
 import java.util.List;
 
 /**
@@ -60,6 +62,17 @@ public class Ctrl implements ICtrl{
         
         Artista nuevoArtista = new Artista(nick, nom, ape, mail, dtfecha, bio, web);
         
+        ArtistaJpaController artistaJpaController = new ArtistaJpaController();
+        
+        try {
+            // Intentar persistir el nuevo cliente en la base de datos
+            artistaJpaController.create(nuevoArtista);
+            System.out.println("Cliente guardado exitosamente en la base de datos");
+        } catch (Exception e) {
+            System.out.println("Error al guardar el cliente: " + e.getMessage());
+            // Manejar la excepción si ocurre algún error durante la creación
+        }
+        
         return nuevoArtista;
     }
     
@@ -69,6 +82,16 @@ public class Ctrl implements ICtrl{
         
         Cliente nuevoCliente = new Cliente(nick, nom, ape, mail, dtfecha);
         
+        ClienteJpaController clienteJpaController = new ClienteJpaController();
+        
+        try {
+            // Intentar persistir el nuevo cliente en la base de datos
+            clienteJpaController.create(nuevoCliente);
+            System.out.println("Cliente guardado exitosamente en la base de datos");
+        } catch (Exception e) {
+            System.out.println("Error al guardar el cliente: " + e.getMessage());
+            // Manejar la excepción si ocurre algún error durante la creación
+        }
         return nuevoCliente;
     }
     
