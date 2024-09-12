@@ -1116,6 +1116,23 @@ public class ventana extends javax.swing.JFrame {
             ComboBox6.setVisible(true);
         }
         
+        if(option == 7){
+            String nickCliente = ComboBox5.getSelectedItem().toString();
+            Cliente cliente = mu.buscarCliente(nickCliente);
+            Text5.setText("Listas:");
+            ComboBox4.removeAllItems();
+            for(Particular part : cliente.getParticular()){
+                if(part.getPrivado()){
+                    ComboBox4.addItem(part.getNombre());
+                }
+            }
+            Button2.setText("Hacer Publica");
+            
+            Text5.setVisible(true);
+            ComboBox4.setVisible(true);
+            Button2.setVisible(true);
+        }
+        
         if(option == 8){
             ComboBox1.removeAllItems();
             ComboBox1.addItem("");
@@ -1562,14 +1579,19 @@ public class ventana extends javax.swing.JFrame {
     private void PublicarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PublicarListaActionPerformed
         // TODO add your handling code here:
         hideAll();
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
         option = 7;
 
         Text9.setText("Propietario:");
-        Text5.setText("Lista:");
+        
+        ComboBox5.removeAllItems();
+        for(Cliente cli : mu.getAllCliente()){
+                ComboBox5.addItem(cli.getNombre());
+            }
         ComboBox5.setVisible(true);
-        ComboBox1.setVisible(true);
+        
         Text9.setVisible(true);
-        Text5.setVisible(true);
+        
     }//GEN-LAST:event_PublicarListaActionPerformed
 
     private void ComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox6ActionPerformed
@@ -1807,6 +1829,23 @@ public class ventana extends javax.swing.JFrame {
             }   
         }
         
+        if(option == 7){
+            String lista = ComboBox4.getSelectedItem().toString();
+            Particular part = mp.buscarListP(lista);
+            
+            if(part.getPrivado()){
+                part.setPrivado(false);
+                Text10.setVisible(false);
+                Text15.setText("La lista se ha hecho publica");
+                Text15.setVisible(true);
+            } else{
+                Text15.setVisible(false);
+                Text10.setText("La lista ya es publica"); //por si tocan el boton 2 veces
+                Text10.setVisible(true);
+            }
+            
+            
+        }
         if(option == 13){
             String nombreAlb = ComboBox4.getSelectedItem().toString();
             Album alb = mm.buscarAlbum(nombreAlb);

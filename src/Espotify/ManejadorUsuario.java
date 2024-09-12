@@ -25,6 +25,23 @@ public class ManejadorUsuario {
         clientesGen = new ArrayList<>();
         seguidores = new ArrayList<>();
         seguidos = new ArrayList<>();
+        
+        DTFecha fech = new DTFecha (1,1,1);
+        Cliente cliente1 = new Cliente("cliente1","cliente1","cliente1","cliente1",fech);
+        Cliente cliente2 = new Cliente("cliente2","cliente2","cliente2","cliente2",fech);
+        Cliente cliente3 = new Cliente("cliente3","cliente3","cliente3","cliente3",fech);
+        
+        Artista artista1 = new Artista("artista1", "artista1", "artista1", "artista1", fech, "artista1", "artista1");
+        Artista artista2 = new Artista("artista2", "artista2", "artista2", "artista2", fech, "artista2", "artista2");
+        Artista artista3 = new Artista("artista3", "artista3", "artista3", "artista3", fech, "artista3", "artista3");
+        
+        this.clientesGen.add(cliente1);
+        this.clientesGen.add(cliente2);
+        this.clientesGen.add(cliente3);
+        
+        this.artistasGen.add(artista1);
+        this.artistasGen.add(artista2);
+        this.artistasGen.add(artista3);
     }
     
     //creo una instancia si no existe una, de lo contrario devuelvo la existente (solo existe una)
