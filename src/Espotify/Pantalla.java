@@ -21,5 +21,4 @@ public class Pantalla {
         ventana espotify = new ventana();
         espotify.setVisible(true);
     }
-    
 }
