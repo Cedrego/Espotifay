@@ -997,8 +997,6 @@ public class ventana extends javax.swing.JFrame {
 
     private void ComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox5ActionPerformed
         // TODO add your handling code here:
-        
-         // TODO add your handling code here:
         ManejadorMusica mm = ManejadorMusica.getInstance();
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
@@ -1142,6 +1140,9 @@ public class ventana extends javax.swing.JFrame {
                 }else{
                     ComboBox1.addItem(cli.getNickname());
                 }
+            }
+            for (Artista art: mu.getAllArtista()){
+                ComboBox1.addItem(art.getNickname());
             }
             if(selectedItem != null){
                 Text5.setVisible(true);
@@ -1664,18 +1665,58 @@ public class ventana extends javax.swing.JFrame {
                             Text15.setVisible(false);
                             Text10.setVisible(true);
                         } else {
+                            boolean  encontre = false;
+                            for (Cliente cli: mu.getAllCliente()){
+                                if(nickname.equals(cli.getNickname())){
+                                encontre = true;
+                                }else{
+                                //no  hacer  nada
+                                }
+                            }
+                            for (Artista art: mu.getAllArtista()){
+                                if(nickname.equals(art.getNickname())){
+                                encontre = true;
+                                }else{
+                                //no  hacer  nada
+                                }
+                            }
+                            if(encontre){
+                                Text15.setVisible(false);
+                                Text10.setText("ERROR: usuario "+nickname+" ya existe");
+                                Text10.setVisible(true);
+                            }else{
+                                Text10.setVisible(false);
+                                Text15.setText("Ingresado con exito");
+                                Text15.setVisible(true);
+                                Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(IC,nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, biografia, pagina);
+                            }
+                        }
+                    } else {
+                        boolean  encontre = false;
+                        for (Cliente cli: mu.getAllCliente()){
+                            if(nickname.equals(cli.getNickname())){
+                                encontre = true;
+                            }else{
+                                //no  hacer  nada
+                            }
+                        }
+                        for (Artista art: mu.getAllArtista()){
+                            if(nickname.equals(art.getNickname())){
+                                encontre = true;
+                            }else{
+                                //no  hacer  nada
+                            }
+                        }
+                        if(encontre){
+                            Text15.setVisible(false);
+                            Text10.setText("ERROR: usuario "+nickname+" ya existe");
+                            Text10.setVisible(true);
+                        }else{
                             Text10.setVisible(false);
                             Text15.setText("Ingresado con exito");
                             Text15.setVisible(true);
-                            // Crear una instancia de AltaUsuario
-                            Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(IC,nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, biografia, pagina);
+                            Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(IC,nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, null, null);
                         }
-                    } else {
-                        Text10.setVisible(false);
-                        Text15.setText("Ingresado con exito");
-                        Text15.setVisible(true);
-                        // Crear una instancia de AltaUsuario sin biografía y página web
-                        Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(IC,nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, null, null);
                     }
                 }
             break;
@@ -1766,10 +1807,32 @@ public class ventana extends javax.swing.JFrame {
                     Text10.setVisible(true);
                     Text15.setVisible(false);
                 }else{
-                   Text10.setVisible(false);
-                   Text13.setText("Se agregó seguidor con exito"); 
-                   Text15.setVisible(true);
-                   Espotify.AltaSeguirUsuario seguirUsr = new Espotify.AltaSeguirUsuario(IC, cliente, seguidor);
+                    boolean encontre = false;
+                    for (Cliente cli : mu.getAllCliente()) {
+                        if (cliente.equals(cli.getNickname())) {
+                            encontre = true;
+                        } else {
+                            //no  hacer  nada
+                        }
+                    }
+                    for (Artista art : mu.getAllArtista()) {
+                        if (cliente.equals(art.getNickname())){
+                            encontre = false;
+                        } else {
+                            //no  hacer  nada
+                        }
+                    }
+                    if (encontre) {
+                        Text10.setVisible(false);
+                        Text15.setText("Se sigui a "+cliente+" con exito");
+                        Text15.setVisible(true);
+                        Espotify.AltaSeguirUsuario seguirUsr = new Espotify.AltaSeguirUsuario(IC, cliente, seguidor);
+                    } else {
+                        Text10.setVisible(false);
+                        Text15.setText("Se sigui a "+cliente+" con exito");
+                        Text15.setVisible(true);
+                        Espotify.AltaSeguirUsuario seguirUsr = new Espotify.AltaSeguirUsuario(IC, cliente, seguidor);
+                    }
                 }
             break;
             case 9:
@@ -1787,7 +1850,7 @@ public class ventana extends javax.swing.JFrame {
                     Text15.setVisible(false);
                 }else{
                    Text10.setVisible(false);
-                   Text13.setText("Se agregó seguidor con exito"); 
+                   Text15.setText("Se agregó seguidor con exito"); 
                    Text15.setVisible(true);
                    Espotify.AltaDejarSeguir noSeguir = new Espotify.AltaDejarSeguir(IC, cliente1, seguidor1);
                 }
