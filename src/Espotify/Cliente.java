@@ -124,4 +124,21 @@ public class Cliente extends Usuario {
     public void addParticular(Particular part){
         this.particular.add(part);
     }
+    
+    public void addTemaFav(Tema tem){
+        this.temasFAV.add(tem);
+    }
+    
+    public void addAlbumFav(Album alb){
+        this.albumFav.add(alb);
+    }
+    
+    public void addParticularFav(Particular part){
+        this.playFavPart.add(part);
+    }
+    
+    public void addPDFav(porDefecto pd){
+        this.playFavPD.add(pd);
+    }
+    
 }
