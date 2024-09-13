@@ -978,23 +978,22 @@ public class ventana extends javax.swing.JFrame {
             ComboBox6.setVisible(true);
             }    
             if("Por Defecto".equals(selectedItem5)){
-            //lista de canciones
-            if(ComboBox6.getItemCount() > 0){
-                ComboBox6.removeAllItems();
-            }
-            String gen = ComboBox1.getSelectedItem().toString();//nombre del Genero
-            Genero genero = mm.buscarGenero(gen);
-            for(Album alb : mm.getAlbumes()){//lista de albunes
-                for (Tema tem : alb.getTemas()){//Los temas se almacenanan en albunes
-                    for(Genero gene : tem.getGeneros()){//cada tema tiene a su vez una lista de genero
-                             if (gene.getNombre().equalsIgnoreCase(gen)){//El tema comparte el mismo genero que se seleciono anteriormente se agrega
-                                ComboBox6.addItem(tem.getNombre());
-                            }
-                       }
+                //lista de canciones
+                if(ComboBox6.getItemCount() > 0){
+                    ComboBox6.removeAllItems();
                 }
-            }
-            ComboBox6.setVisible(true);
-            
+                String gen = ComboBox1.getSelectedItem().toString();//nombre del Genero
+                Genero genero = mm.buscarGenero(gen);
+                for(Album alb : mm.getAlbumes()){//lista de albunes
+                    for (Tema tem : alb.getTemas()){//Los temas se almacenanan en albunes
+                        for(Genero gene : tem.getGeneros()){//cada tema tiene a su vez una lista de genero
+                                 if (gene.getNombre().equalsIgnoreCase(gen)){//El tema comparte el mismo genero que se seleciono anteriormente se agrega
+                                    ComboBox6.addItem(tem.getNombre());
+                                }
+                           }
+                    }
+                }
+                ComboBox6.setVisible(true);
             }
         } 
 
@@ -1088,18 +1087,6 @@ public class ventana extends javax.swing.JFrame {
             if (ComboBox1.getItemCount() == 0) {
                    ComboBox1.addItem("");
                }
-             /*
-            //lista de canciones 
-            ComboBox6.removeAllItems();
-            if(ComboBox6.getItemCount() > 0){
-                 ComboBox6.addItem("");
-            }
-            for(Album alb : mm.getAlbumes()){//lista de albunes
-                for(Tema tem : alb.getTemas()){//Los temas se almacenanan en albunes
-                    ComboBox6.addItem(tem.getNombre());//No me importa saber el genero del tema ya qye es una laylist particular
-                }
-            }
-            ComboBox6.setVisible(true);*/
             }    
             if("Por Defecto".equals(selectedItem)){
             Text5.setText("Genero:");
@@ -1120,22 +1107,6 @@ public class ventana extends javax.swing.JFrame {
              if (ComboBox1.getItemCount() == 0) {
                     ComboBox1.addItem("");
              }
-             
-            //lista de canciones
-           /* if(ComboBox6.getItemCount() > 0){
-                ComboBox6.removeAllItems();
-            }
-            for(Album alb : mm.getAlbumes()){//lista de albunes
-                for (Tema tem : alb.getTemas()){//Los temas se almacenanan en albunes
-                    for(Genero gene : tem.getGeneros()){//cada tema tiene a su vez una lista de genero
-                             if (gene.getNombre().equalsIgnoreCase(gen)){//El tema comparte el mismo genero que se seleciono anteriormente se agrega
-                                ComboBox6.addItem(tem.getNombre());
-                            }
-                       }
-                }
-            }
-            ComboBox6.setVisible(true);*/
-            
             }
             ComboBox1.setVisible(true);
         } 
