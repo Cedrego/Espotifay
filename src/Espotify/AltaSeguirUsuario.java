@@ -17,6 +17,13 @@ public class AltaSeguirUsuario {
         
         Cliente cli = mu.buscarCliente(usuario);
         Cliente seg = mu.buscarCliente(seguidor);
-        ictrl.agregarSeguidor(cli, seg);
+        Artista art = mu.buscarArtista(usuario);
+        
+        if(cli!=null){
+            ictrl.agregarSeguidorC(cli, seg);
+        }else{
+            ictrl.agregarSeguidorA(art, seg);
+        }
+        
     }
 }
