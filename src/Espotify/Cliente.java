@@ -121,4 +121,7 @@ public class Cliente extends Usuario {
         return playFavPart;
     }
     
+    public void addParticular(Particular part){
+        this.particular.add(part);
+    }
 }
