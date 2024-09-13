@@ -33,8 +33,8 @@ public class porDefecto extends Playlist {
     public void setGenero(Genero genero) {
         this.genero = genero;
     }
-    
-    
-    
-    
+    public void addTema(Tema tem){
+        this.temas.add(tem);
+    }
+
 }

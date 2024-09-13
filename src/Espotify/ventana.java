@@ -941,6 +941,7 @@ public class ventana extends javax.swing.JFrame {
     private void ComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox4ActionPerformed
         // TODO add your handling code here:
         ManejadorMusica mm = ManejadorMusica.getInstance();
+        Object selectedItem5 = ComboBox5.getSelectedItem();
         Object selectedItem = ComboBox4.getSelectedItem();
         
         if (selectedItem != null && !selectedItem.toString().isEmpty()) {
@@ -962,7 +963,40 @@ public class ventana extends javax.swing.JFrame {
             Text8.setVisible(true);
             TextField6.setVisible(true);
         }
-        
+        if(option == 5){
+            if("Particular".equals(selectedItem5)){
+            //lista de canciones 
+            ComboBox6.removeAllItems();
+            if(ComboBox6.getItemCount() > 0){
+                 ComboBox6.addItem("");
+            }
+            for(Album alb : mm.getAlbumes()){//lista de albunes
+                for(Tema tem : alb.getTemas()){//Los temas se almacenanan en albunes
+                    ComboBox6.addItem(tem.getNombre());//No me importa saber el genero del tema ya que es una laylist particular
+                }
+            }
+            ComboBox6.setVisible(true);
+            }    
+            if("Por Defecto".equals(selectedItem5)){
+            //lista de canciones
+            if(ComboBox6.getItemCount() > 0){
+                ComboBox6.removeAllItems();
+            }
+            String gen = ComboBox1.getSelectedItem().toString();//nombre del Genero
+            Genero genero = mm.buscarGenero(gen);
+            for(Album alb : mm.getAlbumes()){//lista de albunes
+                for (Tema tem : alb.getTemas()){//Los temas se almacenanan en albunes
+                    for(Genero gene : tem.getGeneros()){//cada tema tiene a su vez una lista de genero
+                             if (gene.getNombre().equalsIgnoreCase(gen)){//El tema comparte el mismo genero que se seleciono anteriormente se agrega
+                                ComboBox6.addItem(tem.getNombre());
+                            }
+                       }
+                }
+            }
+            ComboBox6.setVisible(true);
+            
+            }
+        } 
 
     }//GEN-LAST:event_ComboBox4ActionPerformed
 
@@ -1034,7 +1068,8 @@ public class ventana extends javax.swing.JFrame {
             }
         }
         
-        if(option == 5 && "Particular".equals(selectedItem)){
+        if(option == 5){
+            if("Particular".equals(selectedItem)){
             Text5.setText("Cliente:");
             Text6.setText("Lista:");
             Text14.setText("Cancion a Agrgar:");
@@ -1053,29 +1088,9 @@ public class ventana extends javax.swing.JFrame {
             if (ComboBox1.getItemCount() == 0) {
                    ComboBox1.addItem("");
                }
-               ComboBox1.setVisible(true);
-             //Playlist
-
-                if(ComboBox4.getItemCount() > 0){
-                    ComboBox4.removeAllItems();
-                }
-                String clie = ComboBox1.getSelectedItem().toString();//nick del cliente
-                Cliente cli = mu.buscarCliente(clie);//Cliente en particular
-                // Verifica si el cliente fue encontrado
-                if (cli != null) {//existe el cliente
-                    List<Particular> playlistsParticulares = cli.getParticular(); // Lista de playlists del cliente
-                    // Agrega los nombres de las playlists al ComboBox
-                    for(Particular playlist :  playlistsParticulares){
-                        ComboBox4.addItem(playlist.getNombre());
-                    }
-
-                }
-                if(ComboBox4.getItemCount() == 0){//Si no hay nada en la comboBox agrego un elemento bacio para que se vea
-                    ComboBox4.addItem("");
-                }
-                ComboBox4.setVisible(true);
+             /*
             //lista de canciones 
-           /* ComboBox6.removeAllItems();
+            ComboBox6.removeAllItems();
             if(ComboBox6.getItemCount() > 0){
                  ComboBox6.addItem("");
             }
@@ -1085,8 +1100,8 @@ public class ventana extends javax.swing.JFrame {
                 }
             }
             ComboBox6.setVisible(true);*/
-            
-        }else{ if(option == 5 && selectedItem == "Por Defecto"){
+            }    
+            if("Por Defecto".equals(selectedItem)){
             Text5.setText("Genero:");
             Text6.setText("Lista:");
             Text14.setText("Cancion a Agrgar:");
@@ -1095,35 +1110,17 @@ public class ventana extends javax.swing.JFrame {
             Text14.setVisible(true);
             
             //Genero
-               if (ComboBox1.getItemCount() > 0) {
-                  ComboBox1.removeAllItems();
-               } 
-                for (Genero gen: mm.getGeneros()){
-                    ComboBox1.addItem(gen.getNombre());//Almacena todos los generos
-                }
-                //Para que se vea
-                if (ComboBox1.getItemCount() == 0) {
-                       ComboBox1.addItem("");
-                   }
-                   ComboBox1.setVisible(true);
-            //lista de playlists por defecto
-             if(ComboBox4.getItemCount() > 0){
-                    ComboBox4.removeAllItems();
-                }
-                String gen = ComboBox1.getSelectedItem().toString();//nick del Genero
-                Genero genero = mm.buscarGenero(gen);
-                if(genero != null){//genero existe
-                   for (porDefecto playlist : mp.getListPorDefecto()){//o como se llamea
-                       if (playlist.getGenero().getNombre().equalsIgnoreCase(gen)) {
-                            ComboBox4.addItem(playlist.getNombre());
-                        }
-                   }
-                }  
-                if(ComboBox4.getItemCount() == 0){//Si no hay nada en la comboBox agrego un elemento bacio para que se vea
-                    ComboBox4.addItem("");
-                }
-            ComboBox4.setVisible(true); 
-            
+            if (ComboBox1.getItemCount() > 0) {
+               ComboBox1.removeAllItems();
+            } 
+             for (Genero gen: mm.getGeneros()){
+                 ComboBox1.addItem(gen.getNombre());//Almacena todos los generos
+             }
+             //Para que se vea
+             if (ComboBox1.getItemCount() == 0) {
+                    ComboBox1.addItem("");
+             }
+             
             //lista de canciones
            /* if(ComboBox6.getItemCount() > 0){
                 ComboBox6.removeAllItems();
@@ -1138,8 +1135,11 @@ public class ventana extends javax.swing.JFrame {
                 }
             }
             ComboBox6.setVisible(true);*/
+            
             }
-        }
+            ComboBox1.setVisible(true);
+        } 
+        
         
         if(option == 7){
             String nickCliente = ComboBox5.getSelectedItem().toString();
@@ -1434,6 +1434,7 @@ public class ventana extends javax.swing.JFrame {
         ManejadorMusica mm = ManejadorMusica.getInstance();
         ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
         Object selectedItem = ComboBox1.getSelectedItem();
+        Object selectedItem5 = ComboBox5.getSelectedItem();
         String texto5 = Text5.getText();
         
         
@@ -1452,7 +1453,42 @@ public class ventana extends javax.swing.JFrame {
             Text6.setVisible(true);
             ComboBox4.setVisible(true);
         }
-        
+        if(option == 5){
+            if("Particular".equals(selectedItem5)){
+                if(ComboBox4.getItemCount() > 0){
+                    ComboBox4.removeAllItems();
+                }
+                ComboBox4.addItem("");
+                String clie = ComboBox1.getSelectedItem().toString();//nick del cliente
+                Cliente cli = mu.buscarCliente(clie);//Cliente en particular
+                // Verifica si el cliente fue encontrado
+                if (cli != null) {//existe el cliente
+                    List<Particular> playlistsParticulares = cli.getParticular(); // Lista de playlists del cliente
+                    // Agrega los nombres de las playlists al ComboBox
+                    for(Particular playlist :  playlistsParticulares){
+                        ComboBox4.addItem(playlist.getNombre());
+                    }
+
+                }
+                ComboBox4.setVisible(true);
+            }
+            if("Por Defecto".equals(selectedItem5)){
+                if(ComboBox4.getItemCount() > 0){
+                    ComboBox4.removeAllItems();
+                }
+                ComboBox4.addItem("");
+                String gen = ComboBox1.getSelectedItem().toString();//nombre del Genero
+                Genero genero = mm.buscarGenero(gen);
+                if(genero != null){//genero existe
+                   for (porDefecto playlist : mp.getListPorDefecto()){//Lista de playlist porDefecto
+                       if (playlist.getGenero().getNombre().equalsIgnoreCase(gen)) {
+                            ComboBox4.addItem(playlist.getNombre());
+                        }
+                   }
+                }  
+                ComboBox4.setVisible(true); 
+            }
+        }
         if(option==10){
             
             if (selectedItem == "Tema") {
@@ -1562,7 +1598,7 @@ public class ventana extends javax.swing.JFrame {
 
     private void ComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox3ActionPerformed
         // TODO add your handling code here:
-        Object selectedItem = ComboBox1.getSelectedItem();
+        Object selectedItem = ComboBox3.getSelectedItem();
         if (selectedItem != null && !selectedItem.toString().isEmpty()) {
             String selectedText = selectedItem.toString();
             System.out.println("Selected item: " + selectedText);
@@ -1650,6 +1686,7 @@ public class ventana extends javax.swing.JFrame {
     private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
         ManejadorMusica mm = ManejadorMusica.getInstance();
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
         // TODO add your handling code here:
         switch(option){
             case 1:
@@ -1797,7 +1834,7 @@ public class ventana extends javax.swing.JFrame {
             break;
             case 4:
                 //llamarCrearLista();
-                ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
+               
                 String name = TextField1.getText();
                 
                 if(name.isEmpty()){//Caso que Ingrese vacio 
@@ -1852,6 +1889,7 @@ public class ventana extends javax.swing.JFrame {
                     Text10.setText("ERROR: Selecione todos los campos");
                     Text10.setVisible(true);
                 }
+               
                 //Controlar el tema no se repita en la playlist
                  String Tipo = ComboBox5.getSelectedItem().toString();//Entre porDefecto y particular(me ahorro buscar en las 2 listas
                  String NomPlay = ComboBox4.getSelectedItem().toString();//Nombre de la playlist
@@ -1866,13 +1904,42 @@ public class ventana extends javax.swing.JFrame {
                                for(Tema tem : playlist.getTemas()){
                                    if(tem.getNombre().equalsIgnoreCase(NomTema)){//encuentra el tema seleccionado en la lista de temas de la playlist
                                        existe = true;
+                                       break;
                                    }
                                }
-                                
+                            }
+                            if(existe == true){
+                                break;
                             }
                         }
                         if(existe == false){//no existe el tema en esa lista de temas de esa lista particular del cliente
-                            //Espotify.AgregarTemasList agregartemaslista = new AgregarTemasList(IC, Tipo, NomPlay, NomTema );   
+                            //Espotify.AgregarTemasList agregartemaslista = new AgregarTemasList(IC, Tipo, NomPlay, NomTema, nom);   
+                            Text15.setText("Ingresado con exito");
+                            Text15.setVisible(true);
+                        }else{
+                            Text10.setText("ERROR: La cancion selecionada ya existe dentro de la Playlist");
+                            Text10.setVisible(true);
+                        }
+                  }
+                  if("Por Defecto".equals(Tipo)){
+                      //ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
+                       String nom = ComboBox1.getSelectedItem().toString();//nombre del Genero
+                       boolean existe = false;
+                       for(porDefecto Def : mp.getListPorDefecto()){
+                            if(Def.getNombre().equalsIgnoreCase(NomPlay)){//encuentro la playlist
+                               for(Tema tem : Def.getTemas()){
+                                   if(tem.getNombre().equalsIgnoreCase(NomTema)){//encuentra el tema seleccionado en la lista de temas de la playlist
+                                       existe = true;
+                                       break;
+                                   }
+                               }
+                            }
+                            if(existe == true){
+                                break;
+                            }
+                        }
+                        if(existe == false){//no existe el tema en esa lista de temas de esa lista particular del cliente
+                            //Espotify.AgregarTemasLista agregartemaslista = new AgregarTemasList(IC, Tipo, NomPlay, NomTema, nom );   
                             Text15.setText("Ingresado con exito");
                             Text15.setVisible(true);
                         }else{

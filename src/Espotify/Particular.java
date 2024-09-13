@@ -34,4 +34,7 @@ public class Particular extends Playlist {
     public void setPrivado(boolean EsPrivado){
         this.privado = EsPrivado;
     }
+    public void addTema(Tema tem){
+        this.temas.add(tem);
+    }
 }
