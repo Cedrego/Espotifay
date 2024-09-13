@@ -60,4 +60,8 @@ public class ManejadorPlaylist {
          // Retorna la lista de playlists por defecto del amenjador
         return this.porDefectpList;
     }
+    
+    public List<Particular> getListParticular(){
+        return this.PartList;
+    }
 }
