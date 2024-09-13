@@ -1635,18 +1635,58 @@ public class ventana extends javax.swing.JFrame {
                             Text15.setVisible(false);
                             Text10.setVisible(true);
                         } else {
+                            boolean  encontre = false;
+                            for (Cliente cli: mu.getAllCliente()){
+                                if(nickname.equals(cli.getNickname())){
+                                encontre = true;
+                                }else{
+                                //no  hacer  nada
+                                }
+                            }
+                            for (Artista art: mu.getAllArtista()){
+                                if(nickname.equals(art.getNickname())){
+                                encontre = true;
+                                }else{
+                                //no  hacer  nada
+                                }
+                            }
+                            if(encontre){
+                                Text15.setVisible(false);
+                                Text10.setText("ERROR: usuario "+nickname+" ya existe");
+                                Text10.setVisible(true);
+                            }else{
+                                Text10.setVisible(false);
+                                Text15.setText("Ingresado con exito");
+                                Text15.setVisible(true);
+                                Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(IC,nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, null, null);
+                            }
+                        }
+                    } else {
+                        boolean  encontre = false;
+                        for (Cliente cli: mu.getAllCliente()){
+                            if(nickname.equals(cli.getNickname())){
+                                encontre = true;
+                            }else{
+                                //no  hacer  nada
+                            }
+                        }
+                        for (Artista art: mu.getAllArtista()){
+                            if(nickname.equals(art.getNickname())){
+                                encontre = true;
+                            }else{
+                                //no  hacer  nada
+                            }
+                        }
+                        if(encontre){
+                            Text15.setVisible(false);
+                            Text10.setText("ERROR: usuario "+nickname+" ya existe");
+                            Text10.setVisible(true);
+                        }else{
                             Text10.setVisible(false);
                             Text15.setText("Ingresado con exito");
                             Text15.setVisible(true);
-                            // Crear una instancia de AltaUsuario
-                            Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(IC,nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, biografia, pagina);
+                            Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(IC,nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, null, null);
                         }
-                    } else {
-                        Text10.setVisible(false);
-                        Text15.setText("Ingresado con exito");
-                        Text15.setVisible(true);
-                        // Crear una instancia de AltaUsuario sin biografía y página web
-                        Espotify.AltaUsuario altaUsuario = new Espotify.AltaUsuario(IC,nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, null, null);
                     }
                 }
             break;
