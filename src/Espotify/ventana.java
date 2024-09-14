@@ -8,8 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import Espotify.AltaUsuario;
-import Espotify.Cliente;
+import Espotify.InfiniteVoid;
 
 /**
  *
@@ -1174,7 +1173,7 @@ public class ventana extends javax.swing.JFrame {
             Text8.setVisible(true);
             TextField6.setVisible(true);
         }
-        if(option == 5 || option == 6){//Tanto agregar como quitar buscan de igaul manera los temas del las playlist
+        if(option == 5){
             if("Particular".equals(selectedItem5)){
             //lista de canciones 
             ComboBox6.removeAllItems();
@@ -1206,7 +1205,49 @@ public class ventana extends javax.swing.JFrame {
                 }
                 ComboBox6.setVisible(true);
             }
-        } 
+        }
+        if(option == 6){
+           ManejadorUsuario mu = ManejadorUsuario.getInstance();        
+            if("Particular".equals(selectedItem5)){
+            //lista de canciones 
+            ComboBox6.removeAllItems();
+            if(ComboBox6.getItemCount() > 0){
+                 ComboBox6.addItem("");
+            }
+            //Para mostrar que tema voy a quitar se puede buscar la lista que esta en la Comobox4
+            String clie = ComboBox1.getSelectedItem().toString();//nick del cliente
+            String NomPlaylist = ComboBox4.getSelectedItem().toString();//nombre de la playlist seleccionada
+            Cliente cli = mu.buscarCliente(clie);//Cliente en particular
+                List<Particular> playlistsParticulares = cli.getParticular(); // Lista de playlists del cliente
+                for(Particular playlist :  playlistsParticulares){//recorro lista de particular
+                    if(playlist.getNombre().equalsIgnoreCase(NomPlaylist)){//encuentro la playlist
+                        for(Tema tem : playlist.getTemas()){
+                            ComboBox6.addItem(tem.getNombre());
+                        }
+                        break;//Para que asi salga del siguiente for tambien
+                    }
+                }
+            ComboBox6.setVisible(true);
+            }    
+            if("Por Defecto".equals(selectedItem5)){
+                //lista de canciones
+                if(ComboBox6.getItemCount() > 0){
+                    ComboBox6.removeAllItems();
+                }
+                //para mostrar que tema puedo quitar de una playlist porDefecto tengo que usar e el mp
+                ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
+                String NomPlaylist = ComboBox4.getSelectedItem().toString();//nombre de la playlist seleccionada
+                for(porDefecto Def : mp.getListPorDefecto()){//recorro la lista de playlist porDefecto Almacenadas en el mp
+                     if(Def.getNombre().equalsIgnoreCase(NomPlaylist)){//encuentro lista de playlist porDefecto
+                         for(Tema tem : Def.getTemas()){
+                            ComboBox6.addItem(tem.getNombre());
+                        }
+                        break;//Para que asi salga del siguiente for tambien
+                     }
+                }
+                ComboBox6.setVisible(true);
+            }
+        }
 
     }//GEN-LAST:event_ComboBox4ActionPerformed
 
