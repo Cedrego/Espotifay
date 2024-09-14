@@ -140,4 +140,8 @@ public class Ctrl implements ICtrl{
         porDefecto nuevoPorDefecto = new porDefecto(nombre,Gen);//Uso el constructor de pordefcto
         return nuevoPorDefecto;
     }
+    @Override
+    public void InfiniteVoid(){
+        
+    }
 }
