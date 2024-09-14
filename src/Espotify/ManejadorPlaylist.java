@@ -63,5 +63,5 @@ public class ManejadorPlaylist {
     
     public List<Particular> getListParticular(){
         return this.PartList;
-    }
+    }  
 }
