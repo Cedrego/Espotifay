@@ -10,7 +10,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import Espotify.AltaUsuario;
+import Espotify.InfiniteVoid;
 
 /**
  *
@@ -32,6 +32,7 @@ public class ventana extends javax.swing.JFrame {
      * Creates new form ventana
      */
     public ventana() {
+        Espotify.InfiniteVoid gojo = new Espotify.InfiniteVoid(IC);
         initComponents();
     }
     
@@ -2361,4 +2362,3 @@ public class ventana extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 }
-
