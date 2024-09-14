@@ -11,6 +11,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import Espotify.AltaUsuario;
+import Espotify.Cliente;
 
 /**
  *
@@ -941,7 +942,7 @@ public class ventana extends javax.swing.JFrame {
     private void ComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox4ActionPerformed
         // TODO add your handling code here:
         ManejadorMusica mm = ManejadorMusica.getInstance();
-        Object selectedItem5 = ComboBox5.getSelectedItem();
+        String selectedItem5 = ComboBox5.getSelectedItem().toString();
         Object selectedItem = ComboBox4.getSelectedItem();
         
         if (selectedItem != null && !selectedItem.toString().isEmpty()) {
@@ -963,7 +964,7 @@ public class ventana extends javax.swing.JFrame {
             Text8.setVisible(true);
             TextField6.setVisible(true);
         }
-        if(option == 5){
+        if(option == 5 || option == 6){//Tanto agregar como quitar buscan de igaul manera los temas del las playlist
             if("Particular".equals(selectedItem5)){
             //lista de canciones 
             ComboBox6.removeAllItems();
@@ -1075,7 +1076,6 @@ public class ventana extends javax.swing.JFrame {
             Text5.setVisible(true);
             Text6.setVisible(true);
             Text14.setVisible(true);
-
             //Cliente
             if (ComboBox1.getItemCount() > 0) {
                   ComboBox1.removeAllItems();
@@ -1089,28 +1089,69 @@ public class ventana extends javax.swing.JFrame {
                }
             }    
             if("Por Defecto".equals(selectedItem)){
-            Text5.setText("Genero:");
-            Text6.setText("Lista:");
-            Text14.setText("Cancion a Agrgar:");
-            Text5.setVisible(true);
-            Text6.setVisible(true);
-            Text14.setVisible(true);
-            
-            //Genero
-            if (ComboBox1.getItemCount() > 0) {
-               ComboBox1.removeAllItems();
-            } 
-             for (Genero gen: mm.getGeneros()){
-                 ComboBox1.addItem(gen.getNombre());//Almacena todos los generos
-             }
-             //Para que se vea
-             if (ComboBox1.getItemCount() == 0) {
-                    ComboBox1.addItem("");
-             }
-            }
-            ComboBox1.setVisible(true);
+                Text5.setText("Genero:");
+                Text6.setText("Lista:");
+                Text14.setText("Cancion a Agrgar:");
+                Text5.setVisible(true);
+                Text6.setVisible(true);
+                Text14.setVisible(true);
+
+                //Genero
+                if (ComboBox1.getItemCount() > 0) {
+                   ComboBox1.removeAllItems();
+                } 
+                 for (Genero gen: mm.getGeneros()){
+                     ComboBox1.addItem(gen.getNombre());//Almacena todos los generos
+                 }
+                 //Para que se vea
+                 if (ComboBox1.getItemCount() == 0) {
+                        ComboBox1.addItem("");
+                 }
+                }
+                ComboBox1.setVisible(true);
         } 
         
+        if(option == 6){
+             if("Particular".equals(selectedItem)){
+               Text5.setText("Cliente:");
+               Text6.setText("Lista:");
+               Text14.setText("Cancion a Quitar:");
+               Text5.setVisible(true);
+               Text6.setVisible(true);
+               Text14.setVisible(true);
+               
+               if (ComboBox1.getItemCount() > 0) {
+                  ComboBox1.removeAllItems();
+               } 
+                for (Cliente cli: mu.getAllCliente()){
+                    ComboBox1.addItem(cli.getNickname());//Almacena todos los nick de los clientes
+                }
+                   //Para que se vea
+                if (ComboBox1.getItemCount() == 0) {
+                       ComboBox1.addItem("");
+                }
+            }
+             if("Por Defecto".equals(selectedItem)){
+                Text5.setText("Genero:");
+                Text6.setText("Lista:");
+                Text14.setText("Cancion a Quitar:");
+                Text5.setVisible(true);
+                Text6.setVisible(true);
+                Text14.setVisible(true);
+                
+                if (ComboBox1.getItemCount() > 0) {
+                   ComboBox1.removeAllItems();
+                } 
+                 for (Genero gen: mm.getGeneros()){
+                     ComboBox1.addItem(gen.getNombre());//Almacena todos los generos
+                 }
+                 //Para que se vea
+                 if (ComboBox1.getItemCount() == 0) {
+                        ComboBox1.addItem("");
+                 }
+                }
+                ComboBox1.setVisible(true);
+        }
         
         if(option == 7){
             String nickCliente = ComboBox5.getSelectedItem().toString();
@@ -1405,7 +1446,7 @@ public class ventana extends javax.swing.JFrame {
         ManejadorMusica mm = ManejadorMusica.getInstance();
         ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
         Object selectedItem = ComboBox1.getSelectedItem();
-        Object selectedItem5 = ComboBox5.getSelectedItem();
+        String selectedItem5 = ComboBox5.getSelectedItem().toString();
         String texto5 = Text5.getText();
         
         
@@ -1424,7 +1465,7 @@ public class ventana extends javax.swing.JFrame {
             Text6.setVisible(true);
             ComboBox4.setVisible(true);
         }
-        if(option == 5){
+        if(option == 5 || option == 6){//En este caso tanto agegar como quitar muestran las playlist de la misma manera
             if("Particular".equals(selectedItem5)){
                 if(ComboBox4.getItemCount() > 0){
                     ComboBox4.removeAllItems();
@@ -1585,11 +1626,12 @@ public class ventana extends javax.swing.JFrame {
         option = 5;
 
         Text9.setText("Tipo de Lista:");
-        Text5.setText("Lista:");
-        Text6.setText("Cancion a Agrgar:");
         Text9.setVisible(true);
+       
+        /*Text5.setText("Lista:");
+        Text6.setText("Cancion a Agrgar:");
         Text5.setVisible(true);
-        Text6.setVisible(true);
+        Text6.setVisible(true);*/
         
         ComboBox5.addItem("Particular");
         ComboBox5.addItem("Por Defecto");
@@ -1605,17 +1647,20 @@ public class ventana extends javax.swing.JFrame {
         hideAll();
         option = 6;
 
-        Text9.setText("Propietario:");
-        Text5.setText("Lista:");
-        Text6.setText("Cancion a Eliminar:");
+        Text9.setText("Tipo de Lista:"); 
         Text9.setVisible(true);
+        /*Text5.setText("Lista:");
+        Text6.setText("Cancion a Agrgar:");
         Text5.setVisible(true);
-        Text6.setVisible(true);
+        Text6.setVisible(true);*/
 
         //ComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(clients));
+        ComboBox5.addItem("Particular");
+        ComboBox5.addItem("Por Defecto");
         ComboBox5.setVisible(true);
         ComboBox1.setVisible(true);
         ComboBox4.setVisible(true);
+        
     }//GEN-LAST:event_QuitarTemasListasActionPerformed
 
     private void PublicarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PublicarListaActionPerformed
@@ -1884,7 +1929,7 @@ public class ventana extends javax.swing.JFrame {
                             }
                         }
                         if(existe == false){//no existe el tema en esa lista de temas de esa lista particular del cliente
-                            //Espotify.AgregarTemasList agregartemaslista = new AgregarTemasList(IC, Tipo, NomPlay, NomTema, nom);   
+                            Espotify.AgregarTemasLista agregartemaslista = new AgregarTemasLista(Tipo, NomPlay, NomTema, nom);   
                             Text15.setText("Ingresado con exito");
                             Text15.setVisible(true);
                         }else{
@@ -1910,7 +1955,7 @@ public class ventana extends javax.swing.JFrame {
                             }
                         }
                         if(existe == false){//no existe el tema en esa lista de temas de esa lista particular del cliente
-                            //Espotify.AgregarTemasLista agregartemaslista = new AgregarTemasList(IC, Tipo, NomPlay, NomTema, nom );   
+                            Espotify.AgregarTemasLista agregartemaslista = new AgregarTemasLista( Tipo, NomPlay, NomTema, nom );   
                             Text15.setText("Ingresado con exito");
                             Text15.setVisible(true);
                         }else{
@@ -1921,6 +1966,66 @@ public class ventana extends javax.swing.JFrame {
             break;
             case 6:
                 //llamarQuitarTemasLista();
+                //Controlar que selecione todas las comboBox(1,4 y 6) con algo
+                if(ComboBox1.getSelectedItem() == null || ComboBox4.getSelectedItem() == null || ComboBox6.getSelectedItem() == null){
+                    Text10.setText("ERROR: Selecione todos los campos");
+                    Text10.setVisible(true);
+                }
+                Tipo = ComboBox5.getSelectedItem().toString();//Entre porDefecto y particular(me ahorro buscar en las 2 listas
+                NomPlay = ComboBox4.getSelectedItem().toString();//Nombre de la playlist
+                NomTema = ComboBox6.getSelectedItem().toString();//Nombre del tema
+                  if("Particular".equals(Tipo)){
+                     String nom = ComboBox1.getSelectedItem().toString();//nick del cliente
+                        Cliente cliente = mu.buscarCliente(nom);//Cliente en particular
+                        boolean existe = false;
+                        for(Particular playlist : cliente.getParticular()){//Lista de playlist particulares del cliente
+                            if(playlist.getNombre().equalsIgnoreCase(NomPlay)){//encuentro la playlist
+                               for(Tema tem : playlist.getTemas()){
+                                   if(tem.getNombre().equalsIgnoreCase(NomTema)){//encuentra el tema seleccionado en la lista de temas de la playlist
+                                       existe = true;
+                                       break;
+                                   }
+                               }
+                            }
+                            if(existe == true){
+                                break;
+                            }
+                        }
+                        if(existe == false){//no existe el tema en esa lista de temas de esa lista particular del cliente
+                            Espotify.QuitarTemasLista quitarTemaLista = new QuitarTemasLista( Tipo, NomPlay, NomTema, nom);   
+                            Text15.setText("Ingresado con exito");
+                            Text15.setVisible(true);
+                        }else{
+                            Text10.setText("ERROR: La cancion selecionada ya existe dentro de la Playlist");
+                            Text10.setVisible(true);
+                        }
+                  }
+                  if("Por Defecto".equals(Tipo)){
+                      //ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
+                       String nom = ComboBox1.getSelectedItem().toString();//nombre del Genero
+                       boolean existe = false;
+                       for(porDefecto Def : mp.getListPorDefecto()){
+                            if(Def.getNombre().equalsIgnoreCase(NomPlay)){//encuentro la playlist
+                               for(Tema tem : Def.getTemas()){
+                                   if(tem.getNombre().equalsIgnoreCase(NomTema)){//encuentra el tema seleccionado en la lista de temas de la playlist
+                                       existe = true;
+                                       break;
+                                   }
+                               }
+                            }
+                            if(existe == true){
+                                break;
+                            }
+                        }
+                        if(existe == false){//no existe el tema en esa lista de temas de esa lista particular del cliente
+                            Espotify.QuitarTemasLista quitarTemaLista = new QuitarTemasLista(Tipo, NomPlay, NomTema, nom );   
+                            Text15.setText("Ingresado con exito");
+                            Text15.setVisible(true);
+                        }else{
+                            Text10.setText("ERROR: La cancion selecionada ya existe dentro de la Playlist");
+                            Text10.setVisible(true);
+                        }
+                  }
             break;
             case 7:
                 //llamarPublicarLista();

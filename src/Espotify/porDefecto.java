@@ -36,5 +36,11 @@ public class porDefecto extends Playlist {
     public void addTema(Tema tem){
         this.temas.add(tem);
     }
-
+    public void removerTema(String NomTema){
+       for(Tema tem : this.temas){
+           if(tem.getNombre().equalsIgnoreCase(NomTema)){
+               this.temas.remove(tem);
+           }
+       }
+    }
 }

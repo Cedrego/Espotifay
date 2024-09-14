@@ -9,9 +9,9 @@ package Espotify;
  * @author User
  */
 public class AgregarTemasLista {
-    private ICtrl ictrl;
+ 
     
-    private AgregarTemasLista (ICtrl ic, String Tipo, String NomPlay, String NomTema, String nom ){
+    public AgregarTemasLista (String Tipo, String NomPlay, String NomTema, String nom ){
         ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
         ManejadorMusica mm = ManejadorMusica.getInstance(); //consigo instancia de manejador de playlist
         ManejadorUsuario mu = ManejadorUsuario.getInstance(); //consigo instancia de manejador de Usuario

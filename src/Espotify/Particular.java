@@ -31,6 +31,13 @@ public class Particular extends Playlist {
     public boolean getPrivado(){
         return privado;
     }
+    public void removerTema(String NomTema){
+       for(Tema tem : this.temas){
+           if(tem.getNombre().equalsIgnoreCase(NomTema)){
+               this.temas.remove(tem);
+           }
+       }
+    }
     public void setPrivado(boolean EsPrivado){
         this.privado = EsPrivado;
     }
