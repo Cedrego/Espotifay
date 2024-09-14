@@ -4,6 +4,8 @@
  */
 package Espotify;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,10 +21,13 @@ public class Particular extends Playlist {
     private boolean privado;
     
     public Particular(){}
-    public Particular(String NuevoNombre, boolean EsPrivado){
+    
+    public Particular(String NuevoNombre){
         nombre = NuevoNombre;
-        privado = EsPrivado;
-    }
+        privado = true;
+        this.temas = new ArrayList();
+    }   
+    
     public boolean getPrivado(){
         return privado;
     }

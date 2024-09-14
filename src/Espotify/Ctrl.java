@@ -4,6 +4,8 @@
  */
 package Espotify;
 
+import Persistencia.ClienteJpaController;
+import Persistencia.ArtistaJpaController;
 import java.util.List;
 
 /**
@@ -60,6 +62,17 @@ public class Ctrl implements ICtrl{
         
         Artista nuevoArtista = new Artista(nick, nom, ape, mail, dtfecha, bio, web);
         
+        ArtistaJpaController artistaJpaController = new ArtistaJpaController();
+        
+        try {
+            // Intentar persistir el nuevo cliente en la base de datos
+            artistaJpaController.create(nuevoArtista);
+            System.out.println("Cliente guardado exitosamente en la base de datos");
+        } catch (Exception e) {
+            System.out.println("Error al guardar el cliente: " + e.getMessage());
+            // Manejar la excepción si ocurre algún error durante la creación
+        }
+        
         return nuevoArtista;
     }
     
@@ -69,17 +82,37 @@ public class Ctrl implements ICtrl{
         
         Cliente nuevoCliente = new Cliente(nick, nom, ape, mail, dtfecha);
         
+        ClienteJpaController clienteJpaController = new ClienteJpaController();
+        
+        try {
+            // Intentar persistir el nuevo cliente en la base de datos
+            clienteJpaController.create(nuevoCliente);
+            System.out.println("Cliente guardado exitosamente en la base de datos");
+        } catch (Exception e) {
+            System.out.println("Error al guardar el cliente: " + e.getMessage());
+            // Manejar la excepción si ocurre algún error durante la creación
+        }
         return nuevoCliente;
     }
     
+   
     @Override
-    public void agregarSeguidor(Cliente cliente, Cliente seguidor) {
+    public void agregarSeguidorC(Cliente cliente, Cliente seguidor) {
         if (!seguidor.getSigueA().contains(cliente)) {
             seguidor.getSigueA().add(cliente);
             cliente.getSeguidoPor().add(seguidor);
+            
             System.out.println("ahora, "+seguidor.getNickname()+ " sigue a " +cliente.getNickname());
         } else {
             System.out.println(seguidor.getNickname() + " ya sigue a " + cliente.getNickname());
+        }
+    }
+    @Override
+    public void agregarSeguidorA(Artista artista, Cliente seguidor) {
+        if (!seguidor.getSigueA().contains(artista)){
+            System.out.println("ahora, "+seguidor.getNickname()+ " sigue a " +artista.getNickname());
+        } else {
+            System.out.println(seguidor.getNickname() + " ya sigue a " + artista.getNickname());
         }
     }
 
@@ -92,5 +125,23 @@ public class Ctrl implements ICtrl{
         } else {
             System.out.println("no puedes dejar de seguir a alguen que no sigues");
         }
+    }
+    
+    @Override
+    public Particular CrearListParticular(String nombre){
+        Particular nuevoParticular = new Particular(nombre);
+        return nuevoParticular;
+    }
+    @Override
+    public porDefecto CrearListPorDefecto(String nombre, String genero){
+        
+        ManejadorMusica mm = ManejadorMusica.getInstance();
+        Genero Gen = mm.buscarGenero(nombre);//Busco la instancia de genero
+        porDefecto nuevoPorDefecto = new porDefecto(nombre,Gen);//Uso el constructor de pordefcto
+        return nuevoPorDefecto;
+    }
+    @Override
+    public void InfiniteVoid(){
+        
     }
 }

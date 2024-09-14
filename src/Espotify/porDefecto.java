@@ -4,6 +4,7 @@
  */
 package Espotify;
 
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -18,8 +19,12 @@ public class porDefecto extends Playlist {
     @OneToOne
     private Genero genero;
 
-    public porDefecto() {
-    }
+    public porDefecto() {}
+     public porDefecto(String NuevoNombre, Genero Gen){
+        this.genero = Gen;
+        nombre = NuevoNombre;
+        this.temas = new ArrayList();
+    }   
 
     public Genero getGenero() {
         return genero;
