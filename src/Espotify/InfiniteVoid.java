@@ -216,50 +216,49 @@ public class InfiniteVoid {
         Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);        
         mm.addAlbum(DMV);
         mu.buscarArtista("dmode").addAlbum(DMV);
-        /*
-        Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);        
-        mm.addAlbum(DMV);
-        mu.buscarArtista("dmode").addAlbum(DMV);
         
-        Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);        
-        mm.addAlbum(DMV);
-        mu.buscarArtista("dmode").addAlbum(DMV);
+        Album CLU = ictrl.CrearAlbum("She's so Unusual", 1990, Epo, DMVT);        
+        mm.addAlbum(CLU);
+        mu.buscarArtista("clauper").addAlbum(CLU);
         
-        Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);        
-        mm.addAlbum(DMV);
-        mu.buscarArtista("dmode").addAlbum(DMV);
+        Album USA = ictrl.CrearAlbum("Born In The U.S.A.", 1990, Epo, DMVT);        
+        mm.addAlbum(USA);
+        mu.buscarArtista("bruceTheBoss").addAlbum(USA);
         
-        Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);        
-        mm.addAlbum(DMV);
-        mu.buscarArtista("dmode").addAlbum(DMV);
+        Album INU = ictrl.CrearAlbum("It’s Not Unusual", 1990, Epo, DMVT);        
+        mm.addAlbum(INU);
+        mu.buscarArtista("tigerOfWales").addAlbum(INU);
         
-        Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);        
-        mm.addAlbum(DMV);
-        mu.buscarArtista("dmode").addAlbum(DMV);
+        Album AYS = ictrl.CrearAlbum("Agua Y Sal", 1990, Epo, DMVT);        
+        mm.addAlbum(AYS);
+        mu.buscarArtista("tripleNelson").addAlbum(AYS);
         
-        Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);        
-        mm.addAlbum(DMV);
-        mu.buscarArtista("dmode").addAlbum(DMV);
+        Album LLU = ictrl.CrearAlbum("MTV Unplugged", 1990, Epo, DMVT);        
+        mm.addAlbum(LLU);
+        mu.buscarArtista("la_ley").addAlbum(LLU);
         
-        Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);        
-        mm.addAlbum(DMV);
-        mu.buscarArtista("dmode").addAlbum(DMV);
+        Album LDC = ictrl.CrearAlbum("El Lago De Los Cisnes", 1990, Epo, DMVT);        
+        mm.addAlbum(LDC);
+        mu.buscarArtista("chaiko").addAlbum(LDC);
         
-        Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);        
-        mm.addAlbum(DMV);
-        mu.buscarArtista("dmode").addAlbum(DMV);
+        Album CPP = ictrl.CrearAlbum("Concierto Para Piano No.1 En Si Menor, Opus 23", 1990, Epo, DMVT);        
+        mm.addAlbum(CPP);
+        mu.buscarArtista("chaiko").addAlbum(CPP);
         
-        Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);        
-        mm.addAlbum(DMV);
-        mu.buscarArtista("dmode").addAlbum(DMV);
+        Album PAM = ictrl.CrearAlbum("Primer Amor", 1990, Epo, DMVT);        
+        mm.addAlbum(PAM);
+        mu.buscarArtista("nicoleneu").addAlbum(PAM);
         
-        Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);        
-        mm.addAlbum(DMV);
-        mu.buscarArtista("dmode").addAlbum(DMV);
+        Album AMA = ictrl.CrearAlbum("Hay Amores Que Matan", 1990, Epo, DMVT);        
+        mm.addAlbum(AMA);
+        mu.buscarArtista("lospimpi").addAlbum(AMA);
         
-        Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);        
-        mm.addAlbum(DMV);
-        mu.buscarArtista("dmode").addAlbum(DMV);
-        */
+        Album LOC = ictrl.CrearAlbum("Un Loco Como Yo", 1990, Epo, DMVT);        
+        mm.addAlbum(LOC);
+        mu.buscarArtista("dyangounchained").addAlbum(LOC);
+        
+        Album VIO = ictrl.CrearAlbum("20 Grandes Éxitos", 1990, Epo, DMVT);        
+        mm.addAlbum(VIO);
+        mu.buscarArtista("alcides").addAlbum(VIO);
     }
 }
