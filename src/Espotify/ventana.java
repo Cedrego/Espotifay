@@ -1460,48 +1460,18 @@ public class ventana extends javax.swing.JFrame {
         }
         
         if(option == 8){
-            ComboBox1.removeAllItems();
-            ComboBox1.addItem("");
-            for (Cliente cli: mu.getAllCliente()){
-                if(selectedItem == cli.getNickname()){
-                    //no  agregar
-                }else{
+            if(selectedItem == "Artista"){
+                for(Artista art: mu.getAllArtista()){
+                    ComboBox1.addItem(art.getNickname());
+                }
+            }else{
+                for(Cliente cli: mu.getAllCliente()){
                     ComboBox1.addItem(cli.getNickname());
                 }
-            }
-            for (Artista art: mu.getAllArtista()){
-                ComboBox1.addItem(art.getNickname());
-            }
-            if(selectedItem != null){
-                Text5.setVisible(true);
-                ComboBox1.setVisible(true);
-            }else{
-                Text5.setVisible(false);
-                ComboBox1.setVisible(false);
             }
         }
         
         if (option == 9) {
-            ComboBox1.removeAllItems();
-            ComboBox1.addItem("");
-            
-            String nom = ComboBox5.getSelectedItem().toString();
-            Cliente clienteSeleccionado = mu.buscarCliente(nom);  // Obtener el cliente seleccionado por su nickname
-            
-            if (clienteSeleccionado != null) {
-                // Agregar al ComboBox los nicknames de los clientes que sigue el cliente seleccionado
-                for (Cliente cliSeguido : clienteSeleccionado.getSigueA()) {  
-                    ComboBox1.addItem(cliSeguido.getNickname());
-                }
-            }
-            // Mostrar u ocultar elementos según si hay un cliente seleccionado
-            if (selectedItem != null) {
-                Text5.setVisible(true);
-                ComboBox1.setVisible(true);
-            } else {
-                Text5.setVisible(false);
-                ComboBox1.setVisible(false);
-            }
         }
         
         if (option == 13) {
@@ -1573,11 +1543,11 @@ public class ventana extends javax.swing.JFrame {
         Text5.setText("Usuario a Seguir:");
         Text9.setVisible(true);
         Text5.setVisible(true);
-        ComboBox5.addItem("");
-        for (Cliente cli: mu.getAllCliente()){
-            ComboBox5.addItem(cli.getNickname());
-        }
+        ComboBox5.addItem("Cliente");
+        ComboBox5.addItem("Artista");
+        ComboBox1.addItem("");
         ComboBox5.setVisible(true);
+        ComboBox1.setVisible(true);
         ACEPTAR.setVisible(true);
     }//GEN-LAST:event_SeguirUsuarioActionPerformed
 
@@ -1792,6 +1762,7 @@ public class ventana extends javax.swing.JFrame {
                 ComboBox4.setVisible(true); 
             }
         }
+        
         if(option==10){
             
             if (selectedItem == "Tema") {
@@ -2573,8 +2544,6 @@ public class ventana extends javax.swing.JFrame {
                     info.add(labelOrden); //el niño mimado pidio que modificara como se muestra
                     info.add(labelNombre);
                     info.add(labelDuracion);
-
-
                     // Añadir el panel del tema al jPanel4
                     jPanel4.add(info);
                 }   
@@ -2722,10 +2691,10 @@ public class ventana extends javax.swing.JFrame {
             //seguidor pero no estaba hecho al momento de la creacion de 
             //esta funcion, luego se corregira.
             
-            if(cli.getSigueA() != null){
+            if(cli.getCliSigueA() != null){
                 jPanel11.removeAll();
                 jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
-                for(Cliente cliSeguido : cli.getSigueA()){
+                for(Cliente cliSeguido : cli.getCliSigueA()){
                     // Crear un nuevo panel para cada tema
                     JPanel info5 = new JPanel();
                     info5.setLayout(new FlowLayout(FlowLayout.LEFT));
