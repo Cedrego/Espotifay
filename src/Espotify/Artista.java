@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -32,6 +33,7 @@ public class Artista extends Usuario {
     @OneToMany
     private List<Album> albumes;
     
+    private List<Cliente> seguidoPorA;
     
     public Artista() {
     }
@@ -41,6 +43,7 @@ public class Artista extends Usuario {
         this.SitioWeb = webSite;
         this.Biografia = bio;
         this.albumes = new ArrayList<>(); //inicializa lista de albumes
+        this.seguidoPorA = new ArrayList<>(); //inicializa lista de albumes
     }
     
     //Get variables
@@ -54,6 +57,9 @@ public class Artista extends Usuario {
     
     public List<Album> getAlbumes(){
         return albumes;
+    }
+    public List<Cliente> getSeguidoPorA(){
+        return seguidoPorA;
     }
     
     //Set variables
@@ -69,8 +75,15 @@ public class Artista extends Usuario {
         this.albumes = alb;
     }
     
+    public void setSeguidoPorA(List<Cliente> seg){
+        this.seguidoPorA = seg;
+    }
+    
     //agregar a lista
     public void addAlbum(Album alb){
         this.albumes.add(alb);
+    }
+    public void addSeguidoPorA(Cliente seg){
+        this.seguidoPorA.add(seg);
     }
 }
