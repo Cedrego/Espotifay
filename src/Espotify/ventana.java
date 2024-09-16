@@ -44,7 +44,10 @@ public class ventana extends javax.swing.JFrame {
         "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975",
         "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965",
         "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955",
-        "1954", "1953", "1952", "1951", "1950"};
+        "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945",
+        "1944", "1943", "1942", "1941", "1940", "1939", "1938", "1937", "1936", "1935",
+        "1934", "1933", "1932", "1931", "1930", "1929", "1928", "1927", "1926", "1925",
+        "1924", "1923", "1922", "1921", "1920"};
 
     String[] days31 = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
     String[] days30 = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"};
@@ -76,28 +79,28 @@ public class ventana extends javax.swing.JFrame {
         Text8 = new javax.swing.JLabel();
         Text9 = new javax.swing.JLabel();
         Text10 = new javax.swing.JLabel();
+        Text11 = new javax.swing.JLabel();
+        Text12 = new javax.swing.JLabel();
+        Text13 = new javax.swing.JLabel();
+        Text14 = new javax.swing.JLabel();
+        Text15 = new javax.swing.JLabel();
         TextField1 = new javax.swing.JTextField();
         TextField2 = new javax.swing.JTextField();
         TextField3 = new javax.swing.JTextField();
         TextField4 = new javax.swing.JTextField();
         TextField5 = new javax.swing.JTextField();
         TextField6 = new javax.swing.JTextField();
+        TextField7 = new javax.swing.JTextField();
+        TextField8 = new javax.swing.JTextField();
+        TextField9 = new javax.swing.JTextField();
         ComboBox1 = new javax.swing.JComboBox<String>();
         ComboBox2 = new javax.swing.JComboBox<String>();
         ComboBox4 = new javax.swing.JComboBox<String>();
         ComboBox3 = new javax.swing.JComboBox<String>();
         ComboBox5 = new javax.swing.JComboBox<>();
+        ComboBox6 = new javax.swing.JComboBox<String>();
         ACEPTAR = new javax.swing.JButton();
         Button1 = new javax.swing.JButton();
-        ComboBox6 = new javax.swing.JComboBox<String>();
-        Text14 = new javax.swing.JLabel();
-        Text15 = new javax.swing.JLabel();
-        Text11 = new javax.swing.JLabel();
-        TextField7 = new javax.swing.JTextField();
-        Text12 = new javax.swing.JLabel();
-        TextField8 = new javax.swing.JTextField();
-        Text13 = new javax.swing.JLabel();
-        TextField9 = new javax.swing.JTextField();
         Button2 = new javax.swing.JButton();
         Button3 = new javax.swing.JButton();
         Button4 = new javax.swing.JButton();
@@ -118,6 +121,9 @@ public class ventana extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jPanel12 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        TextArea1 = new javax.swing.JTextArea();
+        Text16 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         AltaPerfil = new javax.swing.JButton();
         AltaAlbum = new javax.swing.JButton();
@@ -203,8 +209,28 @@ public class ventana extends javax.swing.JFrame {
         Text10.setForeground(new java.awt.Color(255, 0, 0));
         Text10.setText("Text10");
 
+        Text11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text11.setForeground(new java.awt.Color(255, 255, 255));
+        Text11.setText("Text11");
+
+        Text12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text12.setForeground(new java.awt.Color(255, 255, 255));
+        Text12.setText("Text12");
+
+        Text13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text13.setForeground(new java.awt.Color(255, 255, 255));
+        Text13.setText("Text13");
+
+        Text14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text14.setForeground(new java.awt.Color(255, 255, 255));
+        Text14.setText("Text14");
+
+        Text15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text15.setForeground(new java.awt.Color(0, 204, 102));
+        Text15.setText("Text15");
+
         TextField1.setBackground(new java.awt.Color(102, 102, 102));
-        TextField1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        TextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         TextField1.setForeground(new java.awt.Color(255, 255, 255));
         TextField1.setText("TextField1");
         TextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -215,7 +241,7 @@ public class ventana extends javax.swing.JFrame {
         });
 
         TextField2.setBackground(new java.awt.Color(102, 102, 102));
-        TextField2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        TextField2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         TextField2.setForeground(new java.awt.Color(255, 255, 255));
         TextField2.setText("TextField2");
         TextField2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -226,7 +252,7 @@ public class ventana extends javax.swing.JFrame {
         });
 
         TextField3.setBackground(new java.awt.Color(102, 102, 102));
-        TextField3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        TextField3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         TextField3.setForeground(new java.awt.Color(255, 255, 255));
         TextField3.setText("TextField3");
         TextField3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -237,25 +263,48 @@ public class ventana extends javax.swing.JFrame {
         });
 
         TextField4.setBackground(new java.awt.Color(102, 102, 102));
-        TextField4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        TextField4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         TextField4.setForeground(new java.awt.Color(255, 255, 255));
         TextField4.setText("TextField4");
         TextField4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         TextField5.setBackground(new java.awt.Color(102, 102, 102));
-        TextField5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        TextField5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         TextField5.setForeground(new java.awt.Color(255, 255, 255));
         TextField5.setText("TextField5");
         TextField5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         TextField6.setBackground(new java.awt.Color(102, 102, 102));
-        TextField6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        TextField6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         TextField6.setForeground(new java.awt.Color(255, 255, 255));
         TextField6.setText("TextField6");
         TextField6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
+        TextField7.setBackground(new java.awt.Color(102, 102, 102));
+        TextField7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TextField7.setForeground(new java.awt.Color(255, 255, 255));
+        TextField7.setText("TextField7");
+        TextField7.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextField7ActionPerformed(evt);
+            }
+        });
+
+        TextField8.setBackground(new java.awt.Color(102, 102, 102));
+        TextField8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TextField8.setForeground(new java.awt.Color(255, 255, 255));
+        TextField8.setText("TextField8");
+        TextField8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        TextField9.setBackground(new java.awt.Color(102, 102, 102));
+        TextField9.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TextField9.setForeground(new java.awt.Color(255, 255, 255));
+        TextField9.setText("TextField9");
+        TextField9.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
         ComboBox1.setBackground(new java.awt.Color(102, 102, 102));
-        ComboBox1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ComboBox1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ComboBox1.setForeground(new java.awt.Color(255, 255, 255));
         ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {""}));
         ComboBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -266,7 +315,7 @@ public class ventana extends javax.swing.JFrame {
         });
 
         ComboBox2.setBackground(new java.awt.Color(102, 102, 102));
-        ComboBox2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ComboBox2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ComboBox2.setForeground(new java.awt.Color(255, 255, 255));
         ComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {""}));
         ComboBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -277,7 +326,7 @@ public class ventana extends javax.swing.JFrame {
         });
 
         ComboBox4.setBackground(new java.awt.Color(102, 102, 102));
-        ComboBox4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ComboBox4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ComboBox4.setForeground(new java.awt.Color(255, 255, 255));
         ComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         ComboBox4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -288,7 +337,7 @@ public class ventana extends javax.swing.JFrame {
         });
 
         ComboBox3.setBackground(new java.awt.Color(102, 102, 102));
-        ComboBox3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ComboBox3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ComboBox3.setForeground(new java.awt.Color(255, 255, 255));
         ComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {""}));
         ComboBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -299,13 +348,24 @@ public class ventana extends javax.swing.JFrame {
         });
 
         ComboBox5.setBackground(new java.awt.Color(102, 102, 102));
-        ComboBox5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ComboBox5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ComboBox5.setForeground(new java.awt.Color(255, 255, 255));
         ComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         ComboBox5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         ComboBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBox5ActionPerformed(evt);
+            }
+        });
+
+        ComboBox6.setBackground(new java.awt.Color(102, 102, 102));
+        ComboBox6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ComboBox6.setForeground(new java.awt.Color(255, 255, 255));
+        ComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        ComboBox6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        ComboBox6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBox6ActionPerformed(evt);
             }
         });
 
@@ -328,60 +388,6 @@ public class ventana extends javax.swing.JFrame {
                 Button1ActionPerformed(evt);
             }
         });
-
-        ComboBox6.setBackground(new java.awt.Color(102, 102, 102));
-        ComboBox6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        ComboBox6.setForeground(new java.awt.Color(255, 255, 255));
-        ComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
-        ComboBox6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        ComboBox6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboBox6ActionPerformed(evt);
-            }
-        });
-
-        Text14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Text14.setForeground(new java.awt.Color(255, 255, 255));
-        Text14.setText("Text14");
-
-        Text15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Text15.setForeground(new java.awt.Color(0, 204, 102));
-        Text15.setText("Text15");
-
-        Text11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Text11.setForeground(new java.awt.Color(255, 255, 255));
-        Text11.setText("Text11");
-
-        TextField7.setBackground(new java.awt.Color(102, 102, 102));
-        TextField7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        TextField7.setForeground(new java.awt.Color(255, 255, 255));
-        TextField7.setText("TextField7");
-        TextField7.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        TextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextField7ActionPerformed(evt);
-            }
-        });
-
-        Text12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Text12.setForeground(new java.awt.Color(255, 255, 255));
-        Text12.setText("Text12");
-
-        TextField8.setBackground(new java.awt.Color(102, 102, 102));
-        TextField8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        TextField8.setForeground(new java.awt.Color(255, 255, 255));
-        TextField8.setText("TextField8");
-        TextField8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        Text13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Text13.setForeground(new java.awt.Color(255, 255, 255));
-        Text13.setText("Text13");
-
-        TextField9.setBackground(new java.awt.Color(102, 102, 102));
-        TextField9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        TextField9.setForeground(new java.awt.Color(255, 255, 255));
-        TextField9.setText("TextField9");
-        TextField9.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         Button2.setBackground(new java.awt.Color(0, 204, 102));
         Button2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -413,12 +419,22 @@ public class ventana extends javax.swing.JFrame {
             }
         });
 
+        jPanel5.setBackground(new java.awt.Color(102, 102, 102));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuarios Seguidos:               ");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Temas Favoritos:                   ");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Temas Favoritos :                   ");
 
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Playlists Favoritas:                  ");
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(172, 148));
@@ -483,6 +499,8 @@ public class ventana extends javax.swing.JFrame {
 
         jScrollPane4.setViewportView(jPanel10);
 
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Usuarios que lo siguen:");
 
         jPanel12.setAutoscrolls(true);
@@ -565,51 +583,34 @@ public class ventana extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        TextArea1.setBackground(new java.awt.Color(102, 102, 102));
+        TextArea1.setColumns(20);
+        TextArea1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TextArea1.setForeground(new java.awt.Color(255, 255, 255));
+        TextArea1.setRows(5);
+        jScrollPane6.setViewportView(TextArea1);
+
+        Text16.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text16.setForeground(new java.awt.Color(242, 242, 242));
+        Text16.setText("Text16");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Text11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Text12)
-                    .addComponent(TextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(TextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Button3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(Text13))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(Text7)
-                        .addGap(970, 970, 970))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(Text15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Text10)
-                        .addGap(117, 117, 117))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(ComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Text5)
-                    .addComponent(Text6)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(ComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Text5)
+                            .addComponent(Text6)
                             .addComponent(ComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Text14)
                             .addComponent(Text8)
@@ -618,12 +619,7 @@ public class ventana extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(ComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Button2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Button2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -648,17 +644,52 @@ public class ventana extends javax.swing.JFrame {
                             .addComponent(TextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(930, 930, 930)
-                        .addComponent(ACEPTAR))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Text11)
+                        .addGap(257, 257, 257)
+                        .addComponent(Text12)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(Text7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Text15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Text10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ACEPTAR)
+                        .addGap(21, 21, 21))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(TextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Text13)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(TextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Button3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(326, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text16)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Text1)
                     .addComponent(Text9))
@@ -695,7 +726,7 @@ public class ventana extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Button2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Text7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -708,27 +739,25 @@ public class ventana extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(Text11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Text12)
-                                    .addComponent(Text13))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(TextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Button3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(Text11)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Text13)
+                        .addComponent(Text12)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Button3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Text16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ACEPTAR)
                     .addComponent(Text10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -941,7 +970,7 @@ public class ventana extends javax.swing.JFrame {
                 .addComponent(ConsultarAlbum)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ConsultarLista)
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addContainerGap(398, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1009,6 +1038,7 @@ public class ventana extends javax.swing.JFrame {
         Text13.setVisible(false);
         Text14.setVisible(false);
         Text15.setVisible(false);
+        Text16.setVisible(false);
         
         //espacios de texto
         TextField1.setVisible(false);
@@ -1020,6 +1050,9 @@ public class ventana extends javax.swing.JFrame {
         TextField7.setVisible(false);
         TextField8.setVisible(false);
         TextField9.setVisible(false);
+        
+        //textAreas
+        TextArea1.setVisible(false);
         
         //selectores multiple opcoion(ComboBoxes)
         ComboBox1.setVisible(false);
@@ -1076,6 +1109,7 @@ public class ventana extends javax.swing.JFrame {
         jScrollPane3.setVisible(false);
         jScrollPane4.setVisible(false);
         jScrollPane5.setVisible(false);
+        jScrollPane6.setVisible(false);
         
         //vacia los botones
         Button1.setText("");
@@ -1089,7 +1123,6 @@ public class ventana extends javax.swing.JFrame {
         hideAll();
         
         option = 1;
-        ACEPTAR.setVisible(true);
 
         //asignar palabras
         Text1.setText("Nickname:");
@@ -1098,7 +1131,7 @@ public class ventana extends javax.swing.JFrame {
         Text4.setText("Correo:");
         Text5.setText("Fecha de Nacimiento:");
         Text6.setText("Tipo de Perfil:");
-        Text7.setText("Biografia:");
+        Text16.setText("Biografia:");
         Text8.setText("PaginaWeb:");
 
         //asignar ComboBox
@@ -1115,8 +1148,6 @@ public class ventana extends javax.swing.JFrame {
         Text4.setVisible(true);
         Text5.setVisible(true);
         Text6.setVisible(true);
-        Text7.setVisible(false);
-        Text8.setVisible(false);
         TextField1.setVisible(true);
         TextField2.setVisible(true);
         TextField3.setVisible(true);
@@ -1125,6 +1156,7 @@ public class ventana extends javax.swing.JFrame {
         ComboBox2.setVisible(true);
         ComboBox3.setVisible(true);
         ComboBox4.setVisible(true);
+        ACEPTAR.setVisible(true);
     }//GEN-LAST:event_AltaPerfilActionPerformed
 
     private void EXITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EXITActionPerformed
@@ -1151,9 +1183,8 @@ public class ventana extends javax.swing.JFrame {
     private void ComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox4ActionPerformed
         // TODO add your handling code here:
         ManejadorMusica mm = ManejadorMusica.getInstance();
-        String selectedItem5 = ComboBox5.getSelectedItem().toString();
-        Object selectedItem = ComboBox4.getSelectedItem();
         
+        Object selectedItem = ComboBox4.getSelectedItem();
         if (selectedItem != null && !selectedItem.toString().isEmpty()) {
             String selectedText = selectedItem.toString();
             System.out.println("Selected item: " + selectedText);
@@ -1161,19 +1192,24 @@ public class ventana extends javax.swing.JFrame {
         } else {
             System.out.println("No item selected or item is empty.");
         }
-        if (selectedItem != "Artista") {
-            Text7.setVisible(false);
-            TextField5.setVisible(false);
-            Text8.setVisible(false);
-            TextField6.setVisible(false);
+        if(option == 1){
+            if (selectedItem != "Artista") {
+                Text16.setVisible(false);
+                jScrollPane6.setVisible(false);
+                TextArea1.setVisible(false);
+                Text8.setVisible(false);
+                TextField6.setVisible(false);
 
-        } else {
-            Text7.setVisible(true);
-            TextField5.setVisible(true);
-            Text8.setVisible(true);
-            TextField6.setVisible(true);
+            } else {
+                Text16.setVisible(true);
+                jScrollPane6.setVisible(true);
+                TextArea1.setVisible(true);
+                Text8.setVisible(true);
+                TextField6.setVisible(true);
+            }
         }
         if(option == 5){
+            String selectedItem5 = ComboBox5.getSelectedItem().toString();
             if("Particular".equals(selectedItem5)){
             //lista de canciones 
             ComboBox6.removeAllItems();
@@ -1207,7 +1243,8 @@ public class ventana extends javax.swing.JFrame {
             }
         }
         if(option == 6){
-           ManejadorUsuario mu = ManejadorUsuario.getInstance();        
+            String selectedItem5 = ComboBox5.getSelectedItem().toString();
+            ManejadorUsuario mu = ManejadorUsuario.getInstance();       
             if("Particular".equals(selectedItem5)){
             //lista de canciones 
             ComboBox6.removeAllItems();
@@ -1630,10 +1667,7 @@ public class ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
         hideAll();
         option = 14;
-
         Text9.setText("Filtrar por:");
-        
-        ComboBox5.removeAllItems();
         ComboBox5.addItem("Genero");
         ComboBox5.addItem("Cliente");
         Text9.setVisible(true);
@@ -1647,52 +1681,52 @@ public class ventana extends javax.swing.JFrame {
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         ManejadorMusica mm = ManejadorMusica.getInstance();
         
-        if (TextField1.getText().isEmpty()) {
-            Text10.setText("ERROR: campo Artista vacio");
-            Text10.setVisible(true);
-            Text15.setVisible(false);
-        }else{
-            if(mu.buscarArtista(TextField1.getText())==null){
-            Text10.setText("Error, artista "+TextField1.getText()+" no existe");
-            Text10.setVisible(true);
-            Text15.setVisible(false);
-            }else {
-                Text10.setVisible(false);
-                Text3.setText("Nombre del Album:");
-                Text5.setText("Año de salida:");
-                Text6.setText("Genero:");
-                Button2.setText("Agregar Genero");
-                Button3.setText("Agregar Cancion");
-                Text3.setVisible(true);
-                Text5.setVisible(true);
-                Text6.setVisible(true);
-                
-                TextField3.setVisible(true);
-                ComboBox1.removeAllItems();
-                ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(years));
-                ComboBox1.setVisible(true);
-                
-                ComboBox4.removeAllItems();
-                for (Genero gen: mm.getGeneros()){
-                    ComboBox4.addItem(gen.getNombre());
+        if(option ==  3){
+            if (TextField1.getText().isEmpty()) {
+                Text10.setText("ERROR: campo Artista vacio");
+                Text10.setVisible(true);
+                Text15.setVisible(false);
+            }else{
+                if(mu.buscarArtista(TextField1.getText())==null){
+                Text10.setText("Error, artista "+TextField1.getText()+" no existe");
+                Text10.setVisible(true);
+                Text15.setVisible(false);
+                }else {
+                    Text10.setVisible(false);
+                    Text3.setText("Nombre del Album:");
+                    Text5.setText("Año de salida:");
+                    Text6.setText("Genero:");
+                    Button2.setText("Agregar Genero");
+                    Button3.setText("Agregar Cancion");
+                    Text3.setVisible(true);
+                    Text5.setVisible(true);
+                    Text6.setVisible(true);
+
+                    TextField3.setVisible(true);
+                    ComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(years));
+                    ComboBox1.setVisible(true);
+                    
+                    for (Genero gen: mm.getGeneros()){
+                        ComboBox4.addItem(gen.getNombre());
+                    }
+                    ComboBox4.setVisible(true);
+                    Button2.setVisible(true);
+                    Button3.setVisible(true);
+
+                    Text11.setText("Nombre");
+                    Text12.setText("Duracion (xx:xx)");
+                    Text13.setText("Posicion en el Album");
+                    Text11.setVisible(true);
+                    Text12.setVisible(true);
+                    Text13.setVisible(true);
+
+                    TextField7.setVisible(true);
+                    TextField8.setVisible(true);
+                    TextField9.setVisible(true);
+
+                    ACEPTAR.setVisible(true);
+
                 }
-                ComboBox4.setVisible(true);
-                Button2.setVisible(true);
-                Button3.setVisible(true);
-                
-                Text11.setText("Nombre");
-                Text12.setText("Duracion (xx:xx)");
-                Text13.setText("Posicion en el Album");
-                Text11.setVisible(true);
-                Text12.setVisible(true);
-                Text13.setVisible(true);
-                
-                TextField7.setVisible(true);
-                TextField8.setVisible(true);
-                TextField9.setVisible(true);
-                
-                ACEPTAR.setVisible(true);
-                
             }
         }
     }//GEN-LAST:event_Button1ActionPerformed
@@ -1927,7 +1961,6 @@ public class ventana extends javax.swing.JFrame {
 
         Text9.setText("Propietario:");
         
-        ComboBox5.removeAllItems();
         for(Cliente cli : mu.getAllCliente()){
                 ComboBox5.addItem(cli.getNombre());
             }
@@ -2543,18 +2576,16 @@ public class ventana extends javax.swing.JFrame {
 
                     // Añadir el panel del tema al jPanel4
                     jPanel4.add(info);
-                }
-                
+                }   
             }
             
-            
-        Text7.setVisible(true);
-        Text8.setVisible(true);
-        Text14.setVisible(true);
-        Text11.setVisible(true);
-        jPanel4.setVisible(true);
-        jPanel4.revalidate();
-        jPanel4.repaint();
+            Text7.setVisible(true);
+            Text8.setVisible(true);
+            Text14.setVisible(true);
+            Text11.setVisible(true);
+            jPanel4.setVisible(true);
+            jPanel4.revalidate();
+            jPanel4.repaint();
         }
     }//GEN-LAST:event_Button2ActionPerformed
 
@@ -2926,6 +2957,7 @@ public class ventana extends javax.swing.JFrame {
     private javax.swing.JLabel Text13;
     private javax.swing.JLabel Text14;
     private javax.swing.JLabel Text15;
+    private javax.swing.JLabel Text16;
     private javax.swing.JLabel Text2;
     private javax.swing.JLabel Text3;
     private javax.swing.JLabel Text4;
@@ -2934,6 +2966,7 @@ public class ventana extends javax.swing.JFrame {
     private javax.swing.JLabel Text7;
     private javax.swing.JLabel Text8;
     private javax.swing.JLabel Text9;
+    private javax.swing.JTextArea TextArea1;
     private javax.swing.JTextField TextField1;
     private javax.swing.JTextField TextField2;
     private javax.swing.JTextField TextField3;
@@ -2963,5 +2996,6 @@ public class ventana extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     // End of variables declaration//GEN-END:variables
 }
