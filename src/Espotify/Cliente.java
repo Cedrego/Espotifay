@@ -29,16 +29,22 @@ public class Cliente extends Usuario {
      // Relación autoreferencial para seguir a otros clientes
     @ManyToMany
     @JoinTable(
-        name = "cliente_sigue",
+        name = "cliente_sigue_cliente",
         joinColumns = @JoinColumn(name = "cliente_id"),
         inverseJoinColumns = @JoinColumn(name = "sigue_a_id")
     )
     private List<Cliente> cliSigueA;
+    @ManyToMany(mappedBy = "cliSigueA")
     
-    private List<Artista> artSigueA;
-
-    @ManyToMany(mappedBy = "sigueA")
     private List<Cliente> seguidoPor;
+    
+    @ManyToMany
+    @JoinTable(
+        name = "cliente_sigue_artista",
+        joinColumns = @JoinColumn(name = "cliente_id"),
+        inverseJoinColumns = @JoinColumn(name = "sigue_a_id")
+    )
+    private List<Artista> artSigueA;
     
     @OneToMany
     private List<Album> albumFav; //coleccion
