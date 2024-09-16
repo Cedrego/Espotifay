@@ -33,7 +33,9 @@ public class Cliente extends Usuario {
         joinColumns = @JoinColumn(name = "cliente_id"),
         inverseJoinColumns = @JoinColumn(name = "sigue_a_id")
     )
-    private List<Cliente> sigueA;
+    private List<Cliente> cliSigueA;
+    
+    private List<Artista> artSigueA;
 
     @ManyToMany(mappedBy = "sigueA")
     private List<Cliente> seguidoPor;
@@ -56,7 +58,8 @@ public class Cliente extends Usuario {
     public Cliente(String nick, String nom, String ape, String mail, DTFecha fech) {
         super(nick, nom, ape, mail, fech);
         this.particular = new ArrayList();
-        this.sigueA = new ArrayList();
+        this.cliSigueA = new ArrayList();
+        this.artSigueA = new ArrayList();
         this.seguidoPor = new ArrayList();
         this.albumFav = new ArrayList();
         this.temasFAV = new ArrayList();
@@ -68,8 +71,12 @@ public class Cliente extends Usuario {
         this.particular = particular;
     }
 
-    public void setSigueA(List<Cliente> sigueA) {
-        this.sigueA = sigueA;
+    public void setCliSigueA(List<Cliente> sigueA) {
+        this.cliSigueA = sigueA;
+    }
+    
+    public void setArtSigueA(List<Cliente> sigueA) {
+        this.cliSigueA = sigueA;
     }
 
     public void setSeguidoPor(List<Cliente> seguidoPor) {
@@ -97,8 +104,11 @@ public class Cliente extends Usuario {
         return particular;
     }
 
-    public List<Cliente> getSigueA() {
-        return sigueA;
+    public List<Cliente> getCliSigueA() {
+        return cliSigueA;
+    }
+    public List<Artista> getArtSigueA() {
+        return artSigueA;
     }
 
     public List<Cliente> getSeguidoPor() {
