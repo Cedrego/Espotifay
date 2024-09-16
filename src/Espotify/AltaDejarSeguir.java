@@ -16,7 +16,12 @@ public class AltaDejarSeguir {
         ictrl = ic;
         
         Cliente cli = mu.buscarCliente(usuario);
+        Artista art = mu.buscarArtista(usuario);
         Cliente seg = mu.buscarCliente(seguidor);
-        ictrl.dejarSeguidor(cli, seg);
+        if(cli!=null){
+            ictrl.dejarSeguidorC(cli, seg);
+        }else{
+            ictrl.dejarSeguidorA(art, seg);
+        }
     }
 }
