@@ -20,7 +20,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Cliente")
-@PrimaryKeyJoinColumn(name = "NICK")
 public class Cliente extends Usuario {
 
     @OneToMany
@@ -34,15 +33,15 @@ public class Cliente extends Usuario {
         inverseJoinColumns = @JoinColumn(name = "sigue_a_id")
     )
     private List<Cliente> cliSigueA;
-    @ManyToMany(mappedBy = "cliSigueA")
     
+    @ManyToMany(mappedBy = "cliSigueA")
     private List<Cliente> seguidoPor;
     
     @ManyToMany
     @JoinTable(
-        name = "cliente_sigue_artista",
-        joinColumns = @JoinColumn(name = "cliente_id"),
-        inverseJoinColumns = @JoinColumn(name = "sigue_a_id")
+        name = "ARTISTAS_SEGUIDOS",
+        joinColumns = @JoinColumn(name = "CLIENTE"),
+        inverseJoinColumns = @JoinColumn(name = "ARTISTA")
     )
     private List<Artista> artSigueA;
     

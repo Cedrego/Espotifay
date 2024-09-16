@@ -21,11 +21,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Artista")
-@PrimaryKeyJoinColumn(name = "NICK")
 public class Artista extends Usuario {
     
     //VER BIEN COMO FUNCIONA CON CLASES EXTENDIDAS
-    @Column (name="SITIO WEB")
+    @Column (name="SITIO_WEB")
     private String SitioWeb;
     @Column (name="BIOGRAFIA")
     private String Biografia;
@@ -33,6 +32,7 @@ public class Artista extends Usuario {
     @OneToMany
     private List<Album> albumes;
     
+    @OneToMany
     private List<Cliente> seguidoPorA;
     
     public Artista() {
