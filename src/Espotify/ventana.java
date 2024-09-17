@@ -1463,18 +1463,27 @@ public class ventana extends javax.swing.JFrame {
         }
         
         if(option == 8){
-            if(selectedItem == "Artista"){
-                for(Artista art: mu.getAllArtista()){
-                    ComboBox1.addItem(art.getNickname());
+            if(ComboBox1.getSelectedItem()=="Cliente"){    
+                Text6.setText("Cliente a Seguir:");
+                ComboBox4.removeAllItems();
+                for (Cliente cli: mu.getAllCliente()){
+                    if(cli.getNickname()!=selectedItem){
+                        ComboBox4.addItem(cli.getNickname());
+                    }else{
+                        //no agregarlo a la lista
+                    }
                 }
             }else{
-                for(Cliente cli: mu.getAllCliente()){
-                    ComboBox1.addItem(cli.getNickname());
+                Text6.setText("Artista a Seguir");
+                ComboBox4.removeAllItems();
+                for (Artista art: mu.getAllArtista()){
+                    ComboBox4.addItem(art.getNickname());
                 }
             }
-        }
-        
-        if (option == 9) {
+            Text5.setVisible(true);
+            ComboBox1.setVisible(true);
+            Text6.setVisible(true);
+            ComboBox4.setVisible(true);
         }
         
         if (option == 13) {
@@ -1543,14 +1552,20 @@ public class ventana extends javax.swing.JFrame {
         option = 8;
         
         Text9.setText("Cliente:");
-        Text5.setText("Usuario a Seguir:");
+        Text5.setText("Tipo de Usuario a Seguir:");
+        Text6.setText("Cliente a Seguir:");
         Text9.setVisible(true);
         Text5.setVisible(true);
-        ComboBox5.addItem("Cliente");
-        ComboBox5.addItem("Artista");
-        ComboBox1.addItem("");
+        Text6.setVisible(true);
+        for (Cliente cli: mu.getAllCliente()){
+            ComboBox5.addItem(cli.getNickname());
+        }
+        ComboBox1.removeAllItems();
+        ComboBox1.addItem("Cliente");
+        ComboBox1.addItem("Artista");
         ComboBox5.setVisible(true);
         ComboBox1.setVisible(true);
+        ComboBox4.setVisible(true);
         ACEPTAR.setVisible(true);
     }//GEN-LAST:event_SeguirUsuarioActionPerformed
 
@@ -1784,6 +1799,31 @@ public class ventana extends javax.swing.JFrame {
                 }  
                 ComboBox4.setVisible(true); 
             }
+        }
+        
+        
+        if(option == 8){
+            if(selectedItem=="Cliente"){    
+                Text6.setText("Cliente a Seguir:");
+                ComboBox4.removeAllItems();
+                for (Cliente cli: mu.getAllCliente()){
+                    if(cli.getNickname()!=ComboBox5.getSelectedItem()){
+                        ComboBox4.addItem(cli.getNickname());
+                    }else{
+                        //no agregarlo a la lista
+                    }
+                }
+            }else{
+                Text6.setText("Artista a Seguir");
+                ComboBox4.removeAllItems();
+                for (Artista art: mu.getAllArtista()){
+                    ComboBox4.addItem(art.getNickname());
+                }
+            }
+            Text5.setVisible(true);
+            ComboBox1.setVisible(true);
+            Text6.setVisible(true);
+            ComboBox4.setVisible(true);
         }
         
         if(option==11){
