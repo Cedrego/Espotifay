@@ -2001,6 +2001,7 @@ public class ventana extends javax.swing.JFrame {
         ComboBox5.setVisible(true);
         ComboBox1.setVisible(true);
         ComboBox4.setVisible(true);
+        ACEPTAR.setVisible(true);
         
     }//GEN-LAST:event_QuitarTemasListasActionPerformed
 
