@@ -72,7 +72,8 @@ public class Cliente extends Usuario {
         this.playFavPD = new ArrayList();
         this.playFavPart = new ArrayList();
     }
-
+    
+    //setters
     public void setParticular(List<Particular> particular) {
         this.particular = particular;
     }
@@ -105,7 +106,8 @@ public class Cliente extends Usuario {
     public void setPlayFavPart(List<Particular> playFavPart) {
         this.playFavPart = playFavPart;
     }
-
+    
+    //gettersssss
     public List<Particular> getParticular() {
         return particular;
     }
@@ -137,6 +139,7 @@ public class Cliente extends Usuario {
         return playFavPart;
     }
     
+    //adderssssssssss
     public void addParticular(Particular part){
         this.particular.add(part);
     }
@@ -155,6 +158,60 @@ public class Cliente extends Usuario {
     
     public void addPDFav(porDefecto pd){
         this.playFavPD.add(pd);
+    }
+    
+    //busquersssssssssssssss
+    public Particular buscarListPFav(String nom){
+        for (Particular part : this.playFavPart){
+            if(part.getNombre().equalsIgnoreCase(nom)){
+                return part;
+            }
+        }
+        return null;
+    }
+    
+    public porDefecto buscarListPDFav(String nom){
+        for (porDefecto pd : this.playFavPD){
+            if(pd.getNombre().equalsIgnoreCase(nom)){
+                return pd;
+            }
+        }
+        return null;
+    }
+    
+    public Album buscarAlbumFav(String nom){
+        for (Album alb : this.albumFav){
+            if(alb.getNombre().equalsIgnoreCase(nom)){
+                return alb;
+            }
+        }
+        return null;
+    }
+    
+    public Tema buscarTemaFav(String nom){
+        for (Tema tem : this.temasFAV){
+            if(tem.getNombre().equalsIgnoreCase(nom)){
+                return tem;
+            }
+        }
+        return null;
+    }
+    
+    //rimuversssssssssssssssssssss ss
+    public void removeTemaFav(Tema tem){
+        this.temasFAV.remove(tem);
+    }
+    
+    public void removePlayPartFav(Particular part){
+       this.playFavPart.remove(part);
+    }
+
+    public void removePlayPDFav(porDefecto pd){
+       this.playFavPD.remove(pd);
+    }
+
+    public void removeAlbumFav(Album alb){
+       this.albumFav.remove(alb);
     }
     
 }

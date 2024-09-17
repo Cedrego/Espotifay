@@ -725,9 +725,9 @@ public class ventana extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Button2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Button2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Text7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -758,7 +758,7 @@ public class ventana extends javax.swing.JFrame {
                 .addComponent(Text16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ACEPTAR)
                     .addComponent(Text10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1253,9 +1253,10 @@ public class ventana extends javax.swing.JFrame {
                  ComboBox6.addItem("");
             }
             //Para mostrar que tema voy a quitar se puede buscar la lista que esta en la Comobox4
-            String clie = ComboBox1.getSelectedItem().toString();//nick del cliente
-            String NomPlaylist = ComboBox4.getSelectedItem().toString();//nombre de la playlist seleccionada
+            String clie = ComboBox1.getSelectedItem() != null ? ComboBox1.getSelectedItem().toString() : "";//nick del cliente
+            String NomPlaylist = ComboBox4.getSelectedItem() != null ? ComboBox4.getSelectedItem().toString() : "";//nombre de la playlist seleccionada
             Cliente cli = mu.buscarCliente(clie);//Cliente en particular
+            if(cli != null){    
                 List<Particular> playlistsParticulares = cli.getParticular(); // Lista de playlists del cliente
                 for(Particular playlist :  playlistsParticulares){//recorro lista de particular
                     if(playlist.getNombre().equalsIgnoreCase(NomPlaylist)){//encuentro la playlist
@@ -1266,6 +1267,7 @@ public class ventana extends javax.swing.JFrame {
                     }
                 }
             ComboBox6.setVisible(true);
+            }
             }    
             if("Por Defecto".equals(selectedItem5)){
                 //lista de canciones
@@ -1274,7 +1276,7 @@ public class ventana extends javax.swing.JFrame {
                 }
                 //para mostrar que tema puedo quitar de una playlist porDefecto tengo que usar e el mp
                 ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
-                String NomPlaylist = ComboBox4.getSelectedItem().toString();//nombre de la playlist seleccionada
+                String NomPlaylist = ComboBox4.getSelectedItem()!= null ? ComboBox4.getSelectedItem().toString() : "";//nombre de la playlist seleccionada
                 for(porDefecto Def : mp.getListPorDefecto()){//recorro la lista de playlist porDefecto Almacenadas en el mp
                      if(Def.getNombre().equalsIgnoreCase(NomPlaylist)){//encuentro lista de playlist porDefecto
                          for(Tema tem : Def.getTemas()){
@@ -1285,8 +1287,7 @@ public class ventana extends javax.swing.JFrame {
                 }
                 ComboBox6.setVisible(true);
             }
-        }
-
+        }  
     }//GEN-LAST:event_ComboBox4ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -1443,20 +1444,22 @@ public class ventana extends javax.swing.JFrame {
         }
         
         if(option == 7){
-            String nickCliente = ComboBox5.getSelectedItem().toString();
+            String nickCliente = ComboBox5.getSelectedItem() != null ? ComboBox5.getSelectedItem().toString() : "";
             Cliente cliente = mu.buscarCliente(nickCliente);
-            Text5.setText("Listas:");
-            ComboBox4.removeAllItems();
-            for(Particular part : cliente.getParticular()){
-                if(part.getPrivado()){
-                    ComboBox4.addItem(part.getNombre());
+            if(cliente!=null){
+                Text5.setText("Listas:");
+                ComboBox4.removeAllItems();
+                for(Particular part : cliente.getParticular()){
+                    if(part.getPrivado()){
+                        ComboBox4.addItem(part.getNombre());
+                    }
                 }
+                Button2.setText("Hacer Publica");
+
+                Text5.setVisible(true);
+                ComboBox4.setVisible(true);
+                Button2.setVisible(true);
             }
-            Button2.setText("Hacer Publica");
-            
-            Text5.setVisible(true);
-            ComboBox4.setVisible(true);
-            Button2.setVisible(true);
         }
         
         if(option == 8){
@@ -1590,32 +1593,46 @@ public class ventana extends javax.swing.JFrame {
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         option = 10;
 
-        Text9.setText("Cliente:");
+        Text6.setText("Cliente:");
         for(Cliente cli : mu.getAllCliente()){
-            ComboBox5.addItem(cli.getNickname());
+            ComboBox4.addItem(cli.getNickname());
         }
-        Text9.setVisible(true);
-        ComboBox5.setVisible(true);
+        Text6.setVisible(true);
+        ComboBox4.setVisible(true);
+       
+        Text14.setText("Que desea agregar a favoritos?");
         
-        Text5.setText("Que desea agregar a favoritos?");
-        ComboBox1.addItem("Tema");
-        ComboBox1.addItem("Lista");
-        ComboBox1.addItem("Album");
-        Text5.setVisible(true);
-        ComboBox1.setVisible(true);
+        ComboBox6.addItem("Tema");
+        ComboBox6.addItem("Lista");
+        ComboBox6.addItem("Album");
+        Text14.setVisible(true);
+        ComboBox6.setVisible(true);
+        
     }//GEN-LAST:event_GuardarTLAActionPerformed
 
     private void EliminarTLAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarTLAActionPerformed
         // TODO add your handling code here:
         hideAll();
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
         option = 11;
 
         Text9.setText("Cliente:");
-        Text5.setText("Eliminar de favoritos;");
+        for(Cliente cli : mu.getAllCliente()){
+            ComboBox5.addItem(cli.getNickname());
+        }
+        Button1.setText("Seleccionar");
         Text9.setVisible(true);
-        Text5.setVisible(true);
         ComboBox5.setVisible(true);
-        ComboBox1.setVisible(true);
+        Button1.setVisible(true);
+        
+         
+        Text5.setText("Que desea eliminar de favoritos?"); //se usa despues
+        ComboBox1.addItem("Tema");
+        ComboBox1.addItem("Lista");
+        ComboBox1.addItem("Album");
+        
+        Text14.setVisible(false);
+        ComboBox6.setVisible(false);
     }//GEN-LAST:event_EliminarTLAActionPerformed
 
     private void ConsultarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarPerfilActionPerformed
@@ -1716,6 +1733,11 @@ public class ventana extends javax.swing.JFrame {
                 }
             }
         }
+        
+        if(option==11){
+            Text5.setVisible(true);
+            ComboBox1.setVisible(true);
+        }
     }//GEN-LAST:event_Button1ActionPerformed
 
     private void ComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox1ActionPerformed
@@ -1746,7 +1768,7 @@ public class ventana extends javax.swing.JFrame {
                     ComboBox4.removeAllItems();
                 }
                 ComboBox4.addItem("");
-                String clie = ComboBox1.getSelectedItem().toString();//nick del cliente
+                String clie = ComboBox1.getSelectedItem() != null ? ComboBox1.getSelectedItem().toString() : "";//nick del cliente
                 Cliente cli = mu.buscarCliente(clie);//Cliente en particular
                 // Verifica si el cliente fue encontrado
                 if (cli != null) {//existe el cliente
@@ -1776,6 +1798,7 @@ public class ventana extends javax.swing.JFrame {
                 ComboBox4.setVisible(true); 
             }
         }
+        
         
         if(option == 8){
             if(selectedItem=="Cliente"){    
@@ -1815,32 +1838,49 @@ public class ventana extends javax.swing.JFrame {
         }
         
         if(option==10){
+        if(option==11){
             
-            if (selectedItem == "Tema") {
-                Text11.setText("Ingresar Tema");   
+            String textoBox1 = ComboBox1.getSelectedItem()!= null ? ComboBox1.getSelectedItem().toString() : "";
+            String nickCliente = ComboBox5.getSelectedItem()!= null ? ComboBox5.getSelectedItem().toString() : "";
+            Cliente cliente = mu.buscarCliente(nickCliente);
+            
+            if(textoBox1.equalsIgnoreCase("Tema")){
+                Text14.setText("Temas Favoritos:");
+                ComboBox6.removeAllItems();
+                for(Tema tem : cliente.getTemasFAV()){
+                    ComboBox6.addItem(tem.getNombre());
+                }
             }
             
-            if (selectedItem == "Lista") {
-                Text11.setText("Ingresar Lista");
+            if(textoBox1.equalsIgnoreCase("Lista")){
+                Text14.setText("Listas Favoritos:");
+                ComboBox6.removeAllItems();
+                for(Particular part : cliente.getPlayFavPart()){
+                    ComboBox6.addItem(part.getNombre());
+                }
+                for(porDefecto pd : cliente.getPlayFavPD()){
+                    ComboBox6.addItem(pd.getNombre());
+                }
+            }
+            if(textoBox1.equalsIgnoreCase("Album")){
+                Text14.setText("Albumes Favoritos:");
+                ComboBox6.removeAllItems();
+                for(Album alb : cliente.getAlbumFav()){
+                    ComboBox6.addItem(alb.getNombre());
+                }
             }
             
-            if (selectedItem == "Album") {
-                Text11.setText("Ingresar Album");
-            }
-                
-            Text11.setVisible(true);
-            TextField7.setText("");
-            TextField7.setVisible(true);
-            Button3.setText("Agregar Favorito");
-            Button3.setVisible(true);
+            Text14.setVisible(true);
+            ComboBox6.setVisible(true);
+            ACEPTAR.setVisible(true);
         }
         if (option == 13){
             String texto5 = Text5.getText();
             if(texto5.equalsIgnoreCase("Artistas:")){
-                String nickArt = selectedItem.toString();
+                String nickArt = selectedItem != null ? selectedItem.toString() : "";
 
                 Artista art = mu.buscarArtista(nickArt);
-                ComboBox4.removeAllItems();
+                
                 Text6.setText("Album:");
                 Button2.setText("Seleccionar");
                 for (Album alb : art.getAlbumes()){
@@ -1848,10 +1888,10 @@ public class ventana extends javax.swing.JFrame {
                 }
             }
             if (texto5.equalsIgnoreCase("Generos:")){
-                String nomGen = selectedItem.toString();
+                String nomGen = selectedItem != null ? selectedItem.toString() : "";
 
                 Genero gen = mm.buscarGenero(nomGen);
-                ComboBox4.removeAllItems();
+                
                 Text6.setText("Album:");
                 Button2.setText("Seleccionar");
                 for (Album alb : mm.getAlbumes()){
@@ -1868,10 +1908,10 @@ public class ventana extends javax.swing.JFrame {
         if (option == 14){
             String texto5 = Text5.getText();
             if(texto5.equalsIgnoreCase("Clientes:")){
-                String nickCli = selectedItem.toString();
+                String nickCli = selectedItem != null ? selectedItem.toString() : "";
 
                 Cliente cli = mu.buscarCliente(nickCli);
-                ComboBox4.removeAllItems();
+                
                 Text6.setText("Listas:");
                 Button2.setText("Seleccionar");
                 for (Particular part : cli.getParticular()){
@@ -1879,9 +1919,9 @@ public class ventana extends javax.swing.JFrame {
                 }
             }
             if (texto5.equalsIgnoreCase("Generos:")){
-                String nomGen = selectedItem.toString();
+                String nomGen = selectedItem != null ? selectedItem.toString() : "";
 
-                ComboBox4.removeAllItems();
+                
                 Text6.setText("Listas:");
                 Button2.setText("Seleccionar");
                 for (porDefecto pordef : mp.getListPorDefecto()){
@@ -1975,6 +2015,7 @@ public class ventana extends javax.swing.JFrame {
         ComboBox5.setVisible(true);
         ComboBox1.setVisible(true);
         ComboBox4.setVisible(true);
+        ACEPTAR.setVisible(true);
         
     }//GEN-LAST:event_QuitarTemasListasActionPerformed
 
@@ -1998,6 +2039,7 @@ public class ventana extends javax.swing.JFrame {
     private void ComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox6ActionPerformed
         // TODO add your handling code here:
         Object selectedItem = ComboBox6.getSelectedItem();
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
         if (selectedItem != null && !selectedItem.toString().isEmpty()) {
             String selectedText = selectedItem.toString();
             System.out.println("Selected item: " + selectedText);
@@ -2005,6 +2047,29 @@ public class ventana extends javax.swing.JFrame {
         } else {
             System.out.println("No item selected or item is empty.");
         }
+
+        if(option==10){
+            
+            if (selectedItem == "Tema") {
+                Text11.setText("Ingresar Tema");   
+            }
+            
+            if (selectedItem == "Lista") {
+                Text11.setText("Ingresar Lista");
+            }
+            
+            if (selectedItem == "Album") {
+                Text11.setText("Ingresar Album");
+            }
+                
+            Text11.setVisible(true);
+            TextField7.setText("");
+            TextField7.setVisible(true);
+            Button3.setText("Agregar Favorito");
+            Button3.setVisible(true);
+        }
+        
+        
     }//GEN-LAST:event_ComboBox6ActionPerformed
 
     private void TextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField3ActionPerformed
@@ -2377,6 +2442,63 @@ public class ventana extends javax.swing.JFrame {
             break;
             case 11:
                 //llamarEliminarTLA();
+                String textoBox1 = ComboBox1.getSelectedItem().toString();
+                String textoBox6 = ComboBox6.getSelectedItem().toString();
+                String nickCliente = ComboBox5.getSelectedItem().toString();
+                Cliente cli = mu.buscarCliente(nickCliente);
+                
+                if (textoBox1.equalsIgnoreCase("Tema")) {
+                Tema tem = cli.buscarTemaFav(textoBox6);
+                    if(cli.buscarTemaFav(textoBox6)!=null){
+                        Text10.setVisible(false);
+                        Text15.setText("Tema eliminado de favoritos del cliente");
+                        Text15.setVisible(true);
+                        cli.removeTemaFav(tem);
+                    } else{
+                        Text15.setVisible(false);
+                        Text10.setText("Tema no existe en favoritos del cliente");
+                        Text10.setVisible(true);
+                    }
+                }
+            
+                if (textoBox1.equalsIgnoreCase("Lista")) {
+                    if(cli.buscarListPFav(textoBox6)!=null){
+                        Particular part = cli.buscarListPFav(textoBox6);
+                        if(part.getPrivado()==false){
+                            Text10.setVisible(false);
+                            Text15.setText("Lista quitada de favoritos del cliente");
+                            Text15.setVisible(true);
+                            cli.removePlayPartFav(part);
+                        }
+                    } else{
+                        if(mp.buscarListPD(textoBox6)!=null){
+                            Text10.setVisible(false);
+                            Text15.setText("Lista quitada de favoritos del cliente");
+                            Text15.setVisible(true);
+                            porDefecto pd = cli.buscarListPDFav(textoBox6);
+                            cli.removePlayPDFav(pd);
+                        }else{
+                            Text15.setVisible(false);
+                            Text10.setText("Lista no existe en favoritos del cliente");
+                            Text10.setVisible(true);
+                        }
+                    }
+                    
+                }
+
+                if (textoBox1.equalsIgnoreCase("Album")) {  
+                    if (cli.buscarAlbumFav(textoBox6)!=null){
+                        Text10.setVisible(false);
+                        Text15.setText("Album quitado de favoritos del cliente");
+                        Text15.setVisible(true);
+                        Album alb = cli.buscarAlbumFav(textoBox6);
+                        cli.removeAlbumFav(alb);
+                    } else{
+                        Text15.setVisible(false);
+                        Text10.setText("Album no existe en favoritos del cliente");
+                        Text10.setVisible(true);
+                    } 
+                }
             break;
             case 12:
                 //llamarConsultarPerfil();
@@ -2433,6 +2555,8 @@ public class ventana extends javax.swing.JFrame {
             
             
         }
+        
+        
         if(option == 13){
             String nombreAlb = ComboBox4.getSelectedItem().toString();
             Album alb = mm.buscarAlbum(nombreAlb);
@@ -2583,8 +2707,6 @@ public class ventana extends javax.swing.JFrame {
         ManejadorMusica mm = ManejadorMusica.getInstance();
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
-        String textoBox1 = ComboBox1.getSelectedItem() != null ? ComboBox1.getSelectedItem().toString() : "";
-        String textoBox5 = ComboBox5.getSelectedItem() != null ? ComboBox5.getSelectedItem().toString() : "";
         String textfield7 = TextField7.getText();
         String textfield8 = TextField8.getText();
         String textfield9 = TextField9.getText();
@@ -2592,9 +2714,9 @@ public class ventana extends javax.swing.JFrame {
         
         if(option == 3){
             int posicionC = Integer.parseInt((String) textfield9);
-            String tema = ComboBox4.getSelectedItem().toString();
-            Tema tem = mm.buscarTema(tema);
-            if (temasAlbum.contains(tem)){ //siempre va por el else, revisar despues
+            //no voy a hacer un alta tema solo para poner esta singular linea
+            Tema temaNuevo = IC.CrearTema(textfield7, textfield8, posicionC, generosAlbum);
+            if (temasAlbum.contains(temaNuevo)){ //siempre va por el else, revisar despues
                 Text15.setVisible(false);
                 Text10.setText("Tema ya aniadido");
                 Text10.setVisible(true);
@@ -2603,8 +2725,6 @@ public class ventana extends javax.swing.JFrame {
                 Text10.setVisible(false);
                 Text15.setText("Tema aniadido");
                 Text15.setVisible(true);
-                //no voy a hacer un alta tema solo para poner esta singular linea
-                Tema temaNuevo = IC.CrearTema(textfield7, textfield8, posicionC, generosAlbum);
                 //agrego a la lista "global" de temas (se borra despues de usarse)
                 temasAlbum.add(temaNuevo);
                 
@@ -2613,14 +2733,26 @@ public class ventana extends javax.swing.JFrame {
         }
         
         if(option==10){
-            Cliente cliente = mu.buscarCliente(textoBox5);
-            if (textoBox1.equalsIgnoreCase("Tema")) {
+            Text10.setVisible(false);
+            Text15.setVisible(false);
+            String operacion = ComboBox6.getSelectedItem() != null ? ComboBox6.getSelectedItem().toString() : "";
+            String nickCliente = ComboBox4.getSelectedItem() != null ? ComboBox4.getSelectedItem().toString() : "";
+            
+            Cliente cliente = mu.buscarCliente(nickCliente);
+            
+            if (operacion.equalsIgnoreCase("Tema")) {
                 Tema tem = mm.buscarTema(textfield7);
                 if(mm.buscarTema(textfield7)!=null){
-                    Text10.setVisible(false);
-                    Text15.setText("Tema agregado a favoritos del cliente");
-                    Text15.setVisible(true);
-                    cliente.addTemaFav(tem);
+                    if(cliente.buscarTemaFav(textfield7)==null){
+                        Text10.setVisible(false);
+                        Text15.setText("Tema agregado a favoritos del cliente");
+                        Text15.setVisible(true);
+                        cliente.addTemaFav(tem);
+                    }else{
+                        Text15.setVisible(false);
+                        Text10.setText("Tema "+textfield7+" ya fue agregado");
+                        Text10.setVisible(true);
+                    }
                 } else{
                     Text15.setVisible(false);
                     Text10.setText("Tema "+textfield7+" no existe");
@@ -2628,43 +2760,61 @@ public class ventana extends javax.swing.JFrame {
                 }
             }
             
-            if (textoBox1.equalsIgnoreCase("Lista")) {
+            if (operacion.equalsIgnoreCase("Lista")) {
+                Particular part = mp.buscarListP(textfield7);
+                porDefecto pd = mp.buscarListPD(textfield7);
                 if(mp.buscarListP(textfield7)!=null){
-                    Particular part = mp.buscarListP(textfield7);
-                    if(part.getPrivado()==false){
-                        Text10.setVisible(false);
-                        Text15.setText("Lista agregada a favoritos del cliente");
-                        Text15.setVisible(true);
-                        cliente.addParticularFav(part);
-                    }
-                    if(part.getPrivado()==true){
+                    if(cliente.buscarListPFav(textfield7)==null){
+                        if(part.getPrivado()==false){
+                            Text10.setVisible(false);
+                            Text15.setText("Lista agregada a favoritos del cliente");
+                            Text15.setVisible(true);
+                            cliente.addParticularFav(part);
+                        }
+                        if(part.getPrivado()==true){
+                            Text15.setVisible(false);
+                            Text10.setText("Lista "+textfield7+" es privada y no puede agregarse");
+                            Text10.setVisible(true);
+                        }
+                    }else{
                         Text15.setVisible(false);
-                        Text10.setText("Lista "+textfield7+" es privada y no puede agregarse");
+                        Text10.setText("Lista "+textfield7+" ya fue agruegada");
                         Text10.setVisible(true);
-                    }
-                } else{
-                    if(mp.buscarListPD(textfield7)!=null){
-                        Text10.setVisible(false);
-                        Text15.setText("Lista agregada a favoritos del cliente");
-                        Text15.setVisible(true);
-                        porDefecto pd = mp.buscarListPD(textfield7);
-                        cliente.addPDFav(pd);
-                    } 
-                    if((mp.buscarListP(textfield7))==null && mp.buscarListPD(textfield7) ==null){
-                        Text15.setVisible(false);
-                        Text10.setText("Lista "+textfield7+" no existe");
-                        Text10.setVisible(true);
-                    }
-                }   
+                    }     
+                }
+                if(mp.buscarListPD(textfield7)!=null){
+                            if(cliente.buscarListPDFav(textfield7)==null){
+                            Text10.setVisible(false);
+                            Text15.setText("Lista agregada a favoritos del cliente");
+                            Text15.setVisible(true);
+                            cliente.addPDFav(pd);
+                            }else{
+                                Text15.setVisible(false);
+                                Text10.setText("Lista "+textfield7+" ya fue agruegada");
+                                Text10.setVisible(true);
+                            }
+                } 
+                
+                if((mp.buscarListP(textfield7))==null && mp.buscarListPD(textfield7) ==null){
+                    Text15.setVisible(false);
+                    Text10.setText("Lista "+textfield7+" no existe");
+                    Text10.setVisible(true);
+                }
             }
             
-            if (textoBox1.equalsIgnoreCase("Album")) {  
+            if (operacion.equalsIgnoreCase("Album")) {  
                 if (mm.buscarAlbum(textfield7)!=null){
-                    Text10.setVisible(false);
-                    Text15.setText("Album agregado a favoritos del cliente");
-                    Text15.setVisible(true);
                     Album alb = mm.buscarAlbum(textfield7);
-                    cliente.addAlbumFav(alb);
+                    if(cliente.buscarAlbumFav(textfield7)==null){
+                        Text10.setVisible(false);
+                        Text15.setText("Album agregado a favoritos del cliente");
+                        Text15.setVisible(true);
+                        cliente.addAlbumFav(alb);
+                    }else{
+                        Text15.setVisible(false);
+                        Text10.setText("Album "+textfield7+" ya fue agregado");
+                        Text10.setVisible(true);
+                    }
                 } else{
                     Text15.setVisible(false);
                     Text10.setText("Album "+textfield7+" no existe");
