@@ -1824,20 +1824,43 @@ public class ventana extends javax.swing.JFrame {
             ComboBox4.setVisible(true);
         }
         
-        if(option == 9){
-            if(selectedItem!=null){
-                Cliente clienteSeleccionado = mu.buscarCliente(selectedItem.toString());
-                for (Cliente cli : clienteSeleccionado.getCliSigueA()) {
-                    ComboBox1.addItem("Cliente: " + cli.getNickname());
-                }
-                for (Artista art : clienteSeleccionado.getArtSigueA()) {
-                    ComboBox1.addItem("Artista: " + art.getNickname());
+        if (option == 9) {
+            if (selectedItem != null) {
+                ComboBox4.removeAllItems();
+                String cliente = selectedItem.toString();
+                System.out.println("Selected Item: "+cliente);
+                Cliente clienteSeleccionado = mu.buscarCliente(cliente);
+                if (clienteSeleccionado != null) {
+                    // Obtener clientes seguidos
+                    List<Cliente> cliSeguidos = clienteSeleccionado.getCliSigueA();
+                    if (cliSeguidos != null && !cliSeguidos.isEmpty()) {
+                        for (Cliente cli : cliSeguidos) {
+                            ComboBox4.addItem(cli.getNickname());
+                        }
+                    } else {
+                        System.out.println(cliente + " no sigue a ningún cliente.");
+                    }
+                    
+                    List<Artista> artSeguidos = clienteSeleccionado.getArtSigueA();
+                    if (artSeguidos != null && !artSeguidos.isEmpty()) {
+                        for (Artista art : artSeguidos) {
+                            ComboBox4.addItem(art.getNickname());
+                        }
+                    } else {
+                        System.out.println(cliente + " no sigue a ningún artista.");
+                    }
+                } else {
+                    // Mostrar mensaje de error si no se encuentra el cliente
+                    System.out.println("ERROR: Cliente no encontrado");
                 }
             }
-            ComboBox1.setVisible(true);
+            ComboBox4.setVisible(true);
         }
         
         if(option==10){
+            
+        }
+        
         if(option==11){
             
             String textoBox1 = ComboBox1.getSelectedItem()!= null ? ComboBox1.getSelectedItem().toString() : "";
@@ -1934,8 +1957,6 @@ public class ventana extends javax.swing.JFrame {
             Text6.setVisible(true);
             Button2.setVisible(true);
         }
-        
-        
     }//GEN-LAST:event_ComboBox1ActionPerformed
 
     private void ComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox2ActionPerformed
@@ -2410,7 +2431,7 @@ public class ventana extends javax.swing.JFrame {
             case 8:
                 //llamarSeguirUsuario();
                 String seguidor = ComboBox5.getSelectedItem().toString();
-                String cliente = ComboBox1.getSelectedItem().toString();
+                String cliente = ComboBox4.getSelectedItem().toString();
                 
                 Espotify.AltaSeguirUsuario seguirUsr = new Espotify.AltaSeguirUsuario(IC, cliente, seguidor);
                 Text10.setVisible(false);
@@ -2436,6 +2457,7 @@ public class ventana extends javax.swing.JFrame {
                    Text15.setText("Se dejo de seguir a "+seguido1+" con exito"); 
                    Text15.setVisible(true);
                 }
+                ComboBox4.setVisible(true);
             break;
             case 10:
                 //llamarGuardarTLA();

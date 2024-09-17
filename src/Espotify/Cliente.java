@@ -82,8 +82,8 @@ public class Cliente extends Usuario {
         this.cliSigueA = sigueA;
     }
     
-    public void setArtSigueA(List<Cliente> sigueA) {
-        this.cliSigueA = sigueA;
+    public void setArtSigueA(List<Artista> artSigueA) {
+        this.artSigueA = artSigueA;
     }
 
     public void setSeguidoPor(List<Cliente> seguidoPor) {

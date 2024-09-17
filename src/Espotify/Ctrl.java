@@ -101,7 +101,6 @@ public class Ctrl implements ICtrl{
         if (!seguidor.getCliSigueA().contains(cliente)) {
             seguidor.getCliSigueA().add(cliente);
             cliente.getSeguidoPor().add(seguidor);
-            
             System.out.println("ahora, "+seguidor.getNickname()+ " sigue a " +cliente.getNickname());
         } else {
             System.out.println(seguidor.getNickname() + " ya sigue a " + cliente.getNickname());
@@ -120,17 +119,33 @@ public class Ctrl implements ICtrl{
 
     @Override
     public void dejarSeguidorC(Cliente usuario, Cliente seguidor) {
-        if(usuario.getSeguidoPor().contains(seguidor)){
+        if (seguidor == null) {
+            System.out.println("El cliente seguidor es nulo");
+            return;
+        }
+
+        if (usuario == null) {
+            System.out.println("El cliente usuario es nulo");
+            return;
+        }
+
+        if (seguidor.getCliSigueA() == null) {
+            System.out.println("La lista de clientes seguidos por el seguidor es nula");
+            return;
+        }
+
+        if (seguidor.getCliSigueA().contains(usuario)) {
             usuario.getSeguidoPor().remove(seguidor);
             seguidor.getCliSigueA().remove(usuario);
-            System.out.println("ahora, "+seguidor.getNickname()+ " ya no sigue a " +usuario.getNickname());
+            System.out.println("Ahora, " + seguidor.getNickname() + " ya no sigue a " + usuario.getNickname());
         } else {
-            System.out.println("no puedes dejar de seguir a alguen que no sigues");
+            System.out.println("No puedes dejar de seguir a alguien que no sigues");
         }
     }
+
     @Override
     public void dejarSeguidorA(Artista usuario, Cliente seguidor) {
-        if(usuario.getSeguidoPorA().contains(seguidor)){
+        if(seguidor.getArtSigueA().contains(usuario)){
             usuario.getSeguidoPorA().remove(seguidor);
             seguidor.getArtSigueA().remove(usuario);
             System.out.println("ahora, "+seguidor.getNickname()+ " ya no sigue a " +usuario.getNickname());
