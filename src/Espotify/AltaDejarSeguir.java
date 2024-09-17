@@ -27,10 +27,10 @@ public class AltaDejarSeguir {
         }
 
         // Verificar el tipo de usuario y realizar la operación correspondiente
-        if (cli != null) {
+        if (cli != null && seg != null) {
             // Si el usuario es un cliente, dejar de seguir
             ictrl.dejarSeguidorC(cli, seg);
-        } else if (art != null) {
+        } else if (art != null && seg != null) {
             // Si el usuario es un artista, dejar de seguir
             ictrl.dejarSeguidorA(art, seg);
         } else {
