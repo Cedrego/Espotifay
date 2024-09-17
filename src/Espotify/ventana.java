@@ -1573,12 +1573,13 @@ public class ventana extends javax.swing.JFrame {
         
         option = 9;
         
-        Text9.setText("Cliente:");
-        Text5.setText("Usuario a dejar de Seguir:");
-        Text9.setVisible(true);
+        Text5.setText("Cliente:");
+        Text6.setText("Usuario a dejar de Seguir:");
         Text5.setVisible(true);
-        ComboBox5.setVisible(true);for (Cliente cli: mu.getAllCliente()){
-            ComboBox5.addItem(cli.getNickname());
+        Text6.setVisible(true);
+        ComboBox1.setVisible(true);
+        for (Cliente cli: mu.getAllCliente()){
+            ComboBox1.addItem(cli.getNickname());
         }
         ACEPTAR.setVisible(true);
     }//GEN-LAST:event_DejarSeguirActionPerformed
@@ -1718,14 +1719,7 @@ public class ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_Button1ActionPerformed
 
     private void ComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox1ActionPerformed
-        ManejadorUsuario mu = ManejadorUsuario.getInstance();
-        ManejadorMusica mm = ManejadorMusica.getInstance();
-        ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
         Object selectedItem = ComboBox1.getSelectedItem();
-        String selectedItem5 = ComboBox5.getSelectedItem().toString();
-        String texto5 = Text5.getText();
-        
-        
         if (selectedItem != null && !selectedItem.toString().isEmpty()) {
             String selectedText = selectedItem.toString();
             System.out.println("Selected item: " + selectedText);
@@ -1733,6 +1727,10 @@ public class ventana extends javax.swing.JFrame {
         } else {
             System.out.println("No item selected or item is empty.");
         }
+        
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        ManejadorMusica mm = ManejadorMusica.getInstance();
+        ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
         
         if (option == 4 && selectedItem == "Por defecto") {
             ComboBox4.removeAllItems();
@@ -1742,6 +1740,7 @@ public class ventana extends javax.swing.JFrame {
             ComboBox4.setVisible(true);
         }
         if(option == 5 || option == 6){//En este caso tanto agegar como quitar muestran las playlist de la misma manera
+            String selectedItem5 = ComboBox5.getSelectedItem().toString();
             if("Particular".equals(selectedItem5)){
                 if(ComboBox4.getItemCount() > 0){
                     ComboBox4.removeAllItems();
@@ -1802,6 +1801,19 @@ public class ventana extends javax.swing.JFrame {
             ComboBox4.setVisible(true);
         }
         
+        if(option == 9){
+            if(selectedItem!=null){
+                Cliente clienteSeleccionado = mu.buscarCliente(selectedItem.toString());
+                for (Cliente cli : clienteSeleccionado.getCliSigueA()) {
+                    ComboBox1.addItem("Cliente: " + cli.getNickname());
+                }
+                for (Artista art : clienteSeleccionado.getArtSigueA()) {
+                    ComboBox1.addItem("Artista: " + art.getNickname());
+                }
+            }
+            ComboBox1.setVisible(true);
+        }
+        
         if(option==10){
             
             if (selectedItem == "Tema") {
@@ -1823,6 +1835,7 @@ public class ventana extends javax.swing.JFrame {
             Button3.setVisible(true);
         }
         if (option == 13){
+            String texto5 = Text5.getText();
             if(texto5.equalsIgnoreCase("Artistas:")){
                 String nickArt = selectedItem.toString();
 
@@ -1853,6 +1866,7 @@ public class ventana extends javax.swing.JFrame {
         }
         
         if (option == 14){
+            String texto5 = Text5.getText();
             if(texto5.equalsIgnoreCase("Clientes:")){
                 String nickCli = selectedItem.toString();
 
@@ -2333,61 +2347,29 @@ public class ventana extends javax.swing.JFrame {
                 String seguidor = ComboBox5.getSelectedItem().toString();
                 String cliente = ComboBox1.getSelectedItem().toString();
                 
-                if(cliente.isEmpty()){
-                    Text10.setText("ERROR: no se eligio cliente");
-                    Text10.setVisible(true);
-                    Text15.setVisible(false);
-                }else if(seguidor.isEmpty()){
-                    Text10.setText("ERROR: no se eligio seguidor");
-                    Text10.setVisible(true);
-                    Text15.setVisible(false);
-                }else{
-                    boolean encontre = false;
-                    for (Cliente cli : mu.getAllCliente()) {
-                        if (cliente.equals(cli.getNickname())) {
-                            encontre = true;
-                        } else {
-                            //no  hacer  nada
-                        }
-                    }
-                    for (Artista art : mu.getAllArtista()) {
-                        if (cliente.equals(art.getNickname())){
-                            encontre = false;
-                        } else {
-                            //no  hacer  nada
-                        }
-                    }
-                    if (encontre) {
-                        Text10.setVisible(false);
-                        Text15.setText("Se sigui a "+cliente+" con exito");
-                        Text15.setVisible(true);
-                        Espotify.AltaSeguirUsuario seguirUsr = new Espotify.AltaSeguirUsuario(IC, cliente, seguidor);
-                    } else {
-                        Text10.setVisible(false);
-                        Text15.setText("Se sigui a "+cliente+" con exito");
-                        Text15.setVisible(true);
-                        Espotify.AltaSeguirUsuario seguirUsr = new Espotify.AltaSeguirUsuario(IC, cliente, seguidor);
-                    }
-                }
+                Espotify.AltaSeguirUsuario seguirUsr = new Espotify.AltaSeguirUsuario(IC, cliente, seguidor);
+                Text10.setVisible(false);
+                Text15.setText("Se siguió a " + cliente + " con éxito");
+                Text15.setVisible(true);
             break;
             case 9:
                 //llamarDejarSeguirUsuario();
-                String seguidor1 = ComboBox5.getSelectedItem().toString();
                 String cliente1 = ComboBox1.getSelectedItem().toString();
+                String seguido1 = ComboBox4.getSelectedItem().toString();
                 
                 if(cliente1.isEmpty()){
                     Text10.setText("ERROR: no se eligio cliente");
                     Text10.setVisible(true);
                     Text15.setVisible(false);
-                }else if(seguidor1.isEmpty()){
+                }else if(seguido1.isEmpty()){
                     Text10.setText("ERROR: no se eligio seguidor");
                     Text10.setVisible(true);
                     Text15.setVisible(false);
                 }else{
+                   Espotify.AltaDejarSeguir noSeguir = new Espotify.AltaDejarSeguir(IC, cliente1, seguido1);
                    Text10.setVisible(false);
-                   Text15.setText("Se agregó seguidor con exito"); 
+                   Text15.setText("Se dejo de seguir a "+seguido1+" con exito"); 
                    Text15.setVisible(true);
-                   Espotify.AltaDejarSeguir noSeguir = new Espotify.AltaDejarSeguir(IC, cliente1, seguidor1);
                 }
             break;
             case 10:
