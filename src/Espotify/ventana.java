@@ -2440,21 +2440,21 @@ public class ventana extends javax.swing.JFrame {
             break;
             case 9:
                 //llamarDejarSeguirUsuario();
-                String cliente1 = ComboBox1.getSelectedItem().toString();
-                String seguido1 = ComboBox4.getSelectedItem().toString();
+                String seguidor1 = ComboBox1.getSelectedItem().toString();
+                String usuario1 = ComboBox4.getSelectedItem().toString();
                 
-                if(cliente1.isEmpty()){
+                if(seguidor1.isEmpty()){
                     Text10.setText("ERROR: no se eligio cliente");
                     Text10.setVisible(true);
                     Text15.setVisible(false);
-                }else if(seguido1.isEmpty()){
+                }else if(usuario1.isEmpty()){
                     Text10.setText("ERROR: no se eligio seguidor");
                     Text10.setVisible(true);
                     Text15.setVisible(false);
                 }else{
-                   Espotify.AltaDejarSeguir noSeguir = new Espotify.AltaDejarSeguir(IC, cliente1, seguido1);
+                   Espotify.AltaDejarSeguir noSeguir = new Espotify.AltaDejarSeguir(IC, usuario1, seguidor1);
                    Text10.setVisible(false);
-                   Text15.setText("Se dejo de seguir a "+seguido1+" con exito"); 
+                   Text15.setText("Se dejo de seguir a "+usuario1+" con exito"); 
                    Text15.setVisible(true);
                 }
                 ComboBox4.setVisible(true);
