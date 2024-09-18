@@ -4,6 +4,7 @@
  */
 package Espotify;
 
+import Persistencia.ClienteJpaController;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -119,7 +120,8 @@ public class Cliente extends Usuario {
     }
 
     public List<Cliente> getSeguidoPor() {
-        return seguidoPor;
+        ClienteJpaController clijpa = new ClienteJpaController();
+        return clijpa.findCliente(this.getNickname()).seguidoPor;
     }
 
     public List<Album> getAlbumFav() {
