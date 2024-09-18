@@ -3077,12 +3077,20 @@ public class ventana extends javax.swing.JFrame {
                 Button4.setVisible(false);
                 ComboBox5.setVisible(false);
                 ComboBox5.removeAll();
-                Text5.setPreferredSize(new Dimension(200, 100));
-                Text6.setPreferredSize(new Dimension(200, 100));
                 Text2.setText("Nombre: " + art.getNombre());
                 Text3.setText("Nickname: " + art.getApellido());
                 Text4.setText("Correo: " + art.getCorreo());
-                Text5.setText("Biografia: " + art.getBiografia());
+                jLabel3.setText("Biografia: ");
+                jLabel3.setVisible(true);
+                jPanel9.setVisible(true);
+                JPanel info1 = new JPanel();
+                info1.setLayout(new FlowLayout(FlowLayout.LEFT));
+                jPanel9.setLayout(new BoxLayout(jPanel9, BoxLayout.Y_AXIS));
+                JLabel labelombre = new JLabel(art.getBiografia() );
+                labelombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                labelombre.setForeground(Color.BLACK);
+                info1.add(labelombre);
+                jPanel9.add(info1);
                 Text6.setText("Direccion Web: " + art.getSitioWeb());
                 
                 if(art.getSeguidoPorA() != null){
@@ -3133,18 +3141,21 @@ public class ventana extends javax.swing.JFrame {
                 jPanel5.setVisible(true);
                 jScrollPane1.setVisible(true);
                 jScrollPane2.setVisible(true);
+                jScrollPane3.setVisible(true);
                 jPanel11.setVisible(true);
                 jPanel11.revalidate();
                 jPanel11.repaint();
                 jPanel8.setVisible(true);
                 jPanel8.revalidate();
                 jPanel8.repaint();
+                jPanel9.setVisible(true);
+                jPanel9.revalidate();
+                jPanel9.repaint();
                 jLabel1.setVisible(true);
                 jLabel2.setVisible(true);
                 Text2.setVisible(true);
                 Text3.setVisible(true);
                 Text4.setVisible(true);
-                Text5.setVisible(true);
                 Text6.setVisible(true);
             }
         }
