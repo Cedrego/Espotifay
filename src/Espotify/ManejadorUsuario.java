@@ -4,6 +4,8 @@
  */
 package Espotify;
 
+import Persistencia.ArtistaJpaController;
+import Persistencia.ClienteJpaController;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,9 @@ public class ManejadorUsuario {
     private List<Cliente> seguidores;
     private List<Cliente> seguidos;
     
+    private ClienteJpaController cliJpa = new ClienteJpaController();
+    private ArtistaJpaController artJpa = new ArtistaJpaController();
+    
     private static ManejadorUsuario instancia = null;
     
     //inicializo ambas listas 
@@ -26,6 +31,8 @@ public class ManejadorUsuario {
         seguidores = new ArrayList<>();
         seguidos = new ArrayList<>();
         
+        /*
+        datos de prueba originales
         DTFecha fech = new DTFecha (1,1,1);
         Cliente cliente1 = new Cliente("cliente1","cliente1","cliente1","cliente1",fech);
         Cliente cliente2 = new Cliente("cliente2","cliente2","cliente2","cliente2",fech);
@@ -42,6 +49,7 @@ public class ManejadorUsuario {
         this.artistasGen.add(artista1);
         this.artistasGen.add(artista2);
         this.artistasGen.add(artista3);
+        */
     }
     
     //creo una instancia si no existe una, de lo contrario devuelvo la existente (solo existe una)
@@ -70,21 +78,17 @@ public class ManejadorUsuario {
     
     //busco un artista en la colección usando su nickname (creo)
     public Artista buscarArtista(String nick){
-        for (Artista art : this.artistasGen){
-            if(art.getNickname().equalsIgnoreCase(nick)){
-                return art;
-            }
+        if(artJpa.findArtista(nick)!=null){
+            return artJpa.findArtista(nick);
         }
         return null;
     }
     
     //busco un cliente en la colección usando su nickname (creo)
     public Cliente buscarCliente(String nick){
-        for (Cliente cli : this.clientesGen){
-                if(cli.getNickname().equalsIgnoreCase(nick)){
-                    return cli;
-                }
-            }
+        if(cliJpa.findCliente(nick)!=null){
+            return cliJpa.findCliente(nick);
+        }
         return null;
     }
     

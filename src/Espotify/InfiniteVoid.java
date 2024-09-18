@@ -161,7 +161,7 @@ public class InfiniteVoid {
         Tema T12 = ictrl.CrearTema("Macho Man", "3:28", 2, DisDpoPcl);
         VPLT.add(T12);
         Tema T13 = ictrl.CrearTema("In the Navy", "3:13", 3, DisDpoPcl);
-        VPLT.add(T12);
+        VPLT.add(T13);
                 
         List<Tema> DMVT = new ArrayList<>();
         Tema T21 = ictrl.CrearTema("Personal Jesus", "4:56", 1, Epo);
@@ -199,66 +199,78 @@ public class InfiniteVoid {
         
         List<Tema> LDCT = new ArrayList<>();
         Tema T81 = ictrl.CrearTema("Acto 2, Numero 10, Escena (Moderato)", "2:40", 1, Cla);
-        LLUT.add(T81);
+        LDCT.add(T81);
         
         List<Tema> CPPT = new ArrayList<>();
-        Tema T91 = ictrl.CrearTema("Primer Movimiento (Allegro non )", "2:40", 1, Cla);
-        LLUT.add(T91);
+        Tema T91 = ictrl.CrearTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito) ", "21:58", 1, Cla);
+        CPPT.add(T91);
         
         List<Tema> PAMT = new ArrayList<>();
+        Tema T101 = ictrl.CrearTema("No Quiero Estudiar", "2:12", 1, Epo);
+        PAMT.add(T101);
+        
+        List<Tema> AMAT = new ArrayList<>();
+        Tema T111 = ictrl.CrearTema("Por Ese Hombre", "4:45", 1, PclBal);
+        AMAT.add(T111);
+        
         List<Tema> LOCT = new ArrayList<>();
+        Tema T121 = ictrl.CrearTema("Por Ese Hombre", "5:13", 1, PclBal);
+        LOCT.add(T121);
+        
         List<Tema> VIOT = new ArrayList<>();
+        Tema T131 = ictrl.CrearTema("Violeta", "1:56", 1, Cum);
+        VIOT.add(T131);
         
         Album VPL = ictrl.CrearAlbum("Village People Live and Sleazy", 1980, DisDpoPcl, VPLT);        
         mm.addAlbum(VPL);
-        mu.buscarArtista("vpeople").addAlbum(VPL);
+        VP.addAlbum(VPL);
         
-        Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);        
+        Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);
         mm.addAlbum(DMV);
-        mu.buscarArtista("dmode").addAlbum(DMV);
+        DM.addAlbum(DMV);
         
-        Album CLU = ictrl.CrearAlbum("She's so Unusual", 1990, Epo, DMVT);        
+        Album CLU = ictrl.CrearAlbum("She's so Unusual", 1983, PclDpo, CLUT);
         mm.addAlbum(CLU);
-        mu.buscarArtista("clauper").addAlbum(CLU);
+        CL.addAlbum(CLU);
         
-        Album USA = ictrl.CrearAlbum("Born In The U.S.A.", 1990, Epo, DMVT);        
+        Album USA = ictrl.CrearAlbum("Born In The U.S.A.", 1984, RclRarPcl, USAT);        
         mm.addAlbum(USA);
-        mu.buscarArtista("bruceTheBoss").addAlbum(USA);
+        BS.addAlbum(USA);
         
-        Album INU = ictrl.CrearAlbum("It’s Not Unusual", 1990, Epo, DMVT);        
+        Album INU = ictrl.CrearAlbum("It’s Not Unusual", 1965, RclPcl, INUT);        
         mm.addAlbum(INU);
-        mu.buscarArtista("tigerOfWales").addAlbum(INU);
+        TJ.addAlbum(INU);
         
-        Album AYS = ictrl.CrearAlbum("Agua Y Sal", 1990, Epo, DMVT);        
+        Album AYS = ictrl.CrearAlbum("Agua Y Sal", 2012, Rkl, AYST);
         mm.addAlbum(AYS);
-        mu.buscarArtista("tripleNelson").addAlbum(AYS);
+        TN.addAlbum(AYS);
         
-        Album LLU = ictrl.CrearAlbum("MTV Unplugged", 1990, Epo, DMVT);        
+        Album LLU = ictrl.CrearAlbum("MTV Unplugged", 2001, RklPcl, LLUT);        
         mm.addAlbum(LLU);
-        mu.buscarArtista("la_ley").addAlbum(LLU);
+        LL.addAlbum(LLU);
         
-        Album LDC = ictrl.CrearAlbum("El Lago De Los Cisnes", 1990, Epo, DMVT);        
+        Album LDC = ictrl.CrearAlbum("El Lago De Los Cisnes", 1875, Cla, LDCT);
         mm.addAlbum(LDC);
-        mu.buscarArtista("chaiko").addAlbum(LDC);
+        PT.addAlbum(LDC);
         
-        Album CPP = ictrl.CrearAlbum("Concierto Para Piano No.1 En Si Menor, Opus 23", 1990, Epo, DMVT);        
+        Album CPP = ictrl.CrearAlbum("Concierto Para Piano No.1 En Si Menor, Opus 23", 1875, Cla, CPPT);        
         mm.addAlbum(CPP);
-        mu.buscarArtista("chaiko").addAlbum(CPP);
+        PT.addAlbum(CPP);
         
-        Album PAM = ictrl.CrearAlbum("Primer Amor", 1990, Epo, DMVT);        
+        Album PAM = ictrl.CrearAlbum("Primer Amor", 1994, Epo, PAMT);
         mm.addAlbum(PAM);
-        mu.buscarArtista("nicoleneu").addAlbum(PAM);
+        NN.addAlbum(PAM);
         
-        Album AMA = ictrl.CrearAlbum("Hay Amores Que Matan", 1990, Epo, DMVT);        
+        Album AMA = ictrl.CrearAlbum("Hay Amores Que Matan", 1993, PclBal, AMAT);        
         mm.addAlbum(AMA);
-        mu.buscarArtista("lospimpi").addAlbum(AMA);
+        PI.addAlbum(AMA);
         
-        Album LOC = ictrl.CrearAlbum("Un Loco Como Yo", 1990, Epo, DMVT);        
+        Album LOC = ictrl.CrearAlbum("Un Loco Como Yo", 1993, PclBal, LOCT);
         mm.addAlbum(LOC);
-        mu.buscarArtista("dyangounchained").addAlbum(LOC);
+        DY.addAlbum(LOC);
         
-        Album VIO = ictrl.CrearAlbum("20 Grandes Éxitos", 1990, Epo, DMVT);        
+        Album VIO = ictrl.CrearAlbum("20 Grandes Éxitos", 1989, Cum, VIOT);        
         mm.addAlbum(VIO);
-        mu.buscarArtista("alcides").addAlbum(VIO);
+        AL.addAlbum(VIO);
     }
 }

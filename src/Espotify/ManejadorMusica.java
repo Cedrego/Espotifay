@@ -24,12 +24,14 @@ public class ManejadorMusica {
         this.temasGen = new ArrayList<>();
         this.generosGen = new ArrayList<>();
         
+        /* datos de prueba og
         Genero genero1 = new Genero("genero1");
         Genero genero2 = new Genero("genero2");
         Genero genero3 = new Genero("genero3");
         this.generosGen.add(genero1);
         this.generosGen.add(genero2);
         this.generosGen.add(genero3);
+        */
     }
     
     //creo una instancia si no existe una, de lo contrario devuelvo la existente (solo existe una)
