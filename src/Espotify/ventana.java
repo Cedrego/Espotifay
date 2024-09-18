@@ -2398,12 +2398,12 @@ public class ventana extends javax.swing.JFrame {
                                 break;
                             }
                         }
-                        if(existe == false){//no existe el tema en esa lista de temas de esa lista particular del cliente
+                        if(existe == true){//no existe el tema en esa lista de temas de esa lista particular del cliente
                             Espotify.QuitarTemasLista quitarTemaLista = new QuitarTemasLista( Tipo, NomPlay, NomTema, nom);   
-                            Text15.setText("Ingresado con exito");
+                            Text15.setText("Quitado con exito");
                             Text15.setVisible(true);
                         }else{
-                            Text10.setText("ERROR: La cancion selecionada ya existe dentro de la Playlist");
+                            Text10.setText("ERROR: La cancion selecionada no existe dentro de la Playlist");
                             Text10.setVisible(true);
                         }
                   }
@@ -2424,12 +2424,12 @@ public class ventana extends javax.swing.JFrame {
                                 break;
                             }
                         }
-                        if(existe == false){//no existe el tema en esa lista de temas de esa lista particular del cliente
+                        if(existe == true){//no existe el tema en esa lista de temas de esa lista particular del cliente
                             Espotify.QuitarTemasLista quitarTemaLista = new QuitarTemasLista(Tipo, NomPlay, NomTema, nom );   
-                            Text15.setText("Ingresado con exito");
+                            Text15.setText("Quitado con exito");
                             Text15.setVisible(true);
                         }else{
-                            Text10.setText("ERROR: La cancion selecionada ya existe dentro de la Playlist");
+                            Text10.setText("ERROR: La cancion selecionada no existe dentro de la Playlist");
                             Text10.setVisible(true);
                         }
                   }

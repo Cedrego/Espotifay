@@ -4,7 +4,11 @@
  */
 package Espotify;
 
+import Persistencia.ClienteJpaController;
+import Persistencia.porDefectoJpaController;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,9 +29,23 @@ public class CrearLista {
             // Buscar el cliente usando el nickname
             Cliente cliente = mu.buscarCliente(GOP);//Busco la instancia de cliente
             cliente.getParticular().add(nuevoPar); // Añadir la playlist particular al cliente
-            
+            // Paso 4: Persistir los cambios
+            ClienteJpaController clienteJpaController = new ClienteJpaController();
+            try {
+                clienteJpaController.edit(cliente); // Actualizar el cliente en la base de datos
+            } catch (Exception e) {
+                e.printStackTrace(); // Manejo de errores
+}
         }else{
             porDefecto nuevoPorDefecto = ictrl.CrearListPorDefecto(name, GOP);
+            
+            porDefectoJpaController PorDefectoJPAController = new porDefectoJpaController();
+            try {
+                PorDefectoJPAController.create(nuevoPorDefecto);
+            } catch (Exception ex) {
+                Logger.getLogger(CrearLista.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             mp.addPorDefecto(nuevoPorDefecto);//Agrego la instancia a la lista
         }
         
