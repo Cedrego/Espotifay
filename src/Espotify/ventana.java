@@ -109,6 +109,7 @@ public class ventana extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -117,7 +118,6 @@ public class ventana extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel10 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jPanel12 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -437,6 +437,10 @@ public class ventana extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Playlists Favoritas:                  ");
 
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Usuarios que lo siguen:");
+
         jScrollPane1.setPreferredSize(new java.awt.Dimension(172, 148));
 
         jPanel11.setAutoscrolls(true);
@@ -498,10 +502,6 @@ public class ventana extends javax.swing.JFrame {
         );
 
         jScrollPane4.setViewportView(jPanel10);
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Usuarios que lo siguen:");
 
         jPanel12.setAutoscrolls(true);
 
@@ -1112,11 +1112,17 @@ public class ventana extends javax.swing.JFrame {
         jScrollPane5.setVisible(false);
         jScrollPane6.setVisible(false);
         
+        jLabel1.setVisible(false);
+        jLabel2.setVisible(false);
+        jLabel3.setVisible(false);
+        jLabel4.setVisible(false);
+        jLabel5.setVisible(false);
+        
         //vacia los botones
         Button1.setText("");
         Button2.setText("");
         Button3.setText("");
-        Button4.setText("");
+        Button4.setText("OK");
     }
     
     private void AltaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaPerfilActionPerformed
@@ -1612,6 +1618,9 @@ public class ventana extends javax.swing.JFrame {
         Text9.setVisible(true);
         for (Cliente cli: mu.getAllCliente()){
             ComboBox5.addItem(cli.getNickname());  
+        }
+        for (Artista art: mu.getAllArtista()){
+            ComboBox5.addItem(art.getNickname());  
         }
         ComboBox5.setVisible(true);
         Button4.setVisible(true);
@@ -2679,182 +2688,280 @@ public class ventana extends javax.swing.JFrame {
         if(ComboBox5.getSelectedItem() != null){
             ManejadorUsuario mu = ManejadorUsuario.getInstance();
             Cliente cli = mu.buscarCliente(ComboBox5.getSelectedItem().toString());
-            Text9.setText("Datos de Cliente " + cli.getNickname());
-            Button4.setVisible(false);
-            ComboBox5.setVisible(false);
-            ComboBox5.removeAll();
-            Text2.setText("Nombre: " + cli.getNombre());
-            Text3.setText("Nickname: " + cli.getApellido());
-            Text4.setText("Correo: " + cli.getCorreo());
-            
-            //Falta lo de los usuarios.artista en las tablas de seguir y 
-            //seguidor pero no estaba hecho al momento de la creacion de 
-            //esta funcion, luego se corregira.
-            
-            if(cli.getCliSigueA() != null){
-                jPanel11.removeAll();
-                jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
-                for(Cliente cliSeguido : cli.getCliSigueA()){
-                    // Crear un nuevo panel para cada tema
-                    JPanel info5 = new JPanel();
-                    info5.setLayout(new FlowLayout(FlowLayout.LEFT));
+            Artista art = null;
+            if(cli != null){
+                Text9.setText("Datos de Cliente " + cli.getNickname());
+                Button4.setVisible(false);
+                ComboBox5.setVisible(false);
+                ComboBox5.removeAll();
+                Text2.setText("Nombre: " + cli.getNombre());
+                Text3.setText("Nickname: " + cli.getApellido());
+                Text4.setText("Correo: " + cli.getCorreo());
 
-                    JLabel labelNombre = new JLabel(cliSeguido.getNickname() + " - ");
-                    labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
-                    labelNombre.setForeground(Color.BLACK);
-                        
-                    JLabel labelTipo = new JLabel("Cliente" + " - ");
-                    labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
-                    labelNombre.setForeground(Color.BLACK);
-                    
-                    // Agregar etiquetas al panel de tema
-                    info5.add(labelNombre);
-                    info5.add(labelTipo);
+                //Falta lo de los usuarios.artista en las tablas de seguir y 
+                //seguidor pero no estaba hecho al momento de la creacion de 
+                //esta funcion, luego se corregira.
 
-                    // Añadir el panel del tema al jPanel4
-                    jPanel11.add(info5);
+                if(cli.getCliSigueA() != null){
+                    // JL1 Usuarios Seguidos:
+                    jLabel1.setText("Usuarios Seguidos:  ");
+                    jPanel11.removeAll();
+                    jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
+                    for(Cliente cliSeguido : cli.getCliSigueA()){
+                        // Crear un nuevo panel para cada tema
+                        JPanel info5 = new JPanel();
+                        info5.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+                        JLabel labelNombre = new JLabel(cliSeguido.getNickname() + " - ");
+                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelNombre.setForeground(Color.BLACK);
+
+                        JLabel labelTipo = new JLabel("Cliente" + " - ");
+                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelNombre.setForeground(Color.BLACK);
+
+                        // Agregar etiquetas al panel de tema
+                        info5.add(labelNombre);
+                        info5.add(labelTipo);
+
+                        // Añadir el panel del tema al jPanel4
+                        jPanel11.add(info5);
+                    }
                 }
+                if(cli.getSeguidoPor()!= null){
+                    jPanel12.removeAll();
+                    jPanel12.setLayout(new BoxLayout(jPanel12, BoxLayout.Y_AXIS));
+                    for(Cliente cliSeguido : cli.getSeguidoPor()){
+                        // Crear un nuevo panel para cada tema
+                        JPanel info6 = new JPanel();
+                        info6.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+                        JLabel labelNombre = new JLabel(cliSeguido.getNickname()+ " - ");
+                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelNombre.setForeground(Color.BLACK);
+
+                        JLabel labelTipo = new JLabel("Cliente" + " - ");
+                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelNombre.setForeground(Color.BLACK);
+
+                        // Agregar etiquetas al panel de tema
+                        info6.add(labelNombre);
+                        info6.add(labelTipo);
+
+                        // Añadir el panel del tema al jPanel4
+                        jPanel12.add(info6);
+                    }
+                }
+                if(cli.getParticular() != null){
+                    jLabel2.setText("Temas Favoritos:   ");
+                    jPanel8.removeAll();
+                    jPanel8.setLayout(new BoxLayout(jPanel8, BoxLayout.Y_AXIS));
+                    for(Particular play : cli.getParticular()){
+                        // Crear un nuevo panel para cada tema
+                        JPanel info2 = new JPanel();
+                        info2.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+                        JLabel labelNombre = new JLabel(play.getNombre() + " - ");
+                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelNombre.setForeground(Color.BLACK);
+
+                        // Agregar etiquetas al panel de tema
+                        info2.add(labelNombre);
+
+                        // Añadir el panel del tema al jPanel4
+                        jPanel8.add(info2);
+                    }
+                }
+                if(cli.getTemasFAV() != null){
+                    jPanel9.removeAll();
+                    jPanel9.setLayout(new BoxLayout(jPanel9, BoxLayout.Y_AXIS));
+                    for(Tema tem : cli.getTemasFAV()){
+                        // Crear un nuevo panel para cada tema
+                        JPanel info = new JPanel();
+                        info.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+                        JLabel labelNombre = new JLabel(tem.getNombre() + " - ");
+                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelNombre.setForeground(Color.BLACK);
+
+                        JLabel labelDuracion = new JLabel(tem.getDuracion() + " mins" + "  ");
+                        labelDuracion.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelDuracion.setForeground(Color.BLACK);
+
+                        // Agregar etiquetas al panel de tema
+                        info.add(labelNombre);
+                        info.add(labelDuracion);
+
+                        // Añadir el panel del tema al jPanel4
+                        jPanel9.add(info);
+                    }
+                }
+                if(cli.getPlayFavPD() != null){
+                    jPanel10.removeAll();
+                    jPanel10.setLayout(new BoxLayout(jPanel10, BoxLayout.Y_AXIS));
+                    for(porDefecto play : cli.getPlayFavPD()){
+                        // Crear un nuevo panel para cada tema
+                        JPanel info3 = new JPanel();
+                        info3.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+                        JLabel labelNombre = new JLabel(play.getNombre() + " - ");
+                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelNombre.setForeground(Color.BLACK);
+
+                        JLabel labelGenero = new JLabel(play.getGenero() + "  ");
+                        labelGenero.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelGenero.setForeground(Color.BLACK);
+
+                        // Agregar etiquetas al panel de tema
+                        info3.add(labelNombre);
+                        info3.add(labelGenero);
+
+                        // Añadir el panel del tema al jPanel4
+                        jPanel10.add(info3);
+                    }
+                    for(Particular play : cli.getPlayFavPart()){
+                        // Crear un nuevo panel para cada tema
+                        JPanel info4 = new JPanel();
+                        info4.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+                        JLabel labelNombre = new JLabel(play.getNombre() + " - ");
+                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelNombre.setForeground(Color.BLACK);
+
+                        JLabel labelGenero = new JLabel("---" + "  ");
+                        labelGenero.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelGenero.setForeground(Color.BLACK);
+
+                        // Agregar etiquetas al panel de tema
+                        info4.add(labelNombre);
+                        info4.add(labelGenero);
+
+                        // Añadir el panel del tema al jPanel4
+                        jPanel10.add(info4);
+                    }
+                }
+                
+                jLabel1.setVisible(true);
+                jLabel2.setVisible(true);
+                jLabel3.setVisible(true);
+                jLabel4.setVisible(true);
+                jLabel5.setVisible(true);
+                jScrollPane1.setVisible(true);
+                jScrollPane2.setVisible(true);
+                jScrollPane3.setVisible(true);
+                jScrollPane4.setVisible(true);
+                jScrollPane5.setVisible(true);
+                jPanel8.setVisible(true);
+                jPanel8.revalidate();
+                jPanel8.repaint();
+                jPanel9.setVisible(true);
+                jPanel9.revalidate();
+                jPanel9.repaint();
+                jPanel10.setVisible(true);
+                jPanel10.revalidate();
+                jPanel10.repaint();
+                jPanel5.setVisible(true);
+                jPanel5.revalidate();
+                jPanel5.repaint();
+                jPanel11.setVisible(true);
+                jPanel11.revalidate();
+                jPanel11.repaint();
+                jPanel12.setVisible(true);
+                jPanel12.revalidate();
+                jPanel12.repaint();
+
+                Text2.setVisible(true);
+                Text3.setVisible(true);
+                Text4.setVisible(true);
+                Text9.setVisible(true);
             }
-            if(cli.getSeguidoPor()!= null){
-                jPanel12.removeAll();
-                jPanel12.setLayout(new BoxLayout(jPanel12, BoxLayout.Y_AXIS));
-                for(Cliente cliSeguido : cli.getSeguidoPor()){
-                    // Crear un nuevo panel para cada tema
-                    JPanel info6 = new JPanel();
-                    info6.setLayout(new FlowLayout(FlowLayout.LEFT));
+            else{
+//              El caso de uso comienza cuando el administrador desea consultar el perfil de un artista. Para
+//              ello el sistema muestra la lista de todos los artistas y el administrador elige uno. Luego, el
+//              sistema muestra todos los datos básicos del artista, incluyendo, sí tiene, su imagen asociada,
+//              biografía y dirección de su página web. Además, se muestra el número de seguidores que
+//              tiene y los nickname de todos ellos, así como todos sus álbumes publicados.
+                art = mu.buscarArtista(ComboBox5.getSelectedItem().toString());
+                Text9.setText("Datos de Cliente " + art.getNickname());
+                Button4.setVisible(false);
+                ComboBox5.setVisible(false);
+                ComboBox5.removeAll();
+                Text5.setPreferredSize(new Dimension(200, 100));
+                Text6.setPreferredSize(new Dimension(200, 100));
+                Text2.setText("Nombre: " + art.getNombre());
+                Text3.setText("Nickname: " + art.getApellido());
+                Text4.setText("Correo: " + art.getCorreo());
+                Text5.setText("Biografia: " + art.getBiografia());
+                Text6.setText("Direccion Web: " + art.getSitioWeb());
+                
+                if(art.getSeguidoPorA() != null){
+                    jLabel1.setText("Seguido por " + art.getAlbumes().size() + " Usuarios:");
+                    jPanel11.removeAll();
+                    jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
+                    for(Cliente cliSeguido : art.getSeguidoPorA()){
+                        // Crear un nuevo panel para cada tema
+                        JPanel info5 = new JPanel();
+                        info5.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-                    JLabel labelNombre = new JLabel(cliSeguido.getNickname()+ " - ");
-                    labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
-                    labelNombre.setForeground(Color.BLACK);
-                        
-                    JLabel labelTipo = new JLabel("Cliente" + " - ");
-                    labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
-                    labelNombre.setForeground(Color.BLACK);
-                    
-                    // Agregar etiquetas al panel de tema
-                    info6.add(labelNombre);
-                    info6.add(labelTipo);
+                        JLabel labelNombre = new JLabel(cliSeguido.getNickname() + " - ");
+                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelNombre.setForeground(Color.BLACK);
 
-                    // Añadir el panel del tema al jPanel4
-                    jPanel12.add(info6);
+                        JLabel labelTipo = new JLabel("Cliente" + " - ");
+                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelNombre.setForeground(Color.BLACK);
+
+                        // Agregar etiquetas al panel de tema
+                        info5.add(labelNombre);
+                        info5.add(labelTipo);
+
+                        // Añadir el panel del tema al jPanel4
+                        jPanel11.add(info5);
+                    }
                 }
+                if(art.getAlbumes()!= null){
+                    jLabel2.setText("Albumes Creados: ");
+                    jPanel8.removeAll();
+                    jPanel8.setLayout(new BoxLayout(jPanel8, BoxLayout.Y_AXIS));
+                    for(Album alb : art.getAlbumes()){
+                        // Crear un nuevo panel para cada tema
+                        JPanel info6 = new JPanel();
+                        info6.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+                        JLabel labelNombre = new JLabel(alb.getNombre()+ " - ");
+                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelNombre.setForeground(Color.BLACK);
+
+                        // Agregar etiquetas al panel de tema
+                        info6.add(labelNombre);
+
+                        // Añadir el panel del tema al jPanel4
+                        jPanel8.add(info6);
+                    }
+                }
+                jPanel5.setVisible(true);
+                jScrollPane1.setVisible(true);
+                jScrollPane2.setVisible(true);
+                jPanel11.setVisible(true);
+                jPanel11.revalidate();
+                jPanel11.repaint();
+                jPanel8.setVisible(true);
+                jPanel8.revalidate();
+                jPanel8.repaint();
+                jLabel1.setVisible(true);
+                jLabel2.setVisible(true);
+                Text2.setVisible(true);
+                Text3.setVisible(true);
+                Text4.setVisible(true);
+                Text5.setVisible(true);
+                Text6.setVisible(true);
             }
-            if(cli.getParticular() != null){
-                jPanel8.removeAll();
-                jPanel8.setLayout(new BoxLayout(jPanel8, BoxLayout.Y_AXIS));
-                for(Particular play : cli.getParticular()){
-                    // Crear un nuevo panel para cada tema
-                    JPanel info2 = new JPanel();
-                    info2.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-                    JLabel labelNombre = new JLabel(play.getNombre() + " - ");
-                    labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
-                    labelNombre.setForeground(Color.BLACK);
-
-                    // Agregar etiquetas al panel de tema
-                    info2.add(labelNombre);
-
-                    // Añadir el panel del tema al jPanel4
-                    jPanel8.add(info2);
-                }
-            }
-            if(cli.getTemasFAV() != null){
-                jPanel9.removeAll();
-                jPanel9.setLayout(new BoxLayout(jPanel9, BoxLayout.Y_AXIS));
-                for(Tema tem : cli.getTemasFAV()){
-                    // Crear un nuevo panel para cada tema
-                    JPanel info = new JPanel();
-                    info.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-                    JLabel labelNombre = new JLabel(tem.getNombre() + " - ");
-                    labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
-                    labelNombre.setForeground(Color.BLACK);
-
-                    JLabel labelDuracion = new JLabel(tem.getDuracion() + " mins" + "  ");
-                    labelDuracion.setFont(new Font("Arial", Font.PLAIN, 12));
-                    labelDuracion.setForeground(Color.BLACK);
-
-                    // Agregar etiquetas al panel de tema
-                    info.add(labelNombre);
-                    info.add(labelDuracion);
-
-                    // Añadir el panel del tema al jPanel4
-                    jPanel9.add(info);
-                }
-            }
-            if(cli.getPlayFavPD() != null){
-                jPanel10.removeAll();
-                jPanel10.setLayout(new BoxLayout(jPanel10, BoxLayout.Y_AXIS));
-                for(porDefecto play : cli.getPlayFavPD()){
-                    // Crear un nuevo panel para cada tema
-                    JPanel info3 = new JPanel();
-                    info3.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-                    JLabel labelNombre = new JLabel(play.getNombre() + " - ");
-                    labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
-                    labelNombre.setForeground(Color.BLACK);
-
-                    JLabel labelGenero = new JLabel(play.getGenero() + "  ");
-                    labelGenero.setFont(new Font("Arial", Font.PLAIN, 12));
-                    labelGenero.setForeground(Color.BLACK);
-
-                    // Agregar etiquetas al panel de tema
-                    info3.add(labelNombre);
-                    info3.add(labelGenero);
-
-                    // Añadir el panel del tema al jPanel4
-                    jPanel10.add(info3);
-                }
-                for(Particular play : cli.getPlayFavPart()){
-                    // Crear un nuevo panel para cada tema
-                    JPanel info4 = new JPanel();
-                    info4.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-                    JLabel labelNombre = new JLabel(play.getNombre() + " - ");
-                    labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
-                    labelNombre.setForeground(Color.BLACK);
-
-                    JLabel labelGenero = new JLabel("---" + "  ");
-                    labelGenero.setFont(new Font("Arial", Font.PLAIN, 12));
-                    labelGenero.setForeground(Color.BLACK);
-
-                    // Agregar etiquetas al panel de tema
-                    info4.add(labelNombre);
-                    info4.add(labelGenero);
-
-                    // Añadir el panel del tema al jPanel4
-                    jPanel10.add(info4);
-                }
-            }
-            jScrollPane1.setVisible(true);
-            jScrollPane2.setVisible(true);
-            jScrollPane3.setVisible(true);
-            jScrollPane4.setVisible(true);
-            jScrollPane5.setVisible(true);
-            jPanel8.setVisible(true);
-            jPanel8.revalidate();
-            jPanel8.repaint();
-            jPanel9.setVisible(true);
-            jPanel9.revalidate();
-            jPanel9.repaint();
-            jPanel10.setVisible(true);
-            jPanel10.revalidate();
-            jPanel10.repaint();
-            jPanel5.setVisible(true);
-            jPanel5.revalidate();
-            jPanel5.repaint();
-            jPanel11.setVisible(true);
-            jPanel11.revalidate();
-            jPanel11.repaint();
-            jPanel12.setVisible(true);
-            jPanel12.revalidate();
-            jPanel12.repaint();
-            
-            Text2.setVisible(true);
-            Text3.setVisible(true);
-            Text4.setVisible(true);
-            Text9.setVisible(true);
         }
+        // JL1 Usuarios Seguidos:               
+        // JL2 Temas Favoritos:                   
+        // JL3 Temas Favoritos :                   
+        // JL4 Playlists Favoritas:                  
+        // JL5 Usuarios que lo siguen:
     }//GEN-LAST:event_Button4ActionPerformed
 
     /**
