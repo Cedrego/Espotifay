@@ -9,7 +9,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import Espotify.InfiniteVoid;
-
+import Persistencia.ClienteJpaController;
+import Persistencia.ArtistaJpaController;
 /**
  *
  * @author Camilo
@@ -19,7 +20,8 @@ public class ventana extends javax.swing.JFrame {
     // Inicialización
     Factory fabrica = Factory.getInstance();
     private ICtrl IC= fabrica.getICtrl();
-    
+    public ClienteJpaController cliJpa = new ClienteJpaController();
+    public ArtistaJpaController artJpa = new ArtistaJpaController();
     public List<JTextField> textFields; // Lista para almacenar los JTextFields añadidos
     
     List<Genero> generosAlbum = new ArrayList<>(); //lista de generos para usar en alta album
@@ -1054,6 +1056,7 @@ public class ventana extends javax.swing.JFrame {
         
         //textAreas
         TextArea1.setVisible(false);
+        TextArea1.setText("");
         
         //selectores multiple opcoion(ComboBoxes)
         ComboBox1.setVisible(false);
@@ -1216,20 +1219,20 @@ public class ventana extends javax.swing.JFrame {
             }
         }
         if(option == 5){
-            String selectedItem5 = ComboBox5.getSelectedItem().toString();
+            String selectedItem5 = ComboBox5.getSelectedItem()!= null ? ComboBox5.getSelectedItem().toString() : "";
             if("Particular".equals(selectedItem5)){
-            //lista de canciones 
-            ComboBox6.removeAllItems();
-            if(ComboBox6.getItemCount() > 0){
-                 ComboBox6.addItem("");
-            }
-            for(Album alb : mm.getAlbumes()){//lista de albunes
-                for(Tema tem : alb.getTemas()){//Los temas se almacenanan en albunes
-                    ComboBox6.addItem(tem.getNombre());//No me importa saber el genero del tema ya que es una laylist particular
+                //lista de canciones 
+                ComboBox6.removeAllItems();
+                if(ComboBox6.getItemCount() > 0){
+                     ComboBox6.addItem("");
                 }
-            }
-            ComboBox6.setVisible(true);
-            }    
+                for(Album alb : mm.getAlbumes()){//lista de albunes
+                    for(Tema tem : alb.getTemas()){//Los temas se almacenanan en albunes
+                        ComboBox6.addItem(tem.getNombre());//No me importa saber el genero del tema ya que es una laylist particular
+                    }
+                }
+                ComboBox6.setVisible(true);
+            }   
             if("Por Defecto".equals(selectedItem5)){
                 //lista de canciones
                 if(ComboBox6.getItemCount() > 0){
@@ -1354,7 +1357,7 @@ public class ventana extends javax.swing.JFrame {
                 ComboBox1.removeAllItems();
                 Text5.setText("Nombre del propietario:");
                 Text5.setVisible(true);
-                for (Cliente cli: mu.getAllCliente()){
+                for (Cliente cli: cliJpa.findClienteEntities()){
                     ComboBox1.addItem(cli.getNickname());
                 }
                 ComboBox1.setVisible(true);
@@ -1376,7 +1379,7 @@ public class ventana extends javax.swing.JFrame {
             if (ComboBox1.getItemCount() > 0) {
                   ComboBox1.removeAllItems();
                } 
-            for (Cliente cli: mu.getAllCliente()){
+            for (Cliente cli: cliJpa.findClienteEntities()){
                 ComboBox1.addItem(cli.getNickname());//Almacena todos los nick de los clientes
             }
                //Para que se vea
@@ -1419,7 +1422,7 @@ public class ventana extends javax.swing.JFrame {
                if (ComboBox1.getItemCount() > 0) {
                   ComboBox1.removeAllItems();
                } 
-                for (Cliente cli: mu.getAllCliente()){
+                for (Cliente cli: cliJpa.findClienteEntities()){
                     ComboBox1.addItem(cli.getNickname());//Almacena todos los nick de los clientes
                 }
                    //Para que se vea
@@ -1472,7 +1475,7 @@ public class ventana extends javax.swing.JFrame {
             if(ComboBox1.getSelectedItem()=="Cliente"){    
                 Text6.setText("Cliente a Seguir:");
                 ComboBox4.removeAllItems();
-                for (Cliente cli: mu.getAllCliente()){
+                for (Cliente cli: cliJpa.findClienteEntities()){
                     if(cli.getNickname()!=selectedItem){
                         ComboBox4.addItem(cli.getNickname());
                     }else{
@@ -1482,7 +1485,7 @@ public class ventana extends javax.swing.JFrame {
             }else{
                 Text6.setText("Artista a Seguir");
                 ComboBox4.removeAllItems();
-                for (Artista art: mu.getAllArtista()){
+                for (Artista art: artJpa.findArtistaEntities()){
                     ComboBox4.addItem(art.getNickname());
                 }
             }
@@ -1497,7 +1500,7 @@ public class ventana extends javax.swing.JFrame {
                 ComboBox1.removeAllItems();
                 Text5.setText("Artistas:");
                 Text5.setVisible(true);
-                for (Artista art : mu.getAllArtista()){
+                for (Artista art : artJpa.findArtistaEntities()){
                     ComboBox1.addItem(art.getNickname());
                 }
             }
@@ -1517,7 +1520,7 @@ public class ventana extends javax.swing.JFrame {
                 ComboBox1.removeAllItems();
                 Text5.setText("Clientes:");
                 Text5.setVisible(true);
-                for (Cliente cli : mu.getAllCliente()){
+                for (Cliente cli : cliJpa.findClienteEntities()){
                     ComboBox1.addItem(cli.getNickname());
                 }  
             
@@ -1563,7 +1566,7 @@ public class ventana extends javax.swing.JFrame {
         Text9.setVisible(true);
         Text5.setVisible(true);
         Text6.setVisible(true);
-        for (Cliente cli: mu.getAllCliente()){
+        for (Cliente cli: cliJpa.findClienteEntities()){
             ComboBox5.addItem(cli.getNickname());
         }
         ComboBox1.removeAllItems();
@@ -1587,7 +1590,7 @@ public class ventana extends javax.swing.JFrame {
         Text5.setVisible(true);
         Text6.setVisible(true);
         ComboBox1.setVisible(true);
-        for (Cliente cli: mu.getAllCliente()){
+        for (Cliente cli: cliJpa.findClienteEntities()){
             ComboBox1.addItem(cli.getNickname());
         }
         ACEPTAR.setVisible(true);
@@ -1600,7 +1603,7 @@ public class ventana extends javax.swing.JFrame {
         option = 10;
 
         Text6.setText("Cliente:");
-        for(Cliente cli : mu.getAllCliente()){
+        for(Cliente cli : cliJpa.findClienteEntities()){
             ComboBox4.addItem(cli.getNickname());
         }
         Text6.setVisible(true);
@@ -1623,7 +1626,7 @@ public class ventana extends javax.swing.JFrame {
         option = 11;
 
         Text9.setText("Cliente:");
-        for(Cliente cli : mu.getAllCliente()){
+        for(Cliente cli : cliJpa.findClienteEntities()){
             ComboBox5.addItem(cli.getNickname());
         }
         Button1.setText("Seleccionar");
@@ -1649,10 +1652,10 @@ public class ventana extends javax.swing.JFrame {
 
         Text9.setText("Cliente:");
         Text9.setVisible(true);
-        for (Cliente cli: mu.getAllCliente()){
+        for (Cliente cli: cliJpa.findClienteEntities()){
             ComboBox5.addItem(cli.getNickname());  
         }
-        for (Artista art: mu.getAllArtista()){
+        for (Artista art: artJpa.findArtistaEntities()){
             ComboBox5.addItem(art.getNickname());  
         }
         ComboBox5.setVisible(true);
@@ -1671,9 +1674,6 @@ public class ventana extends javax.swing.JFrame {
         Text9.setVisible(true);
         
         ComboBox5.setVisible(true);
-        
-        
-        
     }//GEN-LAST:event_ConsultarAlbumActionPerformed
 
     private void ConsultarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarListaActionPerformed
@@ -1813,7 +1813,7 @@ public class ventana extends javax.swing.JFrame {
             if(selectedItem=="Cliente"){    
                 Text6.setText("Cliente a Seguir:");
                 ComboBox4.removeAllItems();
-                for (Cliente cli: mu.getAllCliente()){
+                for (Cliente cli: cliJpa.findClienteEntities()){
                     if(cli.getNickname()!=ComboBox5.getSelectedItem()){
                         ComboBox4.addItem(cli.getNickname());
                     }else{
@@ -1823,7 +1823,7 @@ public class ventana extends javax.swing.JFrame {
             }else{
                 Text6.setText("Artista a Seguir");
                 ComboBox4.removeAllItems();
-                for (Artista art: mu.getAllArtista()){
+                for (Artista art: artJpa.findArtistaEntities()){
                     ComboBox4.addItem(art.getNickname());
                 }
             }
@@ -1912,11 +1912,13 @@ public class ventana extends javax.swing.JFrame {
                 String nickArt = selectedItem != null ? selectedItem.toString() : "";
 
                 Artista art = mu.buscarArtista(nickArt);
-                
-                Text6.setText("Album:");
-                Button2.setText("Seleccionar");
-                for (Album alb : art.getAlbumes()){
-                    ComboBox4.addItem(alb.getNombre());
+                if(art!=null){
+                    Text6.setText("Album:");
+                    Button2.setText("Seleccionar");
+                    ComboBox4.removeAllItems();
+                    for (Album alb : art.getAlbumes()){
+                        ComboBox4.addItem(alb.getNombre());
+                    }
                 }
             }
             if (texto5.equalsIgnoreCase("Generos:")){
@@ -1926,6 +1928,7 @@ public class ventana extends javax.swing.JFrame {
                 
                 Text6.setText("Album:");
                 Button2.setText("Seleccionar");
+                ComboBox4.removeAllItems();
                 for (Album alb : mm.getAlbumes()){
                     if(alb.getGeneros().contains(gen)){
                         ComboBox4.addItem(alb.getNombre());
@@ -2057,8 +2060,8 @@ public class ventana extends javax.swing.JFrame {
 
         Text9.setText("Propietario:");
         
-        for(Cliente cli : mu.getAllCliente()){
-                ComboBox5.addItem(cli.getNombre());
+        for(Cliente cli : cliJpa.findClienteEntities()){
+                ComboBox5.addItem(cli.getNickname());
             }
         ComboBox5.setVisible(true);
         
@@ -2152,19 +2155,24 @@ public class ventana extends javax.swing.JFrame {
                             Text15.setVisible(false);
                             Text10.setVisible(true);
                         } else {
-                            boolean  encontre = false;
-                            for (Cliente cli: mu.getAllCliente()){
-                                if(nickname.equals(cli.getNickname())){
-                                encontre = true;
+                            boolean encontre = false;
+                            
+                            for(Cliente cli : cliJpa.findClienteEntities()){
+                                System.out.println(cli.getNickname()+" y "+nickname);
+                                if(cli.getNickname().equals(nickname)){
+                                    encontre = true;
+                                    System.out.println("LO ENCONTRE!!");
                                 }else{
-                                //no  hacer  nada
+                                    
                                 }
                             }
-                            for (Artista art: mu.getAllArtista()){
-                                if(nickname.equals(art.getNickname())){
-                                encontre = true;
+                            for (Artista art: artJpa.findArtistaEntities()){
+                                System.out.println(art.getNickname()+" y "+nickname);
+                                if(art.getNickname().equals(nickname)){
+                                    encontre = true;
+                                    System.out.println("LO ENCONTRE!!");
                                 }else{
-                                //no  hacer  nada
+                                    
                                 }
                             }
                             if(encontre){
@@ -2180,14 +2188,14 @@ public class ventana extends javax.swing.JFrame {
                         }
                     } else {
                         boolean  encontre = false;
-                        for (Cliente cli: mu.getAllCliente()){
+                        for (Cliente cli: cliJpa.findClienteEntities()){
                             if(nickname.equals(cli.getNickname())){
                                 encontre = true;
                             }else{
                                 //no  hacer  nada
                             }
                         }
-                        for (Artista art: mu.getAllArtista()){
+                        for (Artista art: artJpa.findArtistaEntities()){
                             if(nickname.equals(art.getNickname())){
                                 encontre = true;
                             }else{
