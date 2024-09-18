@@ -4,6 +4,10 @@
  */
 package Espotify;
 //import Espotify.Usuario;
+
+import Persistencia.ClienteJpaController;
+import Persistencia.ArtistaJpaController;
+
 /**
  *
  * @author Camilo
@@ -14,10 +18,12 @@ public class AltaSeguirUsuario {
     public AltaSeguirUsuario(ICtrl ic, String usuario, String seguidor) {
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         ictrl = ic;
-
-        Cliente cli = mu.buscarCliente(usuario);
-        Cliente seg = mu.buscarCliente(seguidor);
-        Artista art = mu.buscarArtista(usuario);
+        ClienteJpaController cliJpa = new ClienteJpaController();
+        ArtistaJpaController artJpa = new ArtistaJpaController();
+        
+        Cliente cli = cliJpa.findCliente(usuario);
+        Cliente seg = cliJpa.findCliente(seguidor);
+        Artista art = artJpa.findArtista(usuario);
 
         // Verificar si el seguidor existe
         if (seg == null) {

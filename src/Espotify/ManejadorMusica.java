@@ -4,6 +4,7 @@
  */
 package Espotify;
 
+import Persistencia.GeneroJpaController;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class ManejadorMusica {
     private List<Album> albumesGen;
     private List<Tema> temasGen;
     private List<Genero> generosGen;
-    
+    GeneroJpaController genJpa = new GeneroJpaController();
     private static ManejadorMusica instancia = null;
     
     //inicializo ambas colecciones en formato de mapa para guardar junto con sus nicknames
@@ -74,10 +75,8 @@ public class ManejadorMusica {
     }
     
     public Genero buscarGenero(String nom){
-        for (Genero gen : this.generosGen){
-            if(gen.getNombre().equalsIgnoreCase(nom)){
-                return gen;
-            }
+        if(genJpa.findGenero(nom)!=null){
+            return genJpa.findGenero(nom);
         }
         return null;
     }

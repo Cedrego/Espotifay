@@ -6,6 +6,8 @@ package Espotify;
 
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
+import Persistencia.GeneroJpaController;
+import Persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
 
 /**
@@ -14,6 +16,7 @@ import java.util.List;
  */
 public class Ctrl implements ICtrl{
 
+    public GeneroJpaController generoJpaController = new GeneroJpaController();
     
     public Ctrl(){}
     
@@ -42,7 +45,6 @@ public class Ctrl implements ICtrl{
         for (Genero gen : generosT){
             temaNuevo.addGenero(gen);
         }
-        
         return temaNuevo;
     }
     
@@ -50,7 +52,17 @@ public class Ctrl implements ICtrl{
     public Genero crearGenero(String nomG, Genero padre){
         Genero generoNuevo = new Genero(nomG);
         
-        generoNuevo.setPadre(padre);
+        if(padre!=null){
+            generoNuevo.setPadre(padre);
+        }else{
+            generoNuevo.setPadre(generoJpaController.findGenero("Genero"));
+        }
+        
+        try {
+            generoJpaController.create(generoNuevo);
+        } catch (Exception e) {
+            System.out.println("Error al crear el genero: " + e.getMessage());
+        }
         
         return generoNuevo;
     }
@@ -65,12 +77,9 @@ public class Ctrl implements ICtrl{
         ArtistaJpaController artistaJpaController = new ArtistaJpaController();
         
         try {
-            // Intentar persistir el nuevo cliente en la base de datos
             artistaJpaController.create(nuevoArtista);
-            System.out.println("Cliente guardado exitosamente en la base de datos");
         } catch (Exception e) {
             System.out.println("Error al guardar el cliente: " + e.getMessage());
-            // Manejar la excepción si ocurre algún error durante la creación
         }
         
         return nuevoArtista;
@@ -98,9 +107,15 @@ public class Ctrl implements ICtrl{
    
     @Override
     public void agregarSeguidorC(Cliente cliente, Cliente seguidor) {
-        if (!seguidor.getCliSigueA().contains(cliente)) {
+        if(!seguidor.getCliSigueA().contains(cliente)){
+            ClienteJpaController cliJpa = new ClienteJpaController();
             seguidor.getCliSigueA().add(cliente);
             cliente.getSeguidoPor().add(seguidor);
+            try {
+            cliJpa.edit(seguidor);
+            cliJpa.edit(cliente);
+            } catch (NonexistentEntityException e) {
+            } catch (Exception e) {}
             System.out.println("ahora, "+seguidor.getNickname()+ " sigue a " +cliente.getNickname());
         } else {
             System.out.println(seguidor.getNickname() + " ya sigue a " + cliente.getNickname());
@@ -109,8 +124,15 @@ public class Ctrl implements ICtrl{
     @Override
     public void agregarSeguidorA(Artista artista, Cliente seguidor) {
         if (!seguidor.getArtSigueA().contains(artista)){
+            ClienteJpaController cliJpa = new ClienteJpaController();
+            ArtistaJpaController artJpa = new ArtistaJpaController();
             seguidor.getArtSigueA().add(artista);
             artista.getSeguidoPorA().add(seguidor);
+            try {
+            cliJpa.edit(seguidor);
+            artJpa.edit(artista);
+            } catch (NonexistentEntityException e) {
+            } catch (Exception e) {}
             System.out.println("ahora, "+seguidor.getNickname()+ " sigue a " +artista.getNickname());
         } else {
             System.out.println(seguidor.getNickname() + " ya sigue a " + artista.getNickname());
@@ -119,35 +141,32 @@ public class Ctrl implements ICtrl{
 
     @Override
     public void dejarSeguidorC(Cliente usuario, Cliente seguidor) {
-        if (seguidor == null) {
-            System.out.println("El cliente seguidor es nulo");
-            return;
-        }
-
-        if (usuario == null) {
-            System.out.println("El cliente usuario es nulo");
-            return;
-        }
-
-        if (seguidor.getCliSigueA() == null) {
-            System.out.println("La lista de clientes seguidos por el seguidor es nula");
-            return;
-        }
-
-        if (seguidor.getCliSigueA().contains(usuario)) {
+        ClienteJpaController cliJpa = new ClienteJpaController();
+        try {
+            System.out.println("Antes de eliminar: " + usuario.getSeguidoPor().size() + " seguidores.");
             usuario.getSeguidoPor().remove(seguidor);
             seguidor.getCliSigueA().remove(usuario);
-            System.out.println("Ahora, " + seguidor.getNickname() + " ya no sigue a " + usuario.getNickname());
-        } else {
-            System.out.println("No puedes dejar de seguir a alguien que no sigues");
-        }
+            System.out.println("Después de eliminar: " + usuario.getSeguidoPor().size() + " seguidores.");
+
+            cliJpa.edit(seguidor);
+            cliJpa.edit(usuario);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
+        System.out.println("ahora, "+seguidor.getNickname()+ " ya no sigue a " +usuario.getNickname());
     }
 
     @Override
     public void dejarSeguidorA(Artista usuario, Cliente seguidor) {
         if(seguidor.getArtSigueA().contains(usuario)){
+            ClienteJpaController cliJpa = new ClienteJpaController();
+            ArtistaJpaController artJpa = new ArtistaJpaController();
             usuario.getSeguidoPorA().remove(seguidor);
             seguidor.getArtSigueA().remove(usuario);
+            try {
+            cliJpa.edit(seguidor);
+            artJpa.edit(usuario);
+            } catch (NonexistentEntityException e) {
+            } catch (Exception e) {}
             System.out.println("ahora, "+seguidor.getNickname()+ " ya no sigue a " +usuario.getNickname());
         } else {
             System.out.println("no puedes dejar de seguir a alguen que no sigues");

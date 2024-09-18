@@ -2236,10 +2236,8 @@ public class ventana extends javax.swing.JFrame {
                         Espotify.AltaGenero altaGenero = new Espotify.AltaGenero(IC,nombreGenero,nombrePadre);
                     }
                 }
-                
             break;
             case 3:
-                
                 String nombreArtista = TextField1.getText();
                 String nombreAlbum = TextField3.getText();
                 String anio = ComboBox1.getSelectedItem().toString();

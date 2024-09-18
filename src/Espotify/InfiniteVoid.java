@@ -4,6 +4,8 @@
  */
 package Espotify;
 
+import Persistencia.GeneroJpaController;
+import Persistencia.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,12 +76,20 @@ public class InfiniteVoid {
         //Seguidos
         
         //Creacion de generos
-        Genero Genero = mm.buscarGenero("");
+        Genero enero = ictrl.crearGenero("Genero", null);
+        Genero Genero = mm.buscarGenero("Genero");
+        mm.addGenero(Genero);
         Genero ROK = ictrl.crearGenero("Rock", Genero);
         mm.addGenero(ROK);
         Genero ROKP = mm.buscarGenero("Rock");
-        Genero RCL = ictrl.crearGenero("Rock Clasico", ROKP);
+        Genero RCL = ictrl.crearGenero("Rock Clasico", ROK);
         mm.addGenero(RCL);
+        GeneroJpaController jpg= new GeneroJpaController();
+        try {
+            jpg.edit(RCL);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
+        
         Genero RKL = ictrl.crearGenero("Rock Latino", ROKP);
         mm.addGenero(RKL);
         Genero RAR = ictrl.crearGenero("Rock & Roll", ROKP);
