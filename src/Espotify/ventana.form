@@ -289,9 +289,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="ComboBox4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Button2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="Button2" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="ComboBox4" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="Text7" min="-2" max="-2" attributes="0"/>
@@ -327,7 +327,7 @@
                       <Component id="Text16" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                      <EmptySpace pref="76" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="ACEPTAR" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Text10" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
