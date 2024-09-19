@@ -142,17 +142,37 @@ public class Ctrl implements ICtrl{
     @Override
     public void dejarSeguidorC(Cliente usuario, Cliente seguidor) {
         ClienteJpaController cliJpa = new ClienteJpaController();
-        try {
-            System.out.println("Antes de eliminar: " + usuario.getSeguidoPor().size() + " seguidores.");
-            usuario.getSeguidoPor().remove(seguidor);
-            seguidor.getCliSigueA().remove(usuario);
-            System.out.println("Después de eliminar: " + usuario.getSeguidoPor().size() + " seguidores.");
 
-            cliJpa.edit(seguidor);
-            cliJpa.edit(usuario);
-        } catch (NonexistentEntityException e) {
-        } catch (Exception e) {}
-        System.out.println("ahora, "+seguidor.getNickname()+ " ya no sigue a " +usuario.getNickname());
+        // Verificar que efectivamente el seguidor sigue al usuario
+        if (seguidor.getCliSigueA().contains(usuario)) {
+            try {
+                // Mensajes de depuración para verificar el tamaño de las listas
+                System.out.println("Antes de eliminar: " + usuario.getSeguidoPor().size() + " seguidores.");
+                System.out.println("Antes de eliminar: " + seguidor.getCliSigueA().size() + " usuarios seguidos.");
+
+                // Eliminar el seguidor de ambas listas
+                usuario.getSeguidoPor().remove(seguidor);
+                seguidor.getCliSigueA().remove(usuario);
+
+                // Mensajes de depuración después de la eliminación
+                System.out.println("Después de eliminar: " + usuario.getSeguidoPor().size() + " seguidores.");
+                System.out.println("Después de eliminar: " + seguidor.getCliSigueA().size() + " usuarios seguidos.");
+
+                // Persistir los cambios en la base de datos
+                cliJpa.edit(seguidor);
+                cliJpa.edit(usuario);
+
+                System.out.println("ahora, "+seguidor.getNickname()+ " ya no sigue a " +usuario.getNickname());
+
+            } catch (NonexistentEntityException e) {
+                System.out.println("Error: El usuario o el seguidor no existen.");
+            } catch (Exception e) {
+                System.out.println("Error general: " + e.getMessage());
+            }
+        } else {
+            // Si el seguidor no estaba siguiendo al usuario, mostrar mensaje adecuado
+            System.out.println("No puedes dejar de seguir a alguien que no sigues.");
+        }
     }
 
     @Override
