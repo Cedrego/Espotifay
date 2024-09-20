@@ -40,13 +40,27 @@ public class CrearLista {
             porDefecto nuevoPorDefecto = ictrl.CrearListPorDefecto(name, GOP);
             
             porDefectoJpaController PorDefectoJPAController = new porDefectoJpaController();
+            
             try {
                 PorDefectoJPAController.create(nuevoPorDefecto);
             } catch (Exception ex) {
                 Logger.getLogger(CrearLista.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            mp.addPorDefecto(nuevoPorDefecto);//Agrego la instancia a la lista
+            Genero genero = mm.buscarGenero(GOP); // Busca el género
+            if (genero != null) {
+                nuevoPorDefecto.setGenero(genero); // Asigna el género
+                // Necesitas buscar nuevamente el porDefecto para actualizarlo
+                try {
+                    porDefecto existente = PorDefectoJPAController.findporDefecto(nuevoPorDefecto.getNombre());
+                    if (existente != null) {
+                        existente.setGenero(genero); // Actualiza el género
+                        PorDefectoJPAController.edit(existente); // Actualiza en la base de datos
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(CrearLista.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+           // mp.addPorDefecto(nuevoPorDefecto);//Agrego la instancia a la lista
         }
         
     }  

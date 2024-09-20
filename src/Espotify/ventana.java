@@ -11,6 +11,10 @@ import java.util.List;
 import Espotify.InfiniteVoid;
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 /**
  *
  * @author Camilo
@@ -24,6 +28,10 @@ public class ventana extends javax.swing.JFrame {
     public ArtistaJpaController artJpa = new ArtistaJpaController();
     public List<JTextField> textFields; // Lista para almacenar los JTextFields añadidos
     
+    // Obtenemos el EntityManager desde la fábrica
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("pantallaPU");
+    EntityManager em = emf.createEntityManager();
+
     List<Genero> generosAlbum = new ArrayList<>(); //lista de generos para usar en alta album
     List<Tema> temasAlbum = new ArrayList<>(); //lista de tenas para usar en alta album
     
@@ -2261,9 +2269,7 @@ public class ventana extends javax.swing.JFrame {
             break;
             case 4:
                 //llamarCrearLista();
-               
                 String name = TextField1.getText();
-                
                 if(name.isEmpty()){//Caso que Ingrese vacio 
                     Text10.setText("ERROR: campo Nombre vacio");
                     Text10.setVisible(true);
@@ -2272,7 +2278,11 @@ public class ventana extends javax.swing.JFrame {
                     String GoC =  ComboBox1.getSelectedItem().toString();//Genero o Cliente
                     //Preguntar si la playlist ya existe
                     if("Particular".equals(Tipo)){
-                        List<Particular> Par = mp.getListParticular();
+                        // Buscamos cliente
+                        TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c WHERE c.nickname = :nickname", Cliente.class);
+                        query.setParameter("nickname", GoC); // Establecemos el parámetro
+                        Cliente cliente = query.getSingleResult(); // Intentamos obtener un único cliente
+                        List<Particular> Par = cliente.getParticular();
                         boolean existe = false; // Bandera para verificar la existencia
                         for (Particular playlist : Par) {
                             if (playlist.getNombre().equals(name)) { // Comparar el nombre de la playlist
@@ -2289,9 +2299,10 @@ public class ventana extends javax.swing.JFrame {
                             Text10.setVisible(true);
                         }
                     }else{//Caso en genero
-                        List<porDefecto> Def = mp.getListPorDefecto();
+                        TypedQuery<porDefecto> query = em.createQuery("SELECT p FROM porDefecto p", porDefecto.class);
+                        List<porDefecto> resultados = query.getResultList();
                         boolean existe = false; // Bandera para verificar la existencia
-                        for(porDefecto playlist : Def){
+                        for(porDefecto playlist : resultados){
                             if(playlist.getNombre().equals(name)){
                                existe = true; // Si existe, marca como verdadero
                                 break; // Salir del bucle, no necesitamos seguir buscando 
@@ -2319,11 +2330,15 @@ public class ventana extends javax.swing.JFrame {
                
                 //Controlar el tema no se repita en la playlist
                  String Tipo = ComboBox5.getSelectedItem().toString();//Entre porDefecto y particular(me ahorro buscar en las 2 listas
+                 String NomCli = ComboBox1.getSelectedItem().toString();
                  String NomPlay = ComboBox4.getSelectedItem().toString();//Nombre de la playlist
                  String NomTema = ComboBox6.getSelectedItem().toString();//Nombre del tema
                   if("Particular".equals(Tipo)){
                      String nom = ComboBox1.getSelectedItem().toString();//nick del cliente
-                        Cliente cliente = mu.buscarCliente(nom);//Cliente en particular
+                       // Buscamos cliente
+                        TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c WHERE c.nickname = :nickname", Cliente.class);
+                        query.setParameter("nickname", NomCli); // Establecemos el parámetro
+                        Cliente cliente = query.getSingleResult(); // Intentamos obtener un único cliente
                         // Verifica si el cliente fue encontrado
                         boolean existe = false;
                         for(Particular playlist : cliente.getParticular()){//Lista de playlist particulares del cliente
@@ -2352,7 +2367,9 @@ public class ventana extends javax.swing.JFrame {
                       //ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
                        String nom = ComboBox1.getSelectedItem().toString();//nombre del Genero
                        boolean existe = false;
-                       for(porDefecto Def : mp.getListPorDefecto()){
+                       TypedQuery<porDefecto> query = em.createQuery("SELECT p FROM porDefecto p", porDefecto.class);
+                       List<porDefecto> resultados = query.getResultList();
+                       for(porDefecto Def : resultados){
                             if(Def.getNombre().equalsIgnoreCase(NomPlay)){//encuentro la playlist
                                for(Tema tem : Def.getTemas()){
                                    if(tem.getNombre().equalsIgnoreCase(NomTema)){//encuentra el tema seleccionado en la lista de temas de la playlist
@@ -2382,12 +2399,15 @@ public class ventana extends javax.swing.JFrame {
                     Text10.setText("ERROR: Selecione todos los campos");
                     Text10.setVisible(true);
                 }
+                NomCli = ComboBox1.getSelectedItem().toString();
                 Tipo = ComboBox5.getSelectedItem().toString();//Entre porDefecto y particular(me ahorro buscar en las 2 listas
                 NomPlay = ComboBox4.getSelectedItem().toString();//Nombre de la playlist
                 NomTema = ComboBox6.getSelectedItem().toString();//Nombre del tema
                   if("Particular".equals(Tipo)){
                      String nom = ComboBox1.getSelectedItem().toString();//nick del cliente
-                        Cliente cliente = mu.buscarCliente(nom);//Cliente en particular
+                        TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c WHERE c.nickname = :nickname", Cliente.class);
+                        query.setParameter("nickname", NomCli); // Establecemos el parámetro
+                        Cliente cliente = query.getSingleResult(); // Intentamos obtener un único cliente
                         boolean existe = false;
                         for(Particular playlist : cliente.getParticular()){//Lista de playlist particulares del cliente
                             if(playlist.getNombre().equalsIgnoreCase(NomPlay)){//encuentro la playlist
@@ -2415,7 +2435,9 @@ public class ventana extends javax.swing.JFrame {
                       //ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
                        String nom = ComboBox1.getSelectedItem().toString();//nombre del Genero
                        boolean existe = false;
-                       for(porDefecto Def : mp.getListPorDefecto()){
+                       TypedQuery<porDefecto> query = em.createQuery("SELECT p FROM porDefecto p", porDefecto.class);
+                       List<porDefecto> resultados = query.getResultList();
+                       for(porDefecto Def : resultados){
                             if(Def.getNombre().equalsIgnoreCase(NomPlay)){//encuentro la playlist
                                for(Tema tem : Def.getTemas()){
                                    if(tem.getNombre().equalsIgnoreCase(NomTema)){//encuentra el tema seleccionado en la lista de temas de la playlist
