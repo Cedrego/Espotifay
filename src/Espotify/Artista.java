@@ -4,14 +4,12 @@
  */
 package Espotify;
 
+import Persistencia.AlbumJpaController;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -83,6 +81,7 @@ public class Artista extends Usuario {
     public void addAlbum(Album alb){
         this.albumes.add(alb);
     }
+    
     public void addSeguidoPorA(Cliente seg){
         this.seguidoPorA.add(seg);
     }
