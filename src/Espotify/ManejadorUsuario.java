@@ -93,10 +93,11 @@ public class ManejadorUsuario {
     }
     
     public List<Artista> getAllArtista(){
-        return artistasGen; //puede que tenga que devolver un array?
+        
+        return artJpa.findArtistaEntities(); //puede que tenga que devolver un array?
     }
     
     public List<Cliente> getAllCliente(){
-        return clientesGen; //puede que tenga que devolver un array?
+        return cliJpa.findClienteEntities(); //puede que tenga que devolver un array?
     }
 }

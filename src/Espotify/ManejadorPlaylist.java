@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Espotify;
+import Persistencia.ParticularJpaController;
+import Persistencia.porDefectoJpaController;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -12,6 +14,8 @@ import java.util.List;
 public class ManejadorPlaylist {
     private List<porDefecto> porDefectpList;
     private List<Particular> PartList;
+    private ParticularJpaController partJpa = new ParticularJpaController();
+    private porDefectoJpaController pdJpa = new porDefectoJpaController();
     
      private static ManejadorPlaylist instancia = null;
      
@@ -39,29 +43,25 @@ public class ManejadorPlaylist {
     }
     
     public Particular buscarListP(String nom){
-        for (Particular part : this.PartList){
-            if(part.getNombre().equalsIgnoreCase(nom)){
-                return part;
-            }
+        if(partJpa.findParticular(nom)!=null){
+            return partJpa.findParticular(nom);
         }
         return null;
     }
     
     public porDefecto buscarListPD(String nom){
-        for (porDefecto pd : this.porDefectpList){
-            if(pd.getNombre().equalsIgnoreCase(nom)){
-                return pd;
-            }
+        if(pdJpa.findporDefecto(nom)!=null){
+            return pdJpa.findporDefecto(nom);
         }
         return null;
     }
     
     public List<porDefecto> getListPorDefecto(){
          // Retorna la lista de playlists por defecto del amenjador
-        return this.porDefectpList;
+        return pdJpa.findporDefectoEntities();
     }
     
     public List<Particular> getListParticular(){
-        return this.PartList;
+        return partJpa.findParticularEntities();
     }  
 }

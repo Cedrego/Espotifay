@@ -4,10 +4,14 @@
  */
 package Espotify;
 
+import Persistencia.AlbumJpaController;
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
 import Persistencia.GeneroJpaController;
+import Persistencia.ParticularJpaController;
+import Persistencia.TemaJpaController;
 import Persistencia.exceptions.NonexistentEntityException;
+import Persistencia.porDefectoJpaController;
 import java.util.List;
 
 /**
@@ -17,16 +21,19 @@ import java.util.List;
 public class Ctrl implements ICtrl{
 
     public GeneroJpaController generoJpaController = new GeneroJpaController();
-    
+    public TemaJpaController temaJpaController = new TemaJpaController();
+    public AlbumJpaController albumJpaController = new AlbumJpaController();
+    public ParticularJpaController particularJpaController = new ParticularJpaController();
+    public porDefectoJpaController porDefectoJpaController = new porDefectoJpaController();
     public Ctrl(){}
     
     
     
     //crear un objeto de tipo album
     @Override
-    public Album CrearAlbum (String nombreA, int anioA, List<Genero> generosA, List<Tema> temasA){
+    public Album CrearAlbum (String nombreA, String artista, int anioA, List<Genero> generosA, List<Tema> temasA){
         
-        Album albumNuevo = new Album(nombreA,anioA); //creo un album, ya inicializa las listas de genero y temas
+        Album albumNuevo = new Album(nombreA, artista ,anioA); //creo un album, ya inicializa las listas de genero y temas
 
         for (Genero genero : generosA){
             albumNuevo.addGenero(genero);
@@ -34,7 +41,21 @@ public class Ctrl implements ICtrl{
 
         for (Tema tema : temasA){
             albumNuevo.addTemas(tema);
+            //persistimos temas
+            try {
+                temaJpaController.create(tema);
+            } catch (Exception e) {
+                System.out.println("Error al crear el genero: " + e.getMessage());
+            }
         }
+        
+        //persistimos albumes
+        try {
+            albumJpaController.create(albumNuevo);
+        } catch (Exception e) {
+            System.out.println("Error al guardar el album: " + e.getMessage());
+        }
+        
         return albumNuevo;
     };
     
@@ -44,7 +65,9 @@ public class Ctrl implements ICtrl{
         
         for (Genero gen : generosT){
             temaNuevo.addGenero(gen);
+            
         }
+        
         return temaNuevo;
     }
     
@@ -194,8 +217,17 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
-    public Particular CrearListParticular(String nombre){
-        Particular nuevoParticular = new Particular(nombre);
+    public Particular CrearListParticular(String nombre, String nomCliente){
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        Cliente cli = mu.buscarCliente(nomCliente);
+        Particular nuevoParticular = new Particular(nombre, cli);
+        
+        try {
+            particularJpaController.create(nuevoParticular);
+        } catch (Exception e) {
+            System.out.println("Error al guardar la lista particular: " + e.getMessage());
+        }
+        
         return nuevoParticular;
     }
     @Override
@@ -204,6 +236,12 @@ public class Ctrl implements ICtrl{
         ManejadorMusica mm = ManejadorMusica.getInstance();
         Genero Gen = mm.buscarGenero(nombre);//Busco la instancia de genero
         porDefecto nuevoPorDefecto = new porDefecto(nombre,Gen);//Uso el constructor de pordefcto
+        
+        try {
+            porDefectoJpaController.create(nuevoPorDefecto);
+        } catch (Exception e) {
+            System.out.println("Error al guardar la lista por defecto: " + e.getMessage());
+        }
         return nuevoPorDefecto;
     }
     @Override

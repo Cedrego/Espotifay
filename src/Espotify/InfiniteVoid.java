@@ -231,55 +231,55 @@ public class InfiniteVoid {
         Tema T131 = ictrl.CrearTema("Violeta", "1:56", 1, Cum);
         VIOT.add(T131);
         
-        Album VPL = ictrl.CrearAlbum("Village People Live and Sleazy", 1980, DisDpoPcl, VPLT);        
+        Album VPL = ictrl.CrearAlbum("Village People Live and Sleazy", VP.getNickname(), 1980, DisDpoPcl, VPLT);        
         mm.addAlbum(VPL);
         VP.addAlbum(VPL);
         
-        Album DMV = ictrl.CrearAlbum("Violator", 1990, Epo, DMVT);
+        Album DMV = ictrl.CrearAlbum("Violator", DM.getNickname(), 1990, Epo, DMVT);
         mm.addAlbum(DMV);
         DM.addAlbum(DMV);
         
-        Album CLU = ictrl.CrearAlbum("She's so Unusual", 1983, PclDpo, CLUT);
+        Album CLU = ictrl.CrearAlbum("She's so Unusual", CL.getNickname(), 1983, PclDpo, CLUT);
         mm.addAlbum(CLU);
         CL.addAlbum(CLU);
         
-        Album USA = ictrl.CrearAlbum("Born In The U.S.A.", 1984, RclRarPcl, USAT);        
+        Album USA = ictrl.CrearAlbum("Born In The U.S.A.", BS.getNickname(), 1984, RclRarPcl, USAT);        
         mm.addAlbum(USA);
         BS.addAlbum(USA);
         
-        Album INU = ictrl.CrearAlbum("It’s Not Unusual", 1965, RclPcl, INUT);        
+        Album INU = ictrl.CrearAlbum("It’s Not Unusual", TJ.getNickname(), 1965, RclPcl, INUT);        
         mm.addAlbum(INU);
         TJ.addAlbum(INU);
         
-        Album AYS = ictrl.CrearAlbum("Agua Y Sal", 2012, Rkl, AYST);
+        Album AYS = ictrl.CrearAlbum("Agua Y Sal", TN.getNickname(), 2012, Rkl, AYST);
         mm.addAlbum(AYS);
         TN.addAlbum(AYS);
         
-        Album LLU = ictrl.CrearAlbum("MTV Unplugged", 2001, RklPcl, LLUT);        
+        Album LLU = ictrl.CrearAlbum("MTV Unplugged", LL.getNickname(), 2001, RklPcl, LLUT);        
         mm.addAlbum(LLU);
         LL.addAlbum(LLU);
         
-        Album LDC = ictrl.CrearAlbum("El Lago De Los Cisnes", 1875, Cla, LDCT);
+        Album LDC = ictrl.CrearAlbum("El Lago De Los Cisnes", PT.getNickname(), 1875, Cla, LDCT);
         mm.addAlbum(LDC);
         PT.addAlbum(LDC);
         
-        Album CPP = ictrl.CrearAlbum("Concierto Para Piano No.1 En Si Menor, Opus 23", 1875, Cla, CPPT);        
+        Album CPP = ictrl.CrearAlbum("Concierto Para Piano No.1 En Si Menor, Opus 23", PT.getNickname(), 1875, Cla, CPPT);        
         mm.addAlbum(CPP);
         PT.addAlbum(CPP);
         
-        Album PAM = ictrl.CrearAlbum("Primer Amor", 1994, Epo, PAMT);
+        Album PAM = ictrl.CrearAlbum("Primer Amor", NN.getNickname(), 1994, Epo, PAMT);
         mm.addAlbum(PAM);
         NN.addAlbum(PAM);
         
-        Album AMA = ictrl.CrearAlbum("Hay Amores Que Matan", 1993, PclBal, AMAT);        
+        Album AMA = ictrl.CrearAlbum("Hay Amores Que Matan", PI.getNickname(), 1993, PclBal, AMAT);        
         mm.addAlbum(AMA);
         PI.addAlbum(AMA);
         
-        Album LOC = ictrl.CrearAlbum("Un Loco Como Yo", 1993, PclBal, LOCT);
+        Album LOC = ictrl.CrearAlbum("Un Loco Como Yo", DY.getNickname(), 1993, PclBal, LOCT);
         mm.addAlbum(LOC);
         DY.addAlbum(LOC);
         
-        Album VIO = ictrl.CrearAlbum("20 Grandes Éxitos", 1989, Cum, VIOT);        
+        Album VIO = ictrl.CrearAlbum("20 Grandes Éxitos", AL.getNickname(), 1989, Cum, VIOT);        
         mm.addAlbum(VIO);
         AL.addAlbum(VIO);
     }

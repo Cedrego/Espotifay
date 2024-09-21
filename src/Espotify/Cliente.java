@@ -5,6 +5,7 @@
 package Espotify;
 
 import Persistencia.ClienteJpaController;
+import Persistencia.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -23,7 +24,12 @@ import javax.persistence.Table;
 @Table(name = "Cliente")
 public class Cliente extends Usuario {
 
-    @OneToMany
+    @OneToMany(mappedBy = "cliente")
+    @JoinTable(
+        name = "CliPart",
+        joinColumns = @JoinColumn(name = "nomParticular"),
+        inverseJoinColumns = @JoinColumn(name = "nickCli")
+    )
     private List<Particular> particular; //coleccion
     
      // Relación autoreferencial para seguir a otros clientes
@@ -55,7 +61,7 @@ public class Cliente extends Usuario {
     @OneToMany
     private List<porDefecto> playFavPD; //coleccion
     
-    @JoinColumn
+    @OneToMany
     private List<Particular> playFavPart; //coleccion
 
     public Cliente() {
@@ -109,14 +115,18 @@ public class Cliente extends Usuario {
     
     //gettersssss
     public List<Particular> getParticular() {
-        return particular;
+        ClienteJpaController clijpa = new ClienteJpaController();
+        return clijpa.findCliente(this.getNickname()).particular;
     }
 
     public List<Cliente> getCliSigueA() {
-        return cliSigueA;
+        ClienteJpaController clijpa = new ClienteJpaController();
+        return clijpa.findCliente(this.getNickname()).cliSigueA;
     }
+    
     public List<Artista> getArtSigueA() {
-        return artSigueA;
+        ClienteJpaController clijpa = new ClienteJpaController();
+        return clijpa.findCliente(this.getNickname()).artSigueA;
     }
 
     public List<Cliente> getSeguidoPor() {
@@ -125,40 +135,78 @@ public class Cliente extends Usuario {
     }
 
     public List<Album> getAlbumFav() {
-        return albumFav;
+        ClienteJpaController clijpa = new ClienteJpaController();
+        return clijpa.findCliente(this.getNickname()).albumFav;
     }
 
     public List<Tema> getTemasFAV() {
-        return temasFAV;
+        ClienteJpaController clijpa = new ClienteJpaController();
+        return clijpa.findCliente(this.getNickname()).temasFAV;
     }
 
     public List<porDefecto> getPlayFavPD() {
-        return playFavPD;
+        ClienteJpaController clijpa = new ClienteJpaController();
+        return clijpa.findCliente(this.getNickname()).playFavPD;
     }
 
     public List<Particular> getPlayFavPart() {
-        return playFavPart;
+        ClienteJpaController clijpa = new ClienteJpaController();
+        return clijpa.findCliente(this.getNickname()).playFavPart;
     }
     
     //adderssssssssss
     public void addParticular(Particular part){
+        ClienteJpaController clijpa = new ClienteJpaController();
+        
         this.particular.add(part);
+        
+        try{
+            clijpa.edit(this);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
     }
     
     public void addTemaFav(Tema tem){
+        ClienteJpaController clijpa = new ClienteJpaController();
         this.temasFAV.add(tem);
+        
+        try{
+            clijpa.edit(this);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
     }
     
     public void addAlbumFav(Album alb){
+        ClienteJpaController clijpa = new ClienteJpaController();
+        
         this.albumFav.add(alb);
+        
+        try{
+            clijpa.edit(this);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
     }
     
     public void addParticularFav(Particular part){
+        ClienteJpaController clijpa = new ClienteJpaController();
+        
         this.playFavPart.add(part);
+        
+        try{
+            clijpa.edit(this);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
     }
     
     public void addPDFav(porDefecto pd){
+        ClienteJpaController clijpa = new ClienteJpaController();
+        
         this.playFavPD.add(pd);
+        
+        try{
+            clijpa.edit(this);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
     }
     
     //busquersssssssssssssss

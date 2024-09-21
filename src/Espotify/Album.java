@@ -18,6 +18,8 @@ public class Album implements Serializable{
     @Id
     @Column (name="NOMBRE")
     private String nombre;
+    @Column (name="ARTISTA")
+    private String artista;
     @Column (name="CREACION")
     private int creacion;
     @JoinColumn(name = "TEMAS")
@@ -28,8 +30,9 @@ public class Album implements Serializable{
     public Album() {
     }
 
-    public Album(String nombre, int creacion) {
+    public Album(String nombre, String artista, int creacion) {
         this.nombre = nombre;
+        this.artista = artista;
         this.creacion = creacion;
         this.temas = new ArrayList();
         this.generos = new ArrayList();
@@ -39,6 +42,10 @@ public class Album implements Serializable{
     //Get variables
     public String getNombre() {
         return nombre;
+    }
+    
+    public String getArtista() {
+        return artista;
     }
  
     public int getCreacion() {
@@ -58,6 +65,10 @@ public class Album implements Serializable{
     //Set variables
     public void setNombre(String nom) {
         this.nombre = nom;
+    }
+    
+    public void setArtista(String art) {
+        this.artista = art;
     }
     
     public void setFecha(int fech) {

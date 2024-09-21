@@ -33,6 +33,7 @@ public class Tema implements Serializable {
         this.duracion = duracionTema;
         this.ordenAlbum = ordenAlbumT;
         this.generos = new ArrayList(); //inicializa lista de generos
+        
     }
     
     //Get variables

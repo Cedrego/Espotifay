@@ -4,32 +4,39 @@
  */
 package Espotify;
 
+import Persistencia.ParticularJpaController;
+import Persistencia.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author cedre
  */
 @Entity
-@PrimaryKeyJoinColumn(name = "NOMBRE_PLAYLIST")
 public class Particular extends Playlist {
     @Column (name="PRIVADO")
     private boolean privado;
+    @ManyToOne
+    private Cliente cliente;
     
     public Particular(){}
     
-    public Particular(String NuevoNombre){
-        nombre = NuevoNombre;
-        privado = true;
+    public Particular(String NuevoNombre, Cliente cli){
+        this.nombre = NuevoNombre;
+        this.privado = true;
+        this.cliente = cli;
         this.temas = new ArrayList();
     }   
     
     public boolean getPrivado(){
         return privado;
+    }
+    
+    public Cliente getCliente(){
+        return cliente;
     }
     public void removerTema(String NomTema){
        for(Tema tem : this.temas){
@@ -40,6 +47,15 @@ public class Particular extends Playlist {
     }
     public void setPrivado(boolean EsPrivado){
         this.privado = EsPrivado;
+        ParticularJpaController partJpa = new ParticularJpaController();
+        try{
+            partJpa.edit(this);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
+    }
+    
+    public void setCliente (Cliente cli){
+        this.cliente = cli;
     }
     public void addTema(Tema tem){
         this.temas.add(tem);

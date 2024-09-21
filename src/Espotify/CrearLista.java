@@ -24,10 +24,11 @@ public class CrearLista {
         ictrl = ic; 
         
         if("Particular".equals(Tipo)){
-            Particular nuevoPar = ictrl.CrearListParticular(name);//Creo la instancia de playlist particular
+            Cliente cliente = mu.buscarCliente(GOP);//Busco la instancia de cliente
+            Particular nuevoPar = ictrl.CrearListParticular(name,cliente.getNickname());//Creo la instancia de playlist particular
             mp.addPartList(nuevoPar);//Agrego la instancia a la lista
             // Buscar el cliente usando el nickname
-            Cliente cliente = mu.buscarCliente(GOP);//Busco la instancia de cliente
+            
             cliente.getParticular().add(nuevoPar); // Añadir la playlist particular al cliente
             // Paso 4: Persistir los cambios
             ClienteJpaController clienteJpaController = new ClienteJpaController();
@@ -51,11 +52,10 @@ public class CrearLista {
                 nuevoPorDefecto.setGenero(genero); // Asigna el género
                 // Necesitas buscar nuevamente el porDefecto para actualizarlo
                 try {
-                    porDefecto existente = PorDefectoJPAController.findporDefecto(nuevoPorDefecto.getNombre());
-                    if (existente != null) {
-                        existente.setGenero(genero); // Actualiza el género
-                        PorDefectoJPAController.edit(existente); // Actualiza en la base de datos
-                    }
+                    
+                        nuevoPorDefecto.setGenero(genero); // Actualiza el género
+                        PorDefectoJPAController.edit(nuevoPorDefecto); // Actualiza en la base de datos
+                    
                 } catch (Exception ex) {
                     Logger.getLogger(CrearLista.class.getName()).log(Level.SEVERE, null, ex);
                 }

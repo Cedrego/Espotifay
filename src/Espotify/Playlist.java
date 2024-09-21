@@ -17,6 +17,7 @@ import javax.persistence.Table;
  * @author cedre
  */
 
+
 @MappedSuperclass
 public abstract class Playlist{
     @Id

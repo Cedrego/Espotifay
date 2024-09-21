@@ -4,7 +4,9 @@
  */
 package Espotify;
 
+import Persistencia.AlbumJpaController;
 import Persistencia.GeneroJpaController;
+import Persistencia.TemaJpaController;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,8 @@ public class ManejadorMusica {
     private List<Tema> temasGen;
     private List<Genero> generosGen;
     GeneroJpaController genJpa = new GeneroJpaController();
+    TemaJpaController temJpa = new TemaJpaController();
+    AlbumJpaController albJpa = new AlbumJpaController();
     private static ManejadorMusica instancia = null;
     
     //inicializo ambas colecciones en formato de mapa para guardar junto con sus nicknames
@@ -82,14 +86,14 @@ public class ManejadorMusica {
     }
     
     public List<Genero> getGeneros(){
-       
-        return generosGen;
+        return genJpa.findGeneroEntities();
     }
+    
     public List<Tema> getTema(){
-       
-        return temasGen;
+        return temJpa.findTemaEntities();
     }
+    
     public List<Album> getAlbumes(){
-        return albumesGen;
+        return albJpa.findAlbumEntities();
     }
 }

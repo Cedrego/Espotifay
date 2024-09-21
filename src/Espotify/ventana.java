@@ -9,8 +9,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import Espotify.InfiniteVoid;
+import Persistencia.AlbumJpaController;
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
+import Persistencia.ParticularJpaController;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -943,7 +945,7 @@ public class ventana extends javax.swing.JFrame {
                     .addComponent(ConsultarAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ConsultarLista, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(AltaGenero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AgregarTemasListas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(AgregarTemasListas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, Short.MAX_VALUE)
                     .addComponent(QuitarTemasListas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PublicarLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1464,6 +1466,7 @@ public class ventana extends javax.swing.JFrame {
             if(cliente!=null){
                 Text5.setText("Listas:");
                 ComboBox4.removeAllItems();
+                
                 for(Particular part : cliente.getParticular()){
                     if(part.getPrivado()){
                         ComboBox4.addItem(part.getNombre());
@@ -2905,6 +2908,7 @@ public class ventana extends javax.swing.JFrame {
         if(ComboBox5.getSelectedItem() != null){
             ManejadorUsuario mu = ManejadorUsuario.getInstance();
             Cliente cli = mu.buscarCliente(ComboBox5.getSelectedItem().toString());
+            
             Artista art = null;
             if(cli != null){
                 Text9.setText("Datos de Cliente " + cli.getNickname());
@@ -2969,11 +2973,18 @@ public class ventana extends javax.swing.JFrame {
                         jPanel12.add(info6);
                     }
                 }
-                if(cli.getParticular() != null){
-                    jLabel2.setText("Temas Favoritos:   ");
+                ParticularJpaController partjpa = new ParticularJpaController();
+                List<Particular>parts = new ArrayList();
+                for(Particular part : partjpa.findParticularEntities()){
+                    if(cli.getNickname().equals(part.getCliente().getNickname())){
+                        parts.add(part);
+                    }
+                }
+                if(!parts.isEmpty()){
+                    jLabel2.setText("Listas Creadas:   ");
                     jPanel8.removeAll();
                     jPanel8.setLayout(new BoxLayout(jPanel8, BoxLayout.Y_AXIS));
-                    for(Particular play : cli.getParticular()){
+                    for(Particular play : parts){
                         // Crear un nuevo panel para cada tema
                         JPanel info2 = new JPanel();
                         info2.setLayout(new FlowLayout(FlowLayout.LEFT));
