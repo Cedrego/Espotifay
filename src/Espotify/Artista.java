@@ -4,7 +4,8 @@
  */
 package Espotify;
 
-import Persistencia.AlbumJpaController;
+import Persistencia.ArtistaJpaController;
+import Persistencia.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -46,18 +47,26 @@ public class Artista extends Usuario {
     
     //Get variables
     public String getSitioWeb() {
-        return SitioWeb;
+        //ArtistaJpaController artjpa = new ArtistaJpaController();
+        //return artjpa.findArtista(this.getNickname()).SitioWeb;
+        return this.SitioWeb;
     }
     
     public String getBiografia() {
-        return Biografia;
+        //ArtistaJpaController artjpa = new ArtistaJpaController();
+        //return artjpa.findArtista(this.getNickname()).Biografia;
+        return this.Biografia;
     }
     
     public List<Album> getAlbumes(){
-        return albumes;
+        //ArtistaJpaController artjpa = new ArtistaJpaController();
+        //return artjpa.findArtista(this.getNickname()).albumes;
+        return this.albumes;
     }
     public List<Cliente> getSeguidoPorA(){
-        return seguidoPorA;
+        //ArtistaJpaController artjpa = new ArtistaJpaController();
+        //return artjpa.findArtista(this.getNickname()).seguidoPorA;
+        return this.seguidoPorA;
     }
     
     //Set variables
@@ -79,10 +88,20 @@ public class Artista extends Usuario {
     
     //agregar a lista
     public void addAlbum(Album alb){
+        ArtistaJpaController artjpa = new ArtistaJpaController();
         this.albumes.add(alb);
+        try{
+            artjpa.edit(this);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
     }
     
     public void addSeguidoPorA(Cliente seg){
+        ArtistaJpaController artjpa = new ArtistaJpaController();
         this.seguidoPorA.add(seg);
+        try{
+            artjpa.edit(this);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
     }
 }

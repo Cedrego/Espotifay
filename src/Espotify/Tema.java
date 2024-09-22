@@ -22,16 +22,18 @@ public class Tema implements Serializable {
     private String nombre;
     private String duracion;
     private int ordenAlbum;
+    private String guardadoEn;
     @ManyToMany
     private List<Genero> generos;
 
     public Tema() {
     }
 
-    public Tema(String nombreTema,String duracionTema, int ordenAlbumT) {
+    public Tema(String nombreTema,String duracionTema, int ordenAlbumT, String guardadoT) {
         this.nombre = nombreTema;
         this.duracion = duracionTema;
         this.ordenAlbum = ordenAlbumT;
+        this.guardadoEn = guardadoT;
         this.generos = new ArrayList(); //inicializa lista de generos
         
     }

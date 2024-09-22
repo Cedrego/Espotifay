@@ -4,6 +4,8 @@
  */
 package Espotify;
 
+import Persistencia.AlbumJpaController;
+import Persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

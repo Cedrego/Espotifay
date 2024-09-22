@@ -93,7 +93,6 @@ public class ManejadorUsuario {
     }
     
     public List<Artista> getAllArtista(){
-        
         return artJpa.findArtistaEntities(); //puede que tenga que devolver un array?
     }
     

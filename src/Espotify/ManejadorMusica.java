@@ -61,19 +61,15 @@ public class ManejadorMusica {
     }
     
     public Album buscarAlbum(String nom){
-        for (Album alb : this.albumesGen){
-            if(alb.getNombre().equalsIgnoreCase(nom)){
-                return alb;
-            }
+        if(albJpa.findAlbum(nom)!=null){
+            return albJpa.findAlbum(nom);
         }
         return null;
     }
     
     public Tema buscarTema(String nom){
-        for (Tema tem : this.temasGen){
-            if(tem.getNombre().equalsIgnoreCase(nom)){
-                return tem;
-            }
+        if(temJpa.findTema(nom)!=null){
+            return temJpa.findTema(nom);
         }
         return null;
     }

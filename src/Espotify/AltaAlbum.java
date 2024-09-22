@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Espotify;
+import Persistencia.ArtistaJpaController;
 import java.util.List;
 /**
  *
@@ -21,7 +22,6 @@ public class AltaAlbum {
         
         Artista artista = mu.buscarArtista(nombreArtista); //busco el artista
         artista.addAlbum(albumNuevo); //agrego la instancia a la lista de albumes del artista
-        
     }  
     
     
