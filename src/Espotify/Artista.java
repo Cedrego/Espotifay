@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,7 +33,7 @@ public class Artista extends Usuario {
     @OneToMany
     private List<Album> albumes;
     
-    @OneToMany
+    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "artSigueA")
     private List<Cliente> seguidoPorA;
     
     public Artista() {

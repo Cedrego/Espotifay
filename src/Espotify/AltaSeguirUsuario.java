@@ -7,6 +7,7 @@ package Espotify;
 
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -15,7 +16,7 @@ import Persistencia.ArtistaJpaController;
 public class AltaSeguirUsuario {
     private ICtrl ictrl;
 
-    public AltaSeguirUsuario(ICtrl ic, String usuario, String seguidor) {
+    public AltaSeguirUsuario(ICtrl ic, String usuario, String seguidor){
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         ictrl = ic;
         ClienteJpaController cliJpa = new ClienteJpaController();
