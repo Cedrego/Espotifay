@@ -166,69 +166,69 @@ public class InfiniteVoid {
         Cum.add(CUMG);
         
         List<Tema> VPLT = new ArrayList<>();
-        Tema T11 = ictrl.CrearTema("YMCA", "4:28", 1, DisDpoPcl);
+        Tema T11 = ictrl.CrearTema("YMCA", "4:28", 1,"bit.ly/SCvpymca", DisDpoPcl);
         VPLT.add(T11);
-        Tema T12 = ictrl.CrearTema("Macho Man", "3:28", 2, DisDpoPcl);
+        Tema T12 = ictrl.CrearTema("Macho Man", "3:28", 2,"picosong.com/download/zf8T", DisDpoPcl);
         VPLT.add(T12);
-        Tema T13 = ictrl.CrearTema("In the Navy", "3:13", 3, DisDpoPcl);
+        Tema T13 = ictrl.CrearTema("In the Navy", "3:13", 3,"bit.ly/SCvpinthenavy", DisDpoPcl);
         VPLT.add(T13);
                 
         List<Tema> DMVT = new ArrayList<>();
-        Tema T21 = ictrl.CrearTema("Personal Jesus", "4:56", 1, Epo);
+        Tema T21 = ictrl.CrearTema("Personal Jesus", "4:56", 1,"picosong.com/download/zfQ3", Epo);
         DMVT.add(T21);
-        Tema T22 = ictrl.CrearTema("Enjoy The Silence", "4:21", 2, Epo);
+        Tema T22 = ictrl.CrearTema("Enjoy The Silence", "4:21", 2,"picosong.com/download/zfQX", Epo);
         DMVT.add(T22);
         
         List<Tema> CLUT = new ArrayList<>();
-        Tema T31 = ictrl.CrearTema("Girls Just Want To Have Fun", "3:15", 1, PclDpo);
+        Tema T31 = ictrl.CrearTema("Girls Just Want To Have Fun", "3:15", 1,"bit.ly/SCclgirlsjustwant", PclDpo);
         CLUT.add(T31);
-        Tema T32 = ictrl.CrearTema("Time After Time", "5:12", 2, PclDpo);
+        Tema T32 = ictrl.CrearTema("Time After Time", "5:12", 2,"picosong.com/download/zfER", PclDpo);
         CLUT.add(T32);
         
         List<Tema> USAT = new ArrayList<>();
-        Tema T41 = ictrl.CrearTema("Born In The U.S.A.", "4:58", 1, RclRarPcl);
+        Tema T41 = ictrl.CrearTema("Born In The U.S.A.", "4:58", 1,"bit.ly/SCbsborninusa", RclRarPcl);
         USAT.add(T41);
-        Tema T42 = ictrl.CrearTema("Glory Days", "5:23", 2, RclRarPcl);
+        Tema T42 = ictrl.CrearTema("Glory Days", "5:23", 2,"bit.ly/SCbsglorydays", RclRarPcl);
         USAT.add(T42);
-        Tema T43 = ictrl.CrearTema("Dancing In The Park", "3:58", 3, RclRarPcl);
+        Tema T43 = ictrl.CrearTema("Dancing In The Park", "3:58", 3,"picosong.com/download/zf86", RclRarPcl);
         USAT.add(T43);
         
         List<Tema> INUT = new ArrayList<>();
-        Tema T51 = ictrl.CrearTema("It's Not Unusual", "2:00", 1, RclPcl);
+        Tema T51 = ictrl.CrearTema("It's Not Unusual", "2:00", 1,"picosong.com/download/zfbS", RclPcl);
         INUT.add(T51);
         
         List<Tema> AYST = new ArrayList<>();
-        Tema T61 = ictrl.CrearTema("Adagio De Mi Pais", "4:50", 1, Rkl);
+        Tema T61 = ictrl.CrearTema("Adagio De Mi Pais", "4:50", 1,"bit.ly/SCtnadagiopais", Rkl);
         AYST.add(T61);
         
         List<Tema> LLUT = new ArrayList<>();
-        Tema T71 = ictrl.CrearTema("El Duelo", "5:23", 1, RklPcl);
+        Tema T71 = ictrl.CrearTema("El Duelo", "5:23", 1,"picosong.com/download/zfh6", RklPcl);
         LLUT.add(T71);
-        Tema T72 = ictrl.CrearTema("Mentira", "4:48", 2, RklPcl);
+        Tema T72 = ictrl.CrearTema("Mentira", "4:48", 2,"picosong.com/download/zfAe", RklPcl);
         LLUT.add(T72);
         
         List<Tema> LDCT = new ArrayList<>();
-        Tema T81 = ictrl.CrearTema("Acto 2, Numero 10, Escena (Moderato)", "2:40", 1, Cla);
+        Tema T81 = ictrl.CrearTema("Acto 2, Numero 10, Escena (Moderato)", "2:40", 1,"bit.ly/SCptswanlake", Cla);
         LDCT.add(T81);
         
         List<Tema> CPPT = new ArrayList<>();
-        Tema T91 = ictrl.CrearTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito) ", "21:58", 1, Cla);
+        Tema T91 = ictrl.CrearTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito) ", "21:58", 1,"bit.ly/SCptpiano", Cla);
         CPPT.add(T91);
         
         List<Tema> PAMT = new ArrayList<>();
-        Tema T101 = ictrl.CrearTema("No Quiero Estudiar", "2:12", 1, Epo);
+        Tema T101 = ictrl.CrearTema("No Quiero Estudiar", "2:12", 1,"picosong.com/download/zfZN", Epo);
         PAMT.add(T101);
         
         List<Tema> AMAT = new ArrayList<>();
-        Tema T111 = ictrl.CrearTema("Por Ese Hombre", "4:45", 1, PclBal);
+        Tema T111 = ictrl.CrearTema("Por Ese Hombre", "4:45", 1,"picosong.com/download/zfa4", PclBal);
         AMAT.add(T111);
         
         List<Tema> LOCT = new ArrayList<>();
-        Tema T121 = ictrl.CrearTema("Por Ese Hombre", "5:13", 1, PclBal);
+        Tema T121 = ictrl.CrearTema("Por Ese Hombre", "5:13", 1,"bit.ly/SCdyporesehombre", PclBal);
         LOCT.add(T121);
         
         List<Tema> VIOT = new ArrayList<>();
-        Tema T131 = ictrl.CrearTema("Violeta", "1:56", 1, Cum);
+        Tema T131 = ictrl.CrearTema("Violeta", "1:56", 1,"bit.ly/SCvioleta", Cum);
         VIOT.add(T131);
         
         Album VPL = ictrl.CrearAlbum("Village People Live and Sleazy", VP.getNickname(), 1980, DisDpoPcl, VPLT);        

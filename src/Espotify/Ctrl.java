@@ -53,11 +53,11 @@ public class Ctrl implements ICtrl{
             try {
                 temaJpaController.create(tema);
             } catch (Exception e) {
-                System.out.println("Error al crear el genero: " + e.getMessage());
+                System.out.println("Error al guardar el tema: " + e.getMessage());
             }
         }
         
-        //persistimos albumes
+        //persistimos album
         try {
             albumJpaController.create(albumNuevo);
         } catch (Exception e) {
@@ -68,8 +68,8 @@ public class Ctrl implements ICtrl{
     };
     
     @Override
-    public Tema CrearTema (String nomT, String duraT, int ordT, List<Genero> generosT){
-        Tema temaNuevo = new Tema(nomT, duraT, ordT);
+    public Tema CrearTema (String nomT, String duraT, int ordT, String guardadoT, List<Genero> generosT){
+        Tema temaNuevo = new Tema(nomT, duraT, ordT, guardadoT);
         
         for (Genero gen : generosT){
             temaNuevo.addGenero(gen);
