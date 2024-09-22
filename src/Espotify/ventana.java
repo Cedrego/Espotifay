@@ -12,6 +12,7 @@ import Espotify.InfiniteVoid;
 import Persistencia.AlbumJpaController;
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
+import Persistencia.GeneroJpaController;
 import Persistencia.ParticularJpaController;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,7 +30,7 @@ public class ventana extends javax.swing.JFrame {
     public ClienteJpaController cliJpa = new ClienteJpaController();
     public ArtistaJpaController artJpa = new ArtistaJpaController();
     public List<JTextField> textFields; // Lista para almacenar los JTextFields añadidos
-    
+    public GeneroJpaController genJpa = new GeneroJpaController();
     // Obtenemos el EntityManager desde la fábrica
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("pantallaPU");
     EntityManager em = emf.createEntityManager();
@@ -1407,7 +1408,7 @@ public class ventana extends javax.swing.JFrame {
                 if (ComboBox1.getItemCount() > 0) {
                    ComboBox1.removeAllItems();
                 } 
-                 for (Genero gen: mm.getGeneros()){
+                 for (Genero gen: genJpa.findGeneroEntities()){
                      ComboBox1.addItem(gen.getNombre());//Almacena todos los generos
                  }
                  //Para que se vea
@@ -1449,7 +1450,7 @@ public class ventana extends javax.swing.JFrame {
                 if (ComboBox1.getItemCount() > 0) {
                    ComboBox1.removeAllItems();
                 } 
-                 for (Genero gen: mm.getGeneros()){
+                 for (Genero gen:genJpa.findGeneroEntities()){
                      ComboBox1.addItem(gen.getNombre());//Almacena todos los generos
                  }
                  //Para que se vea
@@ -2288,7 +2289,7 @@ public class ventana extends javax.swing.JFrame {
                         List<Particular> Par = cliente.getParticular();
                         boolean existe = false; // Bandera para verificar la existencia
                         for (Particular playlist : Par) {
-                            if (playlist.getNombre().equals(name)) { // Comparar el nombre de la playlist
+                            if (playlist.getNombre().equalsIgnoreCase(name)) { // Comparar el nombre de la playlist
                                 existe = true; // Si existe, marca como verdadero
                                 break; // Salir del bucle, no necesitamos seguir buscando
                             }
@@ -2297,9 +2298,11 @@ public class ventana extends javax.swing.JFrame {
                             Espotify.CrearLista crearlista = new CrearLista(IC, name, Tipo, GoC);   
                             Text15.setText("Ingresado con exito");
                             Text15.setVisible(true);
+                            Text10.setVisible(false);
                         }else{
                             Text10.setText("ERROR: La playlist Particular ya existe");
                             Text10.setVisible(true);
+                            Text15.setVisible(false);
                         }
                     }else{//Caso en genero
                         TypedQuery<porDefecto> query = em.createQuery("SELECT p FROM porDefecto p", porDefecto.class);
@@ -2315,9 +2318,11 @@ public class ventana extends javax.swing.JFrame {
                             Espotify.CrearLista crearlista = new CrearLista(IC, name, Tipo, GoC);   
                             Text15.setText("Ingresado con exito");
                             Text15.setVisible(true);
+                            Text10.setVisible(false);
                         }else{
                             Text10.setText("ERROR: La playlist PorDefecto ya existe");
                             Text10.setVisible(true);
+                            Text15.setVisible(false);
                         }
                     }
                     
@@ -2408,9 +2413,7 @@ public class ventana extends javax.swing.JFrame {
                 NomTema = ComboBox6.getSelectedItem().toString();//Nombre del tema
                   if("Particular".equals(Tipo)){
                      String nom = ComboBox1.getSelectedItem().toString();//nick del cliente
-                        TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c WHERE c.nickname = :nickname", Cliente.class);
-                        query.setParameter("nickname", NomCli); // Establecemos el parámetro
-                        Cliente cliente = query.getSingleResult(); // Intentamos obtener un único cliente
+                        Cliente cliente = mu.buscarCliente(NomCli); // Intentamos obtener un único cliente
                         boolean existe = false;
                         for(Particular playlist : cliente.getParticular()){//Lista de playlist particulares del cliente
                             if(playlist.getNombre().equalsIgnoreCase(NomPlay)){//encuentro la playlist
@@ -2444,6 +2447,8 @@ public class ventana extends javax.swing.JFrame {
                             if(Def.getNombre().equalsIgnoreCase(NomPlay)){//encuentro la playlist
                                for(Tema tem : Def.getTemas()){
                                    if(tem.getNombre().equalsIgnoreCase(NomTema)){//encuentra el tema seleccionado en la lista de temas de la playlist
+                                       Text10.setText("Existe");
+                                       Text10.setVisible(true);
                                        existe = true;
                                        break;
                                    }

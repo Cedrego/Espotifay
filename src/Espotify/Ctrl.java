@@ -13,12 +13,20 @@ import Persistencia.TemaJpaController;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.porDefectoJpaController;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
  * @author Franco
  */
 public class Ctrl implements ICtrl{
+    
+    // Obtenemos el EntityManager desde la fábrica
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("pantallaPU");
+    EntityManager em = emf.createEntityManager();
 
     public GeneroJpaController generoJpaController = new GeneroJpaController();
     public TemaJpaController temaJpaController = new TemaJpaController();
@@ -218,9 +226,12 @@ public class Ctrl implements ICtrl{
     
     @Override
     public Particular CrearListParticular(String nombre, String nomCliente){
-        ManejadorUsuario mu = ManejadorUsuario.getInstance();
-        Cliente cli = mu.buscarCliente(nomCliente);
-        Particular nuevoParticular = new Particular(nombre, cli);
+        // Buscar el cliente usando el nickname
+        TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c WHERE c.nickname = :nickname", Cliente.class);
+        query.setParameter("nickname", nomCliente); // Establecemos el parámetro
+        Cliente cliente = query.getSingleResult(); // Intentamos obtener un único cliente
+            
+        Particular nuevoParticular = new Particular(nombre, cliente);
         
         try {
             particularJpaController.create(nuevoParticular);

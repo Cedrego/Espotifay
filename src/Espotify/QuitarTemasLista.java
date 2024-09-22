@@ -4,6 +4,8 @@
  */
 package Espotify;
 
+import Persistencia.ParticularJpaController;
+
 /**
  *
  * @author User
@@ -21,7 +23,14 @@ public class QuitarTemasLista {
             //Busco la playlist en su lista
             for(Particular Par : cliente.getParticular()){
                 if(Par.getNombre().equalsIgnoreCase(NomPlay)){//Encuentro la playlist particular del cliente
-                    Par.removerTema(NomTema);    
+                    Par.removerTema(NomTema);   
+                    ParticularJpaController particularJpaController = new ParticularJpaController();
+                    try {
+                        particularJpaController.edit(Par); // Actualizar el cliente en la base de datos
+                        delete = true; // Marcamos que se eliminó el tema
+                    } catch (Exception e) {
+                        System.out.println("Error al actualizar la playlist: " + e.getMessage());
+                    }
                     delete = true;
                 }      
                 if(delete == true){

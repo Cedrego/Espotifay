@@ -4,6 +4,10 @@
  */
 package Espotify;
 
+import Persistencia.ClienteJpaController;
+import Persistencia.ParticularJpaController;
+import Persistencia.porDefectoJpaController;
+
 /**
  *
  * @author User
@@ -27,6 +31,13 @@ public class AgregarTemasLista {
                         for (Tema tem : alb.getTemas()){//Los temas se almacenanan en albunes
                             if(tem.getNombre().equalsIgnoreCase(NomTema)){
                                 Par.addTema(tem);
+                                //Persistir los cambios
+                                ParticularJpaController particularJpaController = new ParticularJpaController();
+                                try {
+                                    particularJpaController.edit(Par); // Actualizar el cliente en la base de datos
+                                } catch (Exception e) {
+                                    e.printStackTrace(); // Manejo de errores
+                                } 
                                 break;
                             }
                         }
@@ -51,6 +62,13 @@ public class AgregarTemasLista {
                         for (Tema tem : alb.getTemas()){//Los temas se almacenanan en albunes
                             if(tem.getNombre().equalsIgnoreCase(NomTema)){
                                 Def.addTema(tem);
+                                //Persistir los cambios
+                                porDefectoJpaController porDefectoJpaController = new porDefectoJpaController();
+                                try {
+                                    porDefectoJpaController.edit(Def); // Actualizar el cliente en la base de datos
+                                } catch (Exception e) {
+                                    e.printStackTrace(); // Manejo de errores
+                                }
                                 break;
                             }
                         }
