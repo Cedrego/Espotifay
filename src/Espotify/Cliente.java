@@ -9,9 +9,11 @@ import Persistencia.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -33,7 +35,7 @@ public class Cliente extends Usuario {
     private List<Particular> particular; //coleccion
     
      // Relación autoreferencial para seguir a otros clientes
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "cliente_sigue_cliente",
         joinColumns = @JoinColumn(name = "cliente_id"),
@@ -41,10 +43,10 @@ public class Cliente extends Usuario {
     )
     private List<Cliente> cliSigueA;
     
-    @ManyToMany(mappedBy = "cliSigueA")
+    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "cliSigueA")
     private List<Cliente> seguidoPor;
     
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "ARTISTAS_SEGUIDOS",
         joinColumns = @JoinColumn(name = "CLIENTE"),

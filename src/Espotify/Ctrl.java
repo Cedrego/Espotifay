@@ -138,90 +138,148 @@ public class Ctrl implements ICtrl{
    
     @Override
     public void agregarSeguidorC(Cliente cliente, Cliente seguidor) {
-        if(!seguidor.getCliSigueA().contains(cliente)){
+    seguidor = em.merge(seguidor);
+    cliente = em.merge(cliente);
+    if (!seguidor.getArtSigueA().contains(cliente)){    
+        EntityManager em = null;
+        try {
             ClienteJpaController cliJpa = new ClienteJpaController();
-            seguidor.getCliSigueA().add(cliente);
-            cliente.getSeguidoPor().add(seguidor);
-            try {
-            cliJpa.edit(seguidor);
-            cliJpa.edit(cliente);
-            } catch (NonexistentEntityException e) {
-            } catch (Exception e) {}
-            System.out.println("ahora, "+seguidor.getNickname()+ " sigue a " +cliente.getNickname());
+            em = cliJpa.getEntityManager();
+            em.getTransaction().begin();
+
+            // Asegúrate de que ambos clientes están gestionados
+            seguidor = em.merge(seguidor);
+            cliente = em.merge(cliente);
+
+            // Inserta en la tabla de unión
+            em.createNativeQuery("INSERT INTO cliente_sigue_cliente (cliente_id, sigue_a_id) VALUES (?, ?)")
+                    .setParameter(1, seguidor.getNickname())
+                    .setParameter(2, cliente.getNickname())
+                    .executeUpdate();
+            
+            em.getTransaction().commit();
+            em.refresh(cliente);
+            em.refresh(seguidor);
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        System.out.println("ahora, "+seguidor.getNickname()+ " sigue a " +cliente.getNickname());
         } else {
             System.out.println(seguidor.getNickname() + " ya sigue a " + cliente.getNickname());
-        }
     }
+    
+}
+
+
     @Override
     public void agregarSeguidorA(Artista artista, Cliente seguidor) {
+        
         if (!seguidor.getArtSigueA().contains(artista)){
-            ClienteJpaController cliJpa = new ClienteJpaController();
-            ArtistaJpaController artJpa = new ArtistaJpaController();
-            seguidor.getArtSigueA().add(artista);
-            artista.getSeguidoPorA().add(seguidor);
+            EntityManager em = null;
             try {
-            cliJpa.edit(seguidor);
-            artJpa.edit(artista);
-            } catch (NonexistentEntityException e) {
-            } catch (Exception e) {}
+                ClienteJpaController cliJpa = new ClienteJpaController();
+                ArtistaJpaController artJpa = new ArtistaJpaController();
+                em = cliJpa.getEntityManager();
+                em.getTransaction().begin();
+                
+                // Asegúrate de que ambos clientes están gestionados
+                seguidor = em.merge(seguidor);
+                artista = em.merge(artista);
+
+                // Inserta en la tabla de unión
+                em.createNativeQuery("INSERT INTO artistas_seguidos (ARTISTA,CLIENTE) VALUES (?, ?)")
+                        .setParameter(1, artista.getNickname())
+                        .setParameter(2, seguidor.getNickname())
+                        .executeUpdate();
+
+                em.getTransaction().commit();
+                em.refresh(artista);
+                em.refresh(seguidor);
+            } catch (Exception e) {
+                if (em.getTransaction().isActive()) {
+                    em.getTransaction().rollback();
+                }
+                e.printStackTrace();
+            } finally {
+                em.close();
+            }
             System.out.println("ahora, "+seguidor.getNickname()+ " sigue a " +artista.getNickname());
         } else {
             System.out.println(seguidor.getNickname() + " ya sigue a " + artista.getNickname());
         }
+        
+        
     }
 
     @Override
     public void dejarSeguidorC(Cliente usuario, Cliente seguidor) {
-        ClienteJpaController cliJpa = new ClienteJpaController();
-
         // Verificar que efectivamente el seguidor sigue al usuario
-        if (seguidor.getCliSigueA().contains(usuario)) {
+        
             try {
-                // Mensajes de depuración para verificar el tamaño de las listas
-                System.out.println("Antes de eliminar: " + usuario.getSeguidoPor().size() + " seguidores.");
-                System.out.println("Antes de eliminar: " + seguidor.getCliSigueA().size() + " usuarios seguidos.");
+                ClienteJpaController cliJpa = new ClienteJpaController();
+                em = cliJpa.getEntityManager();
+                em.getTransaction().begin();
+                
+                // Asegúrate de que ambos clientes están gestionados
+                seguidor = em.merge(seguidor);
+                usuario = em.merge(usuario);
 
-                // Eliminar el seguidor de ambas listas
-                usuario.getSeguidoPor().remove(seguidor);
-                seguidor.getCliSigueA().remove(usuario);
-
-                // Mensajes de depuración después de la eliminación
-                System.out.println("Después de eliminar: " + usuario.getSeguidoPor().size() + " seguidores.");
-                System.out.println("Después de eliminar: " + seguidor.getCliSigueA().size() + " usuarios seguidos.");
-
-                // Persistir los cambios en la base de datos
-                cliJpa.edit(seguidor);
-                cliJpa.edit(usuario);
-
-                System.out.println("ahora, "+seguidor.getNickname()+ " ya no sigue a " +usuario.getNickname());
-
-            } catch (NonexistentEntityException e) {
-                System.out.println("Error: El usuario o el seguidor no existen.");
+                // Inserta en la tabla de unión
+                em.createNativeQuery("DELETE FROM cliente_sigue_cliente WHERE cliente_id = ? AND sigue_a_id = ?")
+                        .setParameter(1, seguidor.getNickname())
+                        .setParameter(2, usuario.getNickname())
+                        .executeUpdate();
+                em.getTransaction().commit();
+                em.refresh(usuario);
+                em.refresh(seguidor);
             } catch (Exception e) {
-                System.out.println("Error general: " + e.getMessage());
+                if (em.getTransaction().isActive()) {
+                    em.getTransaction().rollback();
+                }
+                e.printStackTrace();
+            } finally {
+                em.close();
             }
-        } else {
-            // Si el seguidor no estaba siguiendo al usuario, mostrar mensaje adecuado
-            System.out.println("No puedes dejar de seguir a alguien que no sigues.");
-        }
+        
     }
 
     @Override
     public void dejarSeguidorA(Artista usuario, Cliente seguidor) {
-        if(seguidor.getArtSigueA().contains(usuario)){
-            ClienteJpaController cliJpa = new ClienteJpaController();
-            ArtistaJpaController artJpa = new ArtistaJpaController();
-            usuario.getSeguidoPorA().remove(seguidor);
-            seguidor.getArtSigueA().remove(usuario);
+        
+            EntityManager em = null;
             try {
-            cliJpa.edit(seguidor);
-            artJpa.edit(usuario);
-            } catch (NonexistentEntityException e) {
-            } catch (Exception e) {}
-            System.out.println("ahora, "+seguidor.getNickname()+ " ya no sigue a " +usuario.getNickname());
-        } else {
-            System.out.println("no puedes dejar de seguir a alguen que no sigues");
-        }
+                ClienteJpaController cliJpa = new ClienteJpaController();
+                ArtistaJpaController artJpa = new ArtistaJpaController();
+                em = cliJpa.getEntityManager();
+                em.getTransaction().begin();
+                
+                // Asegúrate de que ambos clientes están gestionados
+                seguidor = em.merge(seguidor);
+                usuario = em.merge(usuario);
+
+                // Inserta en la tabla de unión
+                em.createNativeQuery("DELETE FROM artistas_seguidos WHERE ARTISTA = ? AND CLIENTE = ?")
+                        .setParameter(1, usuario.getNickname())
+                        .setParameter(2, seguidor.getNickname())
+                        .executeUpdate();
+
+                em.getTransaction().commit();
+                em.refresh(usuario);
+                em.refresh(seguidor);
+            } catch (Exception e) {
+                if (em.getTransaction().isActive()) {
+                    em.getTransaction().rollback();
+                }
+                e.printStackTrace();
+            } finally {
+                em.close();
+            }
+        
     }
     
     @Override

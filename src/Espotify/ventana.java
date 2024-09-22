@@ -1657,6 +1657,9 @@ public class ventana extends javax.swing.JFrame {
     private void ConsultarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarPerfilActionPerformed
         // TODO add your handling code here:
         hideAll();
+        hideAll();
+        hideAll();
+        hideAll();
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         option = 12;
 
@@ -2500,7 +2503,6 @@ public class ventana extends javax.swing.JFrame {
                    Text15.setText("Se dejo de seguir a "+usuario1+" con exito"); 
                    Text15.setVisible(true);
                 }
-                ComboBox4.setVisible(true);
             break;
             case 10:
                 //llamarGuardarTLA();
@@ -2953,6 +2955,26 @@ public class ventana extends javax.swing.JFrame {
                         // Añadir el panel del tema al jPanel4
                         jPanel11.add(info5);
                     }
+                     for(Artista cliSeguido : cli.getArtSigueA()){
+                        // Crear un nuevo panel para cada tema
+                        JPanel info6 = new JPanel();
+                        info6.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+                        JLabel labelNombre = new JLabel(cliSeguido.getNickname() + " - ");
+                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelNombre.setForeground(Color.BLACK);
+
+                        JLabel labelTipo = new JLabel("Artista" + " - ");
+                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelNombre.setForeground(Color.BLACK);
+
+                        // Agregar etiquetas al panel de tema
+                        info6.add(labelNombre);
+                        info6.add(labelTipo);
+
+                        // Añadir el panel del tema al jPanel4
+                        jPanel11.add(info6);
+                    }
                 }
                 if(cli.getSeguidoPor()!= null){
                     jPanel12.removeAll();
@@ -3136,7 +3158,7 @@ public class ventana extends javax.swing.JFrame {
                 Text6.setText("Direccion Web: " + art.getSitioWeb());
                 
                 if(art.getSeguidoPorA() != null){
-                    jLabel1.setText("Seguido por " + art.getAlbumes().size() + " Usuarios:");
+                    jLabel1.setText("Seguido por " + art.getSeguidoPorA().size() + " Usuarios:");
                     jPanel11.removeAll();
                     jPanel11.setLayout(new BoxLayout(jPanel11, BoxLayout.Y_AXIS));
                     for(Cliente cliSeguido : art.getSeguidoPorA()){
