@@ -4,6 +4,7 @@
  */
 package Persistencia;
 
+import Espotify.PartId;
 import Espotify.Particular;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.exceptions.PreexistingEntityException;
@@ -122,10 +123,14 @@ public class ParticularJpaController implements Serializable {
         }
     }
 
-    public Particular findParticular(String id) {
+    public Particular findParticular(String nombre, String cliente) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Particular.class, id);
+            // Crear un objeto de la clave compuesta
+            PartId partId = new PartId(nombre, cliente);
+
+            // Buscar usando la clave compuesta
+            return em.find(Particular.class, partId);
         } finally {
             em.close();
         }

@@ -6,6 +6,7 @@ package Espotify;
 
 import Persistencia.ParticularJpaController;
 import Persistencia.exceptions.NonexistentEntityException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 @IdClass(PartId.class)
-public class Particular extends Playlist {
+public class Particular extends Playlist implements Serializable {
     @Column (name="PRIVADO")
     private boolean privado;
     @Id
