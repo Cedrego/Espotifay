@@ -4,7 +4,12 @@
  */
 package Espotify;
 
+import Persistencia.ArtistaJpaController;
+import Persistencia.ClienteJpaController;
 import Persistencia.ParticularJpaController;
+import Persistencia.TemaJpaController;
+import Persistencia.porDefectoJpaController;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -23,10 +28,27 @@ public class QuitarTemasLista {
             //Busco la playlist en su lista
             for(Particular Par : cliente.getParticular()){
                 if(Par.getNombre().equalsIgnoreCase(NomPlay)){//Encuentro la playlist particular del cliente
-                    Par.removerTema(NomTema);   
                     ParticularJpaController particularJpaController = new ParticularJpaController();
+                    TemaJpaController temJpa = new TemaJpaController();
+                    EntityManager em = particularJpaController.getEntityManager();
+                    Tema tema = temJpa.findTema(NomTema);
                     try {
-                        particularJpaController.edit(Par); // Actualizar el cliente en la base de datos
+                        em = particularJpaController.getEntityManager();
+                        em.getTransaction().begin();
+
+                        // Asegúrate de que ambos clientes están gestionados
+                        tema = em.merge(tema);
+                        Par = em.merge(Par);
+
+                        // Inserta en la tabla de unión
+                        em.createNativeQuery("DELETE FROM particular_tema WHERE Particular_NOMBRE = ? AND temas_NOMBRE = ?")
+                                .setParameter(1, Par.getNombre())
+                                .setParameter(2, tema.getNombre())
+                                .executeUpdate();
+
+                        em.getTransaction().commit();
+                        em.refresh(tema);
+                        em.refresh(Par);
                         delete = true; // Marcamos que se eliminó el tema
                     } catch (Exception e) {
                         System.out.println("Error al actualizar la playlist: " + e.getMessage());
@@ -39,11 +61,35 @@ public class QuitarTemasLista {
             }
             
         } 
-        if("Por Defecto".equals(Tipo)){
+        else{
             //Agergo Tema a las lista de playlist particulares
             for(porDefecto Def : mp.getListPorDefecto()){
                 if(Def.getNombre().equalsIgnoreCase(NomPlay)){//Encuentro la playlist por defecto
-                    Def.removerTema(NomTema);
+                    porDefectoJpaController porDefJpa = new porDefectoJpaController();
+                    TemaJpaController temJpa = new TemaJpaController();
+                    EntityManager em = porDefJpa.getEntityManager();
+                    Tema tema = temJpa.findTema(NomTema);
+                    try {
+                        em = porDefJpa.getEntityManager();
+                        em.getTransaction().begin();
+
+                        // Asegúrate de que ambos clientes están gestionados
+                        tema = em.merge(tema);
+                        Def = em.merge(Def);
+
+                        // Inserta en la tabla de unión
+                        em.createNativeQuery("DELETE FROM pordefecto_tema WHERE porDefecto_NOMBRE = ? AND temas_NOMBRE = ?")
+                                .setParameter(1, Def.getNombre())
+                                .setParameter(2, tema.getNombre())
+                                .executeUpdate();
+
+                        em.getTransaction().commit();
+                        em.refresh(tema);
+                        em.refresh(Def);
+                        delete = true; // Marcamos que se eliminó el tema
+                    } catch (Exception e) {
+                        System.out.println("Error al actualizar la playlist: " + e.getMessage());
+                    }
                     delete = true;
                 }
                 if(delete == true){

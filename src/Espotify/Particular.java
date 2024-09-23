@@ -9,6 +9,8 @@ import Persistencia.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 
 /**
@@ -16,9 +18,11 @@ import javax.persistence.ManyToOne;
  * @author cedre
  */
 @Entity
+@IdClass(PartId.class)
 public class Particular extends Playlist {
     @Column (name="PRIVADO")
     private boolean privado;
+    @Id
     @ManyToOne
     private Cliente cliente;
     
