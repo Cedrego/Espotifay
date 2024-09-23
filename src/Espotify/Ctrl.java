@@ -285,10 +285,13 @@ public class Ctrl implements ICtrl{
     @Override
     public Particular CrearListParticular(String nombre, String nomCliente){
         // Buscar el cliente usando el nickname
-        TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c WHERE c.nickname = :nickname", Cliente.class);
+        /*TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c WHERE c.nickname = :nickname", Cliente.class);
         query.setParameter("nickname", nomCliente); // Establecemos el parámetro
         Cliente cliente = query.getSingleResult(); // Intentamos obtener un único cliente
-            
+        */
+        ManejadorUsuario mu = ManejadorUsuario.getInstance();
+        Cliente cliente = mu.buscarCliente(nomCliente);
+        
         Particular nuevoParticular = new Particular(nombre, cliente);
         
         try {
@@ -316,5 +319,12 @@ public class Ctrl implements ICtrl{
     @Override
     public void InfiniteVoid(){
         
+    }
+    
+    @Override
+    public void Publicar(String lista,String cli){
+        ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
+        Particular list = mp.buscarListP(lista,cli);
+        list.setPrivado(false);
     }
 }

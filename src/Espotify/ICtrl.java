@@ -24,4 +24,5 @@ public interface ICtrl {
     public abstract void InfiniteVoid();
     public abstract Particular CrearListParticular(String nombre, String nomCliente);
     public abstract porDefecto CrearListPorDefecto(String nombre, String genero);
+    public abstract void Publicar(String lista,String cli);
 }

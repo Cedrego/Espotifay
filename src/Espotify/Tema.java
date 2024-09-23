@@ -54,7 +54,10 @@ public class Tema implements Serializable {
     public List<Genero> getGeneros() {
         return generos;
     }
-
+    
+    public String getDireccion(){
+        return guardadoEn;
+    }
     
     //Set variables
     public void setNombre(String nom) {

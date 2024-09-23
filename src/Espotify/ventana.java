@@ -1550,13 +1550,22 @@ public class ventana extends javax.swing.JFrame {
                 Text5.setText("Generos:");
                 Text5.setVisible(true);
                 for (Genero gen : mm.getGeneros()){
-                    ComboBox1.addItem(gen.getNombre());
+                    if(gen.getNombre().equalsIgnoreCase("Genero")){
+                            
+                        }else{
+                            ComboBox1.addItem(gen.getNombre());
+                        }
                 }    
             }
             ComboBox1.setVisible(true);
         }
         
         if (option == 14) {
+            jPanel4.removeAll();
+            jPanel4.setVisible(false);
+            Text7.setVisible(false);
+            Text8.setVisible(false);
+            Text11.setVisible(false);
             if( selectedItem == "Cliente"){
                 ComboBox1.removeAllItems();
                 Text5.setText("Clientes:");
@@ -1571,7 +1580,11 @@ public class ventana extends javax.swing.JFrame {
                 Text5.setText("Generos:");
                 Text5.setVisible(true);
                 for (Genero gen : mm.getGeneros()){
-                    ComboBox1.addItem(gen.getNombre());
+                    if(gen.getNombre().equalsIgnoreCase("Genero")){
+                            
+                    }else{
+                        ComboBox1.addItem(gen.getNombre());
+                    }  
                 } 
             }
             ComboBox1.setVisible(true);
@@ -1998,6 +2011,7 @@ public class ventana extends javax.swing.JFrame {
         
         if (option == 14){
             String texto5 = Text5.getText();
+            ComboBox4.removeAllItems();
             if(texto5.equalsIgnoreCase("Clientes:")){
                 String nickCli = selectedItem != null ? selectedItem.toString() : "";
 
@@ -2005,8 +2019,10 @@ public class ventana extends javax.swing.JFrame {
                 
                 Text6.setText("Listas:");
                 Button2.setText("Seleccionar");
-                for (Particular part : cli.getParticular()){
-                    ComboBox4.addItem(part.getNombre());
+                if(cli!=null){
+                    for (Particular part : cli.getParticular()){
+                        ComboBox4.addItem(part.getNombre());
+                    }
                 }
             }
             if (texto5.equalsIgnoreCase("Generos:")){
@@ -2722,7 +2738,29 @@ public class ventana extends javax.swing.JFrame {
                 info.add(labelNombre);
                 info.add(labelDuracion);
                 
-
+                // Botón para abrir el archivo o URL
+                        JButton botonTema = new JButton("Escuchar");
+                        botonTema.addActionListener(e -> {
+                            String direccion = tem.getDireccion(); 
+                            if (direccion != null) {
+                                try{
+                                    // Si es un archivo
+                                    File file = new File(direccion);
+                                    if (file.exists()) {
+                                        Desktop.getDesktop().open(file);
+                                    } else {
+                                        // si no lo encuentro en la PC o es una URL muestro un pop up
+                                        JOptionPane.showMessageDialog(null, "Guardado en: "+ direccion);
+                                        JOptionPane.showMessageDialog(null, "(descargar archivos Soon™\n si el archivo existe en el sistema se puede reproducir)");
+                                    }
+                                }catch (IOException ex){
+                                    ex.printStackTrace();
+                                    JOptionPane.showMessageDialog(null, "Error al abrir el archivo:" + ex.getMessage());
+                                }
+                            }
+                        });
+                        
+                        info.add(botonTema);
                 // Añadir el panel del tema al jPanel4
                 jPanel4.add(info);
             }
@@ -2740,6 +2778,11 @@ public class ventana extends javax.swing.JFrame {
         if(option == 14){
             String nombreList = ComboBox4.getSelectedItem() != null ? ComboBox4.getSelectedItem().toString() : "";
             Object selectedItem = ComboBox1.getSelectedItem();
+            jPanel4.removeAll();
+            jPanel4.setVisible(false);
+            Text7.setVisible(false);
+            Text8.setVisible(false);
+            Text11.setVisible(false);
             
             if(texto5.equalsIgnoreCase("Clientes:")){
                 Particular lista = mp.buscarListP(nombreList,selectedItem.toString());
@@ -2751,7 +2794,7 @@ public class ventana extends javax.swing.JFrame {
                 
                 Text11.setText("Posicion || Nombre || Duracion");
             
-                jPanel4.removeAll();
+                
                 jPanel4.setLayout(new BoxLayout(jPanel4, BoxLayout.Y_AXIS));
                 
                 for(Tema tem : lista.getTemas()){
@@ -2776,7 +2819,29 @@ public class ventana extends javax.swing.JFrame {
                     info.add(labelNombre);
                     info.add(labelDuracion);
 
-
+                    // Botón para abrir el archivo o URL
+                        JButton botonTema = new JButton("Escuchar");
+                        botonTema.addActionListener(e -> {
+                            String direccion = tem.getDireccion(); 
+                            if (direccion != null) {
+                                try{
+                                    // Si es un archivo
+                                    File file = new File(direccion);
+                                    if (file.exists()) {
+                                        Desktop.getDesktop().open(file);
+                                    } else {
+                                        // si no lo encuentro en la PC o es una URL muestro un pop up
+                                        JOptionPane.showMessageDialog(null, "Guardado en: "+ direccion);
+                                        JOptionPane.showMessageDialog(null, "(descargar archivos Soon™\n si el archivo existe en el sistema se puede reproducir)");
+                                    }
+                                }catch (IOException ex){
+                                    ex.printStackTrace();
+                                    JOptionPane.showMessageDialog(null, "Error al abrir el archivo: " + ex.getMessage());
+                                }
+                            }
+                        });
+                        
+                        info.add(botonTema);
                     // Añadir el panel del tema al jPanel4
                     jPanel4.add(info);
                 }
@@ -2785,42 +2850,72 @@ public class ventana extends javax.swing.JFrame {
             
             if(texto5.equalsIgnoreCase("Generos:")){
                 porDefecto lista = mp.buscarListPD(nombreList);
-                String nomGen = selectedItem.toString();
+                String nomGen = selectedItem != null ? selectedItem.toString() : "";
                 Genero gen = mm.buscarGenero(nomGen);
                 
+                if(lista!=null){
                 Text7.setText("Nombre Playlist: "+lista.getNombre());
+                }
+                if(gen!=null){
                 Text8.setText("Genero: "+gen.getNombre());
+                }
                 Text11.setText("Posicion || Nombre || Duracion");
-                
-                for(Tema tem : lista.getTemas()){
-                    // Crear un nuevo panel para cada tema
-                    JPanel info = new JPanel();
-                    info.setLayout(new FlowLayout(FlowLayout.LEFT));
+                if(lista!=null){
+                    jPanel4.setLayout(new BoxLayout(jPanel4, BoxLayout.Y_AXIS));
+                    for(Tema tem : lista.getTemas()){
+                        // Crear un nuevo panel para cada tema
+                        JPanel info = new JPanel();
+                        info.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-                    JLabel labelNombre = new JLabel(tem.getNombre() + " - ");
-                    labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
-                    labelNombre.setForeground(Color.BLACK);
+                        JLabel labelNombre = new JLabel(tem.getNombre() + " - ");
+                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelNombre.setForeground(Color.BLACK);
 
-                    JLabel labelDuracion = new JLabel(tem.getDuracion() + " mins" + "  ");
-                    labelDuracion.setFont(new Font("Arial", Font.PLAIN, 12));
-                    labelDuracion.setForeground(Color.BLACK);
+                        JLabel labelDuracion = new JLabel(tem.getDuracion() + " mins" + "  ");
+                        labelDuracion.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelDuracion.setForeground(Color.BLACK);
 
-                    JLabel labelOrden = new JLabel(tem.getOrdenAlbum() + " - ");
-                    labelOrden.setFont(new Font("Arial", Font.PLAIN, 12));
-                    labelOrden.setForeground(Color.BLACK);
+                        JLabel labelOrden = new JLabel(tem.getOrdenAlbum() + " - ");
+                        labelOrden.setFont(new Font("Arial", Font.PLAIN, 12));
+                        labelOrden.setForeground(Color.BLACK);
 
-                    // Agregar etiquetas al panel de tema
-                    info.add(labelOrden); //el niño mimado pidio que modificara como se muestra
-                    info.add(labelNombre);
-                    info.add(labelDuracion);
-                    // Añadir el panel del tema al jPanel4
-                    jPanel4.add(info);
-                }   
+                        // Agregar etiquetas al panel de tema
+                        info.add(labelOrden); //el niño mimado pidio que modificara como se muestra
+                        info.add(labelNombre);
+                        info.add(labelDuracion);
+                        
+                        
+                        // Botón para abrir el archivo o URL
+                        JButton botonTema = new JButton("Escuchar");
+                        botonTema.addActionListener(e -> {
+                            String direccion = tem.getDireccion(); 
+                            if (direccion != null) {
+                                try{
+                                    // Si es un archivo
+                                    File file = new File(direccion);
+                                    if (file.exists()) {
+                                        Desktop.getDesktop().open(file);
+                                    } else {
+                                        // si no lo encuentro en la PC o es una URL muestro un pop up
+                                        JOptionPane.showMessageDialog(null, "Guardado en:"+ direccion);
+                                        JOptionPane.showMessageDialog(null, "(descargar archivos Soon™\n si el archivo existe en el sistema se puede reproducir)");
+                                    }
+                                }catch (IOException ex){
+                                    ex.printStackTrace();
+                                    JOptionPane.showMessageDialog(null, "Error al abrir el archivo:" + ex.getMessage());
+                                }
+                            }
+                        });
+                        
+                        info.add(botonTema);
+                        // Añadir el panel del tema al jPanel4
+                        jPanel4.add(info);
+                    }
+                }
             }
             
             Text7.setVisible(true);
             Text8.setVisible(true);
-            Text14.setVisible(true);
             Text11.setVisible(true);
             jPanel4.setVisible(true);
             jPanel4.revalidate();
