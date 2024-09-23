@@ -44,7 +44,7 @@ public class ParticularJpaController implements Serializable {
             em.persist(particular);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findParticular(particular.getNombre()) != null) {
+            if (findParticular(particular.getNombre(),particular.getCliente().getNickname()) != null) {
                 throw new PreexistingEntityException("Particular " + particular + " already exists.", ex);
             }
             throw ex;
@@ -66,7 +66,7 @@ public class ParticularJpaController implements Serializable {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
                 String id = particular.getNombre();
-                if (findParticular(id) == null) {
+                if (findParticular(id,particular.getCliente().getNickname()) == null) {
                     throw new NonexistentEntityException("The particular with id " + id + " no longer exists.");
                 }
             }

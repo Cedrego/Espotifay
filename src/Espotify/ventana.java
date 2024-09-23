@@ -2666,7 +2666,7 @@ public class ventana extends javax.swing.JFrame {
         
         if(option == 7){
             String lista = ComboBox4.getSelectedItem() != null ? ComboBox4.getSelectedItem().toString() : "";
-            Particular part = mp.buscarListP(lista);
+            Particular part = mp.buscarListP(lista,ComboBox5.getSelectedItem().toString());
             
             if(part.getPrivado()){
                 part.setPrivado(false);
@@ -2742,7 +2742,7 @@ public class ventana extends javax.swing.JFrame {
             Object selectedItem = ComboBox1.getSelectedItem();
             
             if(texto5.equalsIgnoreCase("Clientes:")){
-                Particular lista = mp.buscarListP(nombreList);
+                Particular lista = mp.buscarListP(nombreList,selectedItem.toString());
                 String nickCli = selectedItem.toString();
                 Cliente cli = mu.buscarCliente(nickCli);
                 
@@ -2942,9 +2942,9 @@ public class ventana extends javax.swing.JFrame {
             }
             
             if (operacion.equalsIgnoreCase("Lista")) {
-                Particular part = mp.buscarListP(textfield7);
+                Particular part = mp.buscarListP(textfield7,nickCliente);
                 porDefecto pd = mp.buscarListPD(textfield7);
-                if(mp.buscarListP(textfield7)!=null){
+                if(mp.buscarListP(textfield7,nickCliente)!=null){
                     if(cliente.buscarListPFav(textfield7)==null){
                         if(part.getPrivado()==false){
                             Text10.setVisible(false);
@@ -2976,7 +2976,7 @@ public class ventana extends javax.swing.JFrame {
                             }
                 } 
                 
-                if((mp.buscarListP(textfield7))==null && mp.buscarListPD(textfield7) ==null){
+                if((mp.buscarListP(textfield7,nickCliente))==null && mp.buscarListPD(textfield7) ==null){
                     Text15.setVisible(false);
                     Text10.setText("Lista "+textfield7+" no existe");
                     Text10.setVisible(true);
