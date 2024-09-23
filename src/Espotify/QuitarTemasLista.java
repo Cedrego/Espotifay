@@ -39,11 +39,13 @@ public class QuitarTemasLista {
                         // Asegúrate de que ambos clientes están gestionados
                         tema = em.merge(tema);
                         Par = em.merge(Par);
+                        cliente = em.merge(cliente);
 
                         // Inserta en la tabla de unión
-                        em.createNativeQuery("DELETE FROM particular_tema WHERE Particular_NOMBRE = ? AND temas_NOMBRE = ?")
+                        em.createNativeQuery("DELETE FROM particular_tema WHERE NOMBRE = ? AND temas_NOMBRE = ? AND CLIENTE_NICK = ?")
                                 .setParameter(1, Par.getNombre())
                                 .setParameter(2, tema.getNombre())
+                                .setParameter(3, cliente.getNickname())
                                 .executeUpdate();
 
                         em.getTransaction().commit();
@@ -51,9 +53,15 @@ public class QuitarTemasLista {
                         em.refresh(Par);
                         delete = true; // Marcamos que se eliminó el tema
                     } catch (Exception e) {
-                        System.out.println("Error al actualizar la playlist: " + e.getMessage());
+                        if (em.getTransaction().isActive()) {
+                            em.getTransaction().rollback();
+                        }
+                        e.printStackTrace();
+                    } finally {
+                        em.close();
                     }
                     delete = true;
+                    
                 }      
                 if(delete == true){
                     break;
