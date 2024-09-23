@@ -68,11 +68,10 @@ public class InfiniteVoid {
         mu.addCliente(CM);
         Cliente FD = ictrl.crearCliente("DeathEyeAlpha", "Franco", "DaCosta", "franco.dacosta@estudiantes.utec.edu.uy", 1, 5, 2003);
         mu.addCliente(FD);
-        Cliente TC = ictrl.crearCliente("cedrego", "Thiago", "Cedres", "thiago.cedres@estudiantes.utec.edu.uy", 23, 12, 2003);
+        Cliente TC = ictrl.crearCliente("Abel", "Thiago", "Cedrés", "thiago.cedres@estudiantes.utec.edu.uy", 23, 12, 2003);
         mu.addCliente(TC);
         Cliente EB = ictrl.crearCliente("goliat1445", "Enzo", "Brun", "enzo.brun@estudiantes.utec.edu.uy", 11, 3, 2004);
         mu.addCliente(EB);
-        
         //Seguidos
         
         //Creacion de generos
@@ -172,6 +171,7 @@ public class InfiniteVoid {
         VPLT.add(T12);
         Tema T13 = ictrl.CrearTema("In the Navy", "3:13", 3,"bit.ly/SCvpinthenavy", DisDpoPcl);
         VPLT.add(T13);
+        
                 
         List<Tema> DMVT = new ArrayList<>();
         Tema T21 = ictrl.CrearTema("Personal Jesus", "4:56", 1,"picosong.com/download/zfQ3", Epo);
