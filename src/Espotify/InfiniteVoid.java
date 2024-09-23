@@ -364,27 +364,27 @@ public class InfiniteVoid {
         
         
         Espotify.CrearLista crearlista4 = new CrearLista(ictrl, "Musica Inspiradora", "Particular", VC.getNickname());
-        Particular LP1 = ictrl.CrearListParticular("Musica Inspiradora",VC.getNickname());
+        Particular LP1 = mp.buscarListP("Musica Inspiradora", VC.getNickname());
         mp.addPartList(LP1);
         
         Espotify.CrearLista crearlista5 = new CrearLista(ictrl, "De Todo Un Poco", "Particular", SO.getNickname());
-        Particular LP2 = ictrl.CrearListParticular("De Todo Un Poco",SO.getNickname());
+        Particular LP2 = mp.buscarListP("De Todo Un Poco", SO.getNickname());
         mp.addPartList(LP2);
         
         Espotify.CrearLista crearlista6 = new CrearLista(ictrl, "Para Cocinar", "Particular",WW.getNickname());
-        Particular LP3 = ictrl.CrearListParticular("Para Cocinar",WW.getNickname());
+        Particular LP3 = mp.buscarListP("Para Cocinar", WW.getNickname());
         mp.addPartList(LP3);
         
         Espotify.CrearLista crearlista7 = new CrearLista(ictrl, "Para Las Chicas", "Particular",ML.getNickname());
-        Particular LP4 = ictrl.CrearListParticular("Para Las Chicas",ML.getNickname());
+        Particular LP4 = mp.buscarListP("Para Las Chicas", ML.getNickname());
         mp.addPartList(LP4);
         
         Espotify.CrearLista crearlista8 = new CrearLista(ictrl, "Fiesteras", "Particular", CB.getNickname());
-        Particular LP5 = ictrl.CrearListParticular("Fiesteras",CB.getNickname());
+        Particular LP5 = mp.buscarListP("Fiesteras", CB.getNickname());
         mp.addPartList(LP5);
         
         Espotify.CrearLista crearlista9 = new CrearLista(ictrl, "Mis Favoritas", "Particular", CB.getNickname());
-        Particular LP6 = ictrl.CrearListParticular("Mis Favoritas",CB.getNickname());
+        Particular LP6 = mp.buscarListP("Mis Favoritas", CB.getNickname());
         mp.addPartList(LP6);
 
         ictrl.Publicar("Musica Inspiradora",VC.getNickname());
