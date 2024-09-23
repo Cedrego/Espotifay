@@ -42,9 +42,9 @@ public class ManejadorPlaylist {
         this.porDefectpList.add(def);
     }
     
-    public Particular buscarListP(String nom){
-        if(partJpa.findParticular(nom)!=null){
-            return partJpa.findParticular(nom);
+    public Particular buscarListP(String nom,String cli){
+        if(partJpa.findParticular(nom,cli)!=null){
+            return partJpa.findParticular(nom,cli);
         }
         return null;
     }

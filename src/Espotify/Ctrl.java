@@ -322,9 +322,9 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
-    public void Publicar(String lista){
+    public void Publicar(String lista,String cli){
         ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
-        Particular list = mp.buscarListP(lista);
+        Particular list = mp.buscarListP(lista,cli);
         list.setPrivado(false);
     }
 }

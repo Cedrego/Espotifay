@@ -349,50 +349,49 @@ public class InfiniteVoid {
         ictrl.agregarSeguidorC(SO, EL);
         ictrl.agregarSeguidorC(PA, EL);
         
+        Espotify.CrearLista crearlista = new CrearLista(ictrl, "Noche De La Nostalgia", "porDefecto", PCL.getNombre());
         porDefecto LD1 = ictrl.CrearListPorDefecto("Noche De La Nostalgia",PCL.getNombre());
         mp.addPorDefecto(LD1);
+        
+         Espotify.CrearLista crearlista2 = new CrearLista(ictrl, "Rock En Español", "porDefecto", RKL.getNombre());
         porDefecto LD2 = ictrl.CrearListPorDefecto("Rock En Español",RKL.getNombre());
         mp.addPorDefecto(LD2);
+        
+        Espotify.CrearLista crearlista3 = new CrearLista(ictrl, "Musica Clasica", "porDefecto", CLA.getNombre());
         porDefecto LD3 = ictrl.CrearListPorDefecto("Musica Clasica",CLA.getNombre());
         mp.addPorDefecto(LD3);
         
+        
+        
+        Espotify.CrearLista crearlista4 = new CrearLista(ictrl, "Musica Inspiradora", "Particular", VC.getNickname());
         Particular LP1 = ictrl.CrearListParticular("Musica Inspiradora",VC.getNickname());
         mp.addPartList(LP1);
+        
+        Espotify.CrearLista crearlista5 = new CrearLista(ictrl, "De Todo Un Poco", "Particular", SO.getNickname());
         Particular LP2 = ictrl.CrearListParticular("De Todo Un Poco",SO.getNickname());
         mp.addPartList(LP2);
+        
+        Espotify.CrearLista crearlista6 = new CrearLista(ictrl, "Para Cocinar", "Particular",WW.getNickname());
         Particular LP3 = ictrl.CrearListParticular("Para Cocinar",WW.getNickname());
         mp.addPartList(LP3);
+        
+        Espotify.CrearLista crearlista7 = new CrearLista(ictrl, "Para Las Chicas", "Particular",ML.getNickname());
         Particular LP4 = ictrl.CrearListParticular("Para Las Chicas",ML.getNickname());
         mp.addPartList(LP4);
+        
+        Espotify.CrearLista crearlista8 = new CrearLista(ictrl, "Fiesteras", "Particular", CB.getNickname());
         Particular LP5 = ictrl.CrearListParticular("Fiesteras",CB.getNickname());
         mp.addPartList(LP5);
+        
+        Espotify.CrearLista crearlista9 = new CrearLista(ictrl, "Mis Favoritas", "Particular", CB.getNickname());
         Particular LP6 = ictrl.CrearListParticular("Mis Favoritas",CB.getNickname());
         mp.addPartList(LP6);
 
-        ictrl.Publicar("Musica Inspiradora");
-        ictrl.Publicar("De Todo Un Poco");
-        ictrl.Publicar("Para Las Chicas");
-        ictrl.Publicar("Fiesteras");
+        ictrl.Publicar("Musica Inspiradora",VC.getNickname());
+        ictrl.Publicar("De Todo Un Poco",SO.getNickname());
+        ictrl.Publicar("Para Las Chicas",ML.getNickname());
+        ictrl.Publicar("Fiesteras",CB.getNickname());
         
-        LD1.addTema(T11);
-        LD1.addTema(T12);
-        LD1.addTema(T13);
-        LD1.addTema(T31);
-        LD1.addTema(T32);
-        LD1.addTema(T41);
-        LD1.addTema(T42);
-        LD1.addTema(T43);
-        LD1.addTema(T51);
-        
-        LD2.addTema(T61);
-        LD2.addTema(T71);
-        LD2.addTema(T72);
-        
-        LD3.addTema(T81);
-        LD3.addTema(T91);
-        
-        LP1.addTema(T81);
-        LP1.addTema(T91);
         LP1.addTema(T21);
         
         LP2.addTema(T31);
@@ -445,6 +444,5 @@ public class InfiniteVoid {
         CB.addAlbumFav(AMA);
         
         EL.addTemaFav(T101);
-        
     }
 }

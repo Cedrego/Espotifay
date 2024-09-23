@@ -4,6 +4,7 @@
  */
 package Persistencia;
 
+import Espotify.PartId;
 import Espotify.Particular;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.exceptions.PreexistingEntityException;
@@ -43,7 +44,7 @@ public class ParticularJpaController implements Serializable {
             em.persist(particular);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findParticular(particular.getNombre()) != null) {
+            if (findParticular(particular.getNombre(),particular.getCliente().getNickname()) != null) {
                 throw new PreexistingEntityException("Particular " + particular + " already exists.", ex);
             }
             throw ex;
@@ -65,7 +66,7 @@ public class ParticularJpaController implements Serializable {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
                 String id = particular.getNombre();
-                if (findParticular(id) == null) {
+                if (findParticular(id,particular.getCliente().getNickname()) == null) {
                     throw new NonexistentEntityException("The particular with id " + id + " no longer exists.");
                 }
             }
@@ -122,10 +123,14 @@ public class ParticularJpaController implements Serializable {
         }
     }
 
-    public Particular findParticular(String id) {
+    public Particular findParticular(String nombre, String cliente) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Particular.class, id);
+            // Crear un objeto de la clave compuesta
+            PartId partId = new PartId(nombre, cliente);
+
+            // Buscar usando la clave compuesta
+            return em.find(Particular.class, partId);
         } finally {
             em.close();
         }
