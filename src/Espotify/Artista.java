@@ -27,7 +27,7 @@ public class Artista extends Usuario {
     //VER BIEN COMO FUNCIONA CON CLASES EXTENDIDAS
     @Column (name="SITIO_WEB")
     private String SitioWeb;
-    @Column (name="BIOGRAFIA")
+    @Column (name="BIOGRAFIA", length=2000)
     private String Biografia;
     //aca va una join table
     @OneToMany
