@@ -373,5 +373,78 @@ public class InfiniteVoid {
         ictrl.Publicar("De Todo Un Poco");
         ictrl.Publicar("Para Las Chicas");
         ictrl.Publicar("Fiesteras");
+        
+        LD1.addTema(T11);
+        LD1.addTema(T12);
+        LD1.addTema(T13);
+        LD1.addTema(T31);
+        LD1.addTema(T32);
+        LD1.addTema(T41);
+        LD1.addTema(T42);
+        LD1.addTema(T43);
+        LD1.addTema(T51);
+        
+        LD2.addTema(T61);
+        LD2.addTema(T71);
+        LD2.addTema(T72);
+        
+        LD3.addTema(T81);
+        LD3.addTema(T91);
+        
+        LP1.addTema(T81);
+        LP1.addTema(T91);
+        LP1.addTema(T21);
+        
+        LP2.addTema(T31);
+        LP2.addTema(T32);
+        LP2.addTema(T51);
+        LP2.addTema(T81);
+        
+        LP3.addTema(T21);
+        LP3.addTema(T22);
+        LP3.addTema(T41);
+        LP3.addTema(T42);
+        
+        LP4.addTema(T31);
+        LP4.addTema(T51);
+        LP4.addTema(T91);
+        LP4.addTema(T101);
+        LP4.addTema(T121);
+        
+        LP5.addTema(T11);
+        LP5.addTema(T12);
+        LP5.addTema(T13);
+        LP5.addTema(T42);
+        LP5.addTema(T131);
+        
+        LP6.addTema(T61);
+        LP6.addTema(T91);
+        LP6.addTema(T111);
+        
+        VC.addTemaFav(T71);
+        VC.addPDFav(LD1);
+        VC.addPDFav(LD3);
+        VC.addAlbumFav(DMV);
+        VC.addAlbumFav(LDC);
+        VC.addAlbumFav(CPP);
+        
+        SO.addPDFav(LD3);
+        
+        PA.addTemaFav(T61);
+        PA.addPDFav(LD1);
+        PA.addPDFav(LD2);
+        
+        WW.addParticularFav(LP1);
+        
+        OK.addAlbumFav(LDC);
+        OK.addAlbumFav(CPP);
+        
+        CB.addTemaFav(T91);
+        CB.addPDFav(LD1);
+        CB.addPDFav(LD2);
+        CB.addAlbumFav(AMA);
+        
+        EL.addTemaFav(T101);
+        
     }
 }
