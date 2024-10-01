@@ -4,8 +4,8 @@
  */
 package Persistencia;
 
-import Espotify.PartId;
-import Espotify.Particular;
+import Logica.PartId;
+import Logica.Particular;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;

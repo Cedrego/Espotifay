@@ -4,7 +4,7 @@
  */
 package Persistencia;
 
-import Espotify.Usuario;
+import Logica.Usuario;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;

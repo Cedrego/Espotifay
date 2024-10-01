@@ -2,15 +2,15 @@
 <persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence           http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
   <persistence-unit name="pantallaPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>Espotify.Album</class>
-    <class>Espotify.Artista</class>
-    <class>Espotify.Cliente</class>
-    <class>Espotify.Genero</class>
-    <class>Espotify.Particular</class>
-    <class>Espotify.Playlist</class>
-    <class>Espotify.Tema</class>
-    <class>Espotify.Usuario</class>
-    <class>Espotify.porDefecto</class>
+    <class>Logica.Particular</class>
+    <class>Logica.Tema</class>
+    <class>Logica.Playlist</class>
+    <class>Logica.Usuario</class>
+    <class>Logica.Cliente</class>
+    <class>Logica.Album</class>
+    <class>Logica.porDefecto</class>
+    <class>Logica.Genero</class>
+    <class>Logica.Artista</class>
     <shared-cache-mode>ALL</shared-cache-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/espotify?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
