@@ -21,7 +21,7 @@ public class InfiniteVoid {
         ManejadorMusica mm = ManejadorMusica.getInstance();
         ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
         ictrl = ic;
-        
+        /*
         //Creacion de artistas
         Artista VP = ictrl.crearArtista("vpeople", "Village", "People", "vpeople@tuta.io", 1, 1, 1977,"Village People es una innovadora formación musical de estilo disco de finales de los años 70. Fue famosa tanto por sus peculiares disfraces, como por sus canciones pegadizas, con letras sugerentes y llenas de dobles sentidos.","www.officialvillagepeople.com");
         mu.addArtista(VP);
@@ -444,5 +444,6 @@ public class InfiniteVoid {
         CB.addAlbumFav(AMA);
         
         EL.addTemaFav(T101);
+        */
     }
 }

@@ -5,6 +5,7 @@
 package Logica;
 
 import Persistencia.ControladoraPersistencia;
+import Capa_Presentacion.Dashboard;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Pantalla {
     public static void main(String[] args) {
         // TODO code application logic here
         ControladoraPersistencia ctrl = new ControladoraPersistencia();
-        ventana espotify = new ventana();
-        espotify.setVisible(true);
+        Dashboard ventana = new Dashboard();
+        ventana.setVisible(true);
     }
 }

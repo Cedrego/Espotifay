@@ -1,5 +1,9 @@
 package Capa_Presentacion;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -16,7 +20,41 @@ public class IAltaPerfil extends javax.swing.JPanel {
      */
     public IAltaPerfil() {
         initComponents();
-    }
+        Text1.setText("Nickname*");
+        Text2.setText("Nombre*");
+        Text3.setText("Apellido");
+        Text4.setText("Correo*");
+        Text5.setText("Fecha de Nacimiento*");
+        Text6.setText("Tipo de Perfil");
+        Text7.setText("Pagina Web");
+        Text8.setText("Bibliografia*");
+        Text9.setText("");
+        TextField1.setText("");
+        TextField2.setText("");
+        TextField3.setText("");
+        TextField4.setText("");
+        TextField6.setText("");
+        TextArea1.setText("");
+        jComboBox4.addItem("Cliente");
+        jComboBox4.addItem("Artista");
+        
+        List<Integer> anios = new ArrayList<>();
+        for (int i = 2025; i >= 1920; i--) {
+        anios.add(i);
+        }
+        
+        List<String> meses = Arrays.asList(
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        );
+        
+        for(int anio : anios){
+            jComboBox3.addItem(String.valueOf(anio));
+        }
+        
+        for(String mes : meses){
+            jComboBox2.addItem(mes);
+        }
+    }   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,14 +85,13 @@ public class IAltaPerfil extends javax.swing.JPanel {
         jScrollPane6 = new javax.swing.JScrollPane();
         TextArea1 = new javax.swing.JTextArea();
         ACEPTAR = new javax.swing.JButton();
+        Text9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Text1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text1.setForeground(new java.awt.Color(255, 255, 255));
         Text1.setText("Text1");
-        add(Text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 310, 20));
 
         TextField1.setBackground(new java.awt.Color(102, 102, 102));
         TextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -66,12 +103,10 @@ public class IAltaPerfil extends javax.swing.JPanel {
                 TextField1ActionPerformed(evt);
             }
         });
-        add(TextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 310, 20));
 
         Text2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text2.setForeground(new java.awt.Color(255, 255, 255));
         Text2.setText("Text2");
-        add(Text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 310, 20));
 
         TextField2.setBackground(new java.awt.Color(102, 102, 102));
         TextField2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -83,12 +118,10 @@ public class IAltaPerfil extends javax.swing.JPanel {
                 TextField2ActionPerformed(evt);
             }
         });
-        add(TextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 310, 20));
 
         Text3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text3.setForeground(new java.awt.Color(255, 255, 255));
         Text3.setText("Text3");
-        add(Text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 310, 20));
 
         TextField3.setBackground(new java.awt.Color(102, 102, 102));
         TextField3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -100,12 +133,10 @@ public class IAltaPerfil extends javax.swing.JPanel {
                 TextField3ActionPerformed(evt);
             }
         });
-        add(TextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 310, 20));
 
         Text4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text4.setForeground(new java.awt.Color(255, 255, 255));
         Text4.setText("Text4");
-        add(Text4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 310, 20));
 
         TextField4.setBackground(new java.awt.Color(102, 102, 102));
         TextField4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -117,29 +148,54 @@ public class IAltaPerfil extends javax.swing.JPanel {
                 TextField4ActionPerformed(evt);
             }
         });
-        add(TextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 310, 20));
 
         Text5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text5.setForeground(new java.awt.Color(255, 255, 255));
         Text5.setText("Text5");
-        add(Text5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 310, 20));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+        jComboBox1.setBackground(new java.awt.Color(102, 102, 102));
+        jComboBox1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 110, -1));
+        jComboBox2.setBackground(new java.awt.Color(102, 102, 102));
+        jComboBox2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 90, -1));
+        jComboBox3.setBackground(new java.awt.Color(102, 102, 102));
+        jComboBox3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jComboBox3.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
         Text6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text6.setForeground(new java.awt.Color(255, 255, 255));
         Text6.setText("Text6");
-        add(Text6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 310, 20));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
+        jComboBox4.setBackground(new java.awt.Color(102, 102, 102));
+        jComboBox4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jComboBox4.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
+        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox4ActionPerformed(evt);
+            }
+        });
 
         TextField6.setBackground(new java.awt.Color(102, 102, 102));
         TextField6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -151,17 +207,14 @@ public class IAltaPerfil extends javax.swing.JPanel {
                 TextField6ActionPerformed(evt);
             }
         });
-        add(TextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 310, 20));
 
         Text7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text7.setForeground(new java.awt.Color(255, 255, 255));
         Text7.setText("Text7");
-        add(Text7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 310, 20));
 
         Text8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text8.setForeground(new java.awt.Color(255, 255, 255));
         Text8.setText("Text8");
-        add(Text8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 310, 20));
 
         TextArea1.setBackground(new java.awt.Color(102, 102, 102));
         TextArea1.setColumns(20);
@@ -170,12 +223,106 @@ public class IAltaPerfil extends javax.swing.JPanel {
         TextArea1.setRows(5);
         jScrollPane6.setViewportView(TextArea1);
 
-        add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 310, 110));
-
         ACEPTAR.setBackground(new java.awt.Color(0, 204, 102));
-        ACEPTAR.setForeground(new java.awt.Color(0, 0, 0));
+        ACEPTAR.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         ACEPTAR.setText("ACEPTAR");
-        add(ACEPTAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, -1, -1));
+        ACEPTAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ACEPTARActionPerformed(evt);
+            }
+        });
+
+        Text9.setBackground(new java.awt.Color(255, 255, 255));
+        Text9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text9.setForeground(new java.awt.Color(255, 255, 255));
+        Text9.setText("Text9");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Text9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ACEPTAR))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 428, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Text8, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Text8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ACEPTAR)
+                    .addComponent(Text9))
+                .addContainerGap())
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField1ActionPerformed
@@ -198,6 +345,116 @@ public class IAltaPerfil extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextField6ActionPerformed
 
+    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+        // TODO add your handling code here:
+        Object selectedItem = jComboBox4.getSelectedItem();
+        
+        if (selectedItem != null && !selectedItem.toString().isEmpty()) {
+            String selectedText = selectedItem.toString();
+            System.out.println("ComboBox4: " + selectedText);
+        } else {
+            System.out.println("");
+        }
+        
+        if(selectedItem.toString().equals("Artista")){
+            Text7.setVisible(true);
+            TextField6.setVisible(true);
+            Text8.setVisible(true);
+            TextArea1.setVisible(true);
+            jScrollPane6.setVisible(true);
+        }else{
+            Text7.setVisible(false);
+            TextField6.setVisible(false);
+            Text8.setVisible(false);
+            TextArea1.setVisible(false);
+            jScrollPane6.setVisible(false);
+            TextField6.setText("");
+            TextArea1.setText("");
+        }
+    }//GEN-LAST:event_jComboBox4ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        Object selectedItem = jComboBox2.getSelectedItem();
+        
+        if (selectedItem != null && !selectedItem.toString().isEmpty()) {
+            String selectedText = selectedItem.toString();
+            System.out.println("ComboBox2: " + selectedText);
+        } else {
+            System.out.println("");
+        }
+        
+        List<Integer> dias = new ArrayList<>();
+        if(selectedItem.toString().equals("Febrero")){
+            for (int i = 1; i <= 29; i++) {
+                dias.add(i);
+            }
+        }else if(selectedItem.toString().equals("Abril") || selectedItem.toString().equals("Junio") || selectedItem.toString().equals("Septiembre") || selectedItem.equals("Noviembre")){
+            for (int i = 1; i <= 30; i++) {
+                dias.add(i);
+            }
+        }else{
+            for (int i = 1; i <= 31; i++) {
+                dias.add(i);
+            }
+        }
+        for(int dia : dias){
+            jComboBox1.addItem(String.valueOf(dia)); // Convertir el int a String
+
+        }
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
+        // TODO add your handling code here:
+        if(TextField1.getText().equals("")){
+            Text9.setText("Ingrese un Nickname");
+            Text9.setVisible(true);
+        }else if(TextField2.getText().equals("")){
+            Text9.setText("Ingrese un Nombre");
+            Text9.setVisible(true);
+        }else if(TextField4.getText().equals("")){
+            Text9.setText("Ingrese un Correo");
+            Text9.setVisible(true);
+        }else if(jComboBox4.getSelectedItem().toString().equals("Artista")){
+            if(TextArea1.getText().equals("")){
+                Text9.setText("Ingrese una Biografia");
+                Text9.setVisible(true);
+            }else{
+                //crearArtista
+                Text9.setText("Se creo al Atrista "+TextField1.getText()+" con exito");
+                Text9.setVisible(true);
+            }
+        }else{
+            //crearCliente
+            Text9.setText("Se creo al Atrista "+TextField1.getText()+" con exito");
+            Text9.setVisible(true);
+        }
+    }//GEN-LAST:event_ACEPTARActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        Object selectedItem = jComboBox1.getSelectedItem();
+        
+        if (selectedItem != null && !selectedItem.toString().isEmpty()) {
+            String selectedText = selectedItem.toString();
+            System.out.println("ComboBox1: " + selectedText);
+        } else {
+            System.out.println("");
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+        Object selectedItem = jComboBox3.getSelectedItem();
+        
+        if (selectedItem != null && !selectedItem.toString().isEmpty()) {
+            String selectedText = selectedItem.toString();
+            System.out.println("ComboBox3: " + selectedText);
+        } else {
+            System.out.println("");
+        }
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ACEPTAR;
@@ -209,6 +466,7 @@ public class IAltaPerfil extends javax.swing.JPanel {
     private javax.swing.JLabel Text6;
     private javax.swing.JLabel Text7;
     private javax.swing.JLabel Text8;
+    private javax.swing.JLabel Text9;
     private javax.swing.JTextArea TextArea1;
     private javax.swing.JTextField TextField1;
     private javax.swing.JTextField TextField2;

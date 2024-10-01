@@ -2,7 +2,9 @@ package Capa_Presentacion;
 
 
 import java.awt.BorderLayout;
+import javax.swing.*;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -31,6 +33,7 @@ public class Dashboard extends javax.swing.JFrame {
         
         Content.removeAll();
         Content.add(p,BorderLayout.CENTER);
+        Content.setBorder(new EmptyBorder(0, 10, 0, 0));
         Content.revalidate();
         Content.repaint();
     }
@@ -197,17 +200,7 @@ public class Dashboard extends javax.swing.JFrame {
         Logo.setText("Espotify");
 
         Content.setBackground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
-        Content.setLayout(ContentLayout);
-        ContentLayout.setHorizontalGroup(
-            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 634, Short.MAX_VALUE)
-        );
-        ContentLayout.setVerticalGroup(
-            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        Content.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -291,6 +284,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jbAltaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaPerfilActionPerformed
         IAltaPerfil p = new IAltaPerfil();
+        p.setBorder(new EmptyBorder(0, 3, 0, 3)); // (top, left, bottom, right)
         ShowPanel(p);
     }//GEN-LAST:event_jbAltaPerfilActionPerformed
 
