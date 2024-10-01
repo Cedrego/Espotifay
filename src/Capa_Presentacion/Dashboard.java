@@ -63,10 +63,10 @@ public class Dashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(45, 45, 45));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
         jbAltaPerfil.setBackground(new java.awt.Color(0, 204, 102));
-        jbAltaPerfil.setForeground(new java.awt.Color(0, 0, 0));
+        jbAltaPerfil.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbAltaPerfil.setText("Alta Perfil");
         jbAltaPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +75,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jbAltaGenero.setBackground(new java.awt.Color(0, 204, 102));
-        jbAltaGenero.setForeground(new java.awt.Color(0, 0, 0));
+        jbAltaGenero.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbAltaGenero.setText("Alta Genero");
         jbAltaGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,7 +84,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jbAltaAlbum.setBackground(new java.awt.Color(0, 204, 102));
-        jbAltaAlbum.setForeground(new java.awt.Color(0, 0, 0));
+        jbAltaAlbum.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbAltaAlbum.setText("Alta Album");
         jbAltaAlbum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +93,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jbCrearLista.setBackground(new java.awt.Color(0, 204, 102));
-        jbCrearLista.setForeground(new java.awt.Color(0, 0, 0));
+        jbCrearLista.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbCrearLista.setText("Crear Lista");
         jbCrearLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +102,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jbAgregarTema.setBackground(new java.awt.Color(0, 204, 102));
-        jbAgregarTema.setForeground(new java.awt.Color(0, 0, 0));
+        jbAgregarTema.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbAgregarTema.setText("Agregar Temas a Lista");
         jbAgregarTema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +111,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jbQuitarTema.setBackground(new java.awt.Color(0, 204, 102));
-        jbQuitarTema.setForeground(new java.awt.Color(0, 0, 0));
+        jbQuitarTema.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbQuitarTema.setText("Quitar Temas a Lista");
         jbQuitarTema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,7 +120,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jbPublicarLista.setBackground(new java.awt.Color(0, 204, 102));
-        jbPublicarLista.setForeground(new java.awt.Color(0, 0, 0));
+        jbPublicarLista.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbPublicarLista.setText("Publicar Lista");
         jbPublicarLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +129,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jbSeguirUsuario.setBackground(new java.awt.Color(0, 204, 102));
-        jbSeguirUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        jbSeguirUsuario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbSeguirUsuario.setText("Seguir Usuario");
         jbSeguirUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +138,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jbDejarSeguirU.setBackground(new java.awt.Color(0, 204, 102));
-        jbDejarSeguirU.setForeground(new java.awt.Color(0, 0, 0));
+        jbDejarSeguirU.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbDejarSeguirU.setText("Dejar de Seguir Usuario");
         jbDejarSeguirU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +147,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jbGuardarTLA.setBackground(new java.awt.Color(0, 204, 102));
-        jbGuardarTLA.setForeground(new java.awt.Color(0, 0, 0));
+        jbGuardarTLA.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbGuardarTLA.setText("Guardar T/L/A");
         jbGuardarTLA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +156,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jbEliminarTLA.setBackground(new java.awt.Color(0, 204, 102));
-        jbEliminarTLA.setForeground(new java.awt.Color(0, 0, 0));
+        jbEliminarTLA.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbEliminarTLA.setText("Eliminar T/L/A");
         jbEliminarTLA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +165,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jbConsultarPerfil.setBackground(new java.awt.Color(0, 204, 102));
-        jbConsultarPerfil.setForeground(new java.awt.Color(0, 0, 0));
+        jbConsultarPerfil.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbConsultarPerfil.setText("Consultar Perfil");
         jbConsultarPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +174,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jbConsultarAlbum.setBackground(new java.awt.Color(0, 204, 102));
-        jbConsultarAlbum.setForeground(new java.awt.Color(0, 0, 0));
+        jbConsultarAlbum.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbConsultarAlbum.setText("Consultar Album");
         jbConsultarAlbum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,7 +183,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jbConsultarLista.setBackground(new java.awt.Color(0, 204, 102));
-        jbConsultarLista.setForeground(new java.awt.Color(0, 0, 0));
+        jbConsultarLista.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbConsultarLista.setText("Consultar Lista");
         jbConsultarLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,13 +196,13 @@ public class Dashboard extends javax.swing.JFrame {
         Logo.setForeground(new java.awt.Color(0, 204, 102));
         Logo.setText("Espotify");
 
-        Content.setBackground(new java.awt.Color(51, 51, 51));
+        Content.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
         Content.setLayout(ContentLayout);
         ContentLayout.setHorizontalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 642, Short.MAX_VALUE)
+            .addGap(0, 634, Short.MAX_VALUE)
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,24 +215,24 @@ public class Dashboard extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(Logo))
-                    .addComponent(jbAltaPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbAltaGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbAltaAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbCrearLista, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbAgregarTema, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbQuitarTema, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbPublicarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbSeguirUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbDejarSeguirU)
-                    .addComponent(jbGuardarTLA, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbEliminarTLA, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbConsultarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbConsultarAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbConsultarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbAltaPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbAltaGenero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbAltaAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbCrearLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbAgregarTema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbQuitarTema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbPublicarLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbSeguirUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbGuardarTLA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbEliminarTLA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbConsultarPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbConsultarAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbConsultarLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbDejarSeguirU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
