@@ -19,7 +19,7 @@ public class Pantalla {
     public static void main(String[] args) {
         // TODO code application logic here
         ControladoraPersistencia ctrl = new ControladoraPersistencia();
-        Dashboard ventana = new Dashboard();
-        ventana.setVisible(true);
+        Dashboard presentacion = new Dashboard();
+        presentacion.setVisible(true);
     }
 }
