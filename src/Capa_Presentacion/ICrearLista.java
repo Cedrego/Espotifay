@@ -47,6 +47,11 @@ public class ICrearLista extends javax.swing.JPanel {
 
         ACEPTAR.setBackground(new java.awt.Color(0, 204, 102));
         ACEPTAR.setText("ACEPTAR");
+        ACEPTAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ACEPTARActionPerformed(evt);
+            }
+        });
         add(ACEPTAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, -1, -1));
 
         TextField1.setBackground(new java.awt.Color(102, 102, 102));
@@ -67,6 +72,11 @@ public class ICrearLista extends javax.swing.JPanel {
         add(Text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 310, 20));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, 20));
 
         Text2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -85,16 +95,17 @@ public class ICrearLista extends javax.swing.JPanel {
         Text4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text4.setForeground(new java.awt.Color(255, 255, 255));
         Text4.setText("Text4");
-        add(Text4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, 130, 20));
+        add(Text4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 470, 130, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextField1ActionPerformed
- private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        String selectedValue = (String) jComboBox1.getSelectedItem();
-        if(selectedValue.equals("Particular")){
+         Object selectedItem = jComboBox1.getSelectedItem();
+        if("Particular".equals(selectedItem)){
             Text3.setText("Clientes");//NO SE MUESTRA
             if(jComboBox2.getItemCount() > 0){
                 jComboBox2.removeAllItems();
@@ -106,11 +117,12 @@ public class ICrearLista extends javax.swing.JPanel {
                 jComboBox2.removeAllItems();
             }
             //Agregar nombres de los Generos
-        }
-    }                                          
-    private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {       
+        }                                
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
         // TODO add your handling code here:
-         if(TextField1.getText().equals("")){
+        if(TextField1.getText().equals("")){
             Text4.setText("Ingrese un Nombre a la Lista");//NO SE VEN LOS MENSAJES
             Text4.setVisible(true);
         }else{
@@ -118,7 +130,7 @@ public class ICrearLista extends javax.swing.JPanel {
             Text4.setText("Lista creada con exito");
             Text4.setVisible(true);
          }
-    }
+    }//GEN-LAST:event_ACEPTARActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ACEPTAR;

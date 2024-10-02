@@ -52,9 +52,19 @@ public class IAgregarTema extends javax.swing.JPanel {
 
         ACEPTAR.setBackground(new java.awt.Color(0, 204, 102));
         ACEPTAR.setText("ACEPTAR");
+        ACEPTAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ACEPTARActionPerformed(evt);
+            }
+        });
         add(ACEPTAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 260, -1));
 
         Text2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -63,6 +73,11 @@ public class IAgregarTema extends javax.swing.JPanel {
         add(Text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 260, 20));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 260, -1));
 
         Text3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -81,10 +96,15 @@ public class IAgregarTema extends javax.swing.JPanel {
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 260, -1));
     }// </editor-fold>//GEN-END:initComponents
- private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
-        String selectedValue = (String) jComboBox1.getSelectedItem();
-        if(selectedValue.equals("Particular")){
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        Object selectedItem = jComboBox1.getSelectedItem();
+        if("Particular".equals(selectedItem)){
             Text2.setText("Clientes");//NO SE MUESTRA
             if(jComboBox2.getItemCount() > 0){
                 jComboBox2.removeAllItems();
@@ -97,16 +117,12 @@ public class IAgregarTema extends javax.swing.JPanel {
             }
             //Agregar nombres de los Generos
         }
-    }   
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {     
-        //Dependendio el cliente o genero las listas que se insertaran en la ComboBox3
-    }
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {     
-        //Dependendio el cliente o genero los temas que se insertaran en la ComboBox4
-    }
-    private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {     
-        //AgregarTemasLista
-    }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ACEPTARActionPerformed
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ACEPTAR;
