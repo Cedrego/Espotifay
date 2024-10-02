@@ -24,20 +24,20 @@ public class DataCliente{
     private List<DataArtista> DataArtSeguido;
     private List<DataAlbum> DataAlmFav; //coleccion
     private List<DataTema> DataTemaFav; //coleccion
-    private List<DataporDefecto> DataPorDefFav; //coleccion
+    private List<DataPorDefecto> DataPorDefFav; //coleccion
     private List<DataParticular> DataPartFav; //coleccion
 
     public DataCliente() {
     }
 
-    public DataCliente(String nick, String nom, String ape, String mail, DTFecha fech,List<DataParticular> DataP, List<DataCliente> DataCliSeguido,List<DataCliente> DataCliSeguidor, List<DataArtista> DataArtSeguido,List<DataAlbum> DataAlbFav, List<DataTema> DataTemaFav,List<DataporDefecto> DataPorDefFav, List<DataParticular> DataPartFav) {
+    public DataCliente(String nick, String nom, String ape, String mail, DTFecha fech,List<DataParticular> DataP, List<DataCliente> DataCliSeguido,List<DataCliente> DataCliSeguidor, List<DataArtista> DataArtSeguido,List<DataAlbum> DataAlbFav, List<DataTema> DataTemaFav,List<DataPorDefecto> DataPorDefFav, List<DataParticular> DataPartFav) {
         this.nickname = nick;
         this.nombre = nom;
         this.apellido = ape;
         this.correo = mail;
         this.fecha = fech;
         this.DataPart = DataP;
-        this.DataArtSeguido = DataCliSeguido;
+        this.DataCliSeguido = DataCliSeguido;
         this.DataCliSeguidor = DataCliSeguidor;
         this.DataArtSeguido = DataArtSeguido;
         this.DataAlmFav = DataAlbFav;
@@ -82,7 +82,7 @@ public class DataCliente{
         this.DataAlmFav = DataAlmFav;
     }
 
-    public void setDataPorDefFav(List<DataporDefecto> DataPorDefFav) {
+    public void setDataPorDefFav(List<DataPorDefecto> DataPorDefFav) {
         this.DataPorDefFav = DataPorDefFav;
     }
 
@@ -133,7 +133,7 @@ public class DataCliente{
         return DataTemaFav;
     }
 
-    public List<DataporDefecto> getDataPorDefFav() {
+    public List<DataPorDefecto> getDataPorDefFav() {
         return DataPorDefFav;
     }
 

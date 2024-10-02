@@ -4,7 +4,7 @@
  */
 package Logica;
 
-import Capa_Presentacion.Album;
+
 import java.util.List;
 
 /**
