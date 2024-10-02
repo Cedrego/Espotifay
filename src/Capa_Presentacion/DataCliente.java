@@ -36,7 +36,7 @@ public class DataCliente{
         this.correo = mail;
         this.fecha = fech;
         this.DataPart = DataP;
-        this.DataArtSeguido = DataCliSeguido;
+        this.DataCliSeguido = DataCliSeguido;
         this.DataCliSeguidor = DataCliSeguidor;
         this.DataArtSeguido = DataArtSeguido;
         this.DataAlmFav = DataAlbFav;
