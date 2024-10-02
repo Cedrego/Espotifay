@@ -4,6 +4,7 @@
  */
 package Logica;
 
+import Capa_Presentacion.Album;
 import Persistencia.ArtistaJpaController;
 import Persistencia.exceptions.NonexistentEntityException;
 import java.util.ArrayList;

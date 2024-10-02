@@ -4,7 +4,7 @@
  */
 package Persistencia;
 
-import Logica.Album;
+import Capa_Presentacion.Album;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;
