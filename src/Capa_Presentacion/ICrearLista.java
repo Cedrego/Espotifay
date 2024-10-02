@@ -16,6 +16,12 @@ public class ICrearLista extends javax.swing.JPanel {
      */
     public ICrearLista() {
         initComponents();
+        Text1.setText("Nombre de Lista*");
+        Text2.setText("Tipo");
+        Text4.setText("");
+        TextField1.setText("");
+        jComboBox1.addItem("Particular");
+        jComboBox1.addItem("Por Defecto");
     }
 
     /**
@@ -32,12 +38,14 @@ public class ICrearLista extends javax.swing.JPanel {
         Text1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         Text2 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        Text3 = new javax.swing.JLabel();
+        Text4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ACEPTAR.setBackground(new java.awt.Color(0, 204, 102));
-        ACEPTAR.setForeground(new java.awt.Color(0, 0, 0));
         ACEPTAR.setText("ACEPTAR");
         add(ACEPTAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, -1, -1));
 
@@ -58,25 +66,68 @@ public class ICrearLista extends javax.swing.JPanel {
         Text1.setText("Text1");
         add(Text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 310, 20));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, 20));
 
         Text2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text2.setForeground(new java.awt.Color(255, 255, 255));
-        Text2.setText("Text1");
+        Text2.setText("Text2");
         add(Text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 130, 20));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+
+        Text3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text3.setForeground(new java.awt.Color(255, 255, 255));
+        Text3.setText("Text3");
+        add(Text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 20));
+
+        Text4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text4.setForeground(new java.awt.Color(255, 255, 255));
+        Text4.setText("Text4");
+        add(Text4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, 130, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextField1ActionPerformed
-
+ private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+        String selectedValue = (String) jComboBox1.getSelectedItem();
+        if(selectedValue.equals("Particular")){
+            Text3.setText("Clientes");//NO SE MUESTRA
+            if(jComboBox2.getItemCount() > 0){
+                jComboBox2.removeAllItems();
+            }
+            //Agregar nombres de los clientes
+        }else{
+            Text3.setText("Generos");
+            if(jComboBox2.getItemCount() > 0){
+                jComboBox2.removeAllItems();
+            }
+            //Agregar nombres de los Generos
+        }
+    }                                          
+    private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {       
+        // TODO add your handling code here:
+         if(TextField1.getText().equals("")){
+            Text4.setText("Ingrese un Nombre a la Lista");//NO SE VEN LOS MENSAJES
+            Text4.setVisible(true);
+        }else{
+             //CrearLista
+            Text4.setText("Lista creada con exito");
+            Text4.setVisible(true);
+         }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ACEPTAR;
     private javax.swing.JLabel Text1;
     private javax.swing.JLabel Text2;
+    private javax.swing.JLabel Text3;
+    private javax.swing.JLabel Text4;
     private javax.swing.JTextField TextField1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     // End of variables declaration//GEN-END:variables
 }

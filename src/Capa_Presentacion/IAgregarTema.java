@@ -16,6 +16,11 @@ public class IAgregarTema extends javax.swing.JPanel {
      */
     public IAgregarTema() {
         initComponents();
+        Text1.setText("Tipo de Lista");
+        jComboBox1.addItem("Particular");
+        jComboBox1.addItem("Por Defecto");
+        Text3.setText("Listas");
+        Text4.setText("Temas");
     }
 
     /**
@@ -46,11 +51,10 @@ public class IAgregarTema extends javax.swing.JPanel {
         add(Text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 260, 20));
 
         ACEPTAR.setBackground(new java.awt.Color(0, 204, 102));
-        ACEPTAR.setForeground(new java.awt.Color(0, 0, 0));
         ACEPTAR.setText("ACEPTAR");
         add(ACEPTAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 260, -1));
 
         Text2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -58,7 +62,7 @@ public class IAgregarTema extends javax.swing.JPanel {
         Text2.setText("Text2");
         add(Text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 260, 20));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 260, -1));
 
         Text3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -66,7 +70,7 @@ public class IAgregarTema extends javax.swing.JPanel {
         Text3.setText("Text3");
         add(Text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 260, 20));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 260, -1));
 
         Text4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -74,10 +78,35 @@ public class IAgregarTema extends javax.swing.JPanel {
         Text4.setText("Text4");
         add(Text4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 260, 20));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 260, -1));
     }// </editor-fold>//GEN-END:initComponents
-
+ private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+        String selectedValue = (String) jComboBox1.getSelectedItem();
+        if(selectedValue.equals("Particular")){
+            Text2.setText("Clientes");//NO SE MUESTRA
+            if(jComboBox2.getItemCount() > 0){
+                jComboBox2.removeAllItems();
+            }
+            //Agregar nombres de los clientes
+        }else{
+            Text2.setText("Generos");
+            if(jComboBox2.getItemCount() > 0){
+                jComboBox2.removeAllItems();
+            }
+            //Agregar nombres de los Generos
+        }
+    }   
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {     
+        //Dependendio el cliente o genero las listas que se insertaran en la ComboBox3
+    }
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {     
+        //Dependendio el cliente o genero los temas que se insertaran en la ComboBox4
+    }
+    private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {     
+        //AgregarTemasLista
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ACEPTAR;
