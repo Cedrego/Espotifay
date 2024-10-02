@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Logica;
+import Capa_Presentacion.Album;
 import Persistencia.ArtistaJpaController;
 import java.util.List;
 /**

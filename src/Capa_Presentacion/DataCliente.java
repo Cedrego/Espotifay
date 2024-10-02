@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Capa_Presentacion;
+import Logica.DTFecha;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -140,3 +141,4 @@ public class DataCliente{
     public List<DataParticular> getDataPartFav() {    
         return DataPartFav;
     }
+}
