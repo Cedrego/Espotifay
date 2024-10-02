@@ -27,7 +27,7 @@ public class DataArtista  {
     public DataArtista() {
     }
 
-    public DataArtista(String nick, String nom, String ape, String mail, DTFecha fech, String bio, String webSite, list<DataAlbum> DataAlb, list<DataCliente> DataCli) {
+    public DataArtista(String nick, String nom, String ape, String mail, DTFecha fech, String bio, String webSite, List<DataAlbum> DataAlb, List<DataCliente> DataCli) {
         this.nickname = nick;
         this.nombre = nom;
         this.apellido = ape;
