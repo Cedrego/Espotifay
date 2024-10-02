@@ -82,7 +82,7 @@ public class DataCliente{
         this.DataAlmFav = DataAlmFav;
     }
 
-    public void setDataPorDefFav(List<DataporDefecto> DataPorDefFav) {
+    public void setDataPorDefFav(List<DataPorDefecto> DataPorDefFav) {
         this.DataPorDefFav = DataPorDefFav;
     }
 
@@ -133,7 +133,7 @@ public class DataCliente{
         return DataTemaFav;
     }
 
-    public List<DataporDefecto> getDataPorDefFav() {
+    public List<DataPorDefecto> getDataPorDefFav() {
         return DataPorDefFav;
     }
 

@@ -4,7 +4,7 @@
  */
 package Logica;
 
-import Capa_Presentacion.Album;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
