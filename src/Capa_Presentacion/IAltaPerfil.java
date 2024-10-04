@@ -28,8 +28,9 @@ public class IAltaPerfil extends javax.swing.JPanel {
         Text6.setText("Confirme contraseña");
         Text7.setText("Fecha de Nacimiento");
         Text8.setText("Tipo de Perfil");
-        Text8.setText("Biografia");
-        Text8.setText("Pagina Web");
+        Text9.setText("Biografia");
+        Text10.setText("Pagina Web");
+        Text11.setVisible(false);
         TextField1.setText("");
         TextField2.setText("");
         TextField3.setText("");
