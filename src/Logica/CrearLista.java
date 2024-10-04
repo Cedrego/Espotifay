@@ -50,28 +50,7 @@ public class CrearLista {
             em.refresh(cliente); // Recargar el estado del cliente desde la base de datos
         }else{
             porDefecto nuevoPorDefecto = ictrl.CrearListPorDefecto(name, GOP);
-            
-            porDefectoJpaController PorDefectoJPAController = new porDefectoJpaController();
-            
-            try {
-                PorDefectoJPAController.create(nuevoPorDefecto);
-            } catch (Exception ex) {
-                Logger.getLogger(CrearLista.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Genero genero = mm.buscarGenero(GOP); // Busca el género
-            if (genero != null) {
-                nuevoPorDefecto.setGenero(genero); // Asigna el género
-                // Necesitas buscar nuevamente el porDefecto para actualizarlo
-                try {
-                    
-                        nuevoPorDefecto.setGenero(genero); // Actualiza el género
-                        PorDefectoJPAController.edit(nuevoPorDefecto); // Actualiza en la base de datos
-                    
-                } catch (Exception ex) {
-                    Logger.getLogger(CrearLista.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-           // mp.addPorDefecto(nuevoPorDefecto);//Agrego la instancia a la lista
+ 
         }
         
     }  

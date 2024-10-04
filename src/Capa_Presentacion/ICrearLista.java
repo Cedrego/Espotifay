@@ -1,5 +1,8 @@
 package Capa_Presentacion;
 
+import Logica.Factory;
+import Logica.ICtrl;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -14,7 +17,10 @@ public class ICrearLista extends javax.swing.JPanel {
     /**
      * Creates new form IAltaPerfil
      */
-    public ICrearLista() {
+        Factory fabric =Factory.getInstance();
+	ICtrl ctrl = fabric.getICtrl();
+    
+        public ICrearLista() {
         initComponents();
         Text1.setText("Nombre de Lista*");
         Text2.setText("Tipo");
@@ -85,6 +91,11 @@ public class ICrearLista extends javax.swing.JPanel {
         add(Text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 130, 20));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         Text3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -106,31 +117,71 @@ public class ICrearLista extends javax.swing.JPanel {
         // TODO add your handling code here:
          Object selectedItem = jComboBox1.getSelectedItem();
         if("Particular".equals(selectedItem)){
-            Text3.setText("Clientes");//NO SE MUESTRA
+            Text3.setText("Clientes");
             if(jComboBox2.getItemCount() > 0){
                 jComboBox2.removeAllItems();
             }
             //Agregar nombres de los clientes
+            for (String cli : ctrl.obtenerNombresDeCliente()) {
+                    jComboBox2.addItem(cli);
+            }
         }else{
             Text3.setText("Generos");
             if(jComboBox2.getItemCount() > 0){
                 jComboBox2.removeAllItems();
             }
             //Agregar nombres de los Generos
+            for (String genero : ctrl.obtenerNombresDeGeneros()) {
+                if(!"Genero".equals(genero)){
+                    jComboBox2.addItem(genero);
+                }
+            }
         }                                
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
         // TODO add your handling code here:
+        String NomList = TextField1.getText();
+        Object selectedItem = jComboBox1.getSelectedItem();
+        String GoC =  jComboBox2.getSelectedItem().toString();//Genero o Cliente
+        boolean PuedoCrear = false;
+        if("Particular".equals(selectedItem)){
+            if(ctrl.ExisListPartEnCliente(NomList, GoC)==true){//Si es true quiere decir que existe por ende no puedo crearla
+            Text4.setText("Ya existe una lista con ese nombre");
+            Text4.setVisible(true);
+            }else{
+                PuedoCrear=true;//Si no existe si puedo crearla            
+            }
+        }else{
+            if(ctrl.ExisListPorDefEnGenero(NomList)==true){
+                Text4.setText("Ya existe una lista con ese nombre");
+                Text4.setVisible(true);
+            }else{
+                PuedoCrear=true;//Si no existe si puedo crearla 
+            }
+        }
         if(TextField1.getText().equals("")){
-            Text4.setText("Ingrese un Nombre a la Lista");//NO SE VEN LOS MENSAJES
+            Text4.setVisible(false);
+            Text4.setText("Ingrese un Nombre a la Lista");
             Text4.setVisible(true);
         }else{
-             //CrearLista
-            Text4.setText("Lista creada con exito");
-            Text4.setVisible(true);
+            if(PuedoCrear==true){
+                //CrearLista
+                if("Particular".equals(selectedItem)){
+                    ctrl.CrearListParticular(NomList, GoC);
+                }else{
+                    ctrl.CrearListPorDefecto(NomList, GoC);
+                }
+               Text4.setVisible(false);
+               Text4.setText("Lista creada con exito");
+               Text4.setVisible(true);
+            }
          }
     }//GEN-LAST:event_ACEPTARActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ACEPTAR;

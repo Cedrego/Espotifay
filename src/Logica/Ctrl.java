@@ -5,6 +5,7 @@
 package Logica;
 
 
+import Logica.Genero;
 import Persistencia.AlbumJpaController;
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
@@ -13,6 +14,7 @@ import Persistencia.ParticularJpaController;
 import Persistencia.TemaJpaController;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.porDefectoJpaController;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -34,6 +36,8 @@ public class Ctrl implements ICtrl{
     public AlbumJpaController albumJpaController = new AlbumJpaController();
     public ParticularJpaController particularJpaController = new ParticularJpaController();
     public porDefectoJpaController porDefectoJpaController = new porDefectoJpaController();
+    public ParticularJpaController partJpa = new ParticularJpaController();
+    public porDefectoJpaController pdJpa = new porDefectoJpaController();
     public Ctrl(){}
     
     
@@ -285,11 +289,7 @@ public class Ctrl implements ICtrl{
     
     @Override
     public Particular CrearListParticular(String nombre, String nomCliente){
-        // Buscar el cliente usando el nickname
-        /*TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c WHERE c.nickname = :nickname", Cliente.class);
-        query.setParameter("nickname", nomCliente); // Establecemos el parámetro
-        Cliente cliente = query.getSingleResult(); // Intentamos obtener un único cliente
-        */
+        
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         Cliente cliente = mu.buscarCliente(nomCliente);
         
@@ -306,8 +306,7 @@ public class Ctrl implements ICtrl{
     @Override
     public porDefecto CrearListPorDefecto(String nombre, String genero){
         
-        ManejadorMusica mm = ManejadorMusica.getInstance();
-        Genero Gen = mm.buscarGenero(nombre);//Busco la instancia de genero
+        Genero Gen = generoJpaController.findGenero(genero);
         porDefecto nuevoPorDefecto = new porDefecto(nombre,Gen);//Uso el constructor de pordefcto
         
         try {
@@ -328,4 +327,57 @@ public class Ctrl implements ICtrl{
         Particular list = mp.buscarListP(lista,cli);
         list.setPrivado(false);
     }
+    //Obtener
+    @Override
+    public List<String> obtenerNombresDeGeneros() {
+       // Instancia del controlador JPA para acceder a los datos
+        GeneroJpaController generoController = new GeneroJpaController();
+
+        // Obtenemos todos los géneros de la base de datos
+        List<Genero> listaGeneros = generoController.findGeneroEntities();
+
+        // Creamos una lista de strings para almacenar los nombres
+        List<String> nombresGeneros = new ArrayList<>();
+
+        // Recorremos la lista de géneros y extraemos sus nombres
+        for (Genero genero : listaGeneros) {
+            nombresGeneros.add(genero.getNombre());
+        }
+
+        return nombresGeneros;
+    }
+     public List<String> obtenerNombresDeCliente() {
+         // Instancia del controlador JPA para acceder a los datos
+        ClienteJpaController clienteController = new ClienteJpaController();
+
+        // Obtenemos todos los géneros de la base de datos
+        List<Cliente> listaCliente = clienteController.findClienteEntities();
+
+        // Creamos una lista de strings para almacenar los nombres
+        List<String> nombresCliente = new ArrayList<>();
+
+        // Recorremos la lista de géneros y extraemos sus nombres
+        for (Cliente cli : listaCliente) {
+            nombresCliente.add(cli.getNickname());
+        }
+
+        return nombresCliente;
+    }
+    @Override
+    public boolean ExisListPartEnCliente(String NomList, String NomCliente){
+        if(partJpa.findParticular(NomList,NomCliente)==null){//No existe
+            return false;
+        }else{
+            return true;
+        }
+    }
+    @Override
+    public boolean ExisListPorDefEnGenero(String NomList){
+        if(pdJpa.findporDefecto(NomList)==null){//No existe
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
 }

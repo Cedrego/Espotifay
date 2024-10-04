@@ -26,4 +26,9 @@ public interface ICtrl {
     public abstract Particular CrearListParticular(String nombre, String nomCliente);
     public abstract porDefecto CrearListPorDefecto(String nombre, String genero);
     public abstract void Publicar(String lista,String cli);
+    
+    public abstract List<String> obtenerNombresDeGeneros();
+    public abstract List<String> obtenerNombresDeCliente();
+    public abstract boolean ExisListPartEnCliente(String NomList, String NomCliente);
+    public abstract boolean ExisListPorDefEnGenero(String NomList);
 }

@@ -55,5 +55,5 @@ public class Genero implements Serializable {
     }
     public void setPadre(Genero gen){
         this.padre=gen;
-    }
+    }           
 }

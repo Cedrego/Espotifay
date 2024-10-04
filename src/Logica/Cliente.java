@@ -265,5 +265,5 @@ public class Cliente extends Usuario {
     public void removeAlbumFav(Album alb){
        this.albumFav.remove(alb);
     }
-    
+           
 }
