@@ -38,6 +38,7 @@ public class Ctrl implements ICtrl{
     public porDefectoJpaController porDefectoJpaController = new porDefectoJpaController();
     public ParticularJpaController partJpa = new ParticularJpaController();
     public porDefectoJpaController pdJpa = new porDefectoJpaController();
+    public ClienteJpaController clienteController = new ClienteJpaController();
     public Ctrl(){}
     
     
@@ -330,11 +331,8 @@ public class Ctrl implements ICtrl{
     //Obtener
     @Override
     public List<String> obtenerNombresDeGeneros() {
-       // Instancia del controlador JPA para acceder a los datos
-        GeneroJpaController generoController = new GeneroJpaController();
-
         // Obtenemos todos los géneros de la base de datos
-        List<Genero> listaGeneros = generoController.findGeneroEntities();
+        List<Genero> listaGeneros = generoJpaController.findGeneroEntities();
 
         // Creamos una lista de strings para almacenar los nombres
         List<String> nombresGeneros = new ArrayList<>();
@@ -346,17 +344,15 @@ public class Ctrl implements ICtrl{
 
         return nombresGeneros;
     }
+    @Override
      public List<String> obtenerNombresDeCliente() {
-         // Instancia del controlador JPA para acceder a los datos
-        ClienteJpaController clienteController = new ClienteJpaController();
-
         // Obtenemos todos los géneros de la base de datos
         List<Cliente> listaCliente = clienteController.findClienteEntities();
 
         // Creamos una lista de strings para almacenar los nombres
         List<String> nombresCliente = new ArrayList<>();
 
-        // Recorremos la lista de géneros y extraemos sus nombres
+        // Recorremos la lista de Cliente y extraemos sus nombres
         for (Cliente cli : listaCliente) {
             nombresCliente.add(cli.getNickname());
         }
@@ -379,5 +375,102 @@ public class Ctrl implements ICtrl{
             return true;
         }
     }
-    
+    @Override
+    public List<String> obtenerNombresDeListPart( String NomCliente) {
+        Cliente cli= clienteController.findCliente(NomCliente);
+        List<Particular> playlistsParticulares = cli.getParticular(); // Lista de playlists del cliente
+        // Creamos una lista de strings para almacenar los nombres
+        List<String> nombresPart = new ArrayList<>();
+        for (Particular part : playlistsParticulares) {
+            nombresPart.add(part.getNombre());
+        }
+        return nombresPart;
+    }
+    @Override
+    public List<String> obtenerNombresDeListPD( String NomGenero) {
+        Genero gen= generoJpaController.findGenero(NomGenero);
+        List<porDefecto> playlistsPD = pdJpa.findporDefectoEntities(); // Lista de playlists del cliente
+        // Creamos una lista de strings para almacenar los nombres
+        List<String> nombresPD = new ArrayList<>();
+        for (porDefecto PD : playlistsPD) {
+            if(PD.getGenero().getNombre().equalsIgnoreCase(gen.getNombre())){
+                nombresPD.add(PD.getNombre());
+            }
+        }
+        return nombresPD;
+    }
+    @Override
+    public List<String> obtenerNombresTemaParaPartADD(String NomList, String NomCliente){
+        List<Album> ListAlb = albumJpaController.findAlbumEntities(); // Lista de álbumes de la BD
+        List<String> nombresTemasAgregar = new ArrayList<>();
+        List<String> nombresTemasDeAlbum = new ArrayList<>(); // Contendrá los nombres de todos los temas de cada álbum
+
+        // Agregar todos los nombres de temas de los álbumes a nombresTemasDeAlbum
+        for (Album alb : ListAlb) {
+            for (Tema tem : alb.getTemas()) {
+                nombresTemasDeAlbum.add(tem.getNombre());
+            }
+        }
+         // Verificar si la lista particular existe para el cliente
+        Cliente cli = clienteController.findCliente(NomCliente);
+        if (cli != null) {
+            List<Particular> ListPartCli = cli.getParticular();
+            List<String> NTPC = new ArrayList<>(); 
+            for(Particular part: ListPartCli){//Busco esa lista en la lista de cliente
+               if(part.getNombre().equalsIgnoreCase(NomList)){
+                   for(Tema tem: part.getTemas()){
+                       NTPC.add(tem.getNombre());
+                   }
+               }
+            }
+            boolean existe= false;
+            for(String NTA: nombresTemasDeAlbum){
+                for(String tem: NTPC){
+                    if(tem.equalsIgnoreCase(NTA)){
+                        existe= true;
+                        break;
+                    }
+                }
+                if(existe==false){//Busco y no lo encontro entonces lo agrega
+                    nombresTemasAgregar.add(NTA);
+                }else{//Busco y se lo encontro entonces no lo agrega y resetea la variable
+                    existe = false;
+                }
+            }
+        }
+            
+        return nombresTemasAgregar;
+    }
+    @Override
+    public List<String> obtenerNombresTemaParaPDADD(String NomList, String NomGen){
+        List<Album> ListAlb = albumJpaController.findAlbumEntities(); // Lista de álbumes de la BD
+        List<String> nombresTemasAgregar = new ArrayList<>();
+        List<String> nombresTemasDeAlbum = new ArrayList<>(); // Contendrá los nombres de todos los temas de cada álbum
+        porDefecto PD= porDefectoJpaController.findporDefecto(NomList);
+        // Agregar todos los nombres de temas de los álbumes a nombresTemasDeAlbum
+        for (Album alb : ListAlb) {
+            for (Tema tem : alb.getTemas()){//Los temas se almacenanan en albunes
+                for(Genero gene : tem.getGeneros()){//cada tema tiene a su vez una lista de genero
+                         if (gene.getNombre().equalsIgnoreCase(NomGen)){//El tema comparte el mismo genero que se seleciono anteriormente se agrega
+                            nombresTemasDeAlbum.add(tem.getNombre());//Nombre de Todos los temas que comparten el mismo genero
+                        }
+                   }
+            }
+        }  
+        boolean existe= false;
+         for(String NTDA: nombresTemasDeAlbum){//Nombre de todos los temas que comparten genero
+           for(Tema tem: PD.getTemas()){//Lista de temas de la lista
+                if(tem.getNombre().equalsIgnoreCase(NTDA)){//S
+                   existe= true;
+                   break;
+                }
+            }
+            if(existe==false){//Busco y no lo encontro entonces lo agrega
+                nombresTemasAgregar.add(NTDA);
+            }else{//Busco y se lo encontro entonces no lo agrega y resetea la variable
+                existe = false;
+            }
+        }     
+        return nombresTemasAgregar;
+    }
 }

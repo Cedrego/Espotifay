@@ -31,4 +31,8 @@ public interface ICtrl {
     public abstract List<String> obtenerNombresDeCliente();
     public abstract boolean ExisListPartEnCliente(String NomList, String NomCliente);
     public abstract boolean ExisListPorDefEnGenero(String NomList);
+    public abstract List<String> obtenerNombresDeListPart(String NomCliente);
+    public abstract List<String> obtenerNombresDeListPD( String NomGenero);
+    public abstract List<String> obtenerNombresTemaParaPartADD(String NomList, String NomCliente);
+    public abstract List<String> obtenerNombresTemaParaPDADD(String NomList, String NomGen);
 }

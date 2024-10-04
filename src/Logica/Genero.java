@@ -56,4 +56,8 @@ public class Genero implements Serializable {
     public void setPadre(Genero gen){
         this.padre=gen;
     }           
+
+    boolean equalsIgnoreCase(Genero genero) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

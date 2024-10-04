@@ -1,5 +1,8 @@
 package Capa_Presentacion;
 
+import Logica.Factory;
+import Logica.ICtrl;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -14,6 +17,8 @@ public class IAgregarTema extends javax.swing.JPanel {
     /**
      * Creates new form IAltaPerfil
      */
+    Factory fabric =Factory.getInstance();
+    ICtrl ctrl = fabric.getICtrl();
     public IAgregarTema() {
         initComponents();
         Text1.setText("Tipo de Lista");
@@ -86,6 +91,11 @@ public class IAgregarTema extends javax.swing.JPanel {
         add(Text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 260, 20));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
         add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 260, -1));
 
         Text4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -99,29 +109,77 @@ public class IAgregarTema extends javax.swing.JPanel {
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
+        Object selectedItem1 = jComboBox1.getSelectedItem();
+        //Object selectedItem2 = jComboBox2.getSelectedItem();
+        String GoC = jComboBox2.getSelectedItem() != null ? jComboBox2.getSelectedItem().toString() : "";
+        if("Particular".equals(selectedItem1)){
+            if(jComboBox3.getItemCount() > 0){
+                jComboBox3.removeAllItems();
+            }
+            for (String Part : ctrl.obtenerNombresDeListPart((String) GoC)) {
+                    jComboBox3.addItem(Part);
+            }
+        }else{
+            if(jComboBox3.getItemCount() > 0){
+                jComboBox3.removeAllItems();
+            }
+            for (String PD : ctrl.obtenerNombresDeListPD((String) GoC)) {
+                    jComboBox3.addItem(PD);
+            }
+        }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        //Particular o porDefecto
         Object selectedItem = jComboBox1.getSelectedItem();
         if("Particular".equals(selectedItem)){
-            Text2.setText("Clientes");//NO SE MUESTRA
+            Text2.setText("Clientes");
             if(jComboBox2.getItemCount() > 0){
                 jComboBox2.removeAllItems();
             }
             //Agregar nombres de los clientes
+             for (String cli : ctrl.obtenerNombresDeCliente()) {
+                    jComboBox2.addItem(cli);
+            }
         }else{
             Text2.setText("Generos");
             if(jComboBox2.getItemCount() > 0){
                 jComboBox2.removeAllItems();
             }
             //Agregar nombres de los Generos
+            for (String genero : ctrl.obtenerNombresDeGeneros()) {
+                if(!"Genero".equals(genero)){
+                    jComboBox2.addItem(genero);
+                }
+            }
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ACEPTARActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+        Object selectedItem1 = jComboBox1.getSelectedItem();
+        Object selectedItem2 = jComboBox2.getSelectedItem();
+        if("Particular".equals(selectedItem1)){
+            if(jComboBox4.getItemCount() > 0){
+                jComboBox4.removeAllItems();
+            }            
+            for (String tem : ctrl.obtenerNombresTemaParaPartADD((String) selectedItem1, (String) selectedItem2)) {
+                jComboBox4.addItem(tem);
+            }
+        }else{
+            if(jComboBox4.getItemCount() > 0){
+                jComboBox4.removeAllItems();
+            }
+            for (String tem : ctrl.obtenerNombresTemaParaPDADD((String) selectedItem1, (String) selectedItem2)) {
+                jComboBox4.addItem(tem);
+            }
+        }
+    }//GEN-LAST:event_jComboBox3ActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
