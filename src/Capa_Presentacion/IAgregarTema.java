@@ -26,6 +26,7 @@ public class IAgregarTema extends javax.swing.JPanel {
         jComboBox1.addItem("Por Defecto");
         Text3.setText("Listas");
         Text4.setText("Temas");
+        Text5.setVisible(false);
     }
 
     /**
@@ -46,6 +47,7 @@ public class IAgregarTema extends javax.swing.JPanel {
         jComboBox3 = new javax.swing.JComboBox<>();
         Text4 = new javax.swing.JLabel();
         jComboBox4 = new javax.swing.JComboBox<>();
+        Text5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -105,6 +107,11 @@ public class IAgregarTema extends javax.swing.JPanel {
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 260, -1));
+
+        Text5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text5.setForeground(new java.awt.Color(255, 255, 255));
+        Text5.setText("Text5");
+        add(Text5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 470, 260, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -158,24 +165,47 @@ public class IAgregarTema extends javax.swing.JPanel {
 
     private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
         // TODO add your handling code here:
+        String PoPD = jComboBox1.getSelectedItem() != null ? jComboBox1.getSelectedItem().toString() : "";
+        String nom = jComboBox2.getSelectedItem() != null ? jComboBox2.getSelectedItem().toString() : "";
+        String NomPlay = jComboBox3.getSelectedItem() != null ? jComboBox3.getSelectedItem().toString() : ""; 
+        Object selectedItem = jComboBox4.getSelectedItem();
+        // Verifica que el elemento seleccionado no sea nulo
+        if(selectedItem != null){
+            String NomTema = jComboBox4.getSelectedItem() != null ? jComboBox4.getSelectedItem().toString() : "";
+            //En la funcion AgregarTemaLista verifica si es Particular o PorDefecto
+            ctrl.AddTemaList(PoPD, NomPlay, NomTema, nom);
+            Text5.setVisible(false);
+            Text5.setText("Tema "+NomTema+" Agregado con Exito");
+            Text5.setVisible(true);
+            // Eliminar el tema de jComboBox4
+            jComboBox4.removeItem(NomTema); // Eliminar el tema de jComboBox4
+            System.out.println("Tema eliminado de ComboBox4: " + NomTema);
+        }else{
+            Text5.setVisible(false);
+            Text5.setText("No hay ningún tema seleccionado en ComboBox4.");
+            Text5.setVisible(true);
+        }
+            
     }//GEN-LAST:event_ACEPTARActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
         Object selectedItem1 = jComboBox1.getSelectedItem();
-        Object selectedItem2 = jComboBox2.getSelectedItem();
+        String nom = jComboBox2.getSelectedItem() != null ? jComboBox2.getSelectedItem().toString() : "";
+        String NomPlay = jComboBox3.getSelectedItem() != null ? jComboBox3.getSelectedItem().toString() : ""; 
         if("Particular".equals(selectedItem1)){
             if(jComboBox4.getItemCount() > 0){
                 jComboBox4.removeAllItems();
             }            
-            for (String tem : ctrl.obtenerNombresTemaParaPartADD((String) selectedItem1, (String) selectedItem2)) {
+            for (String tem : ctrl.obtenerNombresTemaParaPartADD(NomPlay, nom)) {
                 jComboBox4.addItem(tem);
             }
         }else{
             if(jComboBox4.getItemCount() > 0){
                 jComboBox4.removeAllItems();
             }
-            for (String tem : ctrl.obtenerNombresTemaParaPDADD((String) selectedItem1, (String) selectedItem2)) {
+           
+            for (String tem : ctrl.obtenerNombresTemaParaPDADD(NomPlay, nom)) {
                 jComboBox4.addItem(tem);
             }
         }
@@ -188,6 +218,7 @@ public class IAgregarTema extends javax.swing.JPanel {
     private javax.swing.JLabel Text2;
     private javax.swing.JLabel Text3;
     private javax.swing.JLabel Text4;
+    private javax.swing.JLabel Text5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;

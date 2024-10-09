@@ -5,7 +5,6 @@
 package Logica;
 
 
-import Persistencia.ClienteJpaController;
 import Persistencia.ParticularJpaController;
 import Persistencia.porDefectoJpaController;
 

@@ -14,10 +14,12 @@ import Persistencia.ParticularJpaController;
 import Persistencia.TemaJpaController;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.porDefectoJpaController;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
@@ -36,8 +38,6 @@ public class Ctrl implements ICtrl{
     public AlbumJpaController albumJpaController = new AlbumJpaController();
     public ParticularJpaController particularJpaController = new ParticularJpaController();
     public porDefectoJpaController porDefectoJpaController = new porDefectoJpaController();
-    public ParticularJpaController partJpa = new ParticularJpaController();
-    public porDefectoJpaController pdJpa = new porDefectoJpaController();
     public ClienteJpaController clienteController = new ClienteJpaController();
     public Ctrl(){}
     
@@ -361,7 +361,7 @@ public class Ctrl implements ICtrl{
     }
     @Override
     public boolean ExisListPartEnCliente(String NomList, String NomCliente){
-        if(partJpa.findParticular(NomList,NomCliente)==null){//No existe
+        if(particularJpaController.findParticular(NomList,NomCliente)==null){//No existe
             return false;
         }else{
             return true;
@@ -369,7 +369,7 @@ public class Ctrl implements ICtrl{
     }
     @Override
     public boolean ExisListPorDefEnGenero(String NomList){
-        if(pdJpa.findporDefecto(NomList)==null){//No existe
+        if(porDefectoJpaController.findporDefecto(NomList)==null){//No existe
             return false;
         }else{
             return true;
@@ -378,18 +378,25 @@ public class Ctrl implements ICtrl{
     @Override
     public List<String> obtenerNombresDeListPart( String NomCliente) {
         Cliente cli= clienteController.findCliente(NomCliente);
-        List<Particular> playlistsParticulares = cli.getParticular(); // Lista de playlists del cliente
-        // Creamos una lista de strings para almacenar los nombres
-        List<String> nombresPart = new ArrayList<>();
-        for (Particular part : playlistsParticulares) {
-            nombresPart.add(part.getNombre());
+        if(cli!=null){
+            List<Particular> playlistsParticulares = cli.getParticular(); // Lista de playlists del cliente
+            // Creamos una lista de strings para almacenar los nombres
+            List<String> nombresPart = new ArrayList<>();
+            for (Particular part : playlistsParticulares) {
+                nombresPart.add(part.getNombre());
+            }
+            return nombresPart;
+        }else{
+            return new ArrayList<>();
         }
-        return nombresPart;
     }
     @Override
     public List<String> obtenerNombresDeListPD( String NomGenero) {
         Genero gen= generoJpaController.findGenero(NomGenero);
-        List<porDefecto> playlistsPD = pdJpa.findporDefectoEntities(); // Lista de playlists del cliente
+        List<porDefecto> playlistsPD = porDefectoJpaController.findporDefectoEntities(); // Lista de playlists del cliente
+        if (gen == null) {
+            return new ArrayList<>(); // Retorna una lista vacía si el género no se encuentra
+        }
         // Creamos una lista de strings para almacenar los nombres
         List<String> nombresPD = new ArrayList<>();
         for (porDefecto PD : playlistsPD) {
@@ -414,31 +421,34 @@ public class Ctrl implements ICtrl{
          // Verificar si la lista particular existe para el cliente
         Cliente cli = clienteController.findCliente(NomCliente);
         if (cli != null) {
-            List<Particular> ListPartCli = cli.getParticular();
-            List<String> NTPC = new ArrayList<>(); 
-            for(Particular part: ListPartCli){//Busco esa lista en la lista de cliente
-               if(part.getNombre().equalsIgnoreCase(NomList)){
-                   for(Tema tem: part.getTemas()){
-                       NTPC.add(tem.getNombre());
+            if(cli.getParticular().isEmpty()){
+                return new ArrayList<>();
+            }else{
+                List<Particular> ListPartCli = cli.getParticular();
+                List<String> NTPC = new ArrayList<>(); 
+                for(Particular part: ListPartCli){//Busco esa lista en la lista de cliente
+                   if(part.getNombre().equalsIgnoreCase(NomList)){
+                       for(Tema tem: part.getTemas()){
+                           NTPC.add(tem.getNombre());
+                       }
                    }
-               }
-            }
-            boolean existe= false;
-            for(String NTA: nombresTemasDeAlbum){
-                for(String tem: NTPC){
-                    if(tem.equalsIgnoreCase(NTA)){
-                        existe= true;
-                        break;
-                    }
                 }
-                if(existe==false){//Busco y no lo encontro entonces lo agrega
-                    nombresTemasAgregar.add(NTA);
-                }else{//Busco y se lo encontro entonces no lo agrega y resetea la variable
-                    existe = false;
+                boolean existe= false;
+                for(String NTA: nombresTemasDeAlbum){
+                    for(String tem: NTPC){
+                        if(tem.equalsIgnoreCase(NTA)){
+                            existe= true;
+                            break;
+                        }
+                    }
+                    if(existe==false){//Busco y no lo encontro entonces lo agrega
+                        nombresTemasAgregar.add(NTA);
+                    }else{//Busco y se lo encontro entonces no lo agrega y resetea la variable
+                        existe = false;
+                    }
                 }
             }
         }
-            
         return nombresTemasAgregar;
     }
     @Override
@@ -446,7 +456,21 @@ public class Ctrl implements ICtrl{
         List<Album> ListAlb = albumJpaController.findAlbumEntities(); // Lista de álbumes de la BD
         List<String> nombresTemasAgregar = new ArrayList<>();
         List<String> nombresTemasDeAlbum = new ArrayList<>(); // Contendrá los nombres de todos los temas de cada álbum
-        porDefecto PD= porDefectoJpaController.findporDefecto(NomList);
+        porDefecto PD = null;
+        EntityManager em = porDefectoJpaController.getEntityManager(); // Obtener el EntityManager del JPA Controller
+        try {
+                // Escapamos el valor de la variable `NomList` para prevenir inyecciones SQL
+                String query = "SELECT * FROM porDefecto WHERE nombre = '" + NomList + "'";
+                PD = (porDefecto) em.createNativeQuery(query, porDefecto.class).getSingleResult();
+            } catch (NoResultException e) {
+                System.out.println("No se encontró la lista por defecto con el nombre: " + NomList);
+                return new ArrayList<>(); // Retorna una lista vacía si no se encuentra
+            } finally {
+                em.close(); // Cerrar el EntityManager
+            }
+        if(PD==null){
+            return new ArrayList<>(); // Retorna una lista vacía si la lista no se encuentra
+        }
         // Agregar todos los nombres de temas de los álbumes a nombresTemasDeAlbum
         for (Album alb : ListAlb) {
             for (Tema tem : alb.getTemas()){//Los temas se almacenanan en albunes
@@ -458,19 +482,27 @@ public class Ctrl implements ICtrl{
             }
         }  
         boolean existe= false;
-         for(String NTDA: nombresTemasDeAlbum){//Nombre de todos los temas que comparten genero
-           for(Tema tem: PD.getTemas()){//Lista de temas de la lista
-                if(tem.getNombre().equalsIgnoreCase(NTDA)){//S
-                   existe= true;
-                   break;
+        if(!PD.getTemas().isEmpty()){
+            for(String NTDA: nombresTemasDeAlbum){//Nombre de todos los temas que comparten genero
+               for(Tema tem: PD.getTemas()){//Lista de temas de la lista
+                    if(tem.getNombre().equalsIgnoreCase(NTDA)){//S
+                       existe= true;
+                       break;
+                    }
                 }
-            }
-            if(existe==false){//Busco y no lo encontro entonces lo agrega
-                nombresTemasAgregar.add(NTDA);
-            }else{//Busco y se lo encontro entonces no lo agrega y resetea la variable
-                existe = false;
-            }
-        }     
-        return nombresTemasAgregar;
+                if(existe==false){//Busco y no lo encontro entonces lo agrega
+                    nombresTemasAgregar.add(NTDA);
+                }else{//Busco y se lo encontro entonces no lo agrega y resetea la variable
+                    existe = false;
+                }
+            }     
+            return nombresTemasAgregar;
+        }else{
+            return nombresTemasDeAlbum;
+        }
+    }
+    @Override
+    public void AddTemaList(String Tipo, String NomPlay, String NomTema, String nom ){
+        AgregarTemasLista ADD= new AgregarTemasLista(Tipo, NomPlay, NomTema, nom);
     }
 }

@@ -35,4 +35,5 @@ public interface ICtrl {
     public abstract List<String> obtenerNombresDeListPD( String NomGenero);
     public abstract List<String> obtenerNombresTemaParaPartADD(String NomList, String NomCliente);
     public abstract List<String> obtenerNombresTemaParaPDADD(String NomList, String NomGen);
+    public abstract void AddTemaList(String Tipo, String NomPlay, String NomTema, String nom );
 }
