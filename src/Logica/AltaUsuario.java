@@ -14,7 +14,7 @@ public class AltaUsuario {
     int meses;
     int anios;
             
-    public AltaUsuario(ICtrl ic, String nick, String nom, String ape, String mail, Object dia, Object mes, Object anio, String bio, String web){
+    public AltaUsuario(ICtrl ic, String nick, String nom, String ape, String mail, String pass, Object dia, Object mes, Object anio, String bio, String web){
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         ictrl = ic;
         
@@ -38,10 +38,10 @@ public class AltaUsuario {
         
         
         if(bio == null){
-            Cliente nuevoCliente = ictrl.crearCliente(nick, nom, ape, mail, dias, meses, anios);
+            Cliente nuevoCliente = ictrl.crearCliente(nick, nom, ape, mail, pass, dias, meses, anios);
             mu.addCliente(nuevoCliente);
         }else{
-            Artista nuevoArtista = ictrl.crearArtista(nick, nom, ape, mail, dias, meses, anios, bio, web);
+            Artista nuevoArtista = ictrl.crearArtista(nick, nom, ape, mail, pass, dias, meses, anios, bio, web);
             mu.addArtista(nuevoArtista);
         }
     }
