@@ -36,17 +36,23 @@ public class IAltaPerfil extends javax.swing.JPanel {
         TextField3.setText("");
         TextField4.setText("");
         TextField5.setText("");
+        TextField5.setVisible(false);
         TextField6.setText("");
+        TextField6.setVisible(false);
         TextField7.setText("");
         PassField1.setText("");
         PassField2.setText("");
         TextField7.setVisible(false);
+        TextArea1.setVisible(false);
+        jScrollPane6.setVisible(false);
         jComboBox4.addItem("Cliente");
         jComboBox4.addItem("Artista");
-        
+        TextArea1.setLineWrap(true);  // Activa el salto de línea automático
+        TextArea1.setWrapStyleWord(true);  // Asegura que el salto sea entre palabras y no en medio de una palabra
+
         List<Integer> anios = new ArrayList<>();
         for (int i = 2025; i >= 1920; i--) {
-        anios.add(i);
+            anios.add(i);
         }
         
         List<String> meses = Arrays.asList(
@@ -497,6 +503,45 @@ public class IAltaPerfil extends javax.swing.JPanel {
 
     private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
         // TODO add your handling code here:
+        if (CheckBox1.isSelected()) {
+            String contra1 = TextField5.getText();
+            String contra2 = TextField6.getText();
+            PassField1.setText(contra1);
+            PassField2.setText(contra2);
+        } else {
+            String contra1 = PassField1.getText();
+            String contra2 = PassField2.getText();
+            TextField5.setText(contra1);
+            TextField6.setText(contra2);
+        }
+        
+        String nick = TextField1.getText().toString();
+        String nombre = TextField2.getText().toString();
+        String apellido = TextField3.getText().toString();
+        String mail = TextField4.getText().toString();
+        String password = PassField1.getText().toString();
+        String selectedDay = (String) jComboBox1.getSelectedItem();
+        int dia = Integer.parseInt(selectedDay);
+        String mes = jComboBox2.getSelectedItem().toString();
+        String selectedYear = (String) jComboBox3.getSelectedItem();
+        int anio = Integer.parseInt(selectedYear);
+        String bio = TextArea1.getText().toString();
+        String link = TextField7.getText().toString();
+        
+        System.out.println("======CREANDO USUARIO======");
+        System.out.println("Nickname: " + nick);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Apellido: " + apellido);
+        System.out.println("Correo: " + mail);
+        System.out.println("Contraseña: " + password);
+        System.out.println("Dia: " + dia);
+        System.out.println("Mes: " + mes);
+        System.out.println("Anio: " + anio);
+        System.out.println("Biografia: " + bio);
+        System.out.println("Pagina Web: " + link);
+        System.out.println("===========================");
+        
+        //mostrar/esconder contraseña
         if(CheckBox1.isSelected()){
             PassField1.setText(TextField5.getText());
             PassField2.setText(TextField6.getText());
@@ -504,43 +549,52 @@ public class IAltaPerfil extends javax.swing.JPanel {
             TextField5.setText(PassField1.getText());
             TextField6.setText(PassField2.getText());
         }
-        if(PassField2.getText().equals(PassField1.getText())){
-        if(TextField1.getText().equals("")){
+        
+        if(nick.equals("")){
+            Text11.setVisible(false);
             Text11.setText("Ingrese un nickname");
             Text11.setVisible(true);
-        }else if(TextField2.getText().equals("")){
+        }else if(nombre.equals("")){
+            Text11.setVisible(false);
             Text11.setText("Ingrese un nombre");
             Text11.setVisible(true);
-        }else if(TextField3.getText().equals("")){
+        }else if(apellido.equals("")){
+            Text11.setVisible(false);
             Text11.setText("Ingrese un apellido");
             Text11.setVisible(true);
-        }else if(TextField4.getText().equals("")){
-            Text11.setText("Ingrese un correo");
+        }else if(mail.equals("")){
+            Text11.setVisible(false);
+            Text11.setText("Ingrese un correo electronico");
             Text11.setVisible(true);
-        }else if(PassField1.getText().equals("") && TextField5.getText().equals("")){
+        }else if(password.equals("")){
+            Text11.setVisible(false);
             Text11.setText("Ingrese una contraseña");
             Text11.setVisible(true);
-        }else if(PassField2.getText().equals("") && TextField6.getText().equals("")){
-            Text11.setText("Confirme la contraseña ingresada");
-            Text11.setVisible(true);
-        }else if(jComboBox4.getSelectedItem().toString().equals("Artista")){
-            if(TextArea1.getText().equals("")){
-                Text11.setText("Ingrese una Biografia");
-                Text11.setVisible(true);
-            }else if(TextField7.getText().equals("")){
-                Text11.setText("Ingrese una pagina web");
-                Text11.setVisible(true);
+        }else if(password.equals(PassField2.getText())){
+            if(jComboBox4.getSelectedItem().equals("Artista")){
+                if(bio.equals("")){
+                    Text11.setVisible(false);
+                    Text11.setText("Ingrese una biografia");
+                    Text11.setVisible(true);
+                }else if(link.equals("")){
+                    Text11.setVisible(false);
+                    Text11.setText("Ingrese una pagina web");
+                    Text11.setVisible(true);
+                }else{
+                    //crear artista
+                    Text11.setVisible(false);
+                    Text11.setText("Se creo al artista "+nick+" con exito");
+                    Text11.setVisible(true);
+                }
             }else{
-                Text11.setText("Se creo al Artista "+TextField1.getText()+" con exito");
+                //crear cliente
+                Text11.setVisible(false);
+                Text11.setText("Se creo el cliente "+nick+" con exito");
                 Text11.setVisible(true);
             }
         }else{
-            //crearCliente
-            Text11.setText("Se creo al Cliente "+TextField1.getText()+" con exito");
-            Text11.setVisible(true);
-        }
-        }else{
-            Text11.setText("Las contraseñas no concuerdan");
+            Text11.setVisible(false);
+            Text11.setText("Las contraseñas no coinciden");
             Text11.setVisible(true);
         }
     }//GEN-LAST:event_ACEPTARActionPerformed
