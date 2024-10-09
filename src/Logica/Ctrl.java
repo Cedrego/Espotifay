@@ -105,11 +105,11 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
-    public Artista crearArtista(String nick, String nom, String ape, String mail, int dia, int mes, int anio, String bio, String web){
+    public Artista crearArtista(String nick, String nom, String ape, String mail, String pass, int dia, int mes, int anio, String bio, String web){
         
         DTFecha dtfecha = new DTFecha(dia, mes, anio);
         
-        Artista nuevoArtista = new Artista(nick, nom, ape, mail, dtfecha, bio, web);
+        Artista nuevoArtista = new Artista(nick, nom, ape, mail, pass, dtfecha, bio, web);
         
         ArtistaJpaController artistaJpaController = new ArtistaJpaController();
         
@@ -123,10 +123,10 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
-    public Cliente crearCliente(String nick, String nom, String ape, String mail, int dia, int mes, int anio){
+    public Cliente crearCliente(String nick, String nom, String ape, String mail, String pass, int dia, int mes, int anio){
         DTFecha dtfecha = new DTFecha(dia, mes, anio);
         
-        Cliente nuevoCliente = new Cliente(nick, nom, ape, mail, dtfecha);
+        Cliente nuevoCliente = new Cliente(nick, nom, ape, mail, pass, dtfecha);
         
         ClienteJpaController clienteJpaController = new ClienteJpaController();
         
