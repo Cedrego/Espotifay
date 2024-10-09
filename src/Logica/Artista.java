@@ -40,8 +40,8 @@ public class Artista extends Usuario {
     public Artista() {
     }
 
-    public Artista(String nick, String nom, String ape, String mail, DTFecha fech, String bio, String webSite) {
-        super(nick, nom, ape, mail, fech);
+    public Artista(String nick, String nom, String ape, String pass, String mail, DTFecha fech, String bio, String webSite) {
+        super(nick, nom, ape, mail, pass, fech);
         this.SitioWeb = webSite;
         this.Biografia = bio;
         this.albumes = new ArrayList<>(); //inicializa lista de albumes

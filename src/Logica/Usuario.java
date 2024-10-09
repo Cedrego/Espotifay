@@ -21,6 +21,8 @@ public abstract class Usuario implements Serializable {
     private String apellido;
     @Column (name="MAIL")
     private String correo;
+    @Column (name="CONTRASENIA")
+    private String password;
     @JoinColumn (name="FECNAC")
     private DTFecha fecha;
     //private imagen picture;
@@ -28,11 +30,12 @@ public abstract class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(String nick, String nom, String ape, String mail, DTFecha fech) {
+    public Usuario(String nick, String nom, String ape, String pass, String mail, DTFecha fech) {
         this.nickname = nick;
         this.nombre = nom;
         this.apellido = ape;
         this.correo = mail;
+        this.password = pass;
         this.fecha = fech;
         //this.imagen = picture;
     }
@@ -52,6 +55,10 @@ public abstract class Usuario implements Serializable {
     
     public String getCorreo() {
         return correo;
+    }
+    
+    public String getPassword() {
+        return password;
     }
     
     public DTFecha getFecha() {
@@ -78,6 +85,10 @@ public abstract class Usuario implements Serializable {
     
     public void setCorreo(String mail) {
         this.correo = mail;
+    }
+    
+    public void setPassword(String pass) {
+        this.password = pass;
     }
     
     public void setFecha(DTFecha fech) {
