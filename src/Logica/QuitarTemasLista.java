@@ -4,8 +4,6 @@
  */
 package Logica;
 
-import Persistencia.ArtistaJpaController;
-import Persistencia.ClienteJpaController;
 import Persistencia.ParticularJpaController;
 import Persistencia.TemaJpaController;
 import Persistencia.porDefectoJpaController;

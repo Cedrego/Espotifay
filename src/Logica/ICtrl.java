@@ -36,4 +36,7 @@ public interface ICtrl {
     public abstract List<String> obtenerNombresTemaParaPartADD(String NomList, String NomCliente);
     public abstract List<String> obtenerNombresTemaParaPDADD(String NomList, String NomGen);
     public abstract void AddTemaList(String Tipo, String NomPlay, String NomTema, String nom );
+    public abstract List<String> obtenerNombresTemaParaPDREMOVE(String NomList, String NomGen);
+    public abstract List<String> obtenerNombresTemaParaPartREMOVE(String NomList, String NomCliente);
+    public abstract void RemoveTemaList(String Tipo, String NomPlay, String NomTema, String nom );
 }

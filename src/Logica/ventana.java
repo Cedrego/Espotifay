@@ -2271,7 +2271,7 @@ public class ventana extends javax.swing.JFrame {
                                 Text10.setVisible(false);
                                 Text15.setText("Ingresado con exito");
                                 Text15.setVisible(true);
-                                Logica.AltaUsuario altaUsuario = new Logica.AltaUsuario(IC,nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, biografia, pagina);
+                               // Logica.AltaUsuario altaUsuario = new Logica.AltaUsuario(IC,nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, biografia, pagina);
                             }
                         }
                     } else {
@@ -2298,7 +2298,7 @@ public class ventana extends javax.swing.JFrame {
                             Text10.setVisible(false);
                             Text15.setText("Ingresado con exito");
                             Text15.setVisible(true);
-                            Logica.AltaUsuario altaUsuario = new Logica.AltaUsuario(IC,nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, null, null);
+                            //Logica.AltaUsuario altaUsuario = new Logica.AltaUsuario(IC,nickname, nombre, apellido, correo, diasObj, mesesObj, aniosObj, null, null);
                         }
                     }
                 }

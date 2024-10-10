@@ -501,8 +501,66 @@ public class Ctrl implements ICtrl{
             return nombresTemasDeAlbum;
         }
     }
+    
     @Override
     public void AddTemaList(String Tipo, String NomPlay, String NomTema, String nom ){
         AgregarTemasLista ADD= new AgregarTemasLista(Tipo, NomPlay, NomTema, nom);
+    }
+    
+    @Override
+    public List<String> obtenerNombresTemaParaPDREMOVE(String NomList, String NomGen){
+        List<String> NomTemas = new ArrayList<>();
+        porDefecto PD = null;
+        EntityManager em = porDefectoJpaController.getEntityManager(); // Obtener el EntityManager del JPA Controller
+        try {
+                // Escapamos el valor de la variable `NomList` para prevenir inyecciones SQL
+                String query = "SELECT * FROM porDefecto WHERE nombre = '" + NomList + "'";
+                PD = (porDefecto) em.createNativeQuery(query, porDefecto.class).getSingleResult();
+            } catch (NoResultException e) {
+                System.out.println("No se encontró la lista por defecto con el nombre: " + NomList);
+                return new ArrayList<>(); // Retorna una lista vacía si no se encuentra
+            } finally {
+                em.close(); // Cerrar el EntityManager
+            }
+        if(PD==null){
+            return new ArrayList<>(); // Retorna una lista vacía si la lista no se encuentra
+        }
+        // Agregar todos los nombres de temas de los álbumes a nombresTemasDeAlbum
+        if(!PD.getTemas().isEmpty()){
+            
+            for(Tema tem: PD.getTemas()){
+                NomTemas.add(tem.getNombre());
+            }
+        }else{
+            return new ArrayList<>(); // Retorna una lista vacía si la lista no contiene temas
+        }
+        return NomTemas;
+    }
+    @Override
+    public List<String> obtenerNombresTemaParaPartREMOVE(String NomList, String NomCliente){
+        // Verificar si la lista particular existe para el cliente
+        Cliente cli = clienteController.findCliente(NomCliente);
+        if (cli != null) {
+            if(cli.getParticular().isEmpty()){
+                return new ArrayList<>();
+            }else{
+                List<Particular> ListPartCli = cli.getParticular();
+                List<String> NomTema = new ArrayList<>(); 
+                for(Particular part: ListPartCli){//Busco esa lista en la lista de cliente
+                   if(part.getNombre().equalsIgnoreCase(NomList)){
+                       for(Tema tem: part.getTemas()){
+                           NomTema.add(tem.getNombre());
+                       }
+                       return NomTema;
+                   }
+                }  
+            }
+        }
+        return new ArrayList<>();
+    }
+    
+    @Override
+    public void RemoveTemaList(String Tipo, String NomPlay, String NomTema, String nom ){
+        QuitarTemasLista Remove= new QuitarTemasLista(Tipo, NomPlay, NomTema, nom);
     }
 }
