@@ -29,6 +29,9 @@ public interface ICtrl {
     
     public abstract List<String> obtenerNombresDeGeneros();
     public abstract List<String> obtenerNombresDeCliente();
+    public abstract List<String> obtenerNombresDeArtista();
+    public abstract List<String> obtenerMailDeCliente();
+    public abstract List<String> obtenerMailDeArtista();
     public abstract boolean ExisListPartEnCliente(String NomList, String NomCliente);
     public abstract boolean ExisListPorDefEnGenero(String NomList);
     public abstract List<String> obtenerNombresDeListPart(String NomCliente);
