@@ -2373,7 +2373,7 @@ public class ventana extends javax.swing.JFrame {
                             }
                         }
                         if(existe == false){
-                            Logica.CrearLista crearlista = new CrearLista(IC, name, Tipo, GoC);   
+//                            Logica.CrearLista crearlista = new CrearLista(IC, name, Tipo, GoC);   
                             Text15.setText("Ingresado con exito");
                             Text15.setVisible(true);
                             Text10.setVisible(false);
@@ -2393,7 +2393,7 @@ public class ventana extends javax.swing.JFrame {
                             }
                         }
                         if(existe == false){
-                            Logica.CrearLista crearlista = new CrearLista(IC, name, Tipo, GoC);   
+                            //Logica.CrearLista crearlista = new CrearLista(IC, name, Tipo, GoC);   
                             Text15.setText("Ingresado con exito");
                             Text15.setVisible(true);
                             Text10.setVisible(false);
@@ -2441,7 +2441,7 @@ public class ventana extends javax.swing.JFrame {
                             }
                         }
                         if(existe == false){//no existe el tema en esa lista de temas de esa lista particular del cliente
-                            Logica.AgregarTemasLista agregartemaslista = new AgregarTemasLista(Tipo, NomPlay, NomTema, nom);   
+                            //Logica.AgregarTemasLista agregartemaslista = new AgregarTemasLista(Tipo, NomPlay, NomTema, nom);   
                             Text10.setVisible(false);
                             Text15.setText("Ingresado con exito");
                             Text15.setVisible(true);

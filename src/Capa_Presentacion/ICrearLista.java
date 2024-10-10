@@ -203,11 +203,7 @@ public class ICrearLista extends javax.swing.JPanel {
         }else{
             if(PuedoCrear==true){
                 //CrearLista
-                if("Particular".equals(selectedItem)){
-                    ctrl.CrearListParticular(NomList, GoC);
-                }else{
-                    ctrl.CrearListPorDefecto(NomList, GoC);
-                }
+               ctrl.CreateLista(NomList, (String) selectedItem, GoC);
                Text4.setVisible(false);
                Text4.setText("Lista creada con exito");
                Text4.setVisible(true);

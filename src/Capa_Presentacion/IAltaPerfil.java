@@ -1,5 +1,7 @@
 package Capa_Presentacion;
 
+import Logica.Factory;
+import Logica.ICtrl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +20,8 @@ public class IAltaPerfil extends javax.swing.JPanel {
     /**
      * Creates new form IAltaPerfil
      */
+    Factory fabric =Factory.getInstance();
+    ICtrl ctrl = fabric.getICtrl();
     public IAltaPerfil() {
         initComponents();
         Text1.setText("Nickname");
@@ -515,6 +519,23 @@ public class IAltaPerfil extends javax.swing.JPanel {
             TextField6.setText(contra2);
         }
         
+        List<String> nomCli = new ArrayList<>();
+        List<String> nomArt = new ArrayList<>();
+        List<String> mailCli = new ArrayList<>();
+        List<String> mailArt = new ArrayList<>();
+        for (String Part : ctrl.obtenerNombresDeCliente()) {
+            nomCli.add(Part);
+        }
+        for (String Part : ctrl.obtenerNombresDeArtista()) {
+            nomArt.add(Part);
+        }
+        for (String Part : ctrl.obtenerMailDeCliente()) {
+            mailCli.add(Part);
+        }
+        for (String Part : ctrl.obtenerMailDeArtista()) {
+            mailArt.add(Part);
+        }
+        
         String nick = TextField1.getText().toString();
         String nombre = TextField2.getText().toString();
         String apellido = TextField3.getText().toString();
@@ -527,19 +548,6 @@ public class IAltaPerfil extends javax.swing.JPanel {
         int anio = Integer.parseInt(selectedYear);
         String bio = TextArea1.getText().toString();
         String link = TextField7.getText().toString();
-        
-        System.out.println("======CREANDO USUARIO======");
-        System.out.println("Nickname: " + nick);
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Correo: " + mail);
-        System.out.println("Contraseña: " + password);
-        System.out.println("Dia: " + dia);
-        System.out.println("Mes: " + mes);
-        System.out.println("Anio: " + anio);
-        System.out.println("Biografia: " + bio);
-        System.out.println("Pagina Web: " + link);
-        System.out.println("===========================");
         
         //mostrar/esconder contraseña
         if(CheckBox1.isSelected()){
@@ -581,16 +589,50 @@ public class IAltaPerfil extends javax.swing.JPanel {
                     Text11.setText("Ingrese una pagina web");
                     Text11.setVisible(true);
                 }else{
-                    //crear artista
-                    Text11.setVisible(false);
-                    Text11.setText("Se creo al artista "+nick+" con exito");
-                    Text11.setVisible(true);
+                    if(nomArt.contains(nick)){
+                        Text11.setVisible(false);
+                        Text11.setText("Ya existe un ususario " + nick + ", eliga otro nickname");
+                        Text11.setVisible(true);
+                    }else if(nomCli.contains(nick)){
+                        Text11.setVisible(false);
+                        Text11.setText("Ya existe un usuario " + nick + ", eliga otro nickname");
+                        Text11.setVisible(true);
+                    }else if(mailCli.contains(mail)){
+                        Text11.setVisible(false);
+                        Text11.setText("Ya existe un usuario con el correo " + mail + ", eliga otro correo");
+                        Text11.setVisible(true);
+                    }else if (mailArt.contains(mail)) {
+                        Text11.setVisible(false);
+                        Text11.setText("Ya existe un usuario con el correo " + mail + ", eliga otro correo");
+                        Text11.setVisible(true);
+                    }else{
+                        Text11.setVisible(false);
+                        Text11.setText("Se creo al artista "+nick+" con exito");
+                        Text11.setVisible(true);
+                    }
                 }
             }else{
-                //crear cliente
-                Text11.setVisible(false);
-                Text11.setText("Se creo el cliente "+nick+" con exito");
-                Text11.setVisible(true);
+                if (nomArt.contains(nick)) {
+                    Text11.setVisible(false);
+                    Text11.setText("Ya existe un ususario " + nick + ", eliga otro nickname");
+                    Text11.setVisible(true);
+                } else if (nomCli.contains(nick)) {
+                    Text11.setVisible(false);
+                    Text11.setText("Ya existe un usuario " + nick + ", eliga otro nickname");
+                    Text11.setVisible(true);
+                } else if (mailCli.contains(mail)) {
+                    Text11.setVisible(false);
+                    Text11.setText("Ya existe un usuario con el correo " + mail + ", eliga otro correo");
+                    Text11.setVisible(true);
+                } else if (mailArt.contains(mail)) {
+                    Text11.setVisible(false);
+                    Text11.setText("Ya existe un usuario con el correo " + mail + ", eliga otro correo");
+                    Text11.setVisible(true);
+                } else {
+                    Text11.setVisible(false);
+                    Text11.setText("Se creo el cliente " + nick + " con exito");
+                    Text11.setVisible(true);
+                }
             }
         }else{
             Text11.setVisible(false);

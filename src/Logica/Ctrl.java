@@ -39,6 +39,7 @@ public class Ctrl implements ICtrl{
     public ParticularJpaController particularJpaController = new ParticularJpaController();
     public porDefectoJpaController porDefectoJpaController = new porDefectoJpaController();
     public ClienteJpaController clienteController = new ClienteJpaController();
+    public ArtistaJpaController artistaController = new ArtistaJpaController();
     public Ctrl(){}
     
     
@@ -318,6 +319,11 @@ public class Ctrl implements ICtrl{
         return nuevoPorDefecto;
     }
     @Override
+    public void CreateLista(String Name, String Tipo, String GOP ){
+        CrearLista CL= new CrearLista(Name, Tipo, GOP);
+    }
+    
+    @Override
     public void InfiniteVoid(){
         
     }
@@ -369,6 +375,51 @@ public class Ctrl implements ICtrl{
         }
 
         return nombresCliente;
+    }
+    @Override
+    public List<String> obtenerNombresDeArtista() {
+        // Obtenemos todos los géneros de la base de datos
+        List<Artista> listaArtista = artistaController.findArtistaEntities();
+
+        // Creamos una lista de strings para almacenar los nombres
+        List<String> nombresArtista = new ArrayList<>();
+
+        // Recorremos la lista de Cliente y extraemos sus nombres
+        for (Artista art : listaArtista) {
+            nombresArtista.add(art.getNickname());
+        }
+
+        return nombresArtista;
+    }
+    @Override
+    public List<String> obtenerMailDeCliente() {
+        // Obtenemos todos los géneros de la base de datos
+        List<Cliente> listaCliente = clienteController.findClienteEntities();
+
+        // Creamos una lista de strings para almacenar los nombres
+        List<String> mailCliente = new ArrayList<>();
+
+        // Recorremos la lista de Cliente y extraemos sus nombres
+        for (Cliente cli : listaCliente) {
+            mailCliente.add(cli.getCorreo());
+        }
+
+        return mailCliente;
+    }
+    @Override
+    public List<String> obtenerMailDeArtista() {
+        // Obtenemos todos los géneros de la base de datos
+        List<Artista> listaArtista = artistaController.findArtistaEntities();
+
+        // Creamos una lista de strings para almacenar los nombres
+        List<String> mailArtista = new ArrayList<>();
+
+        // Recorremos la lista de Cliente y extraemos sus nombres
+        for (Artista art : listaArtista) {
+            mailArtista.add(art.getCorreo());
+        }
+
+        return mailArtista;
     }
     @Override
     public boolean ExisListPartEnCliente(String NomList, String NomCliente){
