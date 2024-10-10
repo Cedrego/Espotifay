@@ -45,19 +45,19 @@ public class Ctrl implements ICtrl{
     
     //crear un objeto de tipo album
     @Override
-    public Album CrearAlbum (String nombreA, String artista, int anioA, List<Genero> generosA, List<Tema> temasA){
+    public void CrearAlbum (String nombreA, String artista, int anioA, List<String> generosA, List<String> temasA){
         
         Album albumNuevo = new Album(nombreA, artista ,anioA); //creo un album, ya inicializa las listas de genero y temas
 
-        for (Genero genero : generosA){
-            albumNuevo.addGenero(genero);
+        for (String genero : generosA){
+            albumNuevo.addGenero(generoJpaController.findGenero(genero));
         }
 
-        for (Tema tema : temasA){
-            albumNuevo.addTemas(tema);
+        for (String tema : temasA){
+            albumNuevo.addTemas(temaJpaController.findTema(tema));
             //persistimos temas
             try {
-                temaJpaController.create(tema);
+                temaJpaController.create(temaJpaController.findTema(tema));
             } catch (Exception e) {
                 System.out.println("Error al guardar el tema: " + e.getMessage());
             }
@@ -70,7 +70,7 @@ public class Ctrl implements ICtrl{
             System.out.println("Error al guardar el album: " + e.getMessage());
         }
         
-        return albumNuevo;
+        
     };
     
     @Override
@@ -86,22 +86,22 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
-    public Genero crearGenero(String nomG, Genero padre){
+    public void crearGenero(String nomG, String padre){
         Genero generoNuevo = new Genero(nomG);
+        Genero generoPadre = generoJpaController.findGenero(padre);
         
         if(padre!=null){
-            generoNuevo.setPadre(padre);
+            generoNuevo.setPadre(generoPadre);
         }else{
             generoNuevo.setPadre(generoJpaController.findGenero("Genero"));
         }
         
         try {
             generoJpaController.create(generoNuevo);
+            System.out.println("Genero creado con exito");
         } catch (Exception e) {
             System.out.println("Error al crear el genero: " + e.getMessage());
         }
-        
-        return generoNuevo;
     }
     
     @Override
@@ -343,6 +343,17 @@ public class Ctrl implements ICtrl{
         }
 
         return nombresGeneros;
+    }
+    
+    @Override
+    public boolean existeGenero(String nomGenero){
+        Genero gen = generoJpaController.findGenero(nomGenero);
+        if(gen!=null){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     @Override
      public List<String> obtenerNombresDeCliente() {

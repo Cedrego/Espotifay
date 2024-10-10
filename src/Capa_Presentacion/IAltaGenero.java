@@ -1,5 +1,9 @@
 package Capa_Presentacion;
 
+import Logica.Factory;
+import Logica.Genero;
+import Logica.ICtrl;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -10,12 +14,38 @@ package Capa_Presentacion;
  * @author cedre
  */
 public class IAltaGenero extends javax.swing.JPanel {
-
+    Factory fabric =Factory.getInstance();
+    ICtrl ctrl = fabric.getICtrl();
     /**
      * Creates new form IAltaPerfil
      */
     public IAltaGenero() {
         initComponents();
+        ACEPTAR.setVisible(true);
+        Text1.setText("Nombre del Genero:");
+        TextField1.setText("");
+        Text2.setText("Genero Padre:");
+        
+        jComboBox1.addItem("");
+        
+        if(ctrl.obtenerNombresDeGeneros().isEmpty()){
+            System.out.println("no hay generos jefesito");
+        }else{
+            for (String gen: ctrl.obtenerNombresDeGeneros()){
+                if(gen.equalsIgnoreCase("Genero")){
+                    
+                }else{
+                    jComboBox1.addItem(gen);
+                }
+            }
+        }
+        
+        
+        Text1.setVisible(true);
+        Text2.setVisible(true);
+        Text3.setVisible(false);
+        TextField1.setVisible(true);
+        jComboBox1.setVisible(true);
     }
 
     /**
@@ -33,13 +63,13 @@ public class IAltaGenero extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         Text2 = new javax.swing.JLabel();
         ACEPTAR1 = new javax.swing.JButton();
+        Text3 = new javax.swing.JLabel();
 
         ACEPTAR.setBackground(new java.awt.Color(0, 204, 102));
         ACEPTAR.setForeground(new java.awt.Color(0, 0, 0));
         ACEPTAR.setText("ACEPTAR");
 
         setBackground(new java.awt.Color(51, 51, 51));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TextField1.setBackground(new java.awt.Color(102, 102, 102));
         TextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -51,30 +81,111 @@ public class IAltaGenero extends javax.swing.JPanel {
                 TextField1ActionPerformed(evt);
             }
         });
-        add(TextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 310, -1));
 
         Text1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text1.setForeground(new java.awt.Color(255, 255, 255));
         Text1.setText("Text1");
-        add(Text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 310, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, -1, 20));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         Text2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text2.setForeground(new java.awt.Color(255, 255, 255));
         Text2.setText("Text2");
-        add(Text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 310, -1));
 
         ACEPTAR1.setBackground(new java.awt.Color(0, 204, 102));
         ACEPTAR1.setForeground(new java.awt.Color(0, 0, 0));
         ACEPTAR1.setText("ACEPTAR");
-        add(ACEPTAR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, -1, -1));
+        ACEPTAR1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ACEPTAR1ActionPerformed(evt);
+            }
+        });
+
+        Text3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text3.setForeground(new java.awt.Color(255, 255, 255));
+        Text3.setText("Text3");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ACEPTAR1)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Text1)
+                    .addComponent(Text2))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 409, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ACEPTAR1)
+                    .addComponent(Text3))
+                .addContainerGap())
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextField1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void ACEPTAR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTAR1ActionPerformed
+        
+                String nombreGenero = TextField1.getText();
+                String nombrePadre = jComboBox1.getSelectedItem() != null ? jComboBox1.getSelectedItem().toString() : "";
+                if(nombrePadre.equalsIgnoreCase("")){
+                    nombrePadre="Genero"; 
+                }
+                
+                if (TextField1.getText().isEmpty()) {
+                    Text3.setVisible(false);
+                    Text3.setText("ERROR: campo Nombre vacio");
+                    Text3.setVisible(true);
+                }else{
+                    if(ctrl.existeGenero(TextField1.getText())){
+                        Text3.setVisible(false);
+                        Text3.setText("Error, genero "+TextField1.getText()+" ya existe");
+                        Text3.setVisible(true);
+
+                    }else{
+                        Text3.setVisible(false);
+                        Text3.setText("Ingresado con exito");
+                        Text3.setVisible(true);
+                        ctrl.crearGenero(nombreGenero,nombrePadre);
+                    }
+                }
+    }//GEN-LAST:event_ACEPTAR1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -82,6 +193,7 @@ public class IAltaGenero extends javax.swing.JPanel {
     private javax.swing.JButton ACEPTAR1;
     private javax.swing.JLabel Text1;
     private javax.swing.JLabel Text2;
+    private javax.swing.JLabel Text3;
     private javax.swing.JTextField TextField1;
     private javax.swing.JComboBox<String> jComboBox1;
     // End of variables declaration//GEN-END:variables

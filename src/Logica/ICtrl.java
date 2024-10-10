@@ -13,9 +13,9 @@ import java.util.List;
  */
 public interface ICtrl {
     
-    public abstract Album CrearAlbum (String nombreA, String artista, int anioA, List<Genero> generosA, List<Tema> temasA);
+    public abstract void CrearAlbum (String nombreA, String artista, int anioA, List<String> generosA, List<String> temasA);
     public abstract Tema CrearTema(String nomT, String duraT, int ordT, String guardadoT, List<Genero> generosT);
-    public abstract Genero crearGenero(String nomG, Genero padre);
+    public abstract void crearGenero(String nomG, String padre);
     public abstract Cliente crearCliente(String nick, String nom, String ape, String mail, String pass, int dia, int mes, int anio);
     public abstract Artista crearArtista(String nick, String nom, String ape, String mail, String pass, int dia, int mes, int anio, String bio, String web);
     public abstract void agregarSeguidorC(Cliente cliente, Cliente seguidor);
@@ -28,6 +28,7 @@ public interface ICtrl {
     public abstract void Publicar(String lista,String cli);
     
     public abstract List<String> obtenerNombresDeGeneros();
+    public abstract boolean existeGenero(String nomGenero);
     public abstract List<String> obtenerNombresDeCliente();
     public abstract boolean ExisListPartEnCliente(String NomList, String NomCliente);
     public abstract boolean ExisListPorDefEnGenero(String NomList);
