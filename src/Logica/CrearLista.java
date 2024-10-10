@@ -19,16 +19,16 @@ import javax.persistence.TypedQuery;
  * @author User
  */
 public class CrearLista {
-     private ICtrl ictrl;
+     Factory fabric =Factory.getInstance();
+    ICtrl ctrl = fabric.getICtrl();
     // Obtenemos el EntityManager desde la fábrica
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("pantallaPU");
     EntityManager em = emf.createEntityManager();
     
-    public CrearLista (ICtrl ic, String name, String Tipo, String GOP){
+    public CrearLista ( String name, String Tipo, String GOP){
         ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
         ManejadorMusica mm = ManejadorMusica.getInstance(); //consigo instancia de manejador de playlist
         ManejadorUsuario mu = ManejadorUsuario.getInstance(); //consigo instancia de manejador de Usuario
-        ictrl = ic; 
         
         if("Particular".equals(Tipo)){
             // Buscar el cliente usando el nickname
@@ -36,7 +36,7 @@ public class CrearLista {
             query.setParameter("nickname", GOP); // Establecemos el parámetro
             Cliente cliente = query.getSingleResult(); // Intentamos obtener un único cliente
             
-            Particular nuevoPar = ictrl.CrearListParticular(name,cliente.getNickname());//Creo la instancia de playlist particular
+            Particular nuevoPar = ctrl.CrearListParticular(name,cliente.getNickname());//Creo la instancia de playlist particular
             mp.addPartList(nuevoPar);//Agrego la instancia a la lista
             
              cliente.getParticular().add(nuevoPar); // Añadir la playlist particular al cliente
@@ -49,7 +49,7 @@ public class CrearLista {
         }
             em.refresh(cliente); // Recargar el estado del cliente desde la base de datos
         }else{
-            porDefecto nuevoPorDefecto = ictrl.CrearListPorDefecto(name, GOP);
+            porDefecto nuevoPorDefecto = ctrl.CrearListPorDefecto(name, GOP);
  
         }
         

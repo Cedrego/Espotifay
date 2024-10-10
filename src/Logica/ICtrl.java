@@ -23,6 +23,7 @@ public interface ICtrl {
     public abstract void dejarSeguidorC(Cliente usuario, Cliente seguidor);
     public abstract void dejarSeguidorA(Artista usuario, Cliente seguidor);
     public abstract void InfiniteVoid();
+    public abstract void CreateLista(String Name, String Tipo, String GOP );
     public abstract Particular CrearListParticular(String nombre, String nomCliente);
     public abstract porDefecto CrearListPorDefecto(String nombre, String genero);
     public abstract void Publicar(String lista,String cli);

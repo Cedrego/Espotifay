@@ -319,6 +319,11 @@ public class Ctrl implements ICtrl{
         return nuevoPorDefecto;
     }
     @Override
+    public void CreateLista(String Name, String Tipo, String GOP ){
+        CrearLista CL= new CrearLista(Name, Tipo, GOP);
+    }
+    
+    @Override
     public void InfiniteVoid(){
         
     }
