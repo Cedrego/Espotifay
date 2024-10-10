@@ -581,6 +581,7 @@ public class IAltaPerfil extends javax.swing.JPanel {
                     Text11.setText("Ingrese una pagina web");
                     Text11.setVisible(true);
                 }else{
+                    
                     //crear artista
                     Text11.setVisible(false);
                     Text11.setText("Se creo al artista "+nick+" con exito");
