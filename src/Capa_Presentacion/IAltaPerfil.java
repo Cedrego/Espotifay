@@ -55,7 +55,7 @@ public class IAltaPerfil extends javax.swing.JPanel {
         TextArea1.setWrapStyleWord(true);  // Asegura que el salto sea entre palabras y no en medio de una palabra
 
         List<Integer> anios = new ArrayList<>();
-        for (int i = 2025; i >= 1920; i--) {
+        for (int i = 2023; i >= 1920; i--) {
             anios.add(i);
         }
         
@@ -606,6 +606,7 @@ public class IAltaPerfil extends javax.swing.JPanel {
                         Text11.setText("Ya existe un usuario con el correo " + mail + ", eliga otro correo");
                         Text11.setVisible(true);
                     }else{
+                        ctrl.crearCliente(nick, nombre, apellido, mail, password, dia, mes, anio);
                         Text11.setVisible(false);
                         Text11.setText("Se creo al artista "+nick+" con exito");
                         Text11.setVisible(true);
@@ -629,6 +630,7 @@ public class IAltaPerfil extends javax.swing.JPanel {
                     Text11.setText("Ya existe un usuario con el correo " + mail + ", eliga otro correo");
                     Text11.setVisible(true);
                 } else {
+                    ctrl.crearCliente(nick, nombre, apellido, mail, password, dia, mes, anio);
                     Text11.setVisible(false);
                     Text11.setText("Se creo el cliente " + nick + " con exito");
                     Text11.setVisible(true);
