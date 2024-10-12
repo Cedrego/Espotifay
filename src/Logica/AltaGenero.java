@@ -3,19 +3,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Logica;
-
+import Persistencia.GeneroJpaController;
 /**
  *
  * @author Franco
  */
 public class AltaGenero {
-    private ICtrl ictrl;
+    public GeneroJpaController generoJpaController = new GeneroJpaController();
     
-    public AltaGenero (ICtrl ic, String nombreG, String nombreP){
-        ManejadorMusica mm = ManejadorMusica.getInstance(); //inicializar/obtener manejador
-        ictrl = ic; //inicializar controlador
-        Genero Padre = mm.buscarGenero(nombreP); //busco el genero padre en la lista del manejador
-        Genero generoNuevo = ictrl.crearGenero(nombreG, Padre); //creo la instancia de genero
-        mm.addGenero(generoNuevo); //agrego la nueva instancia a la lista
+    public AltaGenero (String nombreG, String nombreP){
+        Genero generoNuevo = new Genero(nombreG);
+        Genero generoPadre = generoJpaController.findGenero(nombreP);
+        
+        if(nombreP!=null){
+            generoNuevo.setPadre(generoPadre);
+        }else{
+            generoNuevo.setPadre(generoJpaController.findGenero("Genero"));
+        }
+        
+        try {
+            generoJpaController.create(generoNuevo);
+            System.out.println("Genero creado con exito");
+        } catch (Exception e) {
+            System.out.println("Error al crear el genero: " + e.getMessage());
+        }
     }
 }

@@ -5,6 +5,7 @@
 package Logica;
 
 
+import Capa_Presentacion.DataTema;
 import java.util.List;
 
 /**
@@ -13,8 +14,8 @@ import java.util.List;
  */
 public interface ICtrl {
     
-    public abstract void CrearAlbum (String nombreA, String artista, int anioA, List<String> generosA, List<String> temasA);
-    public abstract Tema CrearTema(String nomT, String duraT, int ordT, String guardadoT, List<Genero> generosT);
+    public abstract void CrearAlbum (String nombreA, String artista, int anioA, List<String> generosA, List<DataTema> temasA);
+    public abstract void CrearTema(DataTema dt);
     public abstract void crearGenero(String nomG, String padre);
     public abstract Cliente crearCliente(String nick, String nom, String ape, String mail, String pass, int dia, int mes, int anio);
     public abstract Artista crearArtista(String nick, String nom, String ape, String mail, String pass, int dia, int mes, int anio, String bio, String web);

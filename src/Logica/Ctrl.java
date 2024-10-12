@@ -5,23 +5,20 @@
 package Logica;
 
 
-import Logica.Genero;
+import Capa_Presentacion.DataTema;
 import Persistencia.AlbumJpaController;
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
 import Persistencia.GeneroJpaController;
 import Persistencia.ParticularJpaController;
 import Persistencia.TemaJpaController;
-import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.porDefectoJpaController;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 
 /**
  *
@@ -46,63 +43,18 @@ public class Ctrl implements ICtrl{
     
     //crear un objeto de tipo album
     @Override
-    public void CrearAlbum (String nombreA, String artista, int anioA, List<String> generosA, List<String> temasA){
-        
-        Album albumNuevo = new Album(nombreA, artista ,anioA); //creo un album, ya inicializa las listas de genero y temas
-
-        for (String genero : generosA){
-            albumNuevo.addGenero(generoJpaController.findGenero(genero));
-        }
-
-        for (String tema : temasA){
-            albumNuevo.addTemas(temaJpaController.findTema(tema));
-            //persistimos temas
-            try {
-                temaJpaController.create(temaJpaController.findTema(tema));
-            } catch (Exception e) {
-                System.out.println("Error al guardar el tema: " + e.getMessage());
-            }
-        }
-        
-        //persistimos album
-        try {
-            albumJpaController.create(albumNuevo);
-        } catch (Exception e) {
-            System.out.println("Error al guardar el album: " + e.getMessage());
-        }
-        
-        
+    public void CrearAlbum (String nombreA, String artista, int anioA, List<String> generosA, List<DataTema> temasA){
+        AltaAlbum AA = new AltaAlbum(nombreA,artista,anioA,generosA,temasA);
     };
     
     @Override
-    public Tema CrearTema (String nomT, String duraT, int ordT, String guardadoT, List<Genero> generosT){
-        Tema temaNuevo = new Tema(nomT, duraT, ordT, guardadoT);
-        
-        for (Genero gen : generosT){
-            temaNuevo.addGenero(gen);
-            
-        }
-        
-        return temaNuevo;
+    public void CrearTema (DataTema dt){
+        AltaTema AT = new AltaTema(dt);
     }
     
     @Override
     public void crearGenero(String nomG, String padre){
-        Genero generoNuevo = new Genero(nomG);
-        Genero generoPadre = generoJpaController.findGenero(padre);
-        
-        if(padre!=null){
-            generoNuevo.setPadre(generoPadre);
-        }else{
-            generoNuevo.setPadre(generoJpaController.findGenero("Genero"));
-        }
-        
-        try {
-            generoJpaController.create(generoNuevo);
-            System.out.println("Genero creado con exito");
-        } catch (Exception e) {
-            System.out.println("Error al crear el genero: " + e.getMessage());
-        }
+        AltaGenero AG = new AltaGenero(nomG,padre);
     }
     
     @Override

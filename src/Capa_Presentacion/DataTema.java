@@ -16,24 +16,18 @@ public class DataTema{
     private String duracion;
     private int ordenAlbum;
     private String guardadoEn;
-    private List<DataGenero> generos;
+    private List<String> generos;
 
-    public DataTema(String nombreTema,String duracionTema, int ordenAlbumT, String guardadoT,List<DataGenero> Generos) {
+    public DataTema(String nombreTema,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos) {
         this.nombre = nombreTema;
         this.duracion = duracionTema;
         this.ordenAlbum = ordenAlbumT;
         this.guardadoEn = guardadoT;
         this.generos = Generos;
+        
+        System.out.println("Se creo el data tema con: "+this.nombre+", "+this.duracion+" y "+this.ordenAlbum);
     }
 
-    public DataTema(String nombreTema,String duracionTema, int ordenAlbumT, String guardadoT) {
-        this.nombre = nombreTema;
-        this.duracion = duracionTema;
-        this.ordenAlbum = ordenAlbumT;
-        this.guardadoEn = guardadoT;
-        this.generos = new ArrayList(); //inicializa lista de generos
-        
-    }
     
     //Get variables
     public String getNombre() {
@@ -48,7 +42,7 @@ public class DataTema{
         return ordenAlbum;
     }
 
-    public List<DataGenero> getGeneros() {
+    public List<String> getGeneros() {
         return generos;
     }
     
@@ -69,7 +63,7 @@ public class DataTema{
         this.ordenAlbum = orden;
     }
 
-    public void setDataGeneros(List<DataGenero> generos) {
+    public void setDataGeneros(List<String> generos) {
         this.generos = generos;
     }
 }

@@ -2321,7 +2321,7 @@ public class ventana extends javax.swing.JFrame {
                         Text10.setVisible(false);
                         Text15.setText("Ingresado con exito");
                         Text15.setVisible(true);
-                        Logica.AltaGenero altaGenero = new Logica.AltaGenero(IC,nombreGenero,nombrePadre);
+                        //Logica.AltaGenero altaGenero = new Logica.AltaGenero(IC,nombreGenero,nombrePadre);
                     }
                 }
             break;
@@ -2339,7 +2339,7 @@ public class ventana extends javax.swing.JFrame {
                         Text10.setVisible(false);
                         Text15.setText("Ingresado con exito");
                         Text15.setVisible(true);
-                        Logica.AltaAlbum altaAlbum = new AltaAlbum (IC, nombreArtista, nombreAlbum, anioCreacion, generosAlbum, temasAlbum);
+                        //Logica.AltaAlbum altaAlbum = new AltaAlbum (IC, nombreArtista, nombreAlbum, anioCreacion, generosAlbum, temasAlbum);
                         
                         for (Tema tem : temasAlbum){
                             mm.addTema(tem);
@@ -2992,6 +2992,7 @@ public class ventana extends javax.swing.JFrame {
             }
             //preguntto si es null por las dudas
             if(direccion != null){
+                /*
                 int posicionC = Integer.parseInt((String) textfield9);
                 //no voy a hacer un alta tema solo para poner esta singular linea
                 Tema temaNuevo = IC.CrearTema(textfield7, textfield8, posicionC, direccion, generosAlbum);
@@ -3006,8 +3007,8 @@ public class ventana extends javax.swing.JFrame {
                     Text15.setVisible(true);
                     //agrego a la lista "global" de temas (se borra despues de usarse)
                     temasAlbum.add(temaNuevo);
-
-                }
+                
+                }*/
             } else {
                 Text15.setVisible(false);
                 Text10.setText("Direccion de guardado nula");
