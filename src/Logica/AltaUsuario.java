@@ -4,45 +4,39 @@
  */
 package Logica;
 //import Espotify.Usuario;
+
+import Persistencia.ClienteJpaController;
+import Persistencia.ArtistaJpaController;
+
 /**
  *
  * @author Camilo
  */
 public class AltaUsuario {
-    private ICtrl ictrl;
-    int dias;
-    int meses;
-    int anios;
+    Factory fabric = Factory.getInstance();
+    ICtrl ctrl = fabric.getICtrl();
             
-    public AltaUsuario(ICtrl ic, String nick, String nom, String ape, String mail, String pass, Object dia, Object mes, Object anio, String bio, String web){
-        ManejadorUsuario mu = ManejadorUsuario.getInstance();
-        ictrl = ic;
-        
-        dias = Integer.parseInt((String) dia);
-        switch ((String) mes) {
-            case "Enero": meses = 1; break;
-            case "Febrero": meses = 2; break;
-            case "Marzo": meses = 3; break;
-            case "Abril": meses = 4; break;
-            case "Mayo": meses = 5; break;
-            case "Junio": meses = 6; break;
-            case "Julio": meses = 7; break;
-            case "Agosto": meses = 8; break;
-            case "Septiembre": meses = 9; break;
-            case "Octubre": meses = 10; break;
-            case "Noviembre": meses = 11; break;
-            case "Diciembre": meses = 12; break;
-            default: meses = 0; break; // Manejo de caso por defecto
-        }
-        anios = Integer.parseInt((String) anio);
-        
-        
+    public AltaUsuario(String nick, String nom, String ape, String mail, String pass, DTFecha nac, String bio, String web){
         if(bio == null){
-            Cliente nuevoCliente = ictrl.crearCliente(nick, nom, ape, mail, pass, dias, meses, anios);
-            mu.addCliente(nuevoCliente);
+            Cliente nuevoCliente = new Cliente(nick, nom, ape, mail, pass, nac);
+
+            ClienteJpaController JpaCliente = new ClienteJpaController();
+
+            try {
+                JpaCliente.create(nuevoCliente);
+            } catch (Exception e) {
+                System.out.println("Error al guardar el cliente: " + e.getMessage());
+            }
         }else{
-            Artista nuevoArtista = ictrl.crearArtista(nick, nom, ape, mail, pass, dias, meses, anios, bio, web);
-            mu.addArtista(nuevoArtista);
+            Artista nuevoArtista = new Artista(nick, nom, ape, mail, pass, nac, bio, web);
+
+            ArtistaJpaController artistaJpaController = new ArtistaJpaController();
+
+            try {
+                artistaJpaController.create(nuevoArtista);
+            } catch (Exception e) {
+                System.out.println("Error al guardar el cliente: " + e.getMessage());
+            }
         }
     }
 }

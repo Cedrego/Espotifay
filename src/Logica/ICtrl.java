@@ -17,8 +17,8 @@ public interface ICtrl {
     public abstract void CrearAlbum (String nombreA, String artista, int anioA, List<String> generosA, List<DataTema> temasA);
     public abstract void CrearTema(DataTema dt);
     public abstract void crearGenero(String nomG, String padre);
-    public abstract Cliente crearCliente(String nick, String nom, String ape, String mail, String pass, int dia, int mes, int anio);
-    public abstract Artista crearArtista(String nick, String nom, String ape, String mail, String pass, int dia, int mes, int anio, String bio, String web);
+    public abstract void crearCliente(String nick, String nom, String ape, String mail, String pass, int dia, String mes, int anio);
+    public abstract void crearArtista(String nick, String nom, String ape, String mail, String pass, int dia, String mes, int anio, String bio, String web);
     public abstract void agregarSeguidorC(Cliente cliente, Cliente seguidor);
     public abstract void agregarSeguidorA(Artista artista, Cliente seguidor);
     public abstract void dejarSeguidorC(Cliente usuario, Cliente seguidor);

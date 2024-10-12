@@ -58,43 +58,69 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
-    public Artista crearArtista(String nick, String nom, String ape, String mail, String pass, int dia, int mes, int anio, String bio, String web){
-        
-        DTFecha dtfecha = new DTFecha(dia, mes, anio);
-        
-        Artista nuevoArtista = new Artista(nick, nom, ape, mail, pass, dtfecha, bio, web);
-        
-        ArtistaJpaController artistaJpaController = new ArtistaJpaController();
-        
-        try {
-            artistaJpaController.create(nuevoArtista);
-        } catch (Exception e) {
-            System.out.println("Error al guardar el cliente: " + e.getMessage());
+    public void crearArtista(String nick, String nom, String ape, String mail, String pass, int dia, String mes, int anio, String bio, String web){
+        int meses = 0;
+        if(mes.equals("Enero")){
+            meses = 1;
+        }else if(mes.equals("Febrero")){
+            meses = 2;
+        }else if(mes.equals("Marzo")){
+            meses = 3;
+        }else if(mes.equals("Abril")){
+            meses = 4;
+        }else if(mes.equals("Mayo")){
+            meses = 5;
+        }else if(mes.equals("Junio")){
+            meses = 6;
+        }else if(mes.equals("Jucio")){
+            meses = 7;
+        }else if(mes.equals("Agosto")){
+            meses = 8;
+        }else if(mes.equals("Septiembre")){
+            meses = 9;
+        }else if(mes.equals("Octubre")){
+            meses = 10;
+        }else if(mes.equals("Noviembre")){
+            meses = 11;
+        }else if(mes.equals("Diciembre")){
+            meses = 12;
         }
-        
-        return nuevoArtista;
+        DTFecha nacimiento = new DTFecha(dia, meses, anio);
+        AltaUsuario AU = new AltaUsuario(nick, nom, ape, mail, pass, nacimiento, bio, web);
     }
     
     @Override
-    public Cliente crearCliente(String nick, String nom, String ape, String mail, String pass, int dia, int mes, int anio){
-        DTFecha dtfecha = new DTFecha(dia, mes, anio);
-        
-        Cliente nuevoCliente = new Cliente(nick, nom, ape, mail, pass, dtfecha);
-        
-        ClienteJpaController clienteJpaController = new ClienteJpaController();
-        
-        try {
-            // Intentar persistir el nuevo cliente en la base de datos
-            clienteJpaController.create(nuevoCliente);
-            System.out.println("Cliente guardado exitosamente en la base de datos");
-        } catch (Exception e) {
-            System.out.println("Error al guardar el cliente: " + e.getMessage());
-            // Manejar la excepción si ocurre algún error durante la creación
+    public void crearCliente(String nick, String nom, String ape, String mail, String pass, int dia, String mes, int anio){
+        int meses = 0;
+        if(mes.equals("Enero")){
+            meses = 1;
+        }else if(mes.equals("Febrero")){
+            meses = 2;
+        }else if(mes.equals("Marzo")){
+            meses = 3;
+        }else if(mes.equals("Abril")){
+            meses = 4;
+        }else if(mes.equals("Mayo")){
+            meses = 5;
+        }else if(mes.equals("Junio")){
+            meses = 6;
+        }else if(mes.equals("Jucio")){
+            meses = 7;
+        }else if(mes.equals("Agosto")){
+            meses = 8;
+        }else if(mes.equals("Septiembre")){
+            meses = 9;
+        }else if(mes.equals("Octubre")){
+            meses = 10;
+        }else if(mes.equals("Noviembre")){
+            meses = 11;
+        }else if(mes.equals("Diciembre")){
+            meses = 12;
         }
-        return nuevoCliente;
+        DTFecha nacimiento = new DTFecha(dia, meses, anio);
+        AltaUsuario AU = new AltaUsuario(nick, nom, ape, mail, pass, nacimiento, null, null);
     }
-    
-   
+       
     @Override
     public void agregarSeguidorC(Cliente cliente, Cliente seguidor) {
     seguidor = em.merge(seguidor);
