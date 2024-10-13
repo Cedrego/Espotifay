@@ -330,6 +330,45 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
+    public List <String> obtenerNombresDeAlbumes(){
+        List<Album> listaAlbumes = albumJpaController.findAlbumEntities();
+        
+        List<String> nombresAlbumes= new ArrayList();
+        
+        for(Album alb : listaAlbumes){
+            nombresAlbumes.add(alb.getNombre());
+        }
+        
+        return nombresAlbumes;
+    }
+    
+    @Override
+    public List <String> obtenerNombresListasPartTODO(){
+        List<Particular> listaPart = particularJpaController.findParticularEntities();
+        
+        List<String> nombresPart= new ArrayList();
+        
+        for(Particular part : listaPart){
+            nombresPart.add(part.getNombre());
+        }
+        
+        return nombresPart;
+    }
+    
+    @Override
+    public List <String> obtenerNombresListasPDTODO(){
+        List<porDefecto> listaPD = porDefectoJpaController.findporDefectoEntities();
+        
+        List<String> nombresPD= new ArrayList();
+        
+        for(porDefecto pd : listaPD){
+            nombresPD.add(pd.getNombre());
+        }
+        
+        return nombresPD;
+    }
+    
+    @Override
     public boolean existeGenero(String nomGenero){
         Genero gen = generoJpaController.findGenero(nomGenero);
         if(gen!=null){
@@ -339,6 +378,164 @@ public class Ctrl implements ICtrl{
             return false;
         }
     }
+    
+    @Override
+    public boolean esPrivado(String nombrePart, String nombreCliente){
+        Particular part = particularJpaController.findParticular(nombrePart, nombreCliente);
+        if(part.getPrivado()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    @Override
+    public String obtenerDuenioPart(String nomPart){
+        List<Particular> part = particularJpaController.findParticularEntities();
+        
+        for(Particular parti : part){
+            if(parti.getNombre().equalsIgnoreCase(nomPart)){
+                return parti.getCliente().getNickname();
+            }
+        }
+        return null;
+    }
+    
+    @Override
+    public List<String> obtenerTemasDeAlbum(String nomAlbum){
+        Album alb = albumJpaController.findAlbum(nomAlbum);
+        
+        List<String> temasAlbum = new ArrayList();
+        if(alb!=null){
+            for(Tema tem : alb.getTemas()){
+                temasAlbum.add(tem.getNombre());
+            }
+        }
+        
+        return temasAlbum;
+    }
+    
+    @Override
+    public List<String> obtenerTemasDeGenero(String nomGenero){
+        List<Tema> temasGeneral = temaJpaController.findTemaEntities();
+        
+        List<String> temasFiltrados = new ArrayList();
+        
+        for(Tema tem : temasGeneral){
+            for(Genero gen : tem.getGeneros()){
+                if(gen.getNombre().equalsIgnoreCase(nomGenero)){
+                    temasFiltrados.add(tem.getNombre());
+                }
+            }
+        }
+        
+        return temasFiltrados;
+    }
+    
+    @Override
+    public List<String> obtenerTemasDeParticular(String nomLista){
+        Particular part = particularJpaController.findParticular(nomLista, obtenerDuenioPart(nomLista));
+        
+        List<String> temasLista = new ArrayList();
+        
+        if(part!=null){
+            for(Tema tem : part.getTemas()){
+                temasLista.add(tem.getNombre());
+            }
+        }
+        return temasLista;
+    }
+    
+    @Override
+    public List<String> obtenerTemasDePD(String nomLista){
+        porDefecto pd = porDefectoJpaController.findporDefecto(nomLista);
+        
+        List<String> temasLista = new ArrayList();
+        
+        if(pd!=null){
+            for (Tema tem : pd.getTemas()){
+                temasLista.add(tem.getNombre());
+            }
+        }
+        return temasLista;
+    }
+    
+    @Override
+    public List<String> obtenerAlbumesDeArtista(String nickArtista){
+        Artista art = artistaController.findArtista(nickArtista);
+        
+        List<String> albumes = new ArrayList();
+        
+        if(art!=null){
+            for(Album alb : art.getAlbumes()){
+                albumes.add(alb.getNombre());
+            }
+        }
+        return albumes;
+    }
+    
+    @Override
+    public List<String> obtenerAlbumesDeGenero(String nomGen){
+        
+        List<String> albumes = new ArrayList();
+        
+        for(Album alb : albumJpaController.findAlbumEntities()){
+            for(Genero gen : alb.getGeneros()){
+                if (gen.getNombre().equalsIgnoreCase(nomGen)){
+                    albumes.add(gen.getNombre());
+                }
+            }
+        }
+        
+        return albumes;
+    }
+    
+    @Override
+    public boolean chequearFavorito(String tipo, String objeto, String nickCliente){
+        Cliente cli = clienteController.findCliente(nickCliente);
+        
+        if (cli!=null){
+            if(tipo.equalsIgnoreCase("Tema")){
+                for (Tema tem : cli.getTemasFAV()){
+                    if(tem.getNombre().equalsIgnoreCase(objeto)){
+                        return true;
+                    }
+                }
+            }
+            
+            if(tipo.equalsIgnoreCase("Album")){
+                for(Album alb : cli.getAlbumFav()){
+                    if(alb.getNombre().equalsIgnoreCase(objeto)){
+                        return true;
+                    }
+                }
+            }
+            
+            if(tipo.equalsIgnoreCase("Particular")){
+                for (Particular part: cli.getPlayFavPart()){
+                    if(part.getNombre().equalsIgnoreCase(objeto)){
+                        return true;
+                    }
+                }
+            }
+            
+            if(tipo.equalsIgnoreCase("Por Defecto")){
+                for (porDefecto pd : cli.getPlayFavPD()){
+                    if (pd.getNombre().equalsIgnoreCase(objeto)){
+                        return true;
+                    }
+                }
+            }
+        }
+        
+        return false;
+    }
+    
+    @Override
+    public void guardarTLA(String tipo, String fav, String nickCliente){
+        GuardarTLA GTLA = new GuardarTLA(tipo,fav,nickCliente);
+    }
+    
     @Override
      public List<String> obtenerNombresDeCliente() {
         // Obtenemos todos los géneros de la base de datos

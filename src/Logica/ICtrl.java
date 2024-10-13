@@ -30,6 +30,7 @@ public interface ICtrl {
     public abstract void Publicar(String lista,String cli);
     
     public abstract List<String> obtenerNombresDeGeneros();
+    public abstract List <String> obtenerNombresDeAlbumes();
     public abstract boolean existeGenero(String nomGenero);
     public abstract List<String> obtenerNombresDeCliente();
     public abstract List<String> obtenerNombresDeArtista();
@@ -45,4 +46,16 @@ public interface ICtrl {
     public abstract List<String> obtenerNombresTemaParaPDREMOVE(String NomList, String NomGen);
     public abstract List<String> obtenerNombresTemaParaPartREMOVE(String NomList, String NomCliente);
     public abstract void RemoveTemaList(String Tipo, String NomPlay, String NomTema, String nom );
+    public abstract List <String> obtenerNombresListasPartTODO();
+    public abstract List <String> obtenerNombresListasPDTODO();
+    public abstract boolean esPrivado(String nombrePart, String nombreCliente);
+    public abstract String obtenerDuenioPart(String nomPart);
+    public abstract List<String> obtenerTemasDeAlbum(String nomAlbum);
+    public abstract List<String> obtenerTemasDeGenero(String nomGenero);
+    public abstract List<String> obtenerTemasDeParticular(String nomLista);
+    public abstract List<String> obtenerTemasDePD(String nomLista);
+    public abstract List<String> obtenerAlbumesDeArtista(String nickArtista);
+    public abstract List<String> obtenerAlbumesDeGenero(String nomGen);
+    public abstract boolean chequearFavorito(String tipo, String objeto, String nickCliente);
+    public abstract void guardarTLA(String tipo, String fav, String nickCliente);
 }
