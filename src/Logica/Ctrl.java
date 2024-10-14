@@ -817,27 +817,43 @@ public class Ctrl implements ICtrl{
         return clienteController.findCliente(nick).getCorreo();
     }
     @Override
-    public DTFecha fechaCliente (String nick){
-        return clienteController.findCliente(nick).getFecha();
+    public String fechaCliente (String nick){
+        DTFecha a = clienteController.findCliente(nick).getFecha();
+        String retorno = new String();
+        int dia = a.getDia();
+        int mes = a.getMes();
+        int ano = a.getAnio();
+        retorno = dia+"/"+mes+"/"+ano;
+        return retorno;
     }
     @Override
     public List<String> listaSeguidoresCliente (String nick){
         Cliente cli = clienteController.findCliente(nick);
         List<String> retorno = new ArrayList<>();
         for(Cliente cliSeguido : cli.getCliSigueA()){
-            retorno.add(cliSeguido.getNickname());
+            retorno.add("Cliente - "+cliSeguido.getNickname());
         }
         for(Artista cliSeguido : cli.getArtSigueA()){
-            retorno.add(cliSeguido.getNickname());
+            retorno.add("Artista - "+cliSeguido.getNickname());
         }
         return retorno;
     }
     @Override
     public List<String> listaSeguidosCliente (String nick){
+        List<Cliente> listaCliente = clienteController.findClienteEntities();
+        List<String> cliente = new ArrayList<>();
+        for (Cliente cli : listaCliente) {
+            cliente.add(cli.getNickname());
+        }
+        
         Cliente cli = clienteController.findCliente(nick);
         List<String> retorno = new ArrayList<>();
         for(Cliente cliSeguidores : cli.getSeguidoPor()){
-            retorno.add(cliSeguidores.getNickname());
+            if(cliente.contains(cliSeguidores.getNickname())){
+                retorno.add("Cliente - "+cliSeguidores.getNickname());
+            }else{
+                retorno.add("Artista - "+cliSeguidores.getNickname());
+            }
         }
         return retorno;
     }
@@ -846,7 +862,7 @@ public class Ctrl implements ICtrl{
         Cliente cli = clienteController.findCliente(nick);
         List<String> retorno = new ArrayList<>();
         for(Tema tem : cli.getTemasFAV()){
-            retorno.add(tem.getNombre());
+            retorno.add(tem.getNombre()+" - "+tem.getDuracion());
         }
         return retorno;
     }
@@ -854,8 +870,8 @@ public class Ctrl implements ICtrl{
     public List<String> listaAlbumFavCliente (String nick){
         Cliente cli = clienteController.findCliente(nick);
         List<String> retorno = new ArrayList<>();
-        for(Tema tem : cli.getTemasFAV()){
-            retorno.add(tem.getNombre());
+        for(Album alb : cli.getAlbumFav()){
+            retorno.add(alb.getNombre()+" - "+alb.getArtista());
         }
         return retorno;
     }
@@ -876,7 +892,60 @@ public class Ctrl implements ICtrl{
         Cliente cli = clienteController.findCliente(nick);
         List<String> retorno = new ArrayList<>();
         for(Particular part : cli.getParticular()){
-            retorno.add(part.getNombre());
+            if(part.getPrivado() == false){
+                retorno.add(part.getNombre());
+            }
+        }
+        return retorno;
+    }
+    
+    @Override
+    public String nombreArtista (String nick){
+        return artistaController.findArtista(nick).getNombre();
+    }
+    @Override
+    public String apellidoArtista (String nick){
+        return artistaController.findArtista(nick).getApellido();
+    }
+    @Override
+    public String mailArtista (String nick){
+        return artistaController.findArtista(nick).getCorreo();
+    }
+    @Override
+    public String fechaArtista (String nick){
+        DTFecha a = artistaController.findArtista(nick).getFecha();
+        String retorno = new String();
+        int dia = a.getDia();
+        int mes = a.getMes();
+        int ano = a.getAnio();
+        retorno = dia+"/"+mes+"/"+ano;
+        return retorno;
+    }
+    @Override
+    public String webArtista (String nick){
+        return artistaController.findArtista(nick).getSitioWeb();
+    }
+    @Override
+    public String bioArtista (String nick){
+        return artistaController.findArtista(nick).getBiografia();
+    }
+    @Override
+    public List<String> listaSeguidoresArtista (String nick){
+        int contador = 1;
+        Artista art = artistaController.findArtista(nick);
+        List<String> retorno = new ArrayList<>();
+        for(Cliente seguidor : art.getSeguidoPorA()){
+            retorno.add(contador+" - "+seguidor.getNickname());
+            contador++;
+        }
+        return retorno;
+    }
+    
+    public List<String> listaAlbumArtista (String nick){
+        Artista art = artistaController.findArtista(nick);
+        List<String> retorno = new ArrayList<>();
+        for(Album alb : art.getAlbumes()){
+            retorno.add(alb.getNombre());
         }
         return retorno;
     }
