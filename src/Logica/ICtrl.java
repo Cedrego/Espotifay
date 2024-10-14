@@ -5,6 +5,7 @@
 package Logica;
 
 
+import Capa_Presentacion.DataCliente;
 import Capa_Presentacion.DataTema;
 import java.util.List;
 
@@ -60,4 +61,15 @@ public interface ICtrl {
     public abstract void guardarTLA(String tipo, String fav, String nickCliente);
     public abstract List<String> obtenerFavCliente(String tipo, String nickCliente);
     public abstract void eliminarTLA(String tipo, String objeto, String nickCliente);
+    
+    public abstract List<String> listaPlaylistCliente (String nick);
+    public abstract List<String> listaPlaylistFavCliente (String nick);
+    public abstract List<String> listaAlbumFavCliente (String nick);
+    public abstract List<String> listaTemasFavCliente (String nick);
+    public abstract List<String> listaSeguidosCliente (String nick);
+    public abstract List<String> listaSeguidoresCliente (String nick);
+    public abstract DTFecha fechaCliente (String nick);
+    public abstract String mailCliente (String nick);
+    public abstract String apellidoCliente (String nick);
+    public abstract String nombreCliente (String nick);
 }

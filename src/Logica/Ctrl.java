@@ -6,6 +6,9 @@ package Logica;
 
 
 import Capa_Presentacion.DataTema;
+import Capa_Presentacion.DataCliente;
+import Capa_Presentacion.DataArtista;
+import Capa_Presentacion.DataParticular;
 import Persistencia.AlbumJpaController;
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
@@ -834,5 +837,82 @@ public class Ctrl implements ICtrl{
     @Override
     public void RemoveTemaList(String Tipo, String NomPlay, String NomTema, String nom ){
         QuitarTemasLista Remove= new QuitarTemasLista(Tipo, NomPlay, NomTema, nom);
+    }
+    
+    @Override
+    public String nombreCliente (String nick){
+        return clienteController.findCliente(nick).getNombre();
+    }
+    @Override
+    public String apellidoCliente (String nick){
+        return clienteController.findCliente(nick).getApellido();
+    }
+    @Override
+    public String mailCliente (String nick){
+        return clienteController.findCliente(nick).getCorreo();
+    }
+    @Override
+    public DTFecha fechaCliente (String nick){
+        return clienteController.findCliente(nick).getFecha();
+    }
+    @Override
+    public List<String> listaSeguidoresCliente (String nick){
+        Cliente cli = clienteController.findCliente(nick);
+        List<String> retorno = new ArrayList<>();
+        for(Cliente cliSeguido : cli.getCliSigueA()){
+            retorno.add(cliSeguido.getNickname());
+        }
+        for(Artista cliSeguido : cli.getArtSigueA()){
+            retorno.add(cliSeguido.getNickname());
+        }
+        return retorno;
+    }
+    @Override
+    public List<String> listaSeguidosCliente (String nick){
+        Cliente cli = clienteController.findCliente(nick);
+        List<String> retorno = new ArrayList<>();
+        for(Cliente cliSeguidores : cli.getSeguidoPor()){
+            retorno.add(cliSeguidores.getNickname());
+        }
+        return retorno;
+    }
+    @Override
+    public List<String> listaTemasFavCliente (String nick){
+        Cliente cli = clienteController.findCliente(nick);
+        List<String> retorno = new ArrayList<>();
+        for(Tema tem : cli.getTemasFAV()){
+            retorno.add(tem.getNombre());
+        }
+        return retorno;
+    }
+    @Override
+    public List<String> listaAlbumFavCliente (String nick){
+        Cliente cli = clienteController.findCliente(nick);
+        List<String> retorno = new ArrayList<>();
+        for(Tema tem : cli.getTemasFAV()){
+            retorno.add(tem.getNombre());
+        }
+        return retorno;
+    }
+    @Override
+    public List<String> listaPlaylistFavCliente (String nick){
+        Cliente cli = clienteController.findCliente(nick);
+        List<String> retorno = new ArrayList<>();
+        for(Particular part : cli.getPlayFavPart()){
+            retorno.add(part.getNombre());
+        }
+        for(porDefecto pd : cli.getPlayFavPD()){
+            retorno.add(pd.getNombre());
+        }
+        return retorno;
+    }
+    @Override
+    public List<String> listaPlaylistCliente (String nick){
+        Cliente cli = clienteController.findCliente(nick);
+        List<String> retorno = new ArrayList<>();
+        for(Particular part : cli.getParticular()){
+            retorno.add(part.getNombre());
+        }
+        return retorno;
     }
 }
