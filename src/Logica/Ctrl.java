@@ -540,6 +540,41 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
+    public List<String> obtenerFavCliente(String tipo, String nickCliente){
+        Cliente cli = clienteController.findCliente(nickCliente);
+        
+        List<String> favoritos = new ArrayList();
+        
+        if(tipo.equalsIgnoreCase("Tema")){
+            for(Tema tem : cli.getTemasFAV()){
+                favoritos.add(tem.getNombre());
+            }
+        }
+        
+        if(tipo.equalsIgnoreCase("Album")){
+            for(Album alb : cli.getAlbumFav()){
+                favoritos.add(alb.getNombre());
+            }
+        }
+        
+        if(tipo.equalsIgnoreCase("Lista")){
+            for(Particular part : cli.getPlayFavPart()){
+                favoritos.add(part.getNombre());
+            }
+            for(porDefecto pd : cli.getPlayFavPD()){
+                favoritos.add(pd.getNombre());
+            }
+        }
+        
+        return favoritos;
+    }
+    
+    @Override
+    public void eliminarTLA(String tipo, String objeto, String nickCliente){
+        EliminarTLA ETLA = new EliminarTLA(tipo, objeto, nickCliente);
+    }
+    
+    @Override
      public List<String> obtenerNombresDeCliente() {
         // Obtenemos todos los géneros de la base de datos
         List<Cliente> listaCliente = clienteController.findClienteEntities();

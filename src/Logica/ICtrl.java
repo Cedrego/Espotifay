@@ -59,6 +59,8 @@ public interface ICtrl {
     public abstract List<String> obtenerAlbumesDeGenero(String nomGen);
     public abstract boolean chequearFavorito(String tipo, String objeto, String nickCliente);
     public abstract void guardarTLA(String tipo, String fav, String nickCliente);
+    public abstract List<String> obtenerFavCliente(String tipo, String nickCliente);
+    public abstract void eliminarTLA(String tipo, String objeto, String nickCliente);
     
     public abstract List<String> listaPlaylistCliente (String nick);
     public abstract List<String> listaPlaylistFavCliente (String nick);
