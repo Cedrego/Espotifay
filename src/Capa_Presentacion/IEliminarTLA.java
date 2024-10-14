@@ -1,5 +1,8 @@
 package Capa_Presentacion;
 
+import Logica.Factory;
+import Logica.ICtrl;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -10,12 +13,41 @@ package Capa_Presentacion;
  * @author cedre
  */
 public class IEliminarTLA extends javax.swing.JPanel {
-
+    Factory fabric =Factory.getInstance();
+    ICtrl ctrl = fabric.getICtrl();
     /**
      * Creates new form IAltaPerfil
      */
     public IEliminarTLA() {
         initComponents();
+        ACEPTAR.setVisible(false);
+        Text1.setVisible(false);
+        Text2.setVisible(false);
+        Text4.setVisible(false);
+        jButton1.setVisible(false);
+        jComboBox1.removeAllItems();
+        jComboBox2.removeAllItems();
+        jComboBox3.removeAllItems();
+        jComboBox1.setVisible(false);
+        jComboBox2.setVisible(false);
+        jComboBox3.setVisible(false);
+        
+        
+        Text1.setText("Cliente:");
+        for (String cli : ctrl.obtenerNombresDeCliente()) {
+            jComboBox1.addItem(cli);
+        }
+        Text1.setVisible(true);
+        jComboBox1.setVisible(true);
+       
+        Text2.setText("Que desea eleminar de favoritos?");
+        
+        jComboBox2.addItem("Tema");
+        jComboBox2.addItem("Lista");
+        jComboBox2.addItem("Album");
+        
+        Text2.setVisible(true);
+        jComboBox2.setVisible(true);
     }
 
     /**
@@ -34,6 +66,7 @@ public class IEliminarTLA extends javax.swing.JPanel {
         jComboBox2 = new javax.swing.JComboBox<>();
         Text2 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
+        Text4 = new javax.swing.JLabel();
         Text3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
@@ -42,6 +75,11 @@ public class IEliminarTLA extends javax.swing.JPanel {
         ACEPTAR.setBackground(new java.awt.Color(0, 204, 102));
         ACEPTAR.setForeground(new java.awt.Color(0, 0, 0));
         ACEPTAR.setText("ACEPTAR");
+        ACEPTAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ACEPTARActionPerformed(evt);
+            }
+        });
         add(ACEPTAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 204, 102));
@@ -58,21 +96,116 @@ public class IEliminarTLA extends javax.swing.JPanel {
         add(Text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 180, 20));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 180, -1));
 
         Text2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text2.setForeground(new java.awt.Color(255, 255, 255));
         Text2.setText("Text2");
-        add(Text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 180, 20));
+        add(Text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 460, 20));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
         add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 180, -1));
+
+        Text4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text4.setForeground(new java.awt.Color(255, 255, 255));
+        Text4.setText("Text4");
+        add(Text4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, 400, 20));
 
         Text3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text3.setForeground(new java.awt.Color(255, 255, 255));
         Text3.setText("Text3");
-        add(Text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 180, 20));
+        add(Text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 430, 20));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        String nickCliente = jComboBox1.getSelectedItem()!= null ? jComboBox1.getSelectedItem().toString() : "";
+        String filtroFav = jComboBox2.getSelectedItem()!= null ? jComboBox2.getSelectedItem().toString() : "";
+        
+        jComboBox3.removeAllItems();
+        if(filtroFav.equalsIgnoreCase("Tema")){
+            Text3.setText("Seleccione Tema a eliminar de favoritos: ");
+            for(String tem : ctrl.obtenerFavCliente(filtroFav, nickCliente)){
+                jComboBox3.addItem(tem);
+            }
+        }
+        
+        if(filtroFav.equalsIgnoreCase("Album")){
+            Text3.setText("Seleccione Album a eliminar de favoritos: ");
+            for(String alb : ctrl.obtenerFavCliente(filtroFav, nickCliente)){
+                jComboBox3.addItem(alb);
+            }
+        }
+        
+        if(filtroFav.equalsIgnoreCase("Lista")){
+            Text3.setText("Seleccione Lista a eliminar de favoritos: ");
+            for(String list : ctrl.obtenerFavCliente(filtroFav, nickCliente)){
+                jComboBox3.addItem(list);
+            }
+        }
+        
+        Text3.setVisible(true);
+        jComboBox3.setVisible(true);
+        ACEPTAR.setVisible(true);
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
+        String nickCliente = jComboBox1.getSelectedItem()!= null ? jComboBox1.getSelectedItem().toString() : "";
+        String tipo = jComboBox2.getSelectedItem()!= null ? jComboBox2.getSelectedItem().toString() : "";
+        String objeto = jComboBox3.getSelectedItem()!= null ? jComboBox3.getSelectedItem().toString() : "";
+        
+        if(tipo.equalsIgnoreCase("Tema")){
+            if(!(ctrl.chequearFavorito(tipo, objeto, nickCliente))){
+                Text4.setVisible(false);
+                Text4.setText(objeto+" ya fue eliminado de favoritos del cliente");
+                Text4.setVisible(true);
+            }else{
+                ctrl.eliminarTLA(tipo, objeto, nickCliente);
+                Text4.setVisible(false);
+                Text4.setText(objeto+" fue eliminado de favoritos del cliente");
+                Text4.setVisible(true);
+            }
+        }
+        
+        if(tipo.equalsIgnoreCase("Album")){
+            if(!(ctrl.chequearFavorito(tipo, objeto, nickCliente))){
+                Text4.setVisible(false);
+                Text4.setText(objeto+" ya fue eliminado de favoritos del cliente");
+                Text4.setVisible(true);
+            }else{
+                ctrl.eliminarTLA(tipo, objeto, nickCliente);
+                Text4.setVisible(false);
+                Text4.setText(objeto+" fue eliminado de favoritos del cliente");
+                Text4.setVisible(true);
+            }
+        }
+        
+        if(tipo.equalsIgnoreCase("Lista")){
+            if(!(ctrl.chequearFavorito(tipo, objeto, nickCliente))){
+                Text4.setVisible(false);
+                Text4.setText(objeto+" ya fue eliminado de favoritos del cliente");
+                Text4.setVisible(true);
+            }else{
+                ctrl.eliminarTLA(tipo, objeto, nickCliente);
+                Text4.setVisible(false);
+                Text4.setText(objeto+" fue eliminado de favoritos del cliente");
+                Text4.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_ACEPTARActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -80,6 +213,7 @@ public class IEliminarTLA extends javax.swing.JPanel {
     private javax.swing.JLabel Text1;
     private javax.swing.JLabel Text2;
     private javax.swing.JLabel Text3;
+    private javax.swing.JLabel Text4;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;

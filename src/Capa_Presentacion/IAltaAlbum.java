@@ -1,6 +1,5 @@
 package Capa_Presentacion;
 
-import Capa_Presentacion.DataTema;
 import Logica.Factory;
 import Logica.ICtrl;
 import java.awt.Color;

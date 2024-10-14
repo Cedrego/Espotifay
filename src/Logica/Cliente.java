@@ -251,19 +251,39 @@ public class Cliente extends Usuario {
     
     //rimuversssssssssssssssssssss ss
     public void removeTemaFav(Tema tem){
+        ClienteJpaController clijpa = new ClienteJpaController();
         this.temasFAV.remove(tem);
+        try{
+            clijpa.edit(this);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
     }
     
     public void removePlayPartFav(Particular part){
+       ClienteJpaController clijpa = new ClienteJpaController();
        this.playFavPart.remove(part);
+       try{
+            clijpa.edit(this);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
     }
 
     public void removePlayPDFav(porDefecto pd){
+       ClienteJpaController clijpa = new ClienteJpaController();
        this.playFavPD.remove(pd);
+       try{
+            clijpa.edit(this);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
     }
 
     public void removeAlbumFav(Album alb){
+       ClienteJpaController clijpa = new ClienteJpaController();
        this.albumFav.remove(alb);
+       try{
+            clijpa.edit(this);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
     }
            
 }
