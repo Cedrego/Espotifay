@@ -1141,4 +1141,19 @@ public class Ctrl implements ICtrl{
         }
         return retorno;
     }
+    @Override
+    public String dejarSeguirPerfil (String cliente, String tipo, String aSeguir){
+        String retorno = "";
+        Cliente cli = clienteController.findCliente(cliente);
+        if(tipo.equals("Cliente")){
+            Cliente segC = clienteController.findCliente(aSeguir);
+            dejarSeguidorC(segC, cli);
+            retorno = cli.getNickname()+" dejo de siguir a "+segC.getNickname();
+        }else{
+            Artista segA = artistaController.findArtista(aSeguir);
+            dejarSeguidorA(segA, cli);
+            retorno = cli.getNickname()+" dejo de siguir a "+segA.getNickname();
+        }
+        return retorno;
+    }
 }

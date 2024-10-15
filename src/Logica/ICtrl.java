@@ -90,4 +90,5 @@ public interface ICtrl {
     public abstract List<String> clientesConParticularesPriv ();
     public abstract List<String> obtenerPartPrivadaDeDuenio (String nick);
     public abstract String seguirPerfil (String cliente, String tipo, String aSeguir);
+    public abstract String dejarSeguirPerfil (String cliente, String tipo, String aSeguir);
 }

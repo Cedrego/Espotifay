@@ -1,5 +1,8 @@
 package Capa_Presentacion;
 
+import Logica.Factory;
+import Logica.ICtrl;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -14,8 +17,16 @@ public class IDejarDeSeguirUsuario extends javax.swing.JPanel {
     /**
      * Creates new form IAltaPerfil
      */
+    Factory fabric = Factory.getInstance();
+    ICtrl ctrl = fabric.getICtrl();
     public IDejarDeSeguirUsuario() {
         initComponents();
+        Text1.setText("Cliente");
+        Text2.setText("Usuario a dejar de seguir");
+        for(String nick : ctrl.obtenerNombresDeCliente()){
+            jComboBox1.addItem(nick);
+        }
+        Text3.setVisible(false);
     }
 
     /**
@@ -32,13 +43,18 @@ public class IDejarDeSeguirUsuario extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         Text2 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        Text3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ACEPTAR.setBackground(new java.awt.Color(0, 204, 102));
-        ACEPTAR.setForeground(new java.awt.Color(0, 0, 0));
         ACEPTAR.setText("ACEPTAR");
+        ACEPTAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ACEPTARActionPerformed(evt);
+            }
+        });
         add(ACEPTAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, -1, -1));
 
         Text1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -46,7 +62,12 @@ public class IDejarDeSeguirUsuario extends javax.swing.JPanel {
         Text1.setText("Text1");
         add(Text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 160, 20));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 160, -1));
 
         Text2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -56,13 +77,72 @@ public class IDejarDeSeguirUsuario extends javax.swing.JPanel {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 160, -1));
+
+        Text3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text3.setForeground(new java.awt.Color(255, 255, 255));
+        Text3.setText("Text3");
+        add(Text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 390, 20));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        String selectedItem1 = jComboBox1.getSelectedItem().toString();
+        jComboBox2.removeAllItems();
+        for(String dato : ctrl.listaSeguidoresCliente(selectedItem1)){
+            jComboBox2.addItem(dato);
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
+        // TODO add your handling code here:
+        String nickname = jComboBox1.getSelectedItem().toString();
+        String tipoPerf = "";
+        String dejarSeguir = "";
+        
+        Object selectedItem = jComboBox2.getSelectedItem();
+
+        // Verificar si el item seleccionado no es nulo
+        if (selectedItem != null) {
+            // Convertir el item a String
+            String selectedString = selectedItem.toString();
+
+            // Dividir el string en las dos partes usando el guion como delimitador
+            String[] partes = selectedString.split(" - ");
+
+            // Comprobar que el array tiene al menos dos elementos
+            if (partes.length == 2) {
+                String tipo = partes[0].trim();  // "Artista" o "Cliente"
+                String nombreONickname = partes[1].trim();  // El nombre o nickname
+
+                // Ahora puedes usar `tipo` o `nombreONickname` como necesites
+                System.out.println("Tipo:-" + tipo);
+                tipoPerf = tipo;
+                System.out.println("Nombre o Nickname:-" + nombreONickname);
+                dejarSeguir = nombreONickname;
+            } else {
+                // Manejar el caso de formato incorrecto
+                System.out.println("El formato del string no es correcto.");
+            }
+        } else {
+            // Manejar el caso en que no se seleccionó ningún elemento
+            System.out.println("No se ha seleccionado ningún elemento.");
+        }
+        
+        Text3.setText(ctrl.dejarSeguirPerfil(nickname, tipoPerf, dejarSeguir));
+        Text3.setVisible(true);
+        
+        jComboBox2.removeAllItems();
+        for(String dato : ctrl.listaSeguidoresCliente(nickname)){
+            jComboBox2.addItem(dato);
+        }
+    }//GEN-LAST:event_ACEPTARActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ACEPTAR;
     private javax.swing.JLabel Text1;
     private javax.swing.JLabel Text2;
+    private javax.swing.JLabel Text3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     // End of variables declaration//GEN-END:variables
