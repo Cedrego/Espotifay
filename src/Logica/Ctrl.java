@@ -405,6 +405,27 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
+    public List<String> obtenerPartPublicaDeDuenio(String nickCliente){
+        Cliente cli = clienteController.findCliente(nickCliente);
+        
+        List<String> listaParticularPublica = new ArrayList();
+        if(cli!=null){
+            if(cli.getParticular()!=null){
+                for(Particular parti : cli.getParticular()){
+                    if(parti.getPrivado()){
+                    }else{
+                        listaParticularPublica.add(parti.getNombre());
+                    }
+                }
+            }
+        }
+        if(listaParticularPublica.isEmpty()){
+            return null;
+        }
+        return listaParticularPublica;
+    }
+    
+    @Override
     public List<String> obtenerTemasDeAlbum(String nomAlbum){
         Album alb = albumJpaController.findAlbum(nomAlbum);
         
@@ -494,6 +515,20 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
+    public List<String> obtenerListasDeGenero(String nomGen){
+        
+        List<String> listas = new ArrayList();
+        
+        for(porDefecto pd : porDefectoJpaController.findporDefectoEntities()){
+            if ((pd.getGenero().getNombre()).equalsIgnoreCase(nomGen)){
+                listas.add(pd.getNombre());
+            }   
+        }
+        
+        return listas;
+    }
+    
+    @Override
     public boolean chequearFavorito(String tipo, String objeto, String nickCliente){
         Cliente cli = clienteController.findCliente(nickCliente);
         
@@ -535,8 +570,48 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
-    public void guardarTLA(String tipo, String fav, String nickCliente){
-        GuardarTLA GTLA = new GuardarTLA(tipo,fav,nickCliente);
+    public void guardarTLA(String tipo, String fav, String nickCliente, String nickDuenioLista){
+        GuardarTLA GTLA = new GuardarTLA(tipo,fav,nickCliente,nickDuenioLista);
+    }
+    
+    @Override
+    public List<String> obtenerNombresClienteConParticular(){
+        // Obtenemos todos los géneros de la base de datos
+        List<Cliente> listaCliente = clienteController.findClienteEntities();
+
+        // Creamos una lista de strings para almacenar los nombres
+        List<String> nombresCliente = new ArrayList<>();
+
+        // Recorremos la lista de Cliente y extraemos sus nombres
+        for (Cliente cli : listaCliente) {
+            if(obtenerPartPublicaDeDuenio(cli.getNickname())==null){
+                
+            }else{
+                nombresCliente.add(cli.getNickname());
+            }
+        }
+
+        return nombresCliente;
+    }
+    
+    @Override
+    public List<String> obtenerNombresDeGenerosConPorDefecto() {
+        // Obtenemos todos los géneros de la base de datos
+        List<porDefecto> listaPorDefecto = porDefectoJpaController.findporDefectoEntities();
+
+        // Creamos una lista de strings para almacenar los nombres
+        List<String> nombresGeneros = new ArrayList<>();
+
+        // Recorremos la lista de géneros y extraemos sus nombres
+        for (porDefecto pd : listaPorDefecto) {
+            if(nombresGeneros.contains(pd.getGenero().getNombre())){
+                
+            }else{
+                nombresGeneros.add(pd.getGenero().getNombre());
+            }
+        }
+
+        return nombresGeneros;
     }
     
     @Override
@@ -557,15 +632,16 @@ public class Ctrl implements ICtrl{
             }
         }
         
-        if(tipo.equalsIgnoreCase("Lista")){
+        if(tipo.equalsIgnoreCase("Particular")){
             for(Particular part : cli.getPlayFavPart()){
                 favoritos.add(part.getNombre());
-            }
-            for(porDefecto pd : cli.getPlayFavPD()){
-                favoritos.add(pd.getNombre());
-            }
+            }  
         }
-        
+        if(tipo.equalsIgnoreCase("Por Defecto")){
+            for(porDefecto pd : cli.getPlayFavPD()){
+                    favoritos.add(pd.getNombre());
+                }
+        }
         return favoritos;
     }
     

@@ -50,7 +50,7 @@ public interface ICtrl {
     public abstract List <String> obtenerNombresListasPartTODO();
     public abstract List <String> obtenerNombresListasPDTODO();
     public abstract boolean esPrivado(String nombrePart, String nombreCliente);
-    public abstract String obtenerDuenioPart(String nomPart);
+    public abstract List<String> obtenerPartPublicaDeDuenio(String nickCliente);
     public abstract List<String> obtenerTemasDeAlbum(String nomAlbum);
     public abstract List<String> obtenerTemasDeGenero(String nomGenero);
     public abstract List<String> obtenerTemasDeParticular(String nomLista);
@@ -58,10 +58,14 @@ public interface ICtrl {
     public abstract List<String> obtenerAlbumesDeArtista(String nickArtista);
     public abstract List<String> obtenerAlbumesDeGenero(String nomGen);
     public abstract boolean chequearFavorito(String tipo, String objeto, String nickCliente);
-    public abstract void guardarTLA(String tipo, String fav, String nickCliente);
+    public abstract void guardarTLA(String tipo, String fav, String nickCliente, String nickDuenioLista);
     public abstract List<String> obtenerFavCliente(String tipo, String nickCliente);
     public abstract void eliminarTLA(String tipo, String objeto, String nickCliente);
-    
+    public abstract String obtenerDuenioPart(String nomPart);
+    public abstract List<String> obtenerNombresClienteConParticular();
+    public abstract List<String> obtenerNombresDeGenerosConPorDefecto();
+    public abstract List<String> obtenerListasDeGenero(String nomGen);
+            
     public abstract List<String> listaPlaylistCliente (String nick);
     public abstract List<String> listaPlaylistFavCliente (String nick);
     public abstract List<String> listaAlbumFavCliente (String nick);

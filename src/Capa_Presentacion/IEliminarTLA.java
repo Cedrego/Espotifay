@@ -24,13 +24,15 @@ public class IEliminarTLA extends javax.swing.JPanel {
         Text1.setVisible(false);
         Text2.setVisible(false);
         Text4.setVisible(false);
-        jButton1.setVisible(false);
+        Text5.setVisible(false);
         jComboBox1.removeAllItems();
         jComboBox2.removeAllItems();
         jComboBox3.removeAllItems();
+        jComboBox4.removeAllItems();
         jComboBox1.setVisible(false);
         jComboBox2.setVisible(false);
         jComboBox3.setVisible(false);
+        jComboBox4.setVisible(false);
         
         
         Text1.setText("Cliente:");
@@ -60,7 +62,6 @@ public class IEliminarTLA extends javax.swing.JPanel {
     private void initComponents() {
 
         ACEPTAR = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         Text1 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -68,6 +69,8 @@ public class IEliminarTLA extends javax.swing.JPanel {
         jComboBox3 = new javax.swing.JComboBox<>();
         Text4 = new javax.swing.JLabel();
         Text3 = new javax.swing.JLabel();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        Text5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -82,12 +85,7 @@ public class IEliminarTLA extends javax.swing.JPanel {
         });
         add(ACEPTAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 102));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("jButton1");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 180, -1));
 
         Text1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -95,7 +93,7 @@ public class IEliminarTLA extends javax.swing.JPanel {
         Text1.setText("Text1");
         add(Text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 180, 20));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -108,7 +106,7 @@ public class IEliminarTLA extends javax.swing.JPanel {
         Text2.setText("Text2");
         add(Text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 460, 20));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox3ActionPerformed(evt);
@@ -125,10 +123,48 @@ public class IEliminarTLA extends javax.swing.JPanel {
         Text3.setForeground(new java.awt.Color(255, 255, 255));
         Text3.setText("Text3");
         add(Text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 430, 20));
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
+        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox4ActionPerformed(evt);
+            }
+        });
+        add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 180, -1));
+
+        Text5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text5.setForeground(new java.awt.Color(255, 255, 255));
+        Text5.setText("Text5");
+        add(Text5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 430, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
+        String nickCliente = jComboBox1.getSelectedItem()!= null ? jComboBox1.getSelectedItem().toString() : "";
+        String filtroFav = jComboBox2.getSelectedItem()!= null ? jComboBox2.getSelectedItem().toString() : "";
+        String lista = jComboBox3.getSelectedItem()!= null ? jComboBox3.getSelectedItem().toString() : "";
+        
+        jComboBox4.removeAllItems();
+        if(filtroFav.equalsIgnoreCase("Lista")){
+            Text5.setText("Seleccione Lista a eliminar de favoritos: ");
+            if(lista.equalsIgnoreCase("Particular")){
+                for(String list : ctrl.obtenerFavCliente(lista, nickCliente)){
+                    jComboBox4.addItem(list);
+                }
+            }
+            if(lista.equalsIgnoreCase("Por Defecto")){
+                for(String list : ctrl.obtenerFavCliente(lista, nickCliente)){
+                    jComboBox4.addItem(list);
+                }
+            }
+            
+            Text5.setVisible(true);
+            jComboBox4.setVisible(true);
+            ACEPTAR.setVisible(true);
+        }else{
+            Text4.setVisible(false);
+            jComboBox4.setVisible(false);
+        }
+        
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -141,6 +177,7 @@ public class IEliminarTLA extends javax.swing.JPanel {
             for(String tem : ctrl.obtenerFavCliente(filtroFav, nickCliente)){
                 jComboBox3.addItem(tem);
             }
+            ACEPTAR.setVisible(true);
         }
         
         if(filtroFav.equalsIgnoreCase("Album")){
@@ -148,24 +185,31 @@ public class IEliminarTLA extends javax.swing.JPanel {
             for(String alb : ctrl.obtenerFavCliente(filtroFav, nickCliente)){
                 jComboBox3.addItem(alb);
             }
+            ACEPTAR.setVisible(true);
         }
         
         if(filtroFav.equalsIgnoreCase("Lista")){
+            /*
             Text3.setText("Seleccione Lista a eliminar de favoritos: ");
             for(String list : ctrl.obtenerFavCliente(filtroFav, nickCliente)){
                 jComboBox3.addItem(list);
-            }
+            }*/
+            
+            Text3.setText("Seleccione el tipo de Lista: ");
+            jComboBox3.addItem("Particular");
+            jComboBox3.addItem("Por Defecto");
         }
         
         Text3.setVisible(true);
         jComboBox3.setVisible(true);
-        ACEPTAR.setVisible(true);
+        
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
         String nickCliente = jComboBox1.getSelectedItem()!= null ? jComboBox1.getSelectedItem().toString() : "";
         String tipo = jComboBox2.getSelectedItem()!= null ? jComboBox2.getSelectedItem().toString() : "";
         String objeto = jComboBox3.getSelectedItem()!= null ? jComboBox3.getSelectedItem().toString() : "";
+        String objetoLista = jComboBox4.getSelectedItem()!= null ? jComboBox4.getSelectedItem().toString() : "";
         
         if(tipo.equalsIgnoreCase("Tema")){
             if(!(ctrl.chequearFavorito(tipo, objeto, nickCliente))){
@@ -194,18 +238,22 @@ public class IEliminarTLA extends javax.swing.JPanel {
         }
         
         if(tipo.equalsIgnoreCase("Lista")){
-            if(!(ctrl.chequearFavorito(tipo, objeto, nickCliente))){
+            if(!(ctrl.chequearFavorito(objeto, objetoLista, nickCliente))){
                 Text4.setVisible(false);
-                Text4.setText(objeto+" ya fue eliminado de favoritos del cliente");
+                Text4.setText(objetoLista+" ya fue eliminado de favoritos del cliente");
                 Text4.setVisible(true);
-            }else{
-                ctrl.eliminarTLA(tipo, objeto, nickCliente);
+            }else{   
                 Text4.setVisible(false);
-                Text4.setText(objeto+" fue eliminado de favoritos del cliente");
+                Text4.setText(objetoLista+" fue eliminado de favoritos del cliente");
                 Text4.setVisible(true);
+                ctrl.eliminarTLA(objeto, objetoLista, nickCliente);
             }
         }
     }//GEN-LAST:event_ACEPTARActionPerformed
+
+    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -214,9 +262,10 @@ public class IEliminarTLA extends javax.swing.JPanel {
     private javax.swing.JLabel Text2;
     private javax.swing.JLabel Text3;
     private javax.swing.JLabel Text4;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel Text5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     // End of variables declaration//GEN-END:variables
 }

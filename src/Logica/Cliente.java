@@ -192,9 +192,9 @@ public class Cliente extends Usuario {
     
     public void addParticularFav(Particular part){
         ClienteJpaController clijpa = new ClienteJpaController();
-        
+        System.out.println("El cliente es "+this.getNickname());
         this.playFavPart.add(part);
-        
+        System.out.println("El error esta aqui 1 ");
         try{
             clijpa.edit(this);
         } catch (NonexistentEntityException e) {

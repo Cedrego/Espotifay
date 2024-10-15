@@ -85,17 +85,16 @@ public class EliminarTLA {
             //cli.removeAlbumFav(alb);
         }
         
-        if(tipo.equalsIgnoreCase("Lista")){
-            if(particularJpaController.findParticular(objeto, ctrl.obtenerDuenioPart(objeto))!=null){
-                EntityManager em = particularJpaController.getEntityManager();
-                Particular part = particularJpaController.findParticular(objeto, ctrl.obtenerDuenioPart(objeto));
-                
-                try{
+        if(tipo.equalsIgnoreCase("Particular")){
+            EntityManager em = particularJpaController.getEntityManager();
+            Particular part = particularJpaController.findParticular(objeto, ctrl.obtenerDuenioPart(objeto));
+
+            try{
                 em.getTransaction().begin();
-                
+
                 part = em.merge(part);
                 cli = em.merge(cli);
-                
+
                 em.createNativeQuery("DELETE FROM cliente_particular WHERE Cliente_NICK = ? AND NOMBRE = ?")
                     .setParameter(1, cli.getNickname())
                     .setParameter(2, part.getNombre())
@@ -112,38 +111,38 @@ public class EliminarTLA {
             } finally {
                 em.close();
             }
-                //cli.removePlayPartFav(part);
-            }
+            //cli.removePlayPartFav(part);
+        }   
             
-            if(porDefectoJpaController.findporDefecto(objeto)!=null){
+        if(tipo.equalsIgnoreCase("Por Defecto")){
                 EntityManager em = porDefectoJpaController.getEntityManager();
                 porDefecto pd = porDefectoJpaController.findporDefecto(objeto);
                 
                 try{
-                em.getTransaction().begin();
-                
-                pd = em.merge(pd);
-                cli = em.merge(cli);
-                
-                em.createNativeQuery("DELETE FROM cliente_pordefecto WHERE Cliente_NICK = ? AND playFavPD_NOMBRE = ?")
-                    .setParameter(1, cli.getNickname())
-                    .setParameter(2, pd.getNombre())
-                    .executeUpdate();
+                    em.getTransaction().begin();
 
-                em.getTransaction().commit();
-                em.refresh(pd);
-                em.refresh(cli);
-            }catch (Exception e) {
-                if (em.getTransaction().isActive()) {
-                    em.getTransaction().rollback();
+                    pd = em.merge(pd);
+                    cli = em.merge(cli);
+
+                    em.createNativeQuery("DELETE FROM cliente_pordefecto WHERE Cliente_NICK = ? AND playFavPD_NOMBRE = ?")
+                        .setParameter(1, cli.getNickname())
+                        .setParameter(2, pd.getNombre())
+                        .executeUpdate();
+
+                    em.getTransaction().commit();
+                    em.refresh(pd);
+                    em.refresh(cli);
+                }catch (Exception e) {
+                    if (em.getTransaction().isActive()) {
+                        em.getTransaction().rollback();
+                    }
+                    e.printStackTrace();
+                } finally {
+                    em.close();
                 }
-                e.printStackTrace();
-            } finally {
-                em.close();
-            }
                 //cli.removePlayPDFav(pd);
-            }
         }
-    
     }
+    
 }
+

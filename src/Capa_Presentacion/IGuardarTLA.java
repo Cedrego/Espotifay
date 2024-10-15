@@ -207,7 +207,11 @@ public class IGuardarTLA extends javax.swing.JPanel {
             if(filtro.equalsIgnoreCase("Genero")){
                 Text4.setText("Seleccione el Genero: ");
                 for(String gen : ctrl.obtenerNombresDeGeneros()){
-                    jComboBox4.addItem(gen);
+                    if (gen.equalsIgnoreCase("Genero")){
+                        
+                    }else{
+                        jComboBox4.addItem(gen);
+                    }
                 }
             }
             
@@ -238,25 +242,31 @@ public class IGuardarTLA extends javax.swing.JPanel {
             if(filtro.equalsIgnoreCase("Genero")){
                 Text4.setText("Seleccione el Genero: ");
                 for(String gen : ctrl.obtenerNombresDeGeneros()){
+                    if (gen.equalsIgnoreCase("Genero")){
+                        
+                    }else{
                     jComboBox4.addItem(gen);
+                    }
                 }
             } 
         }
         
         if(fav.equalsIgnoreCase("Lista")){
             if(filtro.equalsIgnoreCase("Particular")){
-                Text4.setText("Seleccione la Lista Particular: ");
-                for(String part : ctrl.obtenerNombresListasPartTODO()){
-                    if(!(ctrl.esPrivado(part, ctrl.obtenerDuenioPart(part)))){
-                        jComboBox4.addItem(part);
-                    }
+                Text4.setText("Seleccione el Cliente dueño de la Lista: ");
+                for (String cli : ctrl.obtenerNombresClienteConParticular()) {
+                    jComboBox4.addItem(cli);
                 }
             }
             
             if(filtro.equalsIgnoreCase("Por defecto")){
-                Text4.setText("Seleccione la Lista Por Defecto: ");
-                for(String pd : ctrl.obtenerNombresListasPDTODO()){
-                    jComboBox4.addItem(pd);
+                Text4.setText("Seleccione el Genero de la Lista: ");
+                for(String gen : ctrl.obtenerNombresDeGenerosConPorDefecto()){
+                    if(gen.equalsIgnoreCase("Genero")){
+                        
+                    }else{
+                        jComboBox4.addItem(gen);
+                    }
                 }
             }      
         }
@@ -271,58 +281,71 @@ public class IGuardarTLA extends javax.swing.JPanel {
         String segundoFiltro = jComboBox4.getSelectedItem()!= null ? jComboBox4.getSelectedItem().toString() : "";
         
         jComboBox5.removeAllItems();
-        if(!(fav.equalsIgnoreCase("Lista"))){
-            //tema
-            if(fav.equalsIgnoreCase("Tema")){
-                Text5.setText("Seleccione el Tema: ");
-                if(filtro.equalsIgnoreCase("Album")){   
-                    for(String tema : ctrl.obtenerTemasDeAlbum(segundoFiltro)){
-                        jComboBox5.addItem(tema);
-                    }
+        //tema
+        if(fav.equalsIgnoreCase("Tema")){
+            Text5.setText("Seleccione el Tema: ");
+            if(filtro.equalsIgnoreCase("Album")){   
+                for(String tema : ctrl.obtenerTemasDeAlbum(segundoFiltro)){
+                    jComboBox5.addItem(tema);
                 }
-
-                if(filtro.equalsIgnoreCase("Genero")){
-                    for(String tema : ctrl.obtenerTemasDeGenero(segundoFiltro)){
-                        jComboBox5.addItem(tema);
-                    }
-                }
-
-                if(filtro.equalsIgnoreCase("Lista Particular")){
-                    Text4.setText("Seleccione la Lista: ");
-                    for(String tema : ctrl.obtenerTemasDeParticular(segundoFiltro)){
-                        jComboBox5.addItem(tema);
-                    }
-                }    
-
-                if(filtro.equalsIgnoreCase("Lista Por Defecto")){
-                    for(String tema : ctrl.obtenerTemasDePD(segundoFiltro)){
-                        jComboBox5.addItem(tema);
-                    }
-                }   
             }
 
-            //album
-            if(fav.equalsIgnoreCase("Album")){
-                Text5.setText("Seleccione el Album: ");
-                if(filtro.equalsIgnoreCase("Artista")){
-                    for (String alb : ctrl.obtenerAlbumesDeArtista(segundoFiltro)) {
-                        jComboBox5.addItem(alb);
-                    }
+            if(filtro.equalsIgnoreCase("Genero")){
+                for(String tema : ctrl.obtenerTemasDeGenero(segundoFiltro)){
+                    jComboBox5.addItem(tema);
                 }
-
-                if(filtro.equalsIgnoreCase("Genero")){
-                    for(String alb : ctrl.obtenerAlbumesDeGenero(segundoFiltro)){
-                        jComboBox5.addItem(alb);
-                    }
-                } 
             }
 
-            Text5.setVisible(true);
-            jComboBox5.setVisible(true);
-        } else{
-            Text5.setVisible(false);
-            jComboBox5.setVisible(false);
+            if(filtro.equalsIgnoreCase("Lista Particular")){
+                Text4.setText("Seleccione la Lista: ");
+                for(String tema : ctrl.obtenerTemasDeParticular(segundoFiltro)){
+                    jComboBox5.addItem(tema);
+                }
+            }    
+
+            if(filtro.equalsIgnoreCase("Lista Por Defecto")){
+                for(String tema : ctrl.obtenerTemasDePD(segundoFiltro)){
+                    jComboBox5.addItem(tema);
+                }
+            }   
         }
+
+        //album
+        if(fav.equalsIgnoreCase("Album")){
+            Text5.setText("Seleccione el Album: ");
+            if(filtro.equalsIgnoreCase("Artista")){
+                for (String alb : ctrl.obtenerAlbumesDeArtista(segundoFiltro)) {
+                    jComboBox5.addItem(alb);
+                }
+            }
+
+            if(filtro.equalsIgnoreCase("Genero")){
+                for(String alb : ctrl.obtenerAlbumesDeGenero(segundoFiltro)){
+                    jComboBox5.addItem(alb);
+                }
+            } 
+        }
+        
+        //listas
+        if(fav.equalsIgnoreCase("Lista")){
+            Text5.setText("Seleccione la lista");
+            if(filtro.equalsIgnoreCase("Particular")){
+                if(ctrl.obtenerPartPublicaDeDuenio(segundoFiltro)!=null){
+                    for (String part : ctrl.obtenerPartPublicaDeDuenio(segundoFiltro)){
+                        jComboBox5.addItem(part);
+                    }
+                }
+            }
+            if(filtro.equalsIgnoreCase("Por Defecto")){
+                if(ctrl.obtenerListasDeGenero(segundoFiltro)!=null){
+                    for (String pd : ctrl.obtenerListasDeGenero(segundoFiltro)){
+                        jComboBox5.addItem(pd);
+                    }
+                }
+            }
+        }
+        Text5.setVisible(true);
+        jComboBox5.setVisible(true);
         ACEPTAR.setVisible(true);
     }//GEN-LAST:event_jComboBox4ActionPerformed
 
@@ -330,7 +353,7 @@ public class IGuardarTLA extends javax.swing.JPanel {
         String nickCliente = jComboBox1.getSelectedItem()!= null ? jComboBox1.getSelectedItem().toString() : "";
         String fav = jComboBox2.getSelectedItem()!= null ? jComboBox2.getSelectedItem().toString() : "";
         String filtro = jComboBox3.getSelectedItem()!= null ? jComboBox3.getSelectedItem().toString() : "";
-        String objetoLista = jComboBox4.getSelectedItem()!= null ? jComboBox4.getSelectedItem().toString() : "";
+        String duenioLista = jComboBox4.getSelectedItem()!= null ? jComboBox4.getSelectedItem().toString() : "";
         String objeto = jComboBox5.getSelectedItem()!= null ? jComboBox5.getSelectedItem().toString() : "";
         
         
@@ -341,7 +364,7 @@ public class IGuardarTLA extends javax.swing.JPanel {
                 Text6.setText(objeto+" ya esta en favoritos del cliente");
                 Text6.setVisible(true);
             }else{
-                ctrl.guardarTLA(fav, objeto, nickCliente);
+                ctrl.guardarTLA(fav, objeto, nickCliente,"Potato");
                 Text6.setVisible(false);
                 Text6.setText(objeto+" fue agregado a favoritos del cliente");
                 Text6.setVisible(true);
@@ -354,7 +377,7 @@ public class IGuardarTLA extends javax.swing.JPanel {
                 Text6.setText(objeto+" ya esta en favoritos del cliente");
                 Text6.setVisible(true);
             }else{
-                ctrl.guardarTLA(fav, objeto, nickCliente);
+                ctrl.guardarTLA(fav, objeto, nickCliente,"Potato");
                 Text6.setVisible(false);
                 Text6.setText(objeto+" fue agregado a favoritos del cliente");
                 Text6.setVisible(true);
@@ -363,28 +386,30 @@ public class IGuardarTLA extends javax.swing.JPanel {
         
         if(fav.equalsIgnoreCase("Lista")){
             if(filtro.equalsIgnoreCase("Particular")){
-                if(ctrl.chequearFavorito(fav, objetoLista, nickCliente)){
+                if(ctrl.chequearFavorito(filtro, objeto, nickCliente)){
                     Text6.setVisible(false);
-                    Text6.setText(objetoLista+" ya esta en favoritos del cliente");
+                    Text6.setText(objeto+" ya esta en favoritos del cliente");
                     Text6.setVisible(true);
                 }else{
-                    ctrl.guardarTLA(filtro, objetoLista, nickCliente);
+                    
                     Text6.setVisible(false);
-                    Text6.setText(objetoLista+" fue agregado a favoritos del cliente");
+                    Text6.setText(objeto+" fue agregado a favoritos del cliente");
                     Text6.setVisible(true);
+                    ctrl.guardarTLA(filtro, objeto, nickCliente,duenioLista);
                 }
             }
             
             if(filtro.equalsIgnoreCase("Por Defecto")){
-                if(ctrl.chequearFavorito(fav, objetoLista, nickCliente)){
+                if(ctrl.chequearFavorito(filtro, objeto, nickCliente)){
                     Text6.setVisible(false);
-                    Text6.setText(objetoLista+" ya esta en favoritos del cliente");
+                    Text6.setText(objeto+" ya esta en favoritos del cliente");
                     Text6.setVisible(true);
                 }else{
-                    ctrl.guardarTLA(filtro, objetoLista, nickCliente);
+                    
                     Text6.setVisible(false);
-                    Text6.setText(objetoLista+" fue agregado a favoritos del cliente");
+                    Text6.setText(objeto+" fue agregado a favoritos del cliente");
                     Text6.setVisible(true);
+                    ctrl.guardarTLA(filtro, objeto, nickCliente,"Potato");
                 }
             }
         }
