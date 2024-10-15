@@ -1,5 +1,8 @@
 package Capa_Presentacion;
 
+import Logica.Factory;
+import Logica.ICtrl;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -14,8 +17,22 @@ public class ISeguirUsr extends javax.swing.JPanel {
     /**
      * Creates new form IAltaPerfil
      */
+    Factory fabric =Factory.getInstance();
+    ICtrl ctrl = fabric.getICtrl();
     public ISeguirUsr() {
         initComponents();
+        Text1.setText("Cliente");
+        Text1.setVisible(true);
+        Text2.setText("Filtrar por");
+        Text2.setVisible(true);
+        jComboBox2.addItem("Artista");
+        jComboBox2.addItem("Cliente");
+        jComboBox2.setVisible(true);
+        for (String Part : ctrl.obtenerNombresDeCliente()) {
+            jComboBox1.addItem(Part);
+        }
+        jComboBox1.setVisible(true);
+        Text4.setVisible(false);
     }
 
     /**
@@ -34,16 +51,26 @@ public class ISeguirUsr extends javax.swing.JPanel {
         Text2 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         Text3 = new javax.swing.JLabel();
+        Text4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ACEPTAR.setBackground(new java.awt.Color(0, 204, 102));
-        ACEPTAR.setForeground(new java.awt.Color(0, 0, 0));
         ACEPTAR.setText("ACEPTAR");
+        ACEPTAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ACEPTARActionPerformed(evt);
+            }
+        });
         add(ACEPTAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 160, -1));
 
         Text1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -51,7 +78,12 @@ public class ISeguirUsr extends javax.swing.JPanel {
         Text1.setText("Text1");
         add(Text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 160, 20));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 160, -1));
 
         Text2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -59,14 +91,81 @@ public class ISeguirUsr extends javax.swing.JPanel {
         Text2.setText("Text2");
         add(Text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 160, 20));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 160, -1));
 
         Text3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text3.setForeground(new java.awt.Color(255, 255, 255));
         Text3.setText("Text3");
         add(Text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 160, 20));
+
+        Text4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Text4.setForeground(new java.awt.Color(255, 255, 255));
+        Text4.setText("Text4");
+        add(Text4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, 270, 20));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        String selectedItem2 = jComboBox2.getSelectedItem().toString();
+        if(selectedItem2.equals(null)){
+            selectedItem2 = "";
+        }
+        String selectedItem1 = jComboBox1.getSelectedItem()!= null ? jComboBox1.getSelectedItem().toString() : "";
+        jComboBox3.removeAllItems();
+        
+        if(selectedItem2.equals("Cliente")){
+            Text3.setText("Cliente a Seguir");
+            for(String nick : ctrl.obtenerNombresDeCliente()){
+                if(nick.equals(selectedItem1)){
+
+                }else{
+                    jComboBox3.addItem(nick);
+                }
+            }
+        }else{
+            Text3.setText("Artista a Seguir");
+            for (String nick : ctrl.obtenerNombresDeArtista()) {
+                jComboBox3.addItem(nick);
+            }
+        }
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        String selectedItem2 = jComboBox2.getSelectedItem().toString();
+        if(selectedItem2.equals(null)){
+            selectedItem2 = "";
+        }
+        String selectedItem1 = jComboBox1.getSelectedItem()!= null ? jComboBox1.getSelectedItem().toString() : "";
+        jComboBox3.removeAllItems();
+        
+        if(selectedItem2.equals("Cliente")){
+            Text3.setText("Cliente a Seguir");
+            for(String nick : ctrl.obtenerNombresDeCliente()){
+                if(nick.equals(selectedItem1)){
+
+                }else{
+                    jComboBox3.addItem(nick);
+                }
+            }
+        }else{
+            Text3.setText("Artista a Seguir");
+            for (String nick : ctrl.obtenerNombresDeArtista()) {
+                jComboBox3.addItem(nick);
+            }
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void ACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTARActionPerformed
+        // TODO add your handling code here:
+        String cliente = jComboBox1.getSelectedItem().toString();
+        String tipo = jComboBox2.getSelectedItem().toString();
+        String aSeguir = jComboBox3.getSelectedItem().toString();
+        
+        Text4.setText(ctrl.seguirPerfil(cliente, tipo, aSeguir));
+        Text4.setVisible(true);
+    }//GEN-LAST:event_ACEPTARActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -74,6 +173,7 @@ public class ISeguirUsr extends javax.swing.JPanel {
     private javax.swing.JLabel Text1;
     private javax.swing.JLabel Text2;
     private javax.swing.JLabel Text3;
+    private javax.swing.JLabel Text4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
