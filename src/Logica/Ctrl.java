@@ -425,6 +425,8 @@ public class Ctrl implements ICtrl{
         return listaParticularPublica;
     }
     
+    
+    
     @Override
     public List<String> obtenerTemasDeAlbum(String nomAlbum){
         Album alb = albumJpaController.findAlbum(nomAlbum);
@@ -590,7 +592,6 @@ public class Ctrl implements ICtrl{
                 nombresCliente.add(cli.getNickname());
             }
         }
-
         return nombresCliente;
     }
     
@@ -1051,7 +1052,16 @@ public class Ctrl implements ICtrl{
         }
         return retorno;
     }
-    
+    @Override
+    public int cantSeguidoresArtista (String nick){
+        int contador = 0;
+        Artista art = artistaController.findArtista(nick);
+        for(Cliente seguidor : art.getSeguidoPorA()){
+            contador++;
+        }
+        return contador;
+    }
+    @Override
     public List<String> listaAlbumArtista (String nick){
         Artista art = artistaController.findArtista(nick);
         List<String> retorno = new ArrayList<>();
@@ -1059,5 +1069,61 @@ public class Ctrl implements ICtrl{
             retorno.add(alb.getNombre());
         }
         return retorno;
+    }
+    
+    @Override
+    public String publicarLista (String nick, String lista){
+        String retorno = nick;
+        
+        Particular listaP = particularJpaController.findParticular(lista, nick);
+        if(listaP.getPrivado()!=false){
+            listaP.setPrivado(false);
+            retorno = "Se publico la lista "+lista+" con exito";
+        }else{
+            retorno = "La lista "+lista+" ya es publica";
+        }
+        
+        return retorno;
+    }
+    
+    @Override
+    public List<String> obtenerPartPrivadaDeDuenio (String nick){
+        Cliente cli = clienteController.findCliente(nick);
+        
+        List<String> listaParticularPublica = new ArrayList();
+        if(cli!=null){
+            if(cli.getParticular()!=null){
+                for(Particular parti : cli.getParticular()){
+                    if(!parti.getPrivado()){
+                    }else{
+                        listaParticularPublica.add(parti.getNombre());
+                    }
+                }
+            }
+        }
+        if(listaParticularPublica.isEmpty()){
+            return null;
+        }
+        return listaParticularPublica;
+    }
+    
+    @Override
+    public List<String> clientesConParticularesPriv (){
+        // Obtenemos todos los géneros de la base de datos
+        List<Cliente> listaCliente = clienteController.findClienteEntities();
+        
+
+        // Creamos una lista de strings para almacenar los nombres
+        List<String> nombresCliente = new ArrayList<>();
+
+        // Recorremos la lista de Cliente y extraemos sus nombres
+        for (Cliente cli : listaCliente) {
+            if(obtenerPartPrivadaDeDuenio(cli.getNickname())==null){
+                
+            }else{
+                nombresCliente.add(cli.getNickname());
+            }
+        }
+        return nombresCliente;
     }
 }

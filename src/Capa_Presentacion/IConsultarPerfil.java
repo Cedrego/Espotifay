@@ -475,7 +475,7 @@ public class IConsultarPerfil extends javax.swing.JPanel {
             Text12.setVisible(true);
             Text13.setText("Pagina Web: "+ctrl.webArtista(nick));
             Text13.setVisible(true);
-            Text6.setText("Seguidores");
+            Text6.setText("Seguidores ("+ctrl.cantSeguidoresArtista(nick)+")");
             Text6.setVisible(true);
             Text7.setText("Albumes");
             Text7.setVisible(true);
