@@ -72,8 +72,17 @@ public interface ICtrl {
     public abstract List<String> listaTemasFavCliente (String nick);
     public abstract List<String> listaSeguidosCliente (String nick);
     public abstract List<String> listaSeguidoresCliente (String nick);
-    public abstract DTFecha fechaCliente (String nick);
+    public abstract String fechaCliente (String nick);
     public abstract String mailCliente (String nick);
     public abstract String apellidoCliente (String nick);
     public abstract String nombreCliente (String nick);
+    
+    public abstract String nombreArtista (String nick);
+    public abstract String apellidoArtista (String nick);
+    public abstract String mailArtista (String nick);
+    public abstract String fechaArtista (String nick);
+    public abstract String webArtista (String nick);
+    public abstract String bioArtista (String nick);
+    public abstract List<String> listaSeguidoresArtista (String nick);
+    public abstract List<String> listaAlbumArtista (String nick);
 }
