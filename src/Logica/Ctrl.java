@@ -18,6 +18,8 @@ import Persistencia.TemaJpaController;
 import Persistencia.porDefectoJpaController;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -1274,5 +1276,15 @@ public class Ctrl implements ICtrl{
             retorno = cli.getNickname()+" dejo de siguir a "+segA.getNickname();
         }
         return retorno;
+    }
+    @Override
+    public void ordenarTemasPorPosicion(List<DataTema> temasAlbum) {
+        Collections.sort(temasAlbum, new Comparator<DataTema>() {
+            @Override
+            public int compare(DataTema t1, DataTema t2) {
+                return Integer.compare(t1.getOrdenAlbum(), t2.getOrdenAlbum());
+            }
+        }
+        );
     }
 }

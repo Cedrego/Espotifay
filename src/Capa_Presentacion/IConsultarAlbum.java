@@ -223,7 +223,6 @@ public class IConsultarAlbum extends javax.swing.JPanel {
         // Limpiar jPanel4 para evitar que se acumulen temas anteriores
         jPanel1.removeAll();
         jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
-
         for(DataTema tem : da.getDataTemas()){
             // Crear un nuevo panel para cada tema
             JPanel info = new JPanel();
@@ -272,8 +271,7 @@ public class IConsultarAlbum extends javax.swing.JPanel {
             // Añadir el panel del tema al jPanel4
             jPanel1.add(info);
         }
-
-
+        
         Text4.setVisible(true);
         Text5.setVisible(true);
         Text6.setVisible(true);

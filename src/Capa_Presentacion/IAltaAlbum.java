@@ -368,30 +368,30 @@ public class IAltaAlbum extends javax.swing.JPanel {
         } 
         
         String cadenaGeneros = "";
-            for(String geneneroCadena : generosAlbum){
-                cadenaGeneros = cadenaGeneros.concat(geneneroCadena+" || ");
-            }
+        for(String geneneroCadena : generosAlbum){
+            cadenaGeneros = cadenaGeneros.concat(geneneroCadena+" || ");
+        }
         Text8.setText("Generos aniadidos: "+cadenaGeneros);
         Text8.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
          //variable para guardar la direccion del tema
-            String direccion = null;
-            
-            //creo opciones para una ventana emergente
-            Object[] options = {"URL", "Archivo"};
+        String direccion = null;
+        
+        //creo opciones para una ventana emergente
+        Object[] options = {"URL", "Archivo"};
 
-            // muestro una ventana emergente con las opciones
-            int eleccion = JOptionPane.showOptionDialog(
-                    null,
-                    "Seleccione como desea guardar la cancion:",
-                    "URL o Archivo",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.INFORMATION_MESSAGE,
-                    null,
-                    options,
-                    options[0]);
+        // muestro una ventana emergente con las opciones
+        int eleccion = JOptionPane.showOptionDialog(
+            null,
+            "Seleccione como desea guardar la cancion:",
+            "URL o Archivo",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.INFORMATION_MESSAGE,
+            null,
+            options,
+            options[0]);
             
             //si elgie URL
             if (eleccion == 0){
@@ -409,7 +409,7 @@ public class IAltaAlbum extends javax.swing.JPanel {
                     FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.MP3", "mp3");
                     //aplico el filtro al selector
                     chooser.setFileFilter(filtro);
-
+                    
                     //muestro la ventana donde pueden seleccionar el archivo
                     int seleccion = chooser.showOpenDialog(this);
                     //si seleccionan un archivo y le dan a OK
@@ -433,14 +433,14 @@ public class IAltaAlbum extends javax.swing.JPanel {
                     Text10.setVisible(false);
                     Text10.setText("Tema ya aniadido");
                     Text10.setVisible(true);
-
+                    
                 } else{
                     Text10.setVisible(false);
                     Text10.setText("Tema aniadido");
                     Text10.setVisible(true);
                     //agrego a la lista de temas (se borra despues de usarse)
                     temasAlbum.add(dt);
-
+                    ctrl.ordenarTemasPorPosicion(temasAlbum);
                 }
             } else {
                 Text10.setVisible(false);
@@ -451,48 +451,48 @@ public class IAltaAlbum extends javax.swing.JPanel {
             if(!(temasAlbum.isEmpty())){
                 JPanel panelContenedor = new JPanel();
                 panelContenedor.setLayout(new BoxLayout(panelContenedor, BoxLayout.Y_AXIS));
+                
+                for(DataTema tem : temasAlbum){
+                    
+                    // Crear un nuevo panel para cada tema
+                    JPanel info = new JPanel();
+                    info.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-                    for(DataTema tem : temasAlbum){
-                        // Crear un nuevo panel para cada tema
-                        JPanel info = new JPanel();
-                        info.setLayout(new FlowLayout(FlowLayout.LEFT));
+                    JLabel labelNombre = new JLabel(tem.getNombre() + " - ");
+                    labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+                    labelNombre.setForeground(Color.BLACK);
 
-                        JLabel labelNombre = new JLabel(tem.getNombre() + " - ");
-                        labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
-                        labelNombre.setForeground(Color.BLACK);
+                    JLabel labelDuracion = new JLabel(tem.getDuracion() + " mins" + "  ");
+                    labelDuracion.setFont(new Font("Arial", Font.PLAIN, 12));
+                    labelDuracion.setForeground(Color.BLACK);
 
-                        JLabel labelDuracion = new JLabel(tem.getDuracion() + " mins" + "  ");
-                        labelDuracion.setFont(new Font("Arial", Font.PLAIN, 12));
-                        labelDuracion.setForeground(Color.BLACK);
+                    JLabel labelOrden = new JLabel(tem.getOrdenAlbum() + " - ");
+                    labelOrden.setFont(new Font("Arial", Font.PLAIN, 12));
+                    labelOrden.setForeground(Color.BLACK);
 
-                        JLabel labelOrden = new JLabel(tem.getOrdenAlbum() + " - ");
-                        labelOrden.setFont(new Font("Arial", Font.PLAIN, 12));
-                        labelOrden.setForeground(Color.BLACK);
+                    // Agregar etiquetas al panel de tema
+                    info.add(labelOrden); //el niño mimado pidio que modificara como se muestra
+                    info.add(labelNombre);
+                    info.add(labelDuracion);
 
-                        // Agregar etiquetas al panel de tema
-                        info.add(labelOrden); //el niño mimado pidio que modificara como se muestra
-                        info.add(labelNombre);
-                        info.add(labelDuracion);
-
-                        // Botón para abrir el archivo o URL
-                            JButton botonTema = new JButton("Borrar");
-                            botonTema.addActionListener(e -> {
-                                
-                                temasAlbum.remove(tem);
-                                
-                                panelContenedor.remove(info);
-                                jScrollPane1.revalidate();
-                                jScrollPane1.repaint();
-                                
-                                Text10.setVisible(false);
-                                Text10.setText("Tema borrado");
-                                Text10.setVisible(true);
-                            });
-
-                            info.add(botonTema);
-                        
-                        panelContenedor.add(info);
-                    }
+                    // Botón para abrir el archivo o URL
+                    JButton botonTema = new JButton("Borrar");
+                    botonTema.addActionListener(e -> {        
+                    temasAlbum.remove(tem);
+                         
+                    panelContenedor.remove(info);
+                    jScrollPane1.revalidate();
+                    jScrollPane1.repaint();
+                    
+                    Text10.setVisible(false);
+                    Text10.setText("Tema borrado");
+                    Text10.setVisible(true);
+                    });
+                    info.add(botonTema);
+                    panelContenedor.add(info);
+                }
+                
+                ctrl.ordenarTemasPorPosicion(temasAlbum);
                 jScrollPane1.setViewportView(panelContenedor);
                 jScrollPane1.setVisible(true);
                 jScrollPane1.revalidate();
