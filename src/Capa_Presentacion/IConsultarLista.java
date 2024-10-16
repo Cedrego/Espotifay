@@ -2,6 +2,7 @@ package Capa_Presentacion;
 
 import Logica.Factory;
 import Logica.ICtrl;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.FlowLayout;
@@ -13,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -131,7 +133,6 @@ public class IConsultarLista extends javax.swing.JPanel {
         add(Text6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 270, 20));
 
         jButton1.setBackground(new java.awt.Color(0, 204, 102));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +140,7 @@ public class IConsultarLista extends javax.swing.JPanel {
             }
         });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 380, 160));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 540, 250));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -203,17 +204,17 @@ public class IConsultarLista extends javax.swing.JPanel {
         
         String nombreLista = jComboBox3.getSelectedItem() != null ? jComboBox3.getSelectedItem().toString() : "";
         
+        jPanel1.removeAll();
+        
         if(filtro.equalsIgnoreCase("Cliente")){
             DataParticular dp = ctrl.obtenerDataParticular(nombreLista,filtro2);
             
             Text4.setText("Nombre Playlist: "+dp.getNombre());
-
+            
             Text5.setText("Cliente creador: "+dp.getCliente());
-
-
+            
             Text6.setText("Posicion || Nombre || Duracion");
-
-
+            
             jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
 
             for(DataTema tem : dp.getDataTemas()){
@@ -266,7 +267,7 @@ public class IConsultarLista extends javax.swing.JPanel {
             }
         }
         
-    if(filtro.equalsIgnoreCase("Generos:")){
+    if(filtro.equalsIgnoreCase("Genero")){
             DataPorDefecto dpd = ctrl.obtenerDataPorDefecto(nombreLista);
 
             Text4.setText("Nombre Playlist: "+dpd.getNombre());
