@@ -28,13 +28,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class IAltaAlbum extends javax.swing.JPanel {
     Factory fabric =Factory.getInstance();
     ICtrl ctrl = fabric.getICtrl();
+    List <Integer> ordenesIngresados = new ArrayList();
+    List <String> nombresIngresados = new ArrayList();
     List <String> generosAlbum = new ArrayList(); //por las dudas
     List <DataTema> temasAlbum = new ArrayList();
-    
     public IAltaAlbum() {
         initComponents();
         generosAlbum.clear();
         temasAlbum.clear();
+        ordenesIngresados.clear();
+        nombresIngresados.clear();
         ACEPTAR.setVisible(false);
         Text1.setVisible(false);
         Text10.setVisible(false);
@@ -424,17 +427,24 @@ public class IAltaAlbum extends javax.swing.JPanel {
                     }
                 }
             }
+            
             //preguntto si es null por las dudas
             if(direccion != null){
                 int posicionC = Integer.parseInt((String) TextField5.getText());
                 DataTema dt = new DataTema(TextField3.getText(), TextField4.getText(), posicionC, direccion, generosAlbum);
+                    
                 
                 if (temasAlbum.contains(dt)){
                     Text10.setVisible(false);
                     Text10.setText("Tema ya aniadido");
                     Text10.setVisible(true);
                     
-                } else{
+                }else if(ordenesIngresados.contains(posicionC)){
+                    Text10.setVisible(false);
+                    Text10.setText("Eliga otra posicion");
+                    Text10.setVisible(true);
+                }else{
+                    ordenesIngresados.add(posicionC);
                     Text10.setVisible(false);
                     Text10.setText("Tema aniadido");
                     Text10.setVisible(true);
@@ -443,6 +453,7 @@ public class IAltaAlbum extends javax.swing.JPanel {
                     ctrl.ordenarTemasPorPosicion(temasAlbum);
                 }
             } else {
+                ctrl.ordenarTemasPorPosicion(temasAlbum);
                 Text10.setVisible(false);
                 Text10.setText("Direccion de guardado nula");
                 Text10.setVisible(true);
@@ -491,8 +502,6 @@ public class IAltaAlbum extends javax.swing.JPanel {
                     info.add(botonTema);
                     panelContenedor.add(info);
                 }
-                
-                ctrl.ordenarTemasPorPosicion(temasAlbum);
                 jScrollPane1.setViewportView(panelContenedor);
                 jScrollPane1.setVisible(true);
                 jScrollPane1.revalidate();
