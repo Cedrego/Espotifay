@@ -14,26 +14,22 @@ import java.util.List;
  */
 
 public class DataPorDefecto  {
-    private DataGenero Datagenero;
     private String nombre;
+    private String genero;
     private List<DataTema> Datatemas;
     //imagen;
     public DataPorDefecto() {}
     
-    public DataPorDefecto(String NuevoNombre, DataGenero DataGen, List<DataTema> DataTem){
-        this.Datagenero = DataGen;
+    public DataPorDefecto(String NuevoNombre, String nomGen, List<DataTema> DataTem){
+        this.genero = nomGen;
         this.nombre = NuevoNombre;
         this.Datatemas = DataTem;
     }   
-    public DataPorDefecto(String NuevoNombre){
-        this.Datagenero = null;
-        this.nombre = NuevoNombre;
-        this.Datatemas = new ArrayList();
-    }
+    
    //Setters
 
-    public void setDatagenero(DataGenero Datagenero) {
-        this.Datagenero = Datagenero;
+    public void setGenero(String nomGenero) {
+        this.genero = nomGenero;
     }
 
     public void setNombre(String nombre) {
@@ -45,15 +41,15 @@ public class DataPorDefecto  {
     }
     //Getters
 
-    public DataGenero getDatagenero() {
-        return Datagenero;
+    public String getGenero() {
+        return genero;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public List<DataTema> getDatatemas() {
+    public List<DataTema> getDataTemas() {
         return Datatemas;
     }
     

@@ -5,10 +5,10 @@
 package Logica;
 
 
-import Capa_Presentacion.DataTema;
-import Capa_Presentacion.DataCliente;
-import Capa_Presentacion.DataArtista;
+import Capa_Presentacion.DataAlbum;
 import Capa_Presentacion.DataParticular;
+import Capa_Presentacion.DataPorDefecto;
+import Capa_Presentacion.DataTema;
 import Persistencia.AlbumJpaController;
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
@@ -457,6 +457,77 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
+    public DataAlbum obtenerDataAlbum(String nomAlbum){
+        Album alb = albumJpaController.findAlbum(nomAlbum);
+        
+        List<DataTema> datosTema = new ArrayList();
+        List<String> generosTema = new ArrayList();
+        List<String> generosAlbum = new ArrayList();
+        
+        for(Tema tem : alb.getTemas()){
+            //(String nombreTema,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos
+            for(Genero gen : tem.getGeneros()){
+                generosTema.add(gen.getNombre());
+            }
+            DataTema tema = new DataTema(tem.getNombre(),tem.getDuracion(),tem.getOrdenAlbum(),tem.getDireccion(),generosTema);
+            datosTema.add(tema);
+        }
+        for(Genero gen : alb.getGeneros()){
+            generosAlbum.add(gen.getNombre());
+        }
+        //(String nombre, String artista, int creacion,List<DataTema> Temas,List<String> Generos) {
+        DataAlbum da = new DataAlbum(alb.getNombre(),alb.getArtista(),alb.getCreacion(),datosTema,generosAlbum);
+        
+        return da;
+    }
+    
+    @Override
+    public DataParticular obtenerDataParticular(String nombPart, String nickCli){
+        Particular part = particularJpaController.findParticular(nombPart, nickCli);
+        //(String NuevoNombre, String nickCliente, boolean priv, List<DataTema> DataTem)
+        
+        List<DataTema> datosTema = new ArrayList();
+        List<String> generosTema = new ArrayList();
+        
+        for(Tema tem : part.getTemas()){
+            //(String nombreTema,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos
+            for(Genero gen : tem.getGeneros()){
+                generosTema.add(gen.getNombre());
+            }
+            DataTema tema = new DataTema(tem.getNombre(),tem.getDuracion(),tem.getOrdenAlbum(),tem.getDireccion(),generosTema);
+            datosTema.add(tema);
+        }
+        
+        //(String nombre, String artista, int creacion,List<DataTema> Temas,List<String> Generos) {
+        DataParticular dp = new DataParticular(part.getNombre(),part.getCliente().getNickname(),part.getPrivado(), datosTema);
+        
+        return dp;
+    }
+    
+    @Override
+    public DataPorDefecto obtenerDataPorDefecto(String nombPart){
+        porDefecto pd = porDefectoJpaController.findporDefecto(nombPart);
+        //(String NuevoNombre, String nickCliente, boolean priv, List<DataTema> DataTem)
+        
+        List<DataTema> datosTema = new ArrayList();
+        List<String> generosTema = new ArrayList();
+        
+        for(Tema tem : pd.getTemas()){
+            //(String nombreTema,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos
+            for(Genero gen : tem.getGeneros()){
+                generosTema.add(gen.getNombre());
+            }
+            DataTema tema = new DataTema(tem.getNombre(),tem.getDuracion(),tem.getOrdenAlbum(),tem.getDireccion(),generosTema);
+            datosTema.add(tema);
+        }
+        
+        //(String NuevoNombre, String nomGen, List<DataTema> DataTem) {
+        DataPorDefecto dpd = new DataPorDefecto(pd.getNombre(),pd.getGenero().getNombre(), datosTema);
+        
+        return dpd;
+    }
+    
+    @Override
     public List<String> obtenerTemasDeParticular(String nomLista){
         Particular part = particularJpaController.findParticular(nomLista, obtenerDuenioPart(nomLista));
         
@@ -506,7 +577,7 @@ public class Ctrl implements ICtrl{
         for(Album alb : albumJpaController.findAlbumEntities()){
             for(Genero gen : alb.getGeneros()){
                 if (gen.getNombre().equalsIgnoreCase(nomGen)){
-                    albumes.add(gen.getNombre());
+                    albumes.add(alb.getNombre());
                 }
             }
         }
@@ -612,6 +683,54 @@ public class Ctrl implements ICtrl{
         }
 
         return nombresGeneros;
+    }
+    
+    @Override
+    public boolean ArtistaTieneAlbum(Artista art){
+        int contador = 0;
+        for(Album alb : art.getAlbumes()){
+            contador = contador+1;
+        }
+        if (contador>=1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    @Override
+    public List<String> obtenerNombresDeArtistaConAlbum() {
+        // Obtenemos todos los géneros de la base de datos
+        List<Artista> listaArtista = artistaController.findArtistaEntities();
+
+        // Creamos una lista de strings para almacenar los nombres
+        List<String> nombresArtista = new ArrayList<>();
+
+        // Recorremos la lista de Cliente y extraemos sus nombres
+        for (Artista art : listaArtista) {
+            if(ArtistaTieneAlbum(art)){
+                nombresArtista.add(art.getNickname());
+            }
+        }
+
+        return nombresArtista;
+    }
+    
+    @Override
+    public List<String> obtenerNombresDeGenerosConAlbum(){
+        List<Album> albumes = albumJpaController.findAlbumEntities();
+        List<String> nombresGen = new ArrayList();
+        
+        for(Album alb : albumes){
+            for(Genero gen : alb.getGeneros()){
+                if(nombresGen.contains(gen.getNombre())){
+                    
+                }else{
+                    nombresGen.add(gen.getNombre());
+                }
+            }
+        }
+        return nombresGen;
     }
     
     @Override

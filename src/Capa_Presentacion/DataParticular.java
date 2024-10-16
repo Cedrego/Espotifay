@@ -12,35 +12,31 @@ import java.util.List;
  */
 
 public class DataParticular  {
-
-    private boolean privado;
-    private DataCliente Datacliente;
-
+    
     private  String nombre;
     private List<DataTema> Datatemas;
+    private boolean privado;
+    private String cliente;
+
+    
     
     public DataParticular(){}
     
-    public DataParticular(String NuevoNombre, DataCliente DataCli, List<DataTema> DataTem){
+    public DataParticular(String NuevoNombre, String nickCliente, boolean priv, List<DataTema> DataTem){
         this.nombre = NuevoNombre;
-        this.privado = true;
-        this.Datacliente = DataCli;
+        this.privado = priv;
+        this.cliente = nickCliente;
         this.Datatemas = DataTem;
     }   
-    public DataParticular(String NuevoNombre){
-        this.nombre = NuevoNombre;
-        this.privado = true;
-        this.Datacliente = null ;
-        this.Datatemas = new ArrayList();
-    }  
+     
     //Setters
 
     public void setPrivado(boolean privado) {
         this.privado = privado;
     }
 
-    public void setDatacliente(DataCliente Datacliente) {
-        this.Datacliente = Datacliente;
+    public void setDatacliente(String nickCliente) {
+        this.cliente = nickCliente;
     }
 
     public void setNombre(String nombre) {
@@ -52,19 +48,19 @@ public class DataParticular  {
     }
     //Getters
 
-    public boolean isPrivado() {
+    public boolean getPrivado() {
         return privado;
     }
 
-    public DataCliente getDatacliente() {
-        return Datacliente;
+    public String getCliente() {
+        return cliente;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public List<DataTema> getDatatemas() {
+    public List<DataTema> getDataTemas() {
         return Datatemas;
     }
   

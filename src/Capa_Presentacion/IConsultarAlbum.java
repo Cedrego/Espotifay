@@ -1,5 +1,21 @@
 package Capa_Presentacion;
 
+import Capa_Presentacion.DataAlbum;
+import Capa_Presentacion.DataTema;
+import Logica.Factory;
+import Logica.ICtrl;
+import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.io.File;
+import java.io.IOException;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -10,12 +26,38 @@ package Capa_Presentacion;
  * @author cedre
  */
 public class IConsultarAlbum extends javax.swing.JPanel {
-
+    Factory fabric =Factory.getInstance();
+    ICtrl ctrl = fabric.getICtrl();
     /**
      * Creates new form IAltaPerfil
      */
     public IConsultarAlbum() {
         initComponents();
+        Text1.setVisible(false);
+        Text2.setVisible(false);
+        Text3.setVisible(false);
+        Text4.setVisible(false);
+        Text5.setVisible(false);
+        Text6.setVisible(false);
+        Text7.setVisible(false);
+        jButton1.setVisible(false);
+        jButton1.setText("Seleccionar");
+        jComboBox1.removeAllItems();
+        jComboBox2.removeAllItems();
+        jComboBox3.removeAllItems();
+        jComboBox1.setVisible(false);
+        jComboBox2.setVisible(false);
+        jComboBox3.setVisible(false);
+        jPanel1.setVisible(false);
+        
+        Text1.setText("Filtrar por:");
+        
+        jComboBox1.addItem("Artista");
+        jComboBox1.addItem("Genero");
+        
+        Text1.setVisible(true);
+        
+        jComboBox1.setVisible(true);
     }
 
     /**
@@ -49,9 +91,19 @@ public class IConsultarAlbum extends javax.swing.JPanel {
         add(Text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 170, 20));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 170, -1));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 170, -1));
 
         Text2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -91,8 +143,147 @@ public class IConsultarAlbum extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(0, 204, 102));
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        String filtro = jComboBox1.getSelectedItem()!= null ? jComboBox1.getSelectedItem().toString() : "";
+        String filtro2 = jComboBox2.getSelectedItem()!= null ? jComboBox2.getSelectedItem().toString() : "";
+        
+        jComboBox3.removeAllItems();
+        Text3.setText("Album: ");
+        if(filtro.equalsIgnoreCase("Artista")){
+            if(ctrl.obtenerAlbumesDeArtista(filtro2)!=null){
+                for(String alb : ctrl.obtenerAlbumesDeArtista(filtro2)){
+                    jComboBox3.addItem(alb);
+                }
+            }
+        }
+        
+        if(filtro.equalsIgnoreCase("Genero")){
+            if(ctrl.obtenerAlbumesDeGenero(filtro2)!=null){
+                for(String alb : ctrl.obtenerAlbumesDeGenero(filtro2)){
+                    jComboBox3.addItem(alb);
+                }
+            }
+            
+        }
+        
+        Text3.setVisible(true);
+        jComboBox3.setVisible(true);
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        String filtro = jComboBox1.getSelectedItem()!= null ? jComboBox1.getSelectedItem().toString() : "";
+        jComboBox2.removeAllItems();
+        if(filtro.equalsIgnoreCase("Artista")){
+                Text2.setText("Artistas:");
+                Text2.setVisible(true);
+                for (String art : ctrl.obtenerNombresDeArtistaConAlbum()){
+                    jComboBox2.addItem(art);
+                }
+            }
+        
+        if(filtro.equalsIgnoreCase("Genero")){
+            jComboBox2.removeAllItems();
+            Text2.setText("Generos:");
+            Text2.setVisible(true);
+            for (String gen : ctrl.obtenerNombresDeGenerosConAlbum()){
+                if(gen.equalsIgnoreCase("Genero")){
+
+                    }else{
+                        jComboBox2.addItem(gen);
+                    }
+            }    
+        }
+        jComboBox2.setVisible(true);
+        jButton1.setVisible(true);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String nombreAlb = jComboBox3.getSelectedItem() != null ? jComboBox3.getSelectedItem().toString() : "";
+            
+        DataAlbum da = ctrl.obtenerDataAlbum(nombreAlb);
+
+        Text4.setText("Nombre Album: "+da.getNombre());
+        Text5.setText("Anio de creacion: "+da.getCreacion());
+
+        String cadenaGeneros = "";
+        for(String gen : da.getGeneros()){
+            cadenaGeneros = cadenaGeneros.concat(gen+" || ");
+        }
+        Text6.setText("Generos: "+cadenaGeneros);
+        Text7.setText("Posicion || Nombre || Duracion");
+
+        // Limpiar jPanel4 para evitar que se acumulen temas anteriores
+        jPanel1.removeAll();
+        jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
+
+        for(DataTema tem : da.getDataTemas()){
+            // Crear un nuevo panel para cada tema
+            JPanel info = new JPanel();
+            info.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+            JLabel labelNombre = new JLabel(tem.getNombre() + " - ");
+            labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
+            labelNombre.setForeground(Color.BLACK);
+
+            JLabel labelDuracion = new JLabel(tem.getDuracion() + " mins" + "  ");
+            labelDuracion.setFont(new Font("Arial", Font.PLAIN, 12));
+            labelDuracion.setForeground(Color.BLACK);
+
+            JLabel labelOrden = new JLabel(tem.getOrdenAlbum() + " - ");
+            labelOrden.setFont(new Font("Arial", Font.PLAIN, 12));
+            labelOrden.setForeground(Color.BLACK);
+
+            // Agregar etiquetas al panel de tema
+            info.add(labelOrden); //el niño mimado pidio que modificara como se muestra
+            info.add(labelNombre);
+            info.add(labelDuracion);
+
+            // Botón para abrir el archivo o URL
+                    JButton botonTema = new JButton("Escuchar");
+                    botonTema.addActionListener(e -> {
+                        String direccion = tem.getDireccion(); 
+                        if (direccion != null) {
+                            try{
+                                // Si es un archivo
+                                File file = new File(direccion);
+                                if (file.exists()) {
+                                    Desktop.getDesktop().open(file);
+                                } else {
+                                    // si no lo encuentro en la PC o es una URL muestro un pop up
+                                    JOptionPane.showMessageDialog(null, "Guardado en: "+ direccion);
+                                    JOptionPane.showMessageDialog(null, "(descargar archivos Soon™\n si el archivo existe en el sistema se puede reproducir)");
+                                }
+                            }catch (IOException ex){
+                                ex.printStackTrace();
+                                JOptionPane.showMessageDialog(null, "Error al abrir el archivo:" + ex.getMessage());
+                            }
+                        }
+                    });
+
+                    info.add(botonTema);
+            // Añadir el panel del tema al jPanel4
+            jPanel1.add(info);
+        }
+
+
+        Text4.setVisible(true);
+        Text5.setVisible(true);
+        Text6.setVisible(true);
+        Text7.setVisible(true);
+        jPanel1.setVisible(true);
+        jPanel1.revalidate();
+        jPanel1.repaint();
+
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

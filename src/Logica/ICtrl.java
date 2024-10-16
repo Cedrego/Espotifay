@@ -5,7 +5,10 @@
 package Logica;
 
 
+import Capa_Presentacion.DataAlbum;
 import Capa_Presentacion.DataCliente;
+import Capa_Presentacion.DataParticular;
+import Capa_Presentacion.DataPorDefecto;
 import Capa_Presentacion.DataTema;
 import java.util.List;
 
@@ -65,7 +68,13 @@ public interface ICtrl {
     public abstract List<String> obtenerNombresClienteConParticular();
     public abstract List<String> obtenerNombresDeGenerosConPorDefecto();
     public abstract List<String> obtenerListasDeGenero(String nomGen);
-            
+    public abstract boolean ArtistaTieneAlbum(Artista art);
+    public abstract List<String> obtenerNombresDeArtistaConAlbum();
+    public abstract List<String> obtenerNombresDeGenerosConAlbum();
+    public abstract DataAlbum obtenerDataAlbum(String nomAlbum);
+    public abstract DataParticular obtenerDataParticular(String nombPart, String nickCli);
+    public abstract DataPorDefecto obtenerDataPorDefecto(String nombPart);
+    
     public abstract List<String> listaPlaylistCliente (String nick);
     public abstract List<String> listaPlaylistFavCliente (String nick);
     public abstract List<String> listaAlbumFavCliente (String nick);

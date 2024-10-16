@@ -11,7 +11,7 @@ public class DataAlbum {
     private String artista;
     private int creacion;
     private List<DataTema> temas;
-    private List<DataGenero> generos;
+    private List<String> generos;
     
     public DataAlbum() {
     }
@@ -24,7 +24,7 @@ public class DataAlbum {
         this.generos = new ArrayList();
     }
     
-    public DataAlbum(String nombre, String artista, int creacion,List<DataTema> Temas,List<DataGenero> Generos) {
+    public DataAlbum(String nombre, String artista, int creacion,List<DataTema> Temas,List<String> Generos) {
         this.nombre = nombre;
         this.artista = artista;
         this.creacion = creacion;
@@ -49,7 +49,7 @@ public class DataAlbum {
         return temas;
     }
 
-    public List<DataGenero> getDataGeneros() {
+    public List<String> getGeneros() {
         return generos;
     }
 
@@ -70,7 +70,7 @@ public class DataAlbum {
         this.temas = temas;
     }
 
-    public void setDataGeneros(List<DataGenero> Generos) {
+    public void setDataGeneros(List<String> Generos) {
         this.generos = Generos;
     }
 }
