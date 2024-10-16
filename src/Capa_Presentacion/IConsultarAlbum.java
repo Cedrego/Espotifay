@@ -83,10 +83,12 @@ public class IConsultarAlbum extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Text1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text1.setForeground(new java.awt.Color(255, 255, 255));
         Text1.setText("Text1");
+        add(Text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 170, 20));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +96,7 @@ public class IConsultarAlbum extends javax.swing.JPanel {
                 jComboBox1ActionPerformed(evt);
             }
         });
+        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 170, -1));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -101,32 +104,41 @@ public class IConsultarAlbum extends javax.swing.JPanel {
                 jComboBox2ActionPerformed(evt);
             }
         });
+        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 170, -1));
 
         Text2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text2.setForeground(new java.awt.Color(255, 255, 255));
         Text2.setText("Text2");
+        add(Text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 170, 20));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 170, -1));
 
         Text3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text3.setForeground(new java.awt.Color(255, 255, 255));
         Text3.setText("Text3");
+        add(Text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 170, 20));
 
         Text4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text4.setForeground(new java.awt.Color(255, 255, 255));
         Text4.setText("Text4");
+        add(Text4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 380, 20));
 
         Text5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text5.setForeground(new java.awt.Color(255, 255, 255));
         Text5.setText("Text5");
+        add(Text5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 380, 20));
 
         Text6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text6.setForeground(new java.awt.Color(255, 255, 255));
         Text6.setText("Text6");
+        add(Text6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 380, 20));
 
         Text7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Text7.setForeground(new java.awt.Color(255, 255, 255));
         Text7.setText("Text7");
+        add(Text7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 380, 20));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 380, 190));
 
         jButton1.setBackground(new java.awt.Color(0, 204, 102));
         jButton1.setText("jButton1");
@@ -135,59 +147,7 @@ public class IConsultarAlbum extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addComponent(Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(402, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Text2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addComponent(Text4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Text6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Text7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
