@@ -9,6 +9,7 @@ import Persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ public class Album implements Serializable{
     private String artista;
     @Column (name="CREACION")
     private int creacion;
-    //@JoinColumn(name = "TEMAS")
+    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tema> temas;
     @OneToMany
     private List<Genero> generos;

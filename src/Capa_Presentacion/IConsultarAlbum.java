@@ -212,8 +212,10 @@ public class IConsultarAlbum extends javax.swing.JPanel {
         Text4.setText("Nombre Album: "+da.getNombre());
         Text5.setText("Anio de creacion: "+da.getCreacion());
 
+        int i = 1;
         String cadenaGeneros = "";
         for(String gen : da.getGeneros()){
+            System.out.println("Genero "+i+": "+gen);
             cadenaGeneros = cadenaGeneros.concat(gen+" || ");
         }
         Text6.setText("Generos: "+cadenaGeneros);
@@ -222,20 +224,23 @@ public class IConsultarAlbum extends javax.swing.JPanel {
         // Limpiar jPanel4 para evitar que se acumulen temas anteriores
         jPanel1.removeAll();
         jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
-
+        System.out.println("Afuera del for");
         for(DataTema tem : da.getDataTemas()){
+            System.out.println("Entre en el for");
             // Crear un nuevo panel para cada tema
             JPanel info = new JPanel();
             info.setLayout(new FlowLayout(FlowLayout.LEFT));
-
+            System.out.println("Nombre: "+tem.getNombre());
             JLabel labelNombre = new JLabel(tem.getNombre() + " - ");
             labelNombre.setFont(new Font("Arial", Font.PLAIN, 12));
             labelNombre.setForeground(Color.BLACK);
-
+            
+            System.out.println("Duracion: "+tem.getDuracion());
             JLabel labelDuracion = new JLabel(tem.getDuracion() + " mins" + "  ");
             labelDuracion.setFont(new Font("Arial", Font.PLAIN, 12));
             labelDuracion.setForeground(Color.BLACK);
-
+            
+            System.out.println("Posicion: "+tem.getOrdenAlbum());
             JLabel labelOrden = new JLabel(tem.getOrdenAlbum() + " - ");
             labelOrden.setFont(new Font("Arial", Font.PLAIN, 12));
             labelOrden.setForeground(Color.BLACK);

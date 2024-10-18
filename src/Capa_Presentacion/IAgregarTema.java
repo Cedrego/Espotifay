@@ -225,7 +225,7 @@ public class IAgregarTema extends javax.swing.JPanel {
                 jComboBox2.removeAllItems();
             }
             //Agregar nombres de los Generos
-            for (String genero : ctrl.obtenerNombresDeGeneros()) {
+            for (String genero : ctrl.obtenerNombresDeGenerosConPorDefecto()) {
                 if(!"Genero".equals(genero)){
                     jComboBox2.addItem(genero);
                 }

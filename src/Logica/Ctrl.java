@@ -465,15 +465,32 @@ public class Ctrl implements ICtrl{
         Album alb = albumJpaController.findAlbum(nomAlbum);
         
         List<DataTema> datosTema = new ArrayList();
-        List<String> generosTema = new ArrayList();
+        
         List<String> generosAlbum = new ArrayList();
         
+        if(alb.getTemas()==null){
+            System.out.println("===========================================");
+            System.out.println("NO HAY TEMAS EN ESTE ALBUM");
+            System.out.println("===========================================");
+        }
+        System.out.println("Cantidad de temas: " + alb.getTemas().size());
+
         for(Tema tem : alb.getTemas()){
             //(String nombreTema,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos
+            List<String> generosTema = new ArrayList();
             for(Genero gen : tem.getGeneros()){
                 generosTema.add(gen.getNombre());
             }
+            //DataTema(String nombreTema,String alb,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos)
             DataTema tema = new DataTema(tem.getNombre(),nomAlbum,tem.getDuracion(),tem.getOrdenAlbum(),tem.getDireccion(),generosTema);
+            System.out.println("===========================================");
+            System.out.println("Se creo el DataTema con: ");
+            System.out.println("Nombre: "+tem.getNombre()+"\nAlbum: "+tema.getAlbum()+"\n Duracion"+tema.getDuracion()+"Posicion: "+tema.getOrdenAlbum()+"\nDireccion: +" + tema.getDireccion());
+            System.out.println("Y generos: ");
+            for(String gen : tema.getGeneros()){
+                System.out.println(gen);
+            }
+            System.out.println("===========================================");
             datosTema.add(tema);
         }
         for(Genero gen : alb.getGeneros()){
@@ -881,11 +898,11 @@ public class Ctrl implements ICtrl{
     }
     @Override
     public List<String> obtenerNombresTemaParaPartADD(String NomList, String NomCliente){
-        List<Album> ListAlb = albumJpaController.findAlbumEntities(); // Lista de álbumes de la BD
+        //List<Album> ListAlb = albumJpaController.findAlbumEntities(); // Lista de álbumes de la BD
         Cliente cli = clienteController.findCliente(NomCliente);
         List<Tema> ListTema = temaJpaController.findTemaEntities(); // Lista de álbumes de la BD
-        List<String> nombresTemasAgregar = new ArrayList<>();
-        List<String> nombresTemasDeAlbum = new ArrayList<>(); // Contendrá los nombres de todos los temas de cada álbum
+        //List<String> nombresTemasAgregar = new ArrayList<>();
+        //List<String> nombresTemasDeAlbum = new ArrayList<>(); // Contendrá los nombres de todos los temas de cada álbum
         List<String> nombresTemas = new ArrayList<>(); // Contendrá los nombres de todos los temas de cada álbum
 
         // Agregar todos los nombres de temas de los álbumes a nombresTemasDeAlbum
@@ -938,6 +955,29 @@ public class Ctrl implements ICtrl{
     }
     @Override
     public List<String> obtenerNombresTemaParaPDADD(String NomList, String NomGen){
+        List<Tema> listaTemas = temaJpaController.findTemaEntities();
+        porDefecto pd = porDefectoJpaController.findporDefecto(NomList);
+        List<String> nombresTemas = new ArrayList();
+        
+        for(Tema tem : listaTemas){
+            if(!(nombresTemas.contains(tem.getNombre()))){
+                for(Genero gen : tem.getGeneros()){
+                    if(gen.getNombre().equalsIgnoreCase(NomGen)){
+                        nombresTemas.add(tem.getNombre());
+                    }
+                }
+            }
+        }
+        
+        if(pd!=null){
+            for(Tema tem : pd.getTemas()){
+                if(nombresTemas.contains(tem.getNombre())){
+                    nombresTemas.remove(tem.getNombre());
+                }
+            }
+        }
+        return nombresTemas;
+        /*
         List<Album> ListAlb = albumJpaController.findAlbumEntities(); // Lista de álbumes de la BD
         List<String> nombresTemasAgregar = new ArrayList<>();
         List<String> nombresTemasDeAlbum = new ArrayList<>(); // Contendrá los nombres de todos los temas de cada álbum
@@ -984,7 +1024,8 @@ public class Ctrl implements ICtrl{
             return nombresTemasAgregar;
         }else{
             return nombresTemasDeAlbum;
-        }
+        }*/
+
     }
     
     @Override
