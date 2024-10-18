@@ -216,7 +216,7 @@ public class IAgregarTema extends javax.swing.JPanel {
                 jComboBox2.removeAllItems();
             }
             //Agregar nombres de los clientes
-             for (String cli : ctrl.obtenerNombresDeCliente()) {
+             for (String cli : ctrl.obtenerNombresClienteConParticular()) {
                     jComboBox2.addItem(cli);
             }
         }else{

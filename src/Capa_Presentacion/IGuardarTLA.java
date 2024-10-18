@@ -364,7 +364,7 @@ public class IGuardarTLA extends javax.swing.JPanel {
                 Text6.setText(objeto+" ya esta en favoritos del cliente");
                 Text6.setVisible(true);
             }else{
-                ctrl.guardarTLA(fav, objeto, nickCliente,"Potato");
+                ctrl.guardarTLA(fav, objeto, nickCliente,duenioLista);
                 Text6.setVisible(false);
                 Text6.setText(objeto+" fue agregado a favoritos del cliente");
                 Text6.setVisible(true);

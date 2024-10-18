@@ -29,7 +29,7 @@ public class GuardarTLA {
         Cliente cli = clienteController.findCliente(nickCliente);
         
         if(tipo.equalsIgnoreCase("Tema")){
-            Tema tem = temaJpaController.findTema(objeto);
+            Tema tem = ctrl.obtenerTema(objeto, duenioListaParticular);
             cli.addTemaFav(tem);
         }
         

@@ -29,7 +29,8 @@ public class EliminarTLA {
         
         if(tipo.equalsIgnoreCase("Tema")){
             EntityManager em = temaJpaController.getEntityManager();
-            Tema tem = temaJpaController.findTema(objeto);
+            String[] NombreTema=objeto.split("-");
+            Tema tem = ctrl.obtenerTema(NombreTema[0], NombreTema[1]);
             
             try{
                 em.getTransaction().begin();
@@ -37,9 +38,10 @@ public class EliminarTLA {
                 tem = em.merge(tem);
                 cli = em.merge(cli);
                 
-                em.createNativeQuery("DELETE FROM cliente_tema WHERE Cliente_NICK = ? AND temasFAV_NOMBRE = ?")
+                em.createNativeQuery("DELETE FROM cliente_tema WHERE Cliente_NICK = ? AND NOMBRE = ? AND ALBUM_NOMBRE = ?")
                     .setParameter(1, cli.getNickname())
                     .setParameter(2, tem.getNombre())
+                    .setParameter(3, tem.getAlbum().getNombre())
                     .executeUpdate();
 
                 em.getTransaction().commit();
