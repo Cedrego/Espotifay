@@ -882,17 +882,29 @@ public class Ctrl implements ICtrl{
     @Override
     public List<String> obtenerNombresTemaParaPartADD(String NomList, String NomCliente){
         List<Album> ListAlb = albumJpaController.findAlbumEntities(); // Lista de álbumes de la BD
+        Cliente cli = clienteController.findCliente(NomCliente);
+        List<Tema> ListTema = temaJpaController.findTemaEntities(); // Lista de álbumes de la BD
         List<String> nombresTemasAgregar = new ArrayList<>();
         List<String> nombresTemasDeAlbum = new ArrayList<>(); // Contendrá los nombres de todos los temas de cada álbum
+        List<String> nombresTemas = new ArrayList<>(); // Contendrá los nombres de todos los temas de cada álbum
 
         // Agregar todos los nombres de temas de los álbumes a nombresTemasDeAlbum
-        for (Album alb : ListAlb) {
-            for (Tema tem : alb.getTemas()) {
-                nombresTemasDeAlbum.add(tem.getNombre());
+        for (Tema tem : ListTema) {
+            nombresTemas.add(tem.getNombre());
+        }
+        Particular listaCliente = new Particular();
+        List<Particular> ListPart = cli.getParticular();
+        for(Particular part : ListPart){
+            if(part.getNombre().equals(NomList)){
+                listaCliente=part;
             }
         }
-         // Verificar si la lista particular existe para el cliente
-        Cliente cli = clienteController.findCliente(NomCliente);
+        for(Tema tem : listaCliente.getTemas()){
+            if(nombresTemas.contains(tem.getNombre())){
+                nombresTemas.remove(tem.getNombre());
+            }
+        }
+        /*
         if (cli != null) {
             if(cli.getParticular().isEmpty()){
                 return new ArrayList<>();
@@ -921,8 +933,8 @@ public class Ctrl implements ICtrl{
                     }
                 }
             }
-        }
-        return nombresTemasAgregar;
+        }*/
+        return nombresTemas;
     }
     @Override
     public List<String> obtenerNombresTemaParaPDADD(String NomList, String NomGen){
