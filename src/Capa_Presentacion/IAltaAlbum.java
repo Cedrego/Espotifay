@@ -431,7 +431,7 @@ public class IAltaAlbum extends javax.swing.JPanel {
             //preguntto si es null por las dudas
             if(direccion != null){
                 int posicionC = Integer.parseInt((String) TextField5.getText());
-                DataTema dt = new DataTema(TextField3.getText(), TextField4.getText(), posicionC, direccion, generosAlbum);
+                DataTema dt = new DataTema(TextField3.getText(), TextField2.getText(), TextField4.getText(), posicionC, direccion, generosAlbum);
                     
                 
                 if (temasAlbum.contains(dt)){

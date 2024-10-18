@@ -473,7 +473,7 @@ public class Ctrl implements ICtrl{
             for(Genero gen : tem.getGeneros()){
                 generosTema.add(gen.getNombre());
             }
-            DataTema tema = new DataTema(tem.getNombre(),tem.getDuracion(),tem.getOrdenAlbum(),tem.getDireccion(),generosTema);
+            DataTema tema = new DataTema(tem.getNombre(),nomAlbum,tem.getDuracion(),tem.getOrdenAlbum(),tem.getDireccion(),generosTema);
             datosTema.add(tema);
         }
         for(Genero gen : alb.getGeneros()){
@@ -498,7 +498,7 @@ public class Ctrl implements ICtrl{
             for(Genero gen : tem.getGeneros()){
                 generosTema.add(gen.getNombre());
             }
-            DataTema tema = new DataTema(tem.getNombre(),tem.getDuracion(),tem.getOrdenAlbum(),tem.getDireccion(),generosTema);
+            DataTema tema = new DataTema(tem.getNombre(),tem.getAlbum().getNombre(),tem.getDuracion(),tem.getOrdenAlbum(),tem.getDireccion(),generosTema);
             datosTema.add(tema);
         }
         
@@ -521,7 +521,7 @@ public class Ctrl implements ICtrl{
             for(Genero gen : tem.getGeneros()){
                 generosTema.add(gen.getNombre());
             }
-            DataTema tema = new DataTema(tem.getNombre(),tem.getDuracion(),tem.getOrdenAlbum(),tem.getDireccion(),generosTema);
+            DataTema tema = new DataTema(tem.getNombre(),tem.getAlbum().getNombre(),tem.getDuracion(),tem.getOrdenAlbum(),tem.getDireccion(),generosTema);
             datosTema.add(tema);
         }
         

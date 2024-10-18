@@ -4,19 +4,14 @@
  */
 package Logica;
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class TemaId implements Serializable {
-
-    @Column(name = "NOMBRE")
-    private String nombre;
-
-    @Column(name = "ALBUM")
+    
+    protected String nombre;
     private String albumNombre;
 
-    // Constructor por defecto
     public TemaId() {
     }
 

@@ -6,6 +6,7 @@ package Logica;
 import Capa_Presentacion.DataTema;
 import Persistencia.GeneroJpaController;
 import Persistencia.TemaJpaController;
+import Persistencia.AlbumJpaController;
 /**
  *
  * @author Franco
@@ -13,8 +14,19 @@ import Persistencia.TemaJpaController;
 public class AltaTema {
     public TemaJpaController temaJpaController = new TemaJpaController();
     public GeneroJpaController generoJpaController = new GeneroJpaController();
+    public AlbumJpaController albumJpaController = new AlbumJpaController();
     public AltaTema(DataTema dt){
-        Tema temaNuevo = new Tema(dt.getNombre(), dt.getDuracion(), dt.getOrdenAlbum(), dt.getDireccion());
+        Album alb = albumJpaController.findAlbum(dt.getAlbum());
+        //String nombreTema,Album alb,String duracionTema, int ordenAlbumT, String guardadoT
+        System.out.println("================================");
+        System.out.println("Añadiendo tema:");
+        System.out.println("Nombre: "+dt.getNombre());
+        System.out.println("Album: "+alb.getNombre());
+        System.out.println("Duracion: "+dt.getDuracion());
+        System.out.println("Posicion: "+dt.getOrdenAlbum());
+        System.out.println("Direccion: "+dt.getDireccion());
+        System.out.println("================================");
+        Tema temaNuevo = new Tema(dt.getNombre(),alb,dt.getDuracion(), dt.getOrdenAlbum(), dt.getDireccion());
         
         for (String gen : dt.getGeneros()){
             temaNuevo.addGenero(generoJpaController.findGenero(gen));   

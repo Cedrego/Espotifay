@@ -24,7 +24,7 @@ public class Album implements Serializable{
     private String artista;
     @Column (name="CREACION")
     private int creacion;
-    @JoinColumn(name = "TEMAS")
+    //@JoinColumn(name = "TEMAS")
     private List<Tema> temas;
     @OneToMany
     private List<Genero> generos;
@@ -92,6 +92,12 @@ public class Album implements Serializable{
     }
     
     public void addTemas(Tema tem){
+        AlbumJpaController albumJpaController = new AlbumJpaController();
         this.temas.add(tem);
+        try {
+            albumJpaController.edit(this);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {
+        }
     }
 }

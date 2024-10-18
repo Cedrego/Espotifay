@@ -9,6 +9,7 @@ import Persistencia.AlbumJpaController;
 import Persistencia.ArtistaJpaController;
 import Persistencia.GeneroJpaController;
 import Persistencia.TemaJpaController;
+import Persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
 /**
  *
@@ -29,24 +30,18 @@ public class AltaAlbum {
         for (String genero : generos){
             albumNuevo.addGenero(generoJpaController.findGenero(genero));
         }
-
-        for (DataTema datatema : temas){
-            /*if(datatema.getNombre()==null){
-                System.out.println("el tema es nulo");
-            }else{
-                System.out.println("el nombre del tema es:"+datatema.getNombre());
-            }*/
-            
-            ctrl.CrearTema(datatema);
-            
-            albumNuevo.addTemas(temaJpaController.findTema(datatema.getNombre()));
-        }
         
         //persistimos album
         try {
             albumJpaController.create(albumNuevo);
         } catch (Exception e) {
             System.out.println("Error al guardar el album: " + e.getMessage());
+        }
+        
+        for (DataTema datatema : temas){
+            ctrl.CrearTema(datatema);
+            albumNuevo.addTemas(temaJpaController.findTema(datatema.getNombre()));
+            
         }
         
         Artista artistaAlbum = artistaJpaController.findArtista(nombreArtista);

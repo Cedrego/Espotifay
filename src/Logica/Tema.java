@@ -9,38 +9,50 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Franco
  */
 @Entity
+//@IdClass(TemaId.class)
 public class Tema implements Serializable {
     @Id
     private String nombre;
     private String duracion;
     private int ordenAlbum;
     private String guardadoEn;
+    @Id
+    @ManyToOne
+    //@JoinColumn(name = "ALBUM_PERTENECE", nullable = false)
+    private Album album;
+    
     @ManyToMany
     private List<Genero> generos;
 
     public Tema() {
     }
 
-    public Tema(String nombreTema,String duracionTema, int ordenAlbumT, String guardadoT) {
+    public Tema(String nombreTema,Album alb,String duracionTema, int ordenAlbumT, String guardadoT) {
         this.nombre = nombreTema;
         this.duracion = duracionTema;
         this.ordenAlbum = ordenAlbumT;
         this.guardadoEn = guardadoT;
         this.generos = new ArrayList(); //inicializa lista de generos
-        
+        this.album = alb;
     }
     
     //Get variables
     public String getNombre() {
         return nombre;
+    }
+    
+    public Album getAlbum() {
+        return album;
     }
     
     public String getDuracion() {
@@ -66,6 +78,10 @@ public class Tema implements Serializable {
 
     public void setDuracion(String dur) {
         this.duracion = dur;
+    }
+    
+    public void setAlbum(Album alb) {
+        this.album = alb;
     }
     
     public void setNombre(int orden) {

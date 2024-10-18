@@ -162,29 +162,41 @@ public class IAltaGenero extends javax.swing.JPanel {
 
     private void ACEPTAR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACEPTAR1ActionPerformed
         
-                String nombreGenero = TextField1.getText();
-                String nombrePadre = jComboBox1.getSelectedItem() != null ? jComboBox1.getSelectedItem().toString() : "";
-                if(nombrePadre.equalsIgnoreCase("")){
-                    nombrePadre="Genero"; 
-                }
-                
-                if (TextField1.getText().isEmpty()) {
-                    Text3.setVisible(false);
-                    Text3.setText("ERROR: campo Nombre vacio");
-                    Text3.setVisible(true);
-                }else{
-                    if(ctrl.existeGenero(TextField1.getText())){
-                        Text3.setVisible(false);
-                        Text3.setText("Error, genero "+TextField1.getText()+" ya existe");
-                        Text3.setVisible(true);
+        String nombreGenero = TextField1.getText();
+        String nombrePadre = jComboBox1.getSelectedItem() != null ? jComboBox1.getSelectedItem().toString() : "";
+        if(nombrePadre.equalsIgnoreCase("")){
+            nombrePadre="Genero"; 
+        }
 
-                    }else{
-                        Text3.setVisible(false);
-                        Text3.setText("Ingresado con exito");
-                        Text3.setVisible(true);
-                        ctrl.crearGenero(nombreGenero,nombrePadre);
-                    }
+        if (TextField1.getText().isEmpty()) {
+            Text3.setVisible(false);
+            Text3.setText("ERROR: campo Nombre vacio");
+            Text3.setVisible(true);
+        }else{
+            if(ctrl.existeGenero(TextField1.getText())){
+                Text3.setVisible(false);
+                Text3.setText("Error, genero "+TextField1.getText()+" ya existe");
+                Text3.setVisible(true);
+
+            }else{
+                Text3.setVisible(false);
+                Text3.setText("Ingresado con exito");
+                Text3.setVisible(true);
+                ctrl.crearGenero(nombreGenero,nombrePadre);
+            }
+        }
+        jComboBox1.removeAllItems();
+        if (ctrl.obtenerNombresDeGeneros().isEmpty()) {
+            System.out.println("no hay generos jefesito");
+        } else {
+            for (String gen : ctrl.obtenerNombresDeGeneros()) {
+                if (gen.equalsIgnoreCase("Genero")) {
+
+                } else {
+                    jComboBox1.addItem(gen);
                 }
+            }
+        }
     }//GEN-LAST:event_ACEPTAR1ActionPerformed
 
 

@@ -17,13 +17,15 @@ public class DataTema{
     private int ordenAlbum;
     private String guardadoEn;
     private List<String> generos;
+    private String album;
 
-    public DataTema(String nombreTema,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos) {
+    public DataTema(String nombreTema,String alb,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos) {
         this.nombre = nombreTema;
         this.duracion = duracionTema;
         this.ordenAlbum = ordenAlbumT;
         this.guardadoEn = guardadoT;
         this.generos = Generos;
+        this.album = alb;
         
         System.out.println("Se creo el data tema con: "+this.nombre+", "+this.duracion+" y "+this.ordenAlbum);
     }
@@ -32,6 +34,10 @@ public class DataTema{
     //Get variables
     public String getNombre() {
         return nombre;
+    }
+    
+    public String getAlbum() {
+        return album;
     }
     
     public String getDuracion() {
@@ -53,6 +59,10 @@ public class DataTema{
     //Set variables
     public void setNombre(String nom) {
         this.nombre = nom;
+    }
+    
+    public void setAlbum(String alb) {
+        this.album = alb;
     }
 
     public void setDuracion(String dur) {
