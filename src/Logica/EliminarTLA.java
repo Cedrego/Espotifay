@@ -38,10 +38,9 @@ public class EliminarTLA {
                 tem = em.merge(tem);
                 cli = em.merge(cli);
                 
-                em.createNativeQuery("DELETE FROM cliente_tema WHERE Cliente_NICK = ? AND NOMBRE = ? AND ALBUM_NOMBRE = ?")
+                em.createNativeQuery("DELETE FROM cliente_tema WHERE Cliente_NICK = ? AND temasFAV_IDTEMA = ?")
                     .setParameter(1, cli.getNickname())
-                    .setParameter(2, tem.getNombre())
-                    .setParameter(3, tem.getAlbum().getNombre())
+                    .setParameter(2, tem.getIdTema())
                     .executeUpdate();
 
                 em.getTransaction().commit();

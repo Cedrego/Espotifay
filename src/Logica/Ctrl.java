@@ -437,7 +437,7 @@ public class Ctrl implements ICtrl{
         if(alb!=null){
             for(Tema tem : alb.getTemas()){
                 String albTema = tem.getNombre();
-                albTema = albTema.concat("-"+tem.getAlbum().getNombre());
+                albTema = albTema.concat("-"+nomAlbum);
                 temasAlbum.add(albTema);
             }
         }

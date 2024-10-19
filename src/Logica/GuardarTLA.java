@@ -29,7 +29,8 @@ public class GuardarTLA {
         Cliente cli = clienteController.findCliente(nickCliente);
         
         if(tipo.equalsIgnoreCase("Tema")){
-            Tema tem = ctrl.obtenerTema(objeto, duenioListaParticular);
+            String[] NombreTema = objeto.split("-");
+            Tema tem = ctrl.obtenerTema(NombreTema[0], NombreTema[1]);
             cli.addTemaFav(tem);
         }
         

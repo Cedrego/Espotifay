@@ -304,6 +304,7 @@ public class IGuardarTLA extends javax.swing.JPanel {
             }    
 
             if(filtro.equalsIgnoreCase("Lista Por Defecto")){
+                Text4.setText("Seleccione la Lista: ");
                 for(String tema : ctrl.obtenerTemasDePD(segundoFiltro)){
                     jComboBox5.addItem(tema);
                 }
