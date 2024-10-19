@@ -489,15 +489,18 @@ public class IAltaAlbum extends javax.swing.JPanel {
                     // Botón para abrir el archivo o URL
                     JButton botonTema = new JButton("Borrar");
                     botonTema.addActionListener(e -> {        
-                    temasAlbum.remove(tem);
-                         
-                    panelContenedor.remove(info);
-                    jScrollPane1.revalidate();
-                    jScrollPane1.repaint();
-                    
-                    Text10.setVisible(false);
-                    Text10.setText("Tema borrado");
-                    Text10.setVisible(true);
+                        int posTem = tem.getOrdenAlbum();
+                        ordenesIngresados.remove(Integer.valueOf(posTem));
+                        
+                        temasAlbum.remove(tem);
+
+                        panelContenedor.remove(info);
+                        jScrollPane1.revalidate();
+                        jScrollPane1.repaint();
+
+                        Text10.setVisible(false);
+                        Text10.setText("Tema borrado");
+                        Text10.setVisible(true);
                     });
                     info.add(botonTema);
                     panelContenedor.add(info);
