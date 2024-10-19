@@ -45,7 +45,7 @@ public class TemaJpaController implements Serializable {
             em.persist(tema);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findTema(tema.getNombre()) != null) {
+            if (findTema(tema.getIdTema()) != null) {
                 throw new PreexistingEntityException("Tema " + tema + " already exists.", ex);
             }
             throw ex;
@@ -66,7 +66,7 @@ public class TemaJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = tema.getNombre();
+                int id = tema.getIdTema();
                 if (findTema(id) == null) {
                     throw new NonexistentEntityException("The tema with id " + id + " no longer exists.");
                 }
@@ -124,7 +124,7 @@ public class TemaJpaController implements Serializable {
         }
     }
 
-    public Tema findTema(String id) {
+    public Tema findTema(int id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Tema.class, id);

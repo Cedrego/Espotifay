@@ -4,7 +4,9 @@
  */
 package Capa_Presentacion;
 
-import java.util.ArrayList;
+import Logica.Factory;
+import Logica.ICtrl;
+import Persistencia.TemaJpaController;
 import java.util.List;
 
 /**
@@ -12,6 +14,10 @@ import java.util.List;
  * @author Franco
  */
 public class DataTema{
+    Factory fabric =Factory.getInstance();
+    ICtrl ctrl = fabric.getICtrl();
+    
+    private int idTema;
     private String nombre;
     private String duracion;
     private int ordenAlbum;
@@ -20,6 +26,7 @@ public class DataTema{
     private String album;
 
     public DataTema(String nombreTema,String alb,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos) {
+        this.idTema=ctrl.obtenerIdTema(nombreTema, alb);
         this.nombre = nombreTema;
         this.duracion = duracionTema;
         this.ordenAlbum = ordenAlbumT;
@@ -32,6 +39,11 @@ public class DataTema{
 
     
     //Get variables
+    
+    public int getIdTema(){
+        return idTema;
+    }
+    
     public String getNombre() {
         return nombre;
     }

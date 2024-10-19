@@ -8,9 +8,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -22,11 +22,14 @@ import javax.persistence.ManyToOne;
 //@IdClass(TemaId.class)
 public class Tema implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Autoincremental
+    private int IdTema;
+    
     private String nombre;
     private String duracion;
     private int ordenAlbum;
     private String guardadoEn;
-    @Id
+    //@Id
     @ManyToOne
     //@JoinColumn(name = "ALBUM_PERTENECE", nullable = false)
     private Album album;
@@ -50,7 +53,9 @@ public class Tema implements Serializable {
     public String getNombre() {
         return nombre;
     }
-    
+    public int getIdTema(){
+        return IdTema;
+    }
     public Album getAlbum() {
         return album;
     }

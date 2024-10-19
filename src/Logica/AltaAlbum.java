@@ -40,7 +40,7 @@ public class AltaAlbum {
         
         for (DataTema datatema : temas){
             ctrl.CrearTema(datatema);
-            albumNuevo.addTemas(temaJpaController.findTema(datatema.getNombre()));
+            albumNuevo.addTemas(temaJpaController.findTema(datatema.getIdTema()));
             
         }
         

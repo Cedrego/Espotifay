@@ -14,12 +14,17 @@ import javax.persistence.EntityManager;
  * @author User
  */
 public class QuitarTemasLista {
+    Factory fabric =Factory.getInstance();
+    ICtrl ctrl = fabric.getICtrl();
     
     public QuitarTemasLista (String Tipo, String NomPlay, String NomTema, String nom ){
         ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
         ManejadorMusica mm = ManejadorMusica.getInstance(); //consigo instancia de manejador de playlist
         ManejadorUsuario mu = ManejadorUsuario.getInstance(); //consigo instancia de manejador de Usuario
         boolean delete = false;//para que no siga recorriendo los for
+        String[] NombreTema=NomTema.split("-");
+        Tema tema = ctrl.obtenerTema(NombreTema[0], NombreTema[1]);
+        
         if("Particular".equals(Tipo)){
             //Agrego tema a la lista del cliente
             Cliente cliente = mu.buscarCliente(nom); //nom es el nombre del cliente
@@ -27,9 +32,8 @@ public class QuitarTemasLista {
             for(Particular Par : cliente.getParticular()){
                 if(Par.getNombre().equalsIgnoreCase(NomPlay)){//Encuentro la playlist particular del cliente
                     ParticularJpaController particularJpaController = new ParticularJpaController();
-                    TemaJpaController temJpa = new TemaJpaController();
                     EntityManager em = particularJpaController.getEntityManager();
-                    Tema tema = temJpa.findTema(NomTema);
+                    
                     try {
                         em = particularJpaController.getEntityManager();
                         em.getTransaction().begin();
@@ -40,10 +44,10 @@ public class QuitarTemasLista {
                         cliente = em.merge(cliente);
 
                         // Inserta en la tabla de unión
-                        em.createNativeQuery("DELETE FROM particular_tema WHERE NOMBRE = ? AND temas_NOMBRE = ? AND CLIENTE_NICK = ?")
+                        em.createNativeQuery("DELETE FROM particular_tema WHERE NOMBRE = ? AND CLIENTE_NICK = ? AND temas_IDTEMA = ?")
                                 .setParameter(1, Par.getNombre())
-                                .setParameter(2, tema.getNombre())
-                                .setParameter(3, cliente.getNickname())
+                                .setParameter(2, cliente.getNickname())
+                                .setParameter(3, ctrl.obtenerIdTema(tema.getNombre(),tema.getAlbum().getNombre()))
                                 .executeUpdate();
 
                         em.getTransaction().commit();
@@ -72,9 +76,8 @@ public class QuitarTemasLista {
             for(porDefecto Def : mp.getListPorDefecto()){
                 if(Def.getNombre().equalsIgnoreCase(NomPlay)){//Encuentro la playlist por defecto
                     porDefectoJpaController porDefJpa = new porDefectoJpaController();
-                    TemaJpaController temJpa = new TemaJpaController();
                     EntityManager em = porDefJpa.getEntityManager();
-                    Tema tema = temJpa.findTema(NomTema);
+                    
                     try {
                         em = porDefJpa.getEntityManager();
                         em.getTransaction().begin();
@@ -84,9 +87,9 @@ public class QuitarTemasLista {
                         Def = em.merge(Def);
 
                         // Inserta en la tabla de unión
-                        em.createNativeQuery("DELETE FROM pordefecto_tema WHERE porDefecto_NOMBRE = ? AND temas_NOMBRE = ?")
+                        em.createNativeQuery("DELETE FROM pordefecto_tema WHERE porDefecto_NOMBRE = ? AND temas_IDTEMA = ?")
                                 .setParameter(1, Def.getNombre())
-                                .setParameter(2, tema.getNombre())
+                                .setParameter(2, tema.getIdTema())
                                 .executeUpdate();
 
                         em.getTransaction().commit();

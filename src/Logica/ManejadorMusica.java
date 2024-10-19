@@ -68,9 +68,9 @@ public class ManejadorMusica {
         return null;
     }
     
-    public Tema buscarTema(String nom){
-        if(temJpa.findTema(nom)!=null){
-            return temJpa.findTema(nom);
+    public Tema buscarTema(int id){
+        if(temJpa.findTema(id)!=null){
+            return temJpa.findTema(id);
         }
         return null;
     }

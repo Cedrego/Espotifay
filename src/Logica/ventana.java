@@ -3027,7 +3027,7 @@ public class ventana extends javax.swing.JFrame {
             String nickCliente = ComboBox4.getSelectedItem() != null ? ComboBox4.getSelectedItem().toString() : "";
             
             Cliente cliente = mu.buscarCliente(nickCliente);
-            
+            /*
             if (operacion.equalsIgnoreCase("Tema")) {
                 Tema tem = mm.buscarTema(textfield7);
                 if(mm.buscarTema(textfield7)!=null){
@@ -3047,7 +3047,7 @@ public class ventana extends javax.swing.JFrame {
                     Text10.setVisible(true);
                 }
             }
-            
+            */
             if (operacion.equalsIgnoreCase("Lista")) {
                 Particular part = mp.buscarListP(textfield7,nickCliente);
                 porDefecto pd = mp.buscarListPD(textfield7);

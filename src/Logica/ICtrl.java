@@ -75,6 +75,8 @@ public interface ICtrl {
     public abstract DataParticular obtenerDataParticular(String nombPart, String nickCli);
     public abstract DataPorDefecto obtenerDataPorDefecto(String nombPart);
     public abstract Tema obtenerTema(String nombreTema, String nombreAlbum);
+    public abstract int obtenerIdTema(String nombreTema, String nombreAlbum);
+    public abstract DataTema crearDataTemaAltaAlbum(List<DataTema> temasAlbum, String nombreTema,String alb,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos);
     
     public abstract List<String> listaPlaylistCliente (String nick);
     public abstract List<String> listaPlaylistFavCliente (String nick);

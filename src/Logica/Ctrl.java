@@ -572,6 +572,36 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
+    public DataTema crearDataTemaAltaAlbum(List<DataTema> temasAlbum, String nombreTema,String alb,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos){
+        for (DataTema dt : temasAlbum){
+            if(dt.getNombre().equalsIgnoreCase(nombreTema)){
+                return null;
+            }
+        }
+        DataTema datatema = new DataTema(nombreTema, alb, duracionTema, ordenAlbumT, guardadoT, Generos);
+        return datatema;
+    }
+    
+    @Override
+    public int obtenerIdTema(String nombreTema, String nombreAlbum){
+        EntityManager em = temaJpaController.getEntityManager();
+        Tema tem = null;
+        
+        try {
+                // Escapamos el valor de la variable `NomList` para prevenir inyecciones SQL
+                String query = "SELECT * FROM tema WHERE NOMBRE = '" + nombreTema + "' AND ALBUM_NOMBRE = '"+nombreAlbum+"'";
+                tem = (Tema) em.createNativeQuery(query, Tema.class).getSingleResult();
+            } catch (NoResultException e) {
+                System.out.println("No se encontró el tema con el nombre: " + nombreTema);
+                return 0;
+            } finally {
+                em.close(); // Cerrar el EntityManager
+            }
+        return tem.getIdTema();
+        
+    }
+    
+    @Override
     public List<String> obtenerTemasDeParticular(String nomLista){
         Particular part = particularJpaController.findParticular(nomLista, obtenerDuenioPart(nomLista));
         
@@ -935,22 +965,24 @@ public class Ctrl implements ICtrl{
         //List<String> nombresTemasDeAlbum = new ArrayList<>(); // Contendrá los nombres de todos los temas de cada álbum
         List<String> nombresTemas = new ArrayList<>(); // Contendrá los nombres de todos los temas de cada álbum
 
-        // Agregar todos los nombres de temas de los álbumes a nombresTemasDeAlbum
-        for (Tema tem : ListTema) {
-            String albTema = tem.getNombre();
-            albTema = albTema.concat("-"+tem.getAlbum().getNombre());
-            nombresTemas.add(albTema);
-        }
-        Particular listaCliente = new Particular();
-        List<Particular> ListPart = cli.getParticular();
-        for(Particular part : ListPart){
-            if(part.getNombre().equals(NomList)){
-                listaCliente=part;
+        if(cli!=null){
+            // Agregar todos los nombres de temas de los álbumes a nombresTemasDeAlbum
+            for (Tema tem : ListTema) {
+                String albTema = tem.getNombre();
+                albTema = albTema.concat("-"+tem.getAlbum().getNombre());
+                nombresTemas.add(albTema);
             }
-        }
-        for(Tema tem : listaCliente.getTemas()){
-            if(nombresTemas.contains(tem.getNombre())){
-                nombresTemas.remove(tem.getNombre());
+            Particular listaCliente = new Particular();
+            List<Particular> ListPart = cli.getParticular();
+            for(Particular part : ListPart){
+                if(part.getNombre().equals(NomList)){
+                    listaCliente=part;
+                }
+            }
+            for(Tema tem : listaCliente.getTemas()){
+                if(nombresTemas.contains(tem.getNombre())){
+                    nombresTemas.remove(tem.getNombre());
+                }
             }
         }
         /*
@@ -1089,7 +1121,9 @@ public class Ctrl implements ICtrl{
         if(!PD.getTemas().isEmpty()){
             
             for(Tema tem: PD.getTemas()){
-                NomTemas.add(tem.getNombre());
+                String albTema = tem.getNombre();
+                albTema = albTema.concat("-"+tem.getAlbum().getNombre());
+                NomTemas.add(albTema);
             }
         }else{
             return new ArrayList<>(); // Retorna una lista vacía si la lista no contiene temas
@@ -1109,7 +1143,9 @@ public class Ctrl implements ICtrl{
                 for(Particular part: ListPartCli){//Busco esa lista en la lista de cliente
                    if(part.getNombre().equalsIgnoreCase(NomList)){
                        for(Tema tem: part.getTemas()){
-                           NomTema.add(tem.getNombre());
+                           String albTema = tem.getNombre();
+                           albTema = albTema.concat("-"+tem.getAlbum().getNombre());
+                           NomTema.add(albTema);
                        }
                        return NomTema;
                    }

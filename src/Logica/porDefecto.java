@@ -4,6 +4,7 @@
  */
 package Logica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
@@ -14,7 +15,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * @author cedre
  */
 @Entity
-public class porDefecto extends Playlist {
+public class porDefecto extends Playlist implements Serializable {
     @OneToOne
     private Genero genero;
 

@@ -19,7 +19,7 @@ import javax.persistence.Table;
 
 
 @MappedSuperclass
-public abstract class Playlist{
+public abstract class Playlist implements Serializable {
     @Id
     protected String nombre;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
