@@ -186,6 +186,7 @@ public class IAltaGenero extends javax.swing.JPanel {
             }
         }
         jComboBox1.removeAllItems();
+        jComboBox1.addItem("");
         if (ctrl.obtenerNombresDeGeneros().isEmpty()) {
             System.out.println("no hay generos jefesito");
         } else {
