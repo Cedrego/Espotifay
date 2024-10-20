@@ -63,6 +63,26 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
+    public boolean existePassC(String NOE,String Contra){
+        em = clienteController.getEntityManager();
+        List<String> Cliente = em.createNativeQuery("Select NICK from cliente where (NICK = ?1 or MAIL = ?1) and CONTRASENIA = ?2")
+            .setParameter(1, NOE)
+            .setParameter(2, Contra)
+            .getResultList();
+        return !Cliente.isEmpty();
+    }
+    
+    @Override
+    public boolean existePassA (String NOE, String Contra){
+        em = artistaController.getEntityManager();
+        List<String> Artistas = em.createNativeQuery("Select NICK from artista where (NICK = ?1 or MAIL = ?1) and CONTRASENIA = ?2")
+            .setParameter(1, NOE)
+            .setParameter(2, Contra)
+            .getResultList();
+        return !Artistas.isEmpty();
+    }
+    
+    @Override
     public void crearArtista(String nick, String nom, String ape, String mail, String pass, int dia, String mes, int anio, String bio, String web){
         int meses = 0;
         if(mes.equals("Enero")){

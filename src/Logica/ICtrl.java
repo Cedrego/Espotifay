@@ -18,6 +18,7 @@ import java.util.List;
  */
 public interface ICtrl {
     
+    
     public abstract void CrearAlbum (String nombreA, String artista, int anioA, List<String> generosA, List<DataTema> temasA);
     public abstract void CrearTema(DataTema dt);
     public abstract void crearGenero(String nomG, String padre);
@@ -36,6 +37,8 @@ public interface ICtrl {
     public abstract List<String> obtenerNombresDeGeneros();
     public abstract List <String> obtenerNombresDeAlbumes();
     public abstract boolean existeGenero(String nomGenero);
+    public abstract boolean existePassC(String NOE, String Contra);
+    public abstract boolean existePassA(String NOE, String Contra);
     public abstract List<String> obtenerNombresDeCliente();
     public abstract List<String> obtenerNombresDeArtista();
     public abstract List<String> obtenerMailDeCliente();
