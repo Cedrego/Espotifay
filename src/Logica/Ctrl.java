@@ -66,6 +66,10 @@ public class Ctrl implements ICtrl{
         return !Cliente.isEmpty();
     }
     @Override
+    public boolean A(boolean a){
+        return true;
+    }
+    @Override
     public boolean existePassA(String NOE, String Contra) {
         em = artistaController.getEntityManager();
         List<String> Artistas = em.createNativeQuery("Select NICK from artista where (NICK = ?1 or MAIL = ?1) and CONTRASENIA = ?2")
