@@ -46,6 +46,35 @@ public class Ctrl implements ICtrl{
     
     
     
+    
+    @Override
+    public boolean existeGenero(String nomGenero) {
+        Genero gen = generoJpaController.findGenero(nomGenero);
+        if (gen != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    @Override
+    public boolean existePassC(String NOE, String Contra) {
+        em = clienteController.getEntityManager();
+        List<String> Cliente = em.createNativeQuery("Select NICK from cliente where (NICK = ?1 or MAIL = ?1) and CONTRASENIA = ?2")
+                .setParameter(1, NOE)
+                .setParameter(2, Contra)
+                .getResultList();
+        return !Cliente.isEmpty();
+    }
+    @Override
+    public boolean existePassA(String NOE, String Contra) {
+        em = artistaController.getEntityManager();
+        List<String> Artistas = em.createNativeQuery("Select NICK from artista where (NICK = ?1 or MAIL = ?1) and CONTRASENIA = ?2")
+                .setParameter(1, NOE)
+                .setParameter(2, Contra)
+                .getResultList();
+        return !Artistas.isEmpty();
+    }
+    
     //crear un objeto de tipo album
     @Override
     public void CrearAlbum (String nombreA, String artista, int anioA, List<String> generosA, List<DataTema> temasA){
@@ -374,35 +403,7 @@ public class Ctrl implements ICtrl{
         return nombresPD;
     }
     
-    @Override
-    public boolean existeGenero(String nomGenero){
-        Genero gen = generoJpaController.findGenero(nomGenero);
-        if(gen!=null){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    @Override
-    public boolean existePassC(String NOE, String Contra) {
-        em = clienteController.getEntityManager();
-        List<String> Cliente = em.createNativeQuery("Select NICK from cliente where (NICK = ?1 or MAIL = ?1) and CONTRASENIA = ?2")
-                .setParameter(1, NOE)
-                .setParameter(2, Contra)
-                .getResultList();
-        return !Cliente.isEmpty();
-    }
-
-    @Override
-    public boolean existePassA(String NOE, String Contra) {
-        em = artistaController.getEntityManager();
-        List<String> Artistas = em.createNativeQuery("Select NICK from artista where (NICK = ?1 or MAIL = ?1) and CONTRASENIA = ?2")
-                .setParameter(1, NOE)
-                .setParameter(2, Contra)
-                .getResultList();
-        return !Artistas.isEmpty();
-    }
+    
 
     @Override
     public boolean esPrivado(String nombrePart, String nombreCliente){
