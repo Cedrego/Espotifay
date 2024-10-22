@@ -22,6 +22,8 @@ public interface ICtrl {
     public abstract boolean existePassC(String NOE, String Contra);
     public abstract boolean existePassA(String NOE, String Contra);
     public abstract boolean A(boolean a);
+    public abstract List<String> ContraXCliente(String NOE,String Contra);
+    public abstract List<String> ContraXArtista(String NOE,String Contra);
     
     public abstract void CrearAlbum (String nombreA, String artista, int anioA, List<String> generosA, List<DataTema> temasA);
     public abstract void CrearTema(DataTema dt);

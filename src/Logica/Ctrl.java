@@ -66,8 +66,24 @@ public class Ctrl implements ICtrl{
         return !Cliente.isEmpty();
     }
     @Override
+    public List<String> ContraXCliente(String NOE,String Contra){
+        List<String> Cliente = em.createNativeQuery("Select NICK from cliente where (NICK = ?1 or MAIL = ?1) and CONTRASENIA = ?2")
+                .setParameter(1, NOE)
+                .setParameter(2, Contra)
+                .getResultList();
+        return Cliente;
+    }
+    @Override
+    public List<String> ContraXArtista(String NOE,String Contra){
+        List<String> Artista = em.createNativeQuery("Select NICK from artista where (NICK = ?1 or MAIL = ?1) and CONTRASENIA = ?2")
+                .setParameter(1, NOE)
+                .setParameter(2, Contra)
+                .getResultList();
+        return Artista;
+    }
+    @Override
     public boolean A(boolean a){
-        return true;
+        return !a;
     }
     @Override
     public boolean existePassA(String NOE, String Contra) {
