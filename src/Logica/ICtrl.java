@@ -111,4 +111,9 @@ public interface ICtrl {
     public abstract String seguirPerfil (String cliente, String tipo, String aSeguir);
     public abstract String dejarSeguirPerfil (String cliente, String tipo, String aSeguir);
     public abstract void ordenarTemasPorPosicion(List<DataTema> temasAlbum);
+    
+    //FUNCIONES SW
+    public abstract List<String> listaClientesQueSiguesSW (String nick);
+    public abstract List<String> listaArtistasQueSiguesSW (String nick);
+    public abstract List<String> listaTeSiguenSW (String nick);
 }
