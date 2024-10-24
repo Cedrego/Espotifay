@@ -12,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
@@ -26,14 +27,17 @@ public class Particular extends Playlist implements Serializable {
     @Id
     @ManyToOne
     private Cliente cliente;
+    @JoinColumn 
+    private DTFecha fecha;
     
     public Particular(){}
     
-    public Particular(String NuevoNombre, Cliente cli){
+    public Particular(String NuevoNombre, Cliente cli, DTFecha Fecha){
         this.nombre = NuevoNombre;
         this.privado = true;
         this.cliente = cli;
         this.temas = new ArrayList();
+        this.fecha = Fecha;
     }   
     
     public boolean getPrivado(){

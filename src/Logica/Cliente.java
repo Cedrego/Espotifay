@@ -5,10 +5,13 @@
 package Logica;
 
 
+import Logica.Suscripcion.estado;
 import Persistencia.ClienteJpaController;
 import Persistencia.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -16,6 +19,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -67,11 +71,14 @@ public class Cliente extends Usuario {
     @OneToMany
     private List<Particular> playFavPart; //coleccion
 
+    @OneToOne(mappedBy = "cliente")
+    private Suscripcion Suscripc;
+    
     public Cliente() {
     }
 
-    public Cliente(String nick, String nom, String ape, String mail, String pass, DTFecha fech) {
-        super(nick, nom, ape, mail, pass, fech);
+    public Cliente(String nick, String nom, String ape, String mail, String pass, DTFecha fech ) {
+        super(nick, nom, ape, pass, mail, fech);
         this.particular = new ArrayList();
         this.cliSigueA = new ArrayList();
         this.artSigueA = new ArrayList();
@@ -80,6 +87,11 @@ public class Cliente extends Usuario {
         this.temasFAV = new ArrayList();
         this.playFavPD = new ArrayList();
         this.playFavPart = new ArrayList();
+        this.Suscripc = null;
+    }
+
+    public void setSuscripc(Suscripcion Suscripc) {
+        this.Suscripc = Suscripc;
     }
     
     //setters
@@ -117,6 +129,14 @@ public class Cliente extends Usuario {
     }
     
     //gettersssss
+
+    public Suscripcion getSuscripc() {
+       ClienteJpaController clijpa = new ClienteJpaController();
+        return clijpa.findCliente(this.getNickname()).Suscripc;
+    }
+
+
+    
     public List<Particular> getParticular() {
         ClienteJpaController clijpa = new ClienteJpaController();
         return clijpa.findCliente(this.getNickname()).particular;

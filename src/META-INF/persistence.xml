@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Logica.Particular</class>
     <class>Logica.Tema</class>
+    <class>Logica.Suscripcion</class>
     <class>Logica.Playlist</class>
     <class>Logica.Usuario</class>
     <class>Logica.Cliente</class>

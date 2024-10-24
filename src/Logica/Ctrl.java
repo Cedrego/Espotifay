@@ -16,6 +16,8 @@ import Persistencia.GeneroJpaController;
 import Persistencia.ParticularJpaController;
 import Persistencia.TemaJpaController;
 import Persistencia.porDefectoJpaController;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
@@ -323,12 +325,20 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
-    public Particular CrearListParticular(String nombre, String nomCliente){
+    public Particular CrearListParticular(String nombre, String nomCliente, String Fecha){
         
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         Cliente cliente = mu.buscarCliente(nomCliente);
-        
-        Particular nuevoParticular = new Particular(nombre, cliente);
+        // Parsear la fecha recibida en formato "dd-MM-yyyy"
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate fecha = LocalDate.parse(Fecha, formato);
+        // Obtener día, mes y año como enteros
+        int Dia = fecha.getDayOfMonth();
+        int Mes = fecha.getMonthValue();
+        int Anio = fecha.getYear();
+         // Crear la fecha tipo DTFecha
+        DTFecha Fech = new DTFecha(Dia, Mes, Anio);
+        Particular nuevoParticular = new Particular(nombre, cliente,Fech);
         
         try {
             particularJpaController.create(nuevoParticular);
@@ -352,8 +362,8 @@ public class Ctrl implements ICtrl{
         return nuevoPorDefecto;
     }
     @Override
-    public void CreateLista(String Name, String Tipo, String GOP ){
-        CrearLista CL= new CrearLista(Name, Tipo, GOP);
+    public void CreateLista(String Name, String Tipo, String GOP,String Fecha ){
+        CrearLista CL= new CrearLista(Name, Tipo, GOP,Fecha);
     }
     
     @Override
