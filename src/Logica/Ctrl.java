@@ -1270,9 +1270,14 @@ public class Ctrl implements ICtrl{
         List<String> retorno = new ArrayList<>();
         Cliente cli = clienteController.findCliente(nick);
         
-        List<Artista> seguidos = cli.getArtSigueA();
-        for(Artista a : seguidos){
-            retorno.add(a.getNickname());
+        List<Artista> artistas = artistaController.findArtistaEntities();
+        
+        for(Artista a : artistas){
+            if(a.getSeguidoPorA().contains(cli)){
+                
+            }else{
+                retorno.add(a.getNickname());
+            }
         }
         return retorno;
     }
