@@ -1,6 +1,7 @@
 package Capa_Presentacion;
 
 
+import Persistencia.ControladoraPersistencia;
 import java.awt.BorderLayout;
 import javax.swing.*;
 import javax.swing.JPanel;
@@ -16,7 +17,7 @@ import javax.swing.border.EmptyBorder;
  * @author cedre
  */
 public class Dashboard extends javax.swing.JFrame {
-
+    ControladoraPersistencia CP = new ControladoraPersistencia();
     /**
      * Creates new form Dashboard
      */

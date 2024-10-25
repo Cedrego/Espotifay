@@ -14,13 +14,15 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author cedre
  */
 @Entity
-@IdClass(PartId.class)
+@Table(name = "particular")
+//@IdClass(PartId.class)
 public class Particular extends Playlist implements Serializable {
     @Column (name="PRIVADO")
     private boolean privado;
