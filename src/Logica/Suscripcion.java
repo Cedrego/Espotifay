@@ -40,9 +40,19 @@ public class Suscripcion implements Serializable  {
         this.Tipo = Tipo;
         this.cliente = Cli;
     }
-
+    public Long getId(){
+        return id;
+    }
     public estado getEstado() {
         return Estado;
+    }
+
+    public tipo getTipo() {
+        return Tipo;
+    }
+
+    public String getCliente() {
+        return cliente.getNickname();
     }
 
     public DTFecha getUltimaModificacion() {

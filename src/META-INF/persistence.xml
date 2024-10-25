@@ -12,6 +12,7 @@
     <class>Logica.porDefecto</class>
     <class>Logica.Genero</class>
     <class>Logica.Artista</class>
+    <class>Persistencia.Suscripcion</class>
     <shared-cache-mode>ALL</shared-cache-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/espotify?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

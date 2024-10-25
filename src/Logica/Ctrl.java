@@ -8,12 +8,14 @@ package Logica;
 import Capa_Presentacion.DataAlbum;
 import Capa_Presentacion.DataParticular;
 import Capa_Presentacion.DataPorDefecto;
+import Capa_Presentacion.DataSuscripcion;
 import Capa_Presentacion.DataTema;
 import Persistencia.AlbumJpaController;
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
 import Persistencia.GeneroJpaController;
 import Persistencia.ParticularJpaController;
+import Persistencia.SuscripcionJpaController;
 import Persistencia.TemaJpaController;
 import Persistencia.porDefectoJpaController;
 import java.time.LocalDate;
@@ -44,6 +46,7 @@ public class Ctrl implements ICtrl{
     public porDefectoJpaController porDefectoJpaController = new porDefectoJpaController();
     public ClienteJpaController clienteController = new ClienteJpaController();
     public ArtistaJpaController artistaController = new ArtistaJpaController();
+    public SuscripcionJpaController suscripJpaController = new SuscripcionJpaController();
     public Ctrl(){}
     
     
@@ -1380,11 +1383,9 @@ public class Ctrl implements ICtrl{
         
         return retorno;
     }
-    
     @Override
     public List<String> obtenerPartPrivadaDeDuenio (String nick){
         Cliente cli = clienteController.findCliente(nick);
-        
         List<String> listaParticularPublica = new ArrayList();
         if(cli!=null){
             if(cli.getParticular()!=null){
@@ -1401,20 +1402,15 @@ public class Ctrl implements ICtrl{
         }
         return listaParticularPublica;
     }
-    
     @Override
     public List<String> clientesConParticularesPriv (){
         // Obtenemos todos los géneros de la base de datos
         List<Cliente> listaCliente = clienteController.findClienteEntities();
-        
-
         // Creamos una lista de strings para almacenar los nombres
         List<String> nombresCliente = new ArrayList<>();
-
         // Recorremos la lista de Cliente y extraemos sus nombres
         for (Cliente cli : listaCliente) {
             if(obtenerPartPrivadaDeDuenio(cli.getNickname())==null){
-                
             }else{
                 nombresCliente.add(cli.getNickname());
             }
@@ -1460,5 +1456,25 @@ public class Ctrl implements ICtrl{
             }
         }
         );
+    }
+    @Override
+    public List<DataSuscripcion> ObtenerSubscClietne(String NickCliente){
+        List<Suscripcion> Suscrip = suscripJpaController.findSuscripcionEntities();
+        List<DataSuscripcion> dataSus = new ArrayList<>();
+        for(Suscripcion sus: Suscrip){
+            if(sus.getCliente().equalsIgnoreCase(NickCliente)){
+                dataSus.add(createDataSuscripcion(sus));//DataSusCripcion
+            }
+        }
+        return dataSus;
+    }
+    @Override
+    public DataSuscripcion createDataSuscripcion(Suscripcion Sus){
+        DataSuscripcion dataSus = new DataSuscripcion(Sus.getId(),Sus.getEstado(),Sus.getTipo(),Sus.getUltimaModificacion(),Sus.getCliente());
+        return dataSus;
+    }
+    @Override
+    public void ActualizarSuscripcion(Long ID, Enum Estado){
+       ActualizarSuscripcion AS= new ActualizarSuscripcion(ID, Estado);
     }
 }

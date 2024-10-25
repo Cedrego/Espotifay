@@ -63,6 +63,7 @@ public class Dashboard extends javax.swing.JFrame {
         jbConsultarLista = new javax.swing.JButton();
         Logo = new javax.swing.JLabel();
         Content = new javax.swing.JPanel();
+        jbActualizarEstadoSuscr = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -202,12 +203,25 @@ public class Dashboard extends javax.swing.JFrame {
         Content.setBackground(new java.awt.Color(0, 0, 0));
         Content.setLayout(new java.awt.BorderLayout());
 
+        jbActualizarEstadoSuscr.setBackground(new java.awt.Color(0, 204, 102));
+        jbActualizarEstadoSuscr.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jbActualizarEstadoSuscr.setText("Actualizar estado Susc.");
+        jbActualizarEstadoSuscr.setActionCommand("Actualizar estado de Suscri");
+        jbActualizarEstadoSuscr.setMaximumSize(new java.awt.Dimension(116, 21));
+        jbActualizarEstadoSuscr.setMinimumSize(new java.awt.Dimension(116, 21));
+        jbActualizarEstadoSuscr.setPreferredSize(new java.awt.Dimension(116, 21));
+        jbActualizarEstadoSuscr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbActualizarEstadoSuscrActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
@@ -225,9 +239,11 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jbConsultarPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbConsultarAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbConsultarLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbDejarSeguirU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbDejarSeguirU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbActualizarEstadoSuscr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,13 +276,16 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jbConsultarPerfil)
                 .addGap(6, 6, 6)
                 .addComponent(jbConsultarAlbum)
-                .addGap(6, 6, 6)
-                .addComponent(jbConsultarLista)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbConsultarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbActualizarEstadoSuscr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
         );
 
         Content.getAccessibleContext().setAccessibleParent(this);
+        jbActualizarEstadoSuscr.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -353,6 +372,12 @@ public class Dashboard extends javax.swing.JFrame {
         ShowPanel(p);
     }//GEN-LAST:event_jbConsultarListaActionPerformed
 
+    private void jbActualizarEstadoSuscrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarEstadoSuscrActionPerformed
+        // TODO add your handling code here:
+        IActualizarEstadoSuscripción p = new IActualizarEstadoSuscripción();
+        ShowPanel(p);
+    }//GEN-LAST:event_jbActualizarEstadoSuscrActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -392,6 +417,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel Content;
     private javax.swing.JLabel Logo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbActualizarEstadoSuscr;
     private javax.swing.JButton jbAgregarTema;
     private javax.swing.JButton jbAltaAlbum;
     private javax.swing.JButton jbAltaGenero;

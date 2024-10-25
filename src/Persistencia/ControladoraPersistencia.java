@@ -14,4 +14,5 @@ public class ControladoraPersistencia{
     ParticularJpaController partJpa = new ParticularJpaController();
     porDefectoJpaController pordefJpa = new porDefectoJpaController();
     ArtistaJpaController artJpa = new ArtistaJpaController();
+    SuscripcionJpaController suscripJpaController = new SuscripcionJpaController();
 }

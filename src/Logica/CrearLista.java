@@ -19,7 +19,7 @@ import javax.persistence.TypedQuery;
  * @author User
  */
 public class CrearLista {
-     Factory fabric =Factory.getInstance();
+    Factory fabric =Factory.getInstance();
     ICtrl ctrl = fabric.getICtrl();
     // Obtenemos el EntityManager desde la fábrica
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("pantallaPU");
