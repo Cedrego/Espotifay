@@ -9,6 +9,7 @@ import Capa_Presentacion.DataAlbum;
 import Capa_Presentacion.DataArtistaAlt;
 import Capa_Presentacion.DataCliente;
 import Capa_Presentacion.DataClienteAlt;
+import Capa_Presentacion.DataClienteMin;
 import Capa_Presentacion.DataParticular;
 import Capa_Presentacion.DataPorDefecto;
 import Capa_Presentacion.DataSuscripcion;
@@ -29,6 +30,7 @@ public interface ICtrl {
     public abstract List<String> ContraXArtista(String NOE,String Contra);
     public abstract DataClienteAlt getDataClienteAlt(String NickCli);
     public abstract DataArtistaAlt getDataArtistaAlt(String NickArt);
+    public abstract List<DataClienteMin> getDataClienteMin();
     
     public abstract void CrearAlbum (String nombreA, String artista, int anioA, List<String> generosA, List<DataTema> temasA);
     public abstract void CrearTema(DataTema dt);

@@ -10,6 +10,7 @@ import Capa_Presentacion.DataArtista;
 import Capa_Presentacion.DataArtistaAlt;
 import Capa_Presentacion.DataCliente;
 import Capa_Presentacion.DataClienteAlt;
+import Capa_Presentacion.DataClienteMin;
 import Capa_Presentacion.DataParticular;
 import Capa_Presentacion.DataPorDefecto;
 import Capa_Presentacion.DataSuscripcion;
@@ -1591,5 +1592,17 @@ public class Ctrl implements ICtrl{
         } else {
             return false;
         }
+    }
+    @Override
+    public List<DataClienteMin> getDataClienteMin(){
+        List<DataClienteMin> DTCliMin = new ArrayList();
+        for(Cliente c : clienteController.findClienteEntities()){
+            List<DataParticular> ListaDeDataParticulares = new ArrayList();
+            for (String nomListaPart : this.listaPlaylistCliente(c.getNickname())) {
+                ListaDeDataParticulares.add(this.obtenerDataParticular(nomListaPart, c.getNickname()));
+            }//particular
+            DTCliMin.add(new DataClienteMin(c.getNickname(),ListaDeDataParticulares));
+        }
+        return DTCliMin;
     }
 }
