@@ -6,6 +6,10 @@ package Logica;
 
 
 import Capa_Presentacion.DataAlbum;
+import Capa_Presentacion.DataArtista;
+import Capa_Presentacion.DataArtistaAlt;
+import Capa_Presentacion.DataCliente;
+import Capa_Presentacion.DataClienteAlt;
 import Capa_Presentacion.DataParticular;
 import Capa_Presentacion.DataPorDefecto;
 import Capa_Presentacion.DataTema;
@@ -47,6 +51,63 @@ public class Ctrl implements ICtrl{
     
     
     
+    @Override
+    public DataClienteAlt getDataClienteAlt(String NickCli){
+        Cliente cl = clienteController.findCliente(NickCli);
+        List<DataParticular> ListaDeDataParticulares = new ArrayList();
+        for(String nomListaPart : this.listaPlaylistCliente(NickCli)){
+            ListaDeDataParticulares.add(this.obtenerDataParticular(nomListaPart, NickCli));
+        }//particular
+        List<String>CliSeguidos = this.listaClientesQueSiguesSW(NickCli);//cliSigueA
+        List<String>ArtSeguidos = this.listaSeguidoresArtista(NickCli);//artSigueA
+        List<String>Seguidores = this.listaTeSiguenSW(NickCli);//seguidoPor
+        List<DataAlbum>DTAlbumesFav = new ArrayList();
+        for(Album alb : cl.getAlbumFav()){
+            DTAlbumesFav.add(this.obtenerDataAlbum(alb.getNombre()));
+        }//albumFav
+        List<DataTema> DataTemasFav = new ArrayList();
+        for (Tema tem : cl.getTemasFAV()) {
+            //(String nombreTema,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos
+            List<String> generosTema = new ArrayList();
+            for (Genero gen : tem.getGeneros()) {
+                generosTema.add(gen.getNombre());
+            }
+            //DataTema(String nombreTema,String alb,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos)
+            DataTema tema = new DataTema(tem.getNombre(), tem.getAlbum().getNombre(), tem.getDuracion(), tem.getOrdenAlbum(), tem.getDireccion(), generosTema);
+            System.out.println("===========================================");
+            System.out.println("Se creo el DataTema con: ");
+            System.out.println("Nombre: " + tem.getNombre() + "\nAlbum: " + tema.getAlbum() + "\n Duracion" + tema.getDuracion() + "Posicion: " + tema.getOrdenAlbum() + "\nDireccion: +" + tema.getDireccion());
+            System.out.println("Y generos: ");
+            for (String gen : tema.getGeneros()) {
+                System.out.println(gen);
+            }
+            System.out.println("===========================================");
+            DataTemasFav.add(tema);
+        }//temasFAV
+        List<DataParticular> ListaDeDataParticularesFav = new ArrayList();
+        for(String nomListaPart : this.obtenerFavCliente("Particular", NickCli)){
+            ListaDeDataParticularesFav.add(this.obtenerDataParticular(nomListaPart, NickCli));
+        }//playFavPart
+        List<DataPorDefecto> ListaDeDataPorDefectoFav = new ArrayList();
+        for (String nomListaPorDef : this.obtenerFavCliente("Por Defecto", NickCli)) {
+            ListaDeDataPorDefectoFav.add(this.obtenerDataPorDefecto(nomListaPorDef));
+        }//playFavPD
+        return new DataClienteAlt(NickCli,this.nombreCliente(NickCli),this.apellidoCliente(NickCli),this.mailCliente(NickCli),cl.getFecha(),ListaDeDataParticulares,CliSeguidos,Seguidores,ArtSeguidos,DTAlbumesFav,DataTemasFav,ListaDeDataPorDefectoFav,ListaDeDataParticularesFav);
+    }
+    @Override
+    public DataArtistaAlt getDataArtistaAlt(String NickArt){
+//        nick nom ape mail fech bio webSite DataAlb <String>DataCli
+        Artista art = artistaController.findArtista(NickArt);
+        List<DataAlbum> DTAlb = new ArrayList();
+        for(String nomAlb : this.obtenerAlbumesDeArtista(NickArt)){
+            DTAlb.add(this.obtenerDataAlbum(nomAlb));
+        }
+        List<String> Seguidores = new ArrayList();
+        for(Cliente cli : art.getSeguidoPorA()){
+            Seguidores.add(cli.getNickname());
+        }
+        return new DataArtistaAlt(NickArt,art.getNombre(),art.getApellido(),art.getCorreo(),art.getFecha(),art.getBiografia(),art.getSitioWeb(),DTAlb,Seguidores);
+    }
     @Override
     public boolean existeGenero(String nomGenero) {
         Genero gen = generoJpaController.findGenero(nomGenero);
