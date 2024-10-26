@@ -9,6 +9,7 @@ import Capa_Presentacion.DataAlbum;
 import Capa_Presentacion.DataCliente;
 import Capa_Presentacion.DataParticular;
 import Capa_Presentacion.DataPorDefecto;
+import Capa_Presentacion.DataSuscripcion;
 import Capa_Presentacion.DataTema;
 import java.util.List;
 
@@ -35,8 +36,8 @@ public interface ICtrl {
     public abstract void dejarSeguidorC(Cliente usuario, Cliente seguidor);
     public abstract void dejarSeguidorA(Artista usuario, Cliente seguidor);
     public abstract void InfiniteVoid();
-    public abstract void CreateLista(String Name, String Tipo, String GOP );
-    public abstract Particular CrearListParticular(String nombre, String nomCliente);
+    public abstract void CreateLista(String Name, String Tipo, String GOP, String Fecha );
+    public abstract Particular CrearListParticular(String nombre, String nomCliente, String Fecha);
     public abstract porDefecto CrearListPorDefecto(String nombre, String genero);
     public abstract void Publicar(String lista,String cli);
     
@@ -112,6 +113,9 @@ public interface ICtrl {
     public abstract String dejarSeguirPerfil (String cliente, String tipo, String aSeguir);
     public abstract void ordenarTemasPorPosicion(List<DataTema> temasAlbum);
     
+    public abstract List<DataSuscripcion> ObtenerSubscClietne(String NickCliente);
+    public abstract DataSuscripcion createDataSuscripcion(Suscripcion Sus);
+    public abstract void ActualizarSuscripcion(Long ID, Enum Estado);
     //FUNCIONES SW
     public abstract List<String> listaClientesQueSiguesSW (String nick);
     public abstract List<String> listaArtistasQueSiguesSW (String nick);

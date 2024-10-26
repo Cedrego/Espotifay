@@ -9,12 +9,14 @@ import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  *
  * @author cedre
  */
 @Entity
+@Table(name = "pordefecto")
 public class porDefecto extends Playlist implements Serializable {
     @OneToOne
     private Genero genero;

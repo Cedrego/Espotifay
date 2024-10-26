@@ -2,6 +2,8 @@ package Capa_Presentacion;
 
 import Logica.Factory;
 import Logica.ICtrl;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -203,7 +205,12 @@ public class ICrearLista extends javax.swing.JPanel {
         }else{
             if(PuedoCrear==true){
                 //CrearLista
-               ctrl.CreateLista(NomList, (String) selectedItem, GoC);
+                // Obtener solo la fecha actual sin la hora
+                LocalDate fechaActual = LocalDate.now();
+                // Formatear la fecha como String (ejemplo: "dd-MM-yyyy")
+                DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                String fechaFormateada = fechaActual.format(formato);
+               ctrl.CreateLista(NomList, (String) selectedItem, GoC,fechaFormateada);
                Text4.setVisible(false);
                Text4.setText("Lista creada con exito");
                Text4.setVisible(true);
