@@ -1236,6 +1236,18 @@ public class Ctrl implements ICtrl{
         return retorno;
     }
     @Override
+    public List<String> listaSeguidoresClienteSW (String nick){
+        Cliente cli = clienteController.findCliente(nick);
+        List<String> retorno = new ArrayList<>();
+        for(Cliente cliSeguido : cli.getCliSigueA()){
+            retorno.add(cliSeguido.getNickname());
+        }
+        for(Artista cliSeguido : cli.getArtSigueA()){
+            retorno.add(cliSeguido.getNickname());
+        }
+        return retorno;
+    }
+    @Override
     public List<String> listaSeguidosCliente (String nick){
         List<Cliente> listaCliente = clienteController.findClienteEntities();
         List<String> cliente = new ArrayList<>();
@@ -1247,51 +1259,14 @@ public class Ctrl implements ICtrl{
         List<String> retorno = new ArrayList<>();
         for(Cliente cliSeguidores : cli.getSeguidoPor()){
             if(cliente.contains(cliSeguidores.getNickname())){
-                retorno.add("Cliente - "+cliSeguidores.getNickname());
+                retorno.add(cliSeguidores.getNickname());
             }else{
-                retorno.add("Artista - "+cliSeguidores.getNickname());
+                retorno.add(cliSeguidores.getNickname());
             }
         }
         return retorno;
     }
-    @Override
-    public List<String> listaClientesQueSiguesSW (String nick){
-        List<String> retorno = new ArrayList<>();
-        Cliente cli = clienteController.findCliente(nick);
-        
-        List<Cliente> seguidos = cli.getCliSigueA();
-        for(Cliente c : seguidos){
-            retorno.add(c.getNickname());
-        }
-        return retorno;
-    }
-    @Override
-    public List<String> listaArtistasQueSiguesSW (String nick){
-        List<String> retorno = new ArrayList<>();
-        Cliente cli = clienteController.findCliente(nick);
-        
-        List<Artista> artistas = artistaController.findArtistaEntities();
-        
-        for(Artista a : artistas){
-            if(a.getSeguidoPorA().contains(cli)){
-                
-            }else{
-                retorno.add(a.getNickname());
-            }
-        }
-        return retorno;
-    }
-    @Override
-    public List<String> listaTeSiguenSW (String nick){
-        List<String> retorno = new ArrayList<>();
-        Cliente cli = clienteController.findCliente(nick);
-        
-        List<Cliente> seguidores = cli.getSeguidoPor();
-        for(Cliente c : seguidores){
-            retorno.add(c.getNickname());
-        }
-        return retorno;
-    }
+    
     @Override
     public List<String> listaTemasFavCliente (String nick){
         Cliente cli = clienteController.findCliente(nick);
