@@ -115,7 +115,8 @@ public interface ICtrl {
     
     public abstract List<DataSuscripcion> ObtenerSubscClietne(String NickCliente);
     public abstract DataSuscripcion createDataSuscripcion(Suscripcion Sus);
-    public abstract void ActualizarSuscripcion(Long ID, Enum Estado);
+    public abstract void ActualizarSuscripcion(Long ID, String Estado);
+    public abstract void CreateSus(String Estado,String dia,String mes, String anio, String Tipo, String Cliente );
     //FUNCIONES SW
     public abstract List<String> listaClientesQueSiguesSW (String nick);
     public abstract List<String> listaArtistasQueSiguesSW (String nick);

@@ -178,25 +178,32 @@ public class IActualizarEstadoSuscripción extends javax.swing.JPanel {
         if(jComboBox2.getItemCount() > 0){
                 jComboBox2.removeAllItems();
         }
-        jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
-        for(DataSuscripcion DT: DTSus){
-            // Crea etiquetas o campos de texto para mostrar los datos
-            JLabel idLabel = new JLabel("ID: " + DT.getId());
-            jComboBox2.addItem(DT.getId().toString());
-            JLabel estadoLabel = new JLabel("Estado: " + DT.getEstado());
-            JLabel tipoLabel = new JLabel("Tipo: " + DT.getTipo());
-            // Construye el String directamente usando los getters
-            String fechaString = String.format("%02d/%02d/%d", DT.getUltimaModificacion().getDia(), DT.getUltimaModificacion().getMes(), DT.getUltimaModificacion().getAnio());
-            JLabel fechaLabel = new JLabel("Fecha: " + fechaString);
-            // Agrega las etiquetas al JPanel
-            jPanel1.add(idLabel);
-            jPanel1.add(estadoLabel);
-            jPanel1.add(tipoLabel);
-            jPanel1.add(fechaLabel);
-            }
-        // Actualiza el JPanel para mostrar los cambios
-        jPanel1.revalidate();
-        jPanel1.repaint();
+        if(!DTSus.isEmpty()){
+            jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
+            for(DataSuscripcion DT: DTSus){
+                // Crea etiquetas o campos de texto para mostrar los datos
+                JLabel idLabel = new JLabel("ID: " + DT.getId());
+                jComboBox2.addItem(DT.getId().toString());
+                JLabel estadoLabel = new JLabel("Estado: " + DT.getEstado());
+                JLabel tipoLabel = new JLabel("Tipo: " + DT.getTipo());
+                // Construye el String directamente usando los getters
+                String fechaString = String.format("%02d/%02d/%d", DT.getUltimaModificacion().getDia(), DT.getUltimaModificacion().getMes(), DT.getUltimaModificacion().getAnio());
+                JLabel fechaLabel = new JLabel("Fecha: " + fechaString);
+                // Agrega las etiquetas al JPanel
+                jPanel1.add(idLabel);
+                jPanel1.add(estadoLabel);
+                jPanel1.add(tipoLabel);
+                jPanel1.add(fechaLabel);
+                }
+            // Actualiza el JPanel para mostrar los cambios
+            jPanel1.revalidate();
+            jPanel1.repaint();
+        }
+        else{
+            jLabel4.setVisible(false);
+            jLabel4.setText("ERROR:El cliente no tiene Suscripcion");
+            jLabel4.setVisible(true);
+        }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -219,7 +226,7 @@ public class IActualizarEstadoSuscripción extends javax.swing.JPanel {
                     jComboBox3.addItem("Cancelada");
                 }else{
                     jLabel4.setVisible(false);
-                    jLabel4.setText("ERROR:Suscripcion Cancelada");
+                    jLabel4.setText("ERROR:La Suscripcion se encuentra Cancelada");
                     jLabel4.setVisible(true);
                 }
             }
@@ -227,17 +234,49 @@ public class IActualizarEstadoSuscripción extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String Cliente = jComboBox1.getSelectedItem() != null ? jComboBox1.getSelectedItem().toString() : "";
-        List<DataSuscripcion> DTSus = ctrl.ObtenerSubscClietne(Cliente);
-        String IDSu = jComboBox2.getSelectedItem() != null ? jComboBox2.getSelectedItem().toString() : "";
-        // Convierte el valor String a Long
-        Long ID = Long.valueOf(IDSu);
-        for(DataSuscripcion DT: DTSus){
-            if(DT.getId().equals(ID)){
-                ctrl.ActualizarSuscripcion(ID, DT.getEstado());
-            }
+        // Obtiene los valores seleccionados
+    String Cliente = jComboBox1.getSelectedItem() != null ? jComboBox1.getSelectedItem().toString() : "";
+    String IDSu = jComboBox2.getSelectedItem() != null ? jComboBox2.getSelectedItem().toString() : "";
+    String Enum = jComboBox3.getSelectedItem() != null ? jComboBox3.getSelectedItem().toString() : "";
+    
+    // Verifica que las variables no sean vacías o nulas
+    if (Cliente.isEmpty()) {
+        jLabel4.setVisible(true);
+        jLabel4.setText("ERROR: No existen clientes");
+        return;
+    }
+    if (IDSu.isEmpty()) {
+        jLabel4.setVisible(true);
+        jLabel4.setText("ERROR:El Cliente no tiene una Suscripción");
+        return;
+    }
+    if (Enum.isEmpty()) {
+        jLabel4.setVisible(true);
+        jLabel4.setText("ERROR: El estado no puede estar vacío");
+        return;
+    }
+    // Convierte el valor String a Long
+    Long ID = Long.valueOf(IDSu);
+    List<DataSuscripcion> DTSus = ctrl.ObtenerSubscClietne(Cliente);
+    if (DTSus.isEmpty()) {
+        jLabel4.setVisible(true);
+        jLabel4.setText("ERROR: El cliente no presenta Suscripción");
+        return;
+    }
+    // Verifica si la ID de suscripción está en la lista
+    for (DataSuscripcion DT : DTSus) {
+        if (DT.getId().equals(ID)) {
+            ctrl.ActualizarSuscripcion(ID, Enum);
+            //ctrl.CreateSus("Pendiente", "10", "10", "2025", "Anual", "Desckars");//Funciona el crearSus
+            // Si deseas mostrar un mensaje de éxito, lo puedes agregar aquí
+            jLabel4.setVisible(true);
+            jLabel4.setText("Suscripción actualizada con éxito");
+            return;
         }
+    }
+    // Si la ID no coincide con ninguna suscripción
+    jLabel4.setVisible(true);
+    jLabel4.setText("ERROR: La Suscripción seleccionada no es válida");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed

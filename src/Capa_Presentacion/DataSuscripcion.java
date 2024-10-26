@@ -4,7 +4,6 @@
  */
 package Capa_Presentacion;
 
-import Logica.Cliente;
 import Logica.DTFecha;
 import Logica.Suscripcion;
 

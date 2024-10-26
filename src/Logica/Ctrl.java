@@ -1507,7 +1507,32 @@ public class Ctrl implements ICtrl{
         return dataSus;
     }
     @Override
-    public void ActualizarSuscripcion(Long ID, Enum Estado){
-       ActualizarSuscripcion AS= new ActualizarSuscripcion(ID, Estado);
+    public void ActualizarSuscripcion(Long ID, String Estado) {
+        try {
+            Suscripcion sus = suscripJpaController.findSuscripcion(ID); // Buscamos la suscripción
+            LocalDate fechaActual = LocalDate.now();
+            int dia = fechaActual.getDayOfMonth();
+            int mes = fechaActual.getMonthValue();
+            int anio = fechaActual.getYear();
+            DTFecha Fecha = new DTFecha(dia, mes, anio);
+            Suscripcion.estado estado = Suscripcion.estado.valueOf(Estado);
+            if (sus != null) {
+                // Actualizamos los atributos de la suscripción
+                sus.setEstado((Suscripcion.estado) estado);
+                sus.setUltimaModificacion(Fecha);
+
+                // Persistimos los cambios
+                suscripJpaController.edit(sus);
+            } else {
+                System.out.println("No se encontró una suscripción con el ID: " + ID);
+            }
+        } catch (Exception e) {
+            System.err.println("Error al actualizar la suscripción: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public  void CreateSus(String Estado,String dia,String mes, String anio, String Tipo, String Cliente ){
+        CrearSuscripcion CR = new CrearSuscripcion(Estado,dia,mes,anio,Tipo,Cliente);
     }
 }
