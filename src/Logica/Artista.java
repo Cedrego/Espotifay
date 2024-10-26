@@ -22,7 +22,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "Artista")
+@Table(name = "artista")
 public class Artista extends Usuario {
     
     //VER BIEN COMO FUNCIONA CON CLASES EXTENDIDAS

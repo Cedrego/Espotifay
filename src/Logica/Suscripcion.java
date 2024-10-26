@@ -21,6 +21,7 @@ import javax.persistence.Table;
  */
 
 @Entity
+@Table(name = "suscripcion")
 public class Suscripcion implements Serializable  {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -118,7 +118,5 @@ public interface ICtrl {
     public abstract void ActualizarSuscripcion(Long ID, String Estado);
     public abstract void CreateSus(String Estado,String dia,String mes, String anio, String Tipo, String Cliente );
     //FUNCIONES SW
-    public abstract List<String> listaClientesQueSiguesSW (String nick);
-    public abstract List<String> listaArtistasQueSiguesSW (String nick);
-    public abstract List<String> listaTeSiguenSW (String nick);
+    public abstract List<String> listaSeguidoresClienteSW(String nick);
 }

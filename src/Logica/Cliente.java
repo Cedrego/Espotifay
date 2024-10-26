@@ -28,7 +28,7 @@ import javax.persistence.Table;
  * @author Camilo
  */
 @Entity
-@Table(name = "Cliente")
+@Table(name = "cliente")
 public class Cliente extends Usuario {
 
     @OneToMany(mappedBy = "cliente")
@@ -53,7 +53,7 @@ public class Cliente extends Usuario {
     
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-        name = "ARTISTAS_SEGUIDOS",
+        name = "artistas_seguidos",
         joinColumns = @JoinColumn(name = "CLIENTE"),
         inverseJoinColumns = @JoinColumn(name = "ARTISTA")
     )
