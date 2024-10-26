@@ -19,13 +19,13 @@ import javax.persistence.TypedQuery;
  * @author User
  */
 public class CrearLista {
-     Factory fabric =Factory.getInstance();
+    Factory fabric =Factory.getInstance();
     ICtrl ctrl = fabric.getICtrl();
     // Obtenemos el EntityManager desde la fábrica
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("pantallaPU");
     EntityManager em = emf.createEntityManager();
     
-    public CrearLista ( String name, String Tipo, String GOP){
+    public CrearLista ( String name, String Tipo, String GOP, String Fecha){
         ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
         ManejadorMusica mm = ManejadorMusica.getInstance(); //consigo instancia de manejador de playlist
         ManejadorUsuario mu = ManejadorUsuario.getInstance(); //consigo instancia de manejador de Usuario
@@ -35,8 +35,8 @@ public class CrearLista {
             TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c WHERE c.nickname = :nickname", Cliente.class);
             query.setParameter("nickname", GOP); // Establecemos el parámetro
             Cliente cliente = query.getSingleResult(); // Intentamos obtener un único cliente
-            
-            Particular nuevoPar = ctrl.CrearListParticular(name,cliente.getNickname());//Creo la instancia de playlist particular
+
+            Particular nuevoPar = ctrl.CrearListParticular(name,cliente.getNickname(), Fecha);//Creo la instancia de playlist particular
             mp.addPartList(nuevoPar);//Agrego la instancia a la lista
             
              cliente.getParticular().add(nuevoPar); // Añadir la playlist particular al cliente

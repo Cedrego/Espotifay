@@ -22,7 +22,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "Artista")
+@Table(name = "artista")
 public class Artista extends Usuario {
     
     //VER BIEN COMO FUNCIONA CON CLASES EXTENDIDAS
@@ -41,7 +41,7 @@ public class Artista extends Usuario {
     }
 
     public Artista(String nick, String nom, String ape, String pass, String mail, DTFecha fech, String bio, String webSite) {
-        super(nick, nom, ape, mail, pass, fech);
+        super(nick, nom, ape, pass, mail, fech);
         this.SitioWeb = webSite;
         this.Biografia = bio;
         this.albumes = new ArrayList<>(); //inicializa lista de albumes

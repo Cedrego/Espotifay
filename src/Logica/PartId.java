@@ -5,11 +5,13 @@
 package Logica;
 
 import java.util.Objects;
+import javax.persistence.Embeddable;
 
 /**
  *
  * @author cedre
  */
+@Embeddable
 public class PartId {
     
     protected String nombre;

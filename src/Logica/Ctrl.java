@@ -12,14 +12,18 @@ import Capa_Presentacion.DataCliente;
 import Capa_Presentacion.DataClienteAlt;
 import Capa_Presentacion.DataParticular;
 import Capa_Presentacion.DataPorDefecto;
+import Capa_Presentacion.DataSuscripcion;
 import Capa_Presentacion.DataTema;
 import Persistencia.AlbumJpaController;
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
 import Persistencia.GeneroJpaController;
 import Persistencia.ParticularJpaController;
+import Persistencia.SuscripcionJpaController;
 import Persistencia.TemaJpaController;
 import Persistencia.porDefectoJpaController;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
@@ -46,6 +50,7 @@ public class Ctrl implements ICtrl{
     public porDefectoJpaController porDefectoJpaController = new porDefectoJpaController();
     public ClienteJpaController clienteController = new ClienteJpaController();
     public ArtistaJpaController artistaController = new ArtistaJpaController();
+    public SuscripcionJpaController suscripJpaController = new SuscripcionJpaController();
     public Ctrl(){}
     
     
@@ -384,12 +389,20 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
-    public Particular CrearListParticular(String nombre, String nomCliente){
+    public Particular CrearListParticular(String nombre, String nomCliente, String Fecha){
         
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         Cliente cliente = mu.buscarCliente(nomCliente);
-        
-        Particular nuevoParticular = new Particular(nombre, cliente);
+        // Parsear la fecha recibida en formato "dd-MM-yyyy"
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate fecha = LocalDate.parse(Fecha, formato);
+        // Obtener día, mes y año como enteros
+        int Dia = fecha.getDayOfMonth();
+        int Mes = fecha.getMonthValue();
+        int Anio = fecha.getYear();
+         // Crear la fecha tipo DTFecha
+        DTFecha Fech = new DTFecha(Dia, Mes, Anio);
+        Particular nuevoParticular = new Particular(nombre, cliente,Fech);
         
         try {
             particularJpaController.create(nuevoParticular);
@@ -413,8 +426,8 @@ public class Ctrl implements ICtrl{
         return nuevoPorDefecto;
     }
     @Override
-    public void CreateLista(String Name, String Tipo, String GOP ){
-        CrearLista CL= new CrearLista(Name, Tipo, GOP);
+    public void CreateLista(String Name, String Tipo, String GOP,String Fecha ){
+        CrearLista CL= new CrearLista(Name, Tipo, GOP,Fecha);
     }
     
     @Override
@@ -1297,6 +1310,18 @@ public class Ctrl implements ICtrl{
         return retorno;
     }
     @Override
+    public List<String> listaSeguidoresClienteSW(String nick) {
+        Cliente cli = clienteController.findCliente(nick);
+        List<String> retorno = new ArrayList<>();
+        for (Cliente cliSeguido : cli.getCliSigueA()) {
+            retorno.add(cliSeguido.getNickname());
+        }
+        for (Artista cliSeguido : cli.getArtSigueA()) {
+            retorno.add(cliSeguido.getNickname());
+        }
+        return retorno;
+    }
+    @Override
     public List<String> listaSeguidosCliente (String nick){
         List<Cliente> listaCliente = clienteController.findClienteEntities();
         List<String> cliente = new ArrayList<>();
@@ -1308,46 +1333,14 @@ public class Ctrl implements ICtrl{
         List<String> retorno = new ArrayList<>();
         for(Cliente cliSeguidores : cli.getSeguidoPor()){
             if(cliente.contains(cliSeguidores.getNickname())){
-                retorno.add("Cliente - "+cliSeguidores.getNickname());
+                retorno.add(cliSeguidores.getNickname());
             }else{
-                retorno.add("Artista - "+cliSeguidores.getNickname());
+                retorno.add(cliSeguidores.getNickname());
             }
         }
         return retorno;
     }
-    @Override
-    public List<String> listaClientesQueSiguesSW (String nick){
-        List<String> retorno = new ArrayList<>();
-        Cliente cli = clienteController.findCliente(nick);
-        
-        List<Cliente> seguidos = cli.getCliSigueA();
-        for(Cliente c : seguidos){
-            retorno.add(c.getNickname());
-        }
-        return retorno;
-    }
-    @Override
-    public List<String> listaArtistasQueSiguesSW (String nick){
-        List<String> retorno = new ArrayList<>();
-        Cliente cli = clienteController.findCliente(nick);
-        
-        List<Artista> seguidos = cli.getArtSigueA();
-        for(Artista a : seguidos){
-            retorno.add(a.getNickname());
-        }
-        return retorno;
-    }
-    @Override
-    public List<String> listaTeSiguenSW (String nick){
-        List<String> retorno = new ArrayList<>();
-        Cliente cli = clienteController.findCliente(nick);
-        
-        List<Cliente> seguidores = cli.getSeguidoPor();
-        for(Cliente c : seguidores){
-            retorno.add(c.getNickname());
-        }
-        return retorno;
-    }
+    
     @Override
     public List<String> listaTemasFavCliente (String nick){
         Cliente cli = clienteController.findCliente(nick);
@@ -1464,11 +1457,9 @@ public class Ctrl implements ICtrl{
         
         return retorno;
     }
-    
     @Override
     public List<String> obtenerPartPrivadaDeDuenio (String nick){
         Cliente cli = clienteController.findCliente(nick);
-        
         List<String> listaParticularPublica = new ArrayList();
         if(cli!=null){
             if(cli.getParticular()!=null){
@@ -1485,20 +1476,15 @@ public class Ctrl implements ICtrl{
         }
         return listaParticularPublica;
     }
-    
     @Override
     public List<String> clientesConParticularesPriv (){
         // Obtenemos todos los géneros de la base de datos
         List<Cliente> listaCliente = clienteController.findClienteEntities();
-        
-
         // Creamos una lista de strings para almacenar los nombres
         List<String> nombresCliente = new ArrayList<>();
-
         // Recorremos la lista de Cliente y extraemos sus nombres
         for (Cliente cli : listaCliente) {
             if(obtenerPartPrivadaDeDuenio(cli.getNickname())==null){
-                
             }else{
                 nombresCliente.add(cli.getNickname());
             }
@@ -1544,5 +1530,50 @@ public class Ctrl implements ICtrl{
             }
         }
         );
+    }
+    @Override
+    public List<DataSuscripcion> ObtenerSubscClietne(String NickCliente){
+        List<Suscripcion> Suscrip = suscripJpaController.findSuscripcionEntities();
+        List<DataSuscripcion> dataSus = new ArrayList<>();
+        for(Suscripcion sus: Suscrip){
+            if(sus.getCliente().equalsIgnoreCase(NickCliente)){
+                dataSus.add(createDataSuscripcion(sus));//DataSusCripcion
+            }
+        }
+        return dataSus;
+    }
+    @Override
+    public DataSuscripcion createDataSuscripcion(Suscripcion Sus){
+        DataSuscripcion dataSus = new DataSuscripcion(Sus.getId(),Sus.getEstado(),Sus.getTipo(),Sus.getUltimaModificacion(),Sus.getCliente());
+        return dataSus;
+    }
+    @Override
+    public void ActualizarSuscripcion(Long ID, String Estado) {
+        try {
+            Suscripcion sus = suscripJpaController.findSuscripcion(ID); // Buscamos la suscripción
+            LocalDate fechaActual = LocalDate.now();
+            int dia = fechaActual.getDayOfMonth();
+            int mes = fechaActual.getMonthValue();
+            int anio = fechaActual.getYear();
+            DTFecha Fecha = new DTFecha(dia, mes, anio);
+            Suscripcion.estado estado = Suscripcion.estado.valueOf(Estado);
+            if (sus != null) {
+                // Actualizamos los atributos de la suscripción
+                sus.setEstado((Suscripcion.estado) estado);
+                sus.setUltimaModificacion(Fecha);
+
+                // Persistimos los cambios
+                suscripJpaController.edit(sus);
+            } else {
+                System.out.println("No se encontró una suscripción con el ID: " + ID);
+            }
+        } catch (Exception e) {
+            System.err.println("Error al actualizar la suscripción: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public  void CreateSus(String Estado,String dia,String mes, String anio, String Tipo, String Cliente ){
+        CrearSuscripcion CR = new CrearSuscripcion(Estado,dia,mes,anio,Tipo,Cliente);
     }
 }
