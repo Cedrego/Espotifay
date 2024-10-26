@@ -1249,13 +1249,13 @@ public class Ctrl implements ICtrl{
         return retorno;
     }
     @Override
-    public List<String> listaSeguidoresClienteSW (String nick){
+    public List<String> listaSeguidoresClienteSW(String nick) {
         Cliente cli = clienteController.findCliente(nick);
         List<String> retorno = new ArrayList<>();
-        for(Cliente cliSeguido : cli.getCliSigueA()){
+        for (Cliente cliSeguido : cli.getCliSigueA()) {
             retorno.add(cliSeguido.getNickname());
         }
-        for(Artista cliSeguido : cli.getArtSigueA()){
+        for (Artista cliSeguido : cli.getArtSigueA()) {
             retorno.add(cliSeguido.getNickname());
         }
         return retorno;
