@@ -26,11 +26,12 @@ public class DataClienteAlt{
     private List<DataTema> DataTemaFav; //coleccion
     private List<DataPorDefecto> DataPorDefFav; //coleccion
     private List<DataParticular> DataPartFav; //coleccion
-
+    private List<DataSuscripcion> DataSuscripcion; //coleccion
+    
     public DataClienteAlt() {
     }
 
-    public DataClienteAlt(String nick, String nom, String ape, String mail, DTFecha fech,List<DataParticular> DataP, List<String> DataCliSeguido,List<String> DataCliSeguidor, List<String> DataArtSeguido,List<DataAlbum> DataAlbFav, List<DataTema> DataTemaFav,List<DataPorDefecto> DataPorDefFav, List<DataParticular> DataPartFav) {
+    public DataClienteAlt(String nick, String nom, String ape, String mail, DTFecha fech,List<DataParticular> DataP, List<String> DataCliSeguido,List<String> DataCliSeguidor, List<String> DataArtSeguido,List<DataAlbum> DataAlbFav, List<DataTema> DataTemaFav,List<DataPorDefecto> DataPorDefFav, List<DataParticular> DataPartFav, List<DataSuscripcion> DataSus) {
         this.nickname = nick;
         this.nombre = nom;
         this.apellido = ape;
@@ -44,6 +45,7 @@ public class DataClienteAlt{
         this.DataTemaFav = DataTemaFav;
         this.DataPorDefFav = DataPorDefFav;
         this.DataPartFav = DataPartFav;
+        this.DataSuscripcion = DataSus;
     }
     public DataClienteAlt(String nick, String nom, String ape, String mail, DTFecha fech) {
         this.nickname = nick;
@@ -59,6 +61,7 @@ public class DataClienteAlt{
         this.DataTemaFav = new ArrayList();
         this.DataPorDefFav = new ArrayList();
         this.DataPartFav = new ArrayList();
+        this.DataSuscripcion = new ArrayList();
     }
     //setters
 
@@ -89,6 +92,11 @@ public class DataClienteAlt{
     public void setDataPartFav(List<DataParticular> DataPartFav) {
         this.DataPartFav = DataPartFav;
     }
+
+    public void setDataSuscripcion(List<DataSuscripcion> DataSuscripcion) {
+        this.DataSuscripcion = DataSuscripcion;
+    }
+    
     public String getNickname(){
         return nickname;
     }
@@ -141,4 +149,9 @@ public class DataClienteAlt{
     public List<DataParticular> getDataPartFav() {    
         return DataPartFav;
     }
+
+    public List<DataSuscripcion> getDataSuscripcion() {
+        return DataSuscripcion;
+    }
+    
 }

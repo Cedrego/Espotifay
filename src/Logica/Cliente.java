@@ -72,7 +72,7 @@ public class Cliente extends Usuario {
     private List<Particular> playFavPart; //coleccion
 
     @OneToOne(mappedBy = "cliente")
-    private Suscripcion Suscripc;
+    private List<Suscripcion> Suscripc;
     
     public Cliente() {
     }
@@ -90,7 +90,7 @@ public class Cliente extends Usuario {
         this.Suscripc = null;
     }
 
-    public void setSuscripc(Suscripcion Suscripc) {
+    public void setSuscripc(List<Suscripcion> Suscripc) {
         this.Suscripc = Suscripc;
     }
     
@@ -130,7 +130,7 @@ public class Cliente extends Usuario {
     
     //gettersssss
 
-    public Suscripcion getSuscripc() {
+    public List<Suscripcion> getSuscripc() {
        ClienteJpaController clijpa = new ClienteJpaController();
         return clijpa.findCliente(this.getNickname()).Suscripc;
     }

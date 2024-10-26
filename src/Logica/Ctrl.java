@@ -56,72 +56,7 @@ public class Ctrl implements ICtrl{
     
     
     
-    @Override
-    public DataClienteAlt getDataClienteAlt(String NickCli){
-        Cliente cl = clienteController.findCliente(NickCli);
-        List<DataParticular> ListaDeDataParticulares = new ArrayList();
-        for(String nomListaPart : this.listaPlaylistCliente(NickCli)){
-            ListaDeDataParticulares.add(this.obtenerDataParticular(nomListaPart, NickCli));
-        }//particular
-        List<String>CliSeguidos = this.listaClientesQueSiguesSW(NickCli);//cliSigueA
-        List<String>ArtSeguidos = this.listaSeguidoresArtista(NickCli);//artSigueA
-        List<String>Seguidores = this.listaTeSiguenSW(NickCli);//seguidoPor
-        List<DataAlbum>DTAlbumesFav = new ArrayList();
-        for(Album alb : cl.getAlbumFav()){
-            DTAlbumesFav.add(this.obtenerDataAlbum(alb.getNombre()));
-        }//albumFav
-        List<DataTema> DataTemasFav = new ArrayList();
-        for (Tema tem : cl.getTemasFAV()) {
-            //(String nombreTema,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos
-            List<String> generosTema = new ArrayList();
-            for (Genero gen : tem.getGeneros()) {
-                generosTema.add(gen.getNombre());
-            }
-            //DataTema(String nombreTema,String alb,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos)
-            DataTema tema = new DataTema(tem.getNombre(), tem.getAlbum().getNombre(), tem.getDuracion(), tem.getOrdenAlbum(), tem.getDireccion(), generosTema);
-            System.out.println("===========================================");
-            System.out.println("Se creo el DataTema con: ");
-            System.out.println("Nombre: " + tem.getNombre() + "\nAlbum: " + tema.getAlbum() + "\n Duracion" + tema.getDuracion() + "Posicion: " + tema.getOrdenAlbum() + "\nDireccion: +" + tema.getDireccion());
-            System.out.println("Y generos: ");
-            for (String gen : tema.getGeneros()) {
-                System.out.println(gen);
-            }
-            System.out.println("===========================================");
-            DataTemasFav.add(tema);
-        }//temasFAV
-        List<DataParticular> ListaDeDataParticularesFav = new ArrayList();
-        for(String nomListaPart : this.obtenerFavCliente("Particular", NickCli)){
-            ListaDeDataParticularesFav.add(this.obtenerDataParticular(nomListaPart, NickCli));
-        }//playFavPart
-        List<DataPorDefecto> ListaDeDataPorDefectoFav = new ArrayList();
-        for (String nomListaPorDef : this.obtenerFavCliente("Por Defecto", NickCli)) {
-            ListaDeDataPorDefectoFav.add(this.obtenerDataPorDefecto(nomListaPorDef));
-        }//playFavPD
-        return new DataClienteAlt(NickCli,this.nombreCliente(NickCli),this.apellidoCliente(NickCli),this.mailCliente(NickCli),cl.getFecha(),ListaDeDataParticulares,CliSeguidos,Seguidores,ArtSeguidos,DTAlbumesFav,DataTemasFav,ListaDeDataPorDefectoFav,ListaDeDataParticularesFav);
-    }
-    @Override
-    public DataArtistaAlt getDataArtistaAlt(String NickArt){
-//        nick nom ape mail fech bio webSite DataAlb <String>DataCli
-        Artista art = artistaController.findArtista(NickArt);
-        List<DataAlbum> DTAlb = new ArrayList();
-        for(String nomAlb : this.obtenerAlbumesDeArtista(NickArt)){
-            DTAlb.add(this.obtenerDataAlbum(nomAlb));
-        }
-        List<String> Seguidores = new ArrayList();
-        for(Cliente cli : art.getSeguidoPorA()){
-            Seguidores.add(cli.getNickname());
-        }
-        return new DataArtistaAlt(NickArt,art.getNombre(),art.getApellido(),art.getCorreo(),art.getFecha(),art.getBiografia(),art.getSitioWeb(),DTAlb,Seguidores);
-    }
-    @Override
-    public boolean existeGenero(String nomGenero) {
-        Genero gen = generoJpaController.findGenero(nomGenero);
-        if (gen != null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    
     @Override
     public boolean existePassC(String NOE, String Contra) {
         em = clienteController.getEntityManager();
@@ -1575,5 +1510,86 @@ public class Ctrl implements ICtrl{
     @Override
     public  void CreateSus(String Estado,String dia,String mes, String anio, String Tipo, String Cliente ){
         CrearSuscripcion CR = new CrearSuscripcion(Estado,dia,mes,anio,Tipo,Cliente);
+    }
+    @Override
+    public DataClienteAlt getDataClienteAlt(String NickCli) {
+        Cliente cl = clienteController.findCliente(NickCli);
+        List<DataParticular> ListaDeDataParticulares = new ArrayList();
+        for (String nomListaPart : this.listaPlaylistCliente(NickCli)) {
+            ListaDeDataParticulares.add(this.obtenerDataParticular(nomListaPart, NickCli));
+        }//particular
+        List<String> CliSeguidos = new ArrayList();
+        for(Cliente clien : cl.getCliSigueA()){
+            CliSeguidos.add(clien.getNickname());
+        }//cliSigueA
+        List<String> ArtSeguidos = new ArrayList();
+        for(Artista arti : cl.getArtSigueA()){
+            ArtSeguidos.add(arti.getNickname());
+        }//artSigueA
+        List<String> Seguidores = new ArrayList();
+        for(Cliente clie : cl.getSeguidoPor()){
+            Seguidores.add(clie.getNickname());
+        }
+        //seguidoPor
+        List<DataAlbum> DTAlbumesFav = new ArrayList();
+        for (Album alb : cl.getAlbumFav()) {
+            DTAlbumesFav.add(this.obtenerDataAlbum(alb.getNombre()));
+        }//albumFav
+        List<DataTema> DataTemasFav = new ArrayList();
+        for (Tema tem : cl.getTemasFAV()) {
+            //(String nombreTema,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos
+            List<String> generosTema = new ArrayList();
+            for (Genero gen : tem.getGeneros()) {
+                generosTema.add(gen.getNombre());
+            }
+            //DataTema(String nombreTema,String alb,String duracionTema, int ordenAlbumT, String guardadoT,List<String> Generos)
+            DataTema tema = new DataTema(tem.getNombre(), tem.getAlbum().getNombre(), tem.getDuracion(), tem.getOrdenAlbum(), tem.getDireccion(), generosTema);
+            System.out.println("===========================================");
+            System.out.println("Se creo el DataTema con: ");
+            System.out.println("Nombre: " + tem.getNombre() + "\nAlbum: " + tema.getAlbum() + "\n Duracion" + tema.getDuracion() + "Posicion: " + tema.getOrdenAlbum() + "\nDireccion: +" + tema.getDireccion());
+            System.out.println("Y generos: ");
+            for (String gen : tema.getGeneros()) {
+                System.out.println(gen);
+            }
+            System.out.println("===========================================");
+            DataTemasFav.add(tema);
+        }//temasFAV
+        List<DataParticular> ListaDeDataParticularesFav = new ArrayList();
+        for (String nomListaPart : this.obtenerFavCliente("Particular", NickCli)) {
+            ListaDeDataParticularesFav.add(this.obtenerDataParticular(nomListaPart, NickCli));
+        }//playFavPart
+        List<DataPorDefecto> ListaDeDataPorDefectoFav = new ArrayList();
+        for (String nomListaPorDef : this.obtenerFavCliente("Por Defecto", NickCli)) {
+            ListaDeDataPorDefectoFav.add(this.obtenerDataPorDefecto(nomListaPorDef));
+        }//playFavPD
+        List<DataSuscripcion> DTSus = new ArrayList();
+        for(Suscripcion sus : cl.getSuscripc()){
+            DTSus.add(new DataSuscripcion(sus.getId(),sus.getEstado(),sus.getTipo(),sus.getUltimaModificacion(),sus.getCliente()));
+        }//suscipciones
+        return new DataClienteAlt(NickCli, this.nombreCliente(NickCli), this.apellidoCliente(NickCli), this.mailCliente(NickCli), cl.getFecha(), ListaDeDataParticulares, CliSeguidos, Seguidores, ArtSeguidos, DTAlbumesFav, DataTemasFav, ListaDeDataPorDefectoFav, ListaDeDataParticularesFav,DTSus);
+    }
+    @Override
+    public DataArtistaAlt getDataArtistaAlt(String NickArt){
+//        nick nom ape mail fech bio webSite DataAlb <String>DataCli
+        Artista art = artistaController.findArtista(NickArt);
+        List<DataAlbum> DTAlb = new ArrayList();
+        for (String nomAlb : this.obtenerAlbumesDeArtista(NickArt)) {
+            DTAlb.add(this.obtenerDataAlbum(nomAlb));
+        }
+        List<String> Seguidores = new ArrayList();
+        for (Cliente cli : art.getSeguidoPorA()) {
+            Seguidores.add(cli.getNickname());
+        }
+        return new DataArtistaAlt(NickArt, art.getNombre(), art.getApellido(), art.getCorreo(), art.getFecha(), art.getBiografia(), art.getSitioWeb(), DTAlb, Seguidores);
+    }
+
+    @Override
+    public boolean existeGenero(String nomGenero) {
+        Genero gen = generoJpaController.findGenero(nomGenero);
+        if (gen != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -6,6 +6,7 @@ package Logica;
 
 import Persistencia.ClienteJpaController;
 import Persistencia.SuscripcionJpaController;
+import Persistencia.exceptions.NonexistentEntityException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -35,6 +36,11 @@ public class CrearSuscripcion {
         Suscripcion.estado estado = Suscripcion.estado.valueOf(Estado);
         Suscripcion.tipo tipo = Suscripcion.tipo.valueOf(Tipo);   
         Suscripcion NuevoSus = new Suscripcion(estado ,fecha,tipo ,cliente);
+        cliente.getSuscripc().add(NuevoSus);
+        try{
+            clienteJpaController.edit(cliente);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {}
         try {
             suscripJpaController.create(NuevoSus);
         } catch (Exception e) {
