@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -21,7 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "particular")
-//@IdClass(PartId.class)
+@IdClass(PartId.class)
 public class Particular extends Playlist implements Serializable {
     @Column (name="PRIVADO")
     private boolean privado;
