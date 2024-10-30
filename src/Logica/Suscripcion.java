@@ -69,6 +69,10 @@ public class Suscripcion implements Serializable  {
     }
     public enum estado{
         Cancelada, Pendiente, Vencida, Vigente;
+        @Override
+        public String toString() {
+            return this.name(); // O puedes personalizarlo si deseas
+        }
     }
     public enum tipo{
         Semanal,Mensual,Anual;

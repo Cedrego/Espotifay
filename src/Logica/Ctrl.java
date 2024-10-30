@@ -1563,10 +1563,7 @@ public class Ctrl implements ICtrl{
         for (String nomListaPorDef : this.obtenerFavCliente("Por Defecto", NickCli)) {
             ListaDeDataPorDefectoFav.add(this.obtenerDataPorDefecto(nomListaPorDef));
         }//playFavPD
-        List<DataSuscripcion> DTSus = new ArrayList();
-        for(Suscripcion sus : cl.getSuscripc()){
-            DTSus.add(new DataSuscripcion(sus.getId(),sus.getEstado(),sus.getTipo(),sus.getUltimaModificacion(),sus.getCliente()));
-        }//suscipciones
+        List<DataSuscripcion> DTSus = this.ObtenerSubscClietne(NickCli);//suscipciones
         return new DataClienteAlt(NickCli, this.nombreCliente(NickCli), this.apellidoCliente(NickCli), this.mailCliente(NickCli), cl.getFecha(), ListaDeDataParticulares, CliSeguidos, Seguidores, ArtSeguidos, DTAlbumesFav, DataTemasFav, ListaDeDataPorDefectoFav, ListaDeDataParticularesFav,DTSus);
     }
     @Override
