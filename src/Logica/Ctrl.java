@@ -1642,7 +1642,7 @@ public class Ctrl implements ICtrl{
                 suscripJpaController.edit(sus);  // Actualiza en la base de datos
             } catch (Exception ex) {}
         }
-    
+    }
     @Override
     public List<String> buscadorTema(String query){
         EntityManager em = temaJpaController.getEntityManager();
