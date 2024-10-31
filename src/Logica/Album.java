@@ -96,8 +96,9 @@ public class Album implements Serializable{
     
     public void addTemas(Tema tem){
         AlbumJpaController albumJpaController = new AlbumJpaController();
-        this.temas.add(tem);
+        
         try {
+            this.temas.add(tem);
             albumJpaController.edit(this);
         } catch (NonexistentEntityException e) {
         } catch (Exception e) {

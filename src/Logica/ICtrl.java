@@ -127,4 +127,9 @@ public interface ICtrl {
     public abstract void CreateSus(String Estado,String dia,String mes, String anio, String Tipo, String Cliente );
     //FUNCIONES SW
     public abstract List<String> listaSeguidoresClienteSW(String nick);
+    
+    public abstract List<String> buscadorAlbum(String query);
+    public abstract List<String> buscadorTema(String query);
+    public abstract List<String> buscadorPart(String query);
+    public abstract List<String> buscadorPD(String query);
 }
