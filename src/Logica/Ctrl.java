@@ -1602,4 +1602,86 @@ public class Ctrl implements ICtrl{
         }
         return DTCliMin;
     }
+    
+    @Override
+    public List<String> buscadorTema(String query){
+        EntityManager em = temaJpaController.getEntityManager();
+        List<String> temas = new ArrayList<>(); // Lista para almacenar los nombres de los temas
+
+        try {
+            // Consulta para obtener solo los nombres que coinciden con la búsqueda (usando LIKE)
+            String sql = "SELECT t.NOMBRE FROM tema t WHERE t.NOMBRE LIKE ?";
+            temas = em.createNativeQuery(sql)
+                      .setParameter(1, "%" + query + "%") // Busca coincidencias parciales
+                      .getResultList();
+        } catch (NoResultException e) {
+            System.out.println("No se encontraron temas con el nombre que contiene: " + query);
+        } finally {
+            em.close(); // Cerrar el EntityManager
+        }
+
+        return temas; // Devuelve la lista de nombres (String)
+    }
+    
+    @Override
+    public List<String> buscadorAlbum(String query) {
+        EntityManager em = albumJpaController.getEntityManager();
+        List<String> albumes = new ArrayList<>(); // Lista para almacenar los nombres de los temas
+
+        try {
+            // Consulta para obtener solo los nombres que coinciden con la búsqueda (usando LIKE)
+            String sql = "SELECT a.NOMBRE FROM album a WHERE a.NOMBRE LIKE ?";
+            albumes = em.createNativeQuery(sql)
+                      .setParameter(1, "%" + query + "%") // Busca coincidencias parciales
+                      .getResultList();
+        } catch (NoResultException e) {
+            System.out.println("No se encontraron albumes con el nombre que contiene: " + query);
+        } finally {
+            em.close(); // Cerrar el EntityManager
+        }
+
+        return albumes; // Devuelve la lista de nombres (String)
+    }
+
+    
+    @Override
+    public List<String> buscadorPart(String query) {
+        EntityManager em = particularJpaController.getEntityManager();
+        List<String> particulares = new ArrayList<>(); // Lista para almacenar los nombres de las listas públicas
+
+        try {
+            // Consulta para obtener solo los nombres de listas públicas que coinciden con la búsqueda
+            String sql = "SELECT p.NOMBRE FROM particular p WHERE p.PRIVADO = 0 AND p.NOMBRE LIKE ?";
+            particulares = em.createNativeQuery(sql)
+                             .setParameter(1, "%" + query + "%") // Establece el parámetro posicional
+                             .getResultList();
+        } catch (NoResultException e) {
+            System.out.println("No se encontraron listas públicas con el nombre que contiene: " + query);
+        } finally {
+            em.close(); // Cerrar el EntityManager
+        }
+
+        return particulares; // Devuelve la lista de nombres (String)
+    }
+
+    
+    @Override
+    public List<String> buscadorPD(String query){
+        EntityManager em = porDefectoJpaController.getEntityManager();
+        List<String> pordefecto = new ArrayList<>(); // Lista para almacenar los nombres de los temas
+
+        try {
+            // Consulta para obtener solo los nombres que coinciden con la búsqueda (usando LIKE)
+            String sql = "SELECT pd.NOMBRE FROM pordefecto pd WHERE pd.NOMBRE LIKE ?";
+            pordefecto = em.createNativeQuery(sql)
+                      .setParameter(1, "%" + query + "%") // Busca coincidencias parciales
+                      .getResultList();
+        } catch (NoResultException e) {
+            System.out.println("No se encontraron albumes con el nombre que contiene: " + query);
+        } finally {
+            em.close(); // Cerrar el EntityManager
+        }
+
+        return pordefecto; // Devuelve la lista de nombres (String)
+    }
 }
