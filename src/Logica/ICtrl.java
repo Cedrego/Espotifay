@@ -31,6 +31,8 @@ public interface ICtrl {
     public abstract DataClienteAlt getDataClienteAlt(String NickCli);
     public abstract DataArtistaAlt getDataArtistaAlt(String NickArt);
     public abstract List<DataClienteMin> getDataClienteMin();
+    public abstract void crearSucscripcion(String NickUsuario,String TipoSus);
+    public abstract void actualizarEstado(Long id, String nuevoEstado);
     
     public abstract void CrearAlbum (String nombreA, String artista, int anioA, List<String> generosA, List<DataTema> temasA);
     public abstract void CrearTema(DataTema dt);

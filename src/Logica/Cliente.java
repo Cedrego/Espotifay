@@ -10,6 +10,7 @@ import Persistencia.ClienteJpaController;
 import Persistencia.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -71,7 +72,7 @@ public class Cliente extends Usuario {
     @OneToMany
     private List<Particular> playFavPart; //coleccion
 
-    @OneToOne(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Suscripcion> Suscripc;
     
     public Cliente() {

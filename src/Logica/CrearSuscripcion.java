@@ -12,10 +12,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-/**
- *
- * @author User
- */
 public class CrearSuscripcion {
     Factory fabric =Factory.getInstance();
     ICtrl ctrl = fabric.getICtrl();
