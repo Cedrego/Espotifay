@@ -1604,24 +1604,43 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
-    public List<String> buscadorTema(String query){
-        EntityManager em = temaJpaController.getEntityManager();
-        List<String> temas = new ArrayList<>(); // Lista para almacenar los nombres de los temas
+public List<DataTema> buscadorTema(String query) {
+    EntityManager em = temaJpaController.getEntityManager();
+    List<Tema> temas = new ArrayList<>(); // Lista para almacenar los temas
+    List<DataTema> dataTemas = new ArrayList<>(); // Lista para almacenar los DataTema
+    try {
+        // Consulta para obtener todos los campos relevantes de los temas que coinciden con la búsqueda
+        String sql = "SELECT * FROM tema t WHERE t.NOMBRE LIKE ?"; 
+        List<Tema> resultList = em.createNativeQuery(sql, Tema.class)
+                                   .setParameter(1, "%" + query + "%") // Busca coincidencias parciales
+                                   .getResultList();
 
-        try {
-            // Consulta para obtener solo los nombres que coinciden con la búsqueda (usando LIKE)
-            String sql = "SELECT t.NOMBRE FROM tema t WHERE t.NOMBRE LIKE ?";
-            temas = em.createNativeQuery(sql)
-                      .setParameter(1, "%" + query + "%") // Busca coincidencias parciales
-                      .getResultList();
-        } catch (NoResultException e) {
-            System.out.println("No se encontraron temas con el nombre que contiene: " + query);
-        } finally {
-            em.close(); // Cerrar el EntityManager
-        }
-
-        return temas; // Devuelve la lista de nombres (String)
+        // Añadir los resultados a la lista de temas
+        temas.addAll(resultList);
+    } catch (NoResultException e) {
+        System.out.println("No se encontraron temas con el nombre que contiene: " + query);
+    } catch (Exception e) {
+        System.out.println("Error al buscar temas: " + e.getMessage());
+    } finally {
+        em.close(); // Cerrar el EntityManager
     }
+
+    // Crear DataTema a partir de Tema y añadirlo a dataTemas
+    for (Tema tem : temas) {
+        List<String> listaGen = new ArrayList<>();
+        for (Genero gen : tem.getGeneros()) {
+            listaGen.add(gen.getNombre());
+        }
+        // Crear un nuevo DataTema y añadirlo a la lista
+        DataTema dt = new DataTema(tem.getNombre(), tem.getAlbum().getNombre(), 
+                                    tem.getDuracion(), tem.getOrdenAlbum(), 
+                                    tem.getDireccion(), listaGen);
+        dataTemas.add(dt); // Asegúrate de agregarlo a la lista
+    }
+    
+    return dataTemas; // Devuelve la lista de objetos DataTema
+}
+
     
     @Override
     public List<String> buscadorAlbum(String query) {

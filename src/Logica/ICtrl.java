@@ -127,7 +127,7 @@ public interface ICtrl {
     public abstract List<String> listaSeguidoresClienteSW(String nick);
     
     public abstract List<String> buscadorAlbum(String query);
-    public abstract List<String> buscadorTema(String query);
+    public abstract List<DataTema> buscadorTema(String query);
     public abstract List<String> buscadorPart(String query);
     public abstract List<String> buscadorPD(String query);
 }
