@@ -15,6 +15,7 @@ import Capa_Presentacion.DataParticular;
 import Capa_Presentacion.DataPorDefecto;
 import Capa_Presentacion.DataSuscripcion;
 import Capa_Presentacion.DataTema;
+import static Logica.Suscripcion_.Tipo;
 import Persistencia.AlbumJpaController;
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
@@ -22,13 +23,17 @@ import Persistencia.GeneroJpaController;
 import Persistencia.ParticularJpaController;
 import Persistencia.SuscripcionJpaController;
 import Persistencia.TemaJpaController;
+import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.porDefectoJpaController;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -1602,7 +1607,43 @@ public class Ctrl implements ICtrl{
         }
         return DTCliMin;
     }
-    
+    @Override
+    public void crearSucscripcion(String NickUsuario,String TipoSus){
+        Cliente cli = clienteController.findCliente(NickUsuario);
+        Suscripcion.tipo TS;
+        if(TipoSus.equals("Semanal")){
+            TS = Suscripcion.tipo.Semanal;
+        }else if(TipoSus.equals("Mensual")){
+            TS = Suscripcion.tipo.Mensual;
+        }else{
+            TS = Suscripcion.tipo.Anual;
+        }
+        LocalDate fechaActual = LocalDate.now();
+            int dia = fechaActual.getDayOfMonth();
+            int mes = fechaActual.getMonthValue();
+            int anio = fechaActual.getYear();
+            DTFecha UltimaModificacion = new DTFecha(dia, mes, anio);
+        Suscripcion sus = new Suscripcion(Suscripcion.estado.Pendiente, UltimaModificacion, TS,cli);
+        try {
+            suscripJpaController.create(sus);
+        } catch (Exception ex) {}
+        cli.getSuscripc().add(sus);
+        try {
+            clienteController.edit(cli);
+        } catch (NonexistentEntityException e) {
+        } catch (Exception e) {
+        }
+    }
+    public void actualizarEstado(Long id, String nuevoEstado) {
+            
+        Suscripcion sus = suscripJpaController.findSuscripcion(id);
+        if (sus != null) {
+            sus.setEstado(Suscripcion.estado.valueOf(nuevoEstado));
+            try {
+                suscripJpaController.edit(sus);  // Actualiza en la base de datos
+            } catch (Exception ex) {}
+        }
+    }
     @Override
 public List<DataTema> buscadorTema(String query) {
     EntityManager em = temaJpaController.getEntityManager();
@@ -1702,5 +1743,25 @@ public List<DataTema> buscadorTema(String query) {
         }
 
         return pordefecto; // Devuelve la lista de nombres (String)
+    }
+    @Override
+    public void ChequeoVencimientoSUS(){
+        LocalDate fechaActual = LocalDate.now();
+        int dif = 7;
+        for(Suscripcion S : suscripJpaController.findSuscripcionEntities()){
+            if(S.getEstado().toString().equals("Vigente")){
+                if(S.getEstado().toString().equals("Semanal")){
+                    dif = 7;
+                }else if(S.getEstado().toString().equals("Mensual")){
+                    dif = 30;
+                }else{
+                    dif = 365;
+                }
+                Period periodo = Period.between(LocalDate.of(S.getUltimaModificacion().getAnio(), S.getUltimaModificacion().getMes(),S.getUltimaModificacion().getDia()), fechaActual);
+                if(periodo.getDays() >= dif){
+                    actualizarEstado(S.getId(),"Vencida");
+                }
+            }
+        }
     }
 }
