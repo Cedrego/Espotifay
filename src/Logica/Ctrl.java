@@ -1730,17 +1730,18 @@ public class Ctrl implements ICtrl{
         LocalDate fechaActual = LocalDate.now();
         int dif = 7;
         for(Suscripcion S : suscripJpaController.findSuscripcionEntities()){
-            if(S.getEstado().toString().equals("Semanal")){
-                dif = 7;
-            }else if(S.getEstado().toString().equals("Mensual")){
-                dif = 30;
-            }else{
-                dif = 365;
-            }
-
-            Period periodo = Period.between(LocalDate.of(S.getUltimaModificacion().getAnio(), S.getUltimaModificacion().getMes(),S.getUltimaModificacion().getDia()), fechaActual);
-            if(periodo.getDays() >= dif){
-                actualizarEstado(S.getId(),"Vencida");
+            if(S.getEstado().toString().equals("Vigente")){
+                if(S.getEstado().toString().equals("Semanal")){
+                    dif = 7;
+                }else if(S.getEstado().toString().equals("Mensual")){
+                    dif = 30;
+                }else{
+                    dif = 365;
+                }
+                Period periodo = Period.between(LocalDate.of(S.getUltimaModificacion().getAnio(), S.getUltimaModificacion().getMes(),S.getUltimaModificacion().getDia()), fechaActual);
+                if(periodo.getDays() >= dif){
+                    actualizarEstado(S.getId(),"Vencida");
+                }
             }
         }
     }
