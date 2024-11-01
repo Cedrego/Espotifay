@@ -26,6 +26,7 @@ import Persistencia.TemaJpaController;
 import Persistencia.exceptions.NonexistentEntityException;
 import Persistencia.porDefectoJpaController;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -1723,5 +1724,24 @@ public class Ctrl implements ICtrl{
         }
 
         return pordefecto; // Devuelve la lista de nombres (String)
+    }
+    @Override
+    public void ChequeoVencimientoSUS(){
+        LocalDate fechaActual = LocalDate.now();
+        int dif = 7;
+        for(Suscripcion S : suscripJpaController.findSuscripcionEntities()){
+            if(S.getEstado().toString().equals("Semanal")){
+                dif = 7;
+            }else if(S.getEstado().toString().equals("Mensual")){
+                dif = 30;
+            }else{
+                dif = 365;
+            }
+
+            Period periodo = Period.between(LocalDate.of(S.getUltimaModificacion().getAnio(), S.getUltimaModificacion().getMes(),S.getUltimaModificacion().getDia()), fechaActual);
+            if(periodo.getDays() >= dif){
+                actualizarEstado(S.getId(),"Vencida");
+            }
+        }
     }
 }
