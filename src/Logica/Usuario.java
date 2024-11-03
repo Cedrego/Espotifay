@@ -25,19 +25,20 @@ public abstract class Usuario implements Serializable {
     private String password;
     @JoinColumn (name="FECNAC")
     private DTFecha fecha;
-    //private imagen picture;
+    @Column
+    private String picture;
     
     public Usuario() {
     }
 
-    public Usuario(String nick, String nom, String ape, String pass, String mail, DTFecha fech) {
+    public Usuario(String nick, String nom, String ape, String pass, String mail, DTFecha fech, String pic) {
         this.nickname = nick;
         this.nombre = nom;
         this.apellido = ape;
         this.correo = mail;
         this.password = pass;
         this.fecha = fech;
-        //this.imagen = picture;
+        this.picture = pic;
     }
     
     //Get variables
@@ -64,11 +65,11 @@ public abstract class Usuario implements Serializable {
     public DTFecha getFecha() {
         return fecha;
     }
-    /*
-    public getImagen() {
-        return imagen;
+    
+    public String getImagen() {
+        return picture;
     }
-    */
+    
     
     //Set variables
     public void setNombre(String nom) {
@@ -94,9 +95,9 @@ public abstract class Usuario implements Serializable {
     public void setFecha(DTFecha fech) {
         this.fecha = fech;
     }
-    /*
-    public void setImagen(String picture) {
-        imagen = picture;
+    
+    public void setImagen(String pic) {
+        this.picture = pic;
     }
-    */
+    
 }

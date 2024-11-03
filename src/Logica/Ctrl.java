@@ -148,7 +148,7 @@ public class Ctrl implements ICtrl{
             meses = 12;
         }
         DTFecha nacimiento = new DTFecha(dia, meses, anio);
-        AltaUsuario AU = new AltaUsuario(nick, nom, ape, mail, pass, nacimiento, bio, web);
+        AltaUsuario AU = new AltaUsuario(nick, nom, ape, mail, pass, nacimiento, bio, web, null);
     }
     
     @Override
@@ -180,7 +180,7 @@ public class Ctrl implements ICtrl{
             meses = 12;
         }
         DTFecha nacimiento = new DTFecha(dia, meses, anio);
-        AltaUsuario AU = new AltaUsuario(nick, nom, ape, mail, pass, nacimiento, null, null);
+        AltaUsuario AU = new AltaUsuario(nick, nom, ape, mail, pass, nacimiento, null, null, null);
     }
        
     @Override
