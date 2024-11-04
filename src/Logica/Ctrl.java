@@ -120,7 +120,7 @@ public class Ctrl implements ICtrl{
     
     
     @Override
-    public void crearArtista(String nick, String nom, String ape, String mail, String pass, int dia, String mes, int anio, String bio, String web){
+    public void crearArtista(String nick, String nom, String ape, String mail, String pass, int dia, String mes, int anio, String bio, String web, String pic){
         int meses = 0;
         if(mes.equals("Enero")){
             meses = 1;
@@ -148,11 +148,11 @@ public class Ctrl implements ICtrl{
             meses = 12;
         }
         DTFecha nacimiento = new DTFecha(dia, meses, anio);
-        AltaUsuario AU = new AltaUsuario(nick, nom, ape, mail, pass, nacimiento, bio, web);
+        AltaUsuario AU = new AltaUsuario(nick, nom, ape, mail, pass, nacimiento, bio, web, null);
     }
     
     @Override
-    public void crearCliente(String nick, String nom, String ape, String mail, String pass, int dia, String mes, int anio){
+    public void crearCliente(String nick, String nom, String ape, String mail, String pass, int dia, String mes, int anio, String pic){
         int meses = 0;
         if(mes.equals("Enero")){
             meses = 1;
@@ -180,7 +180,7 @@ public class Ctrl implements ICtrl{
             meses = 12;
         }
         DTFecha nacimiento = new DTFecha(dia, meses, anio);
-        AltaUsuario AU = new AltaUsuario(nick, nom, ape, mail, pass, nacimiento, null, null);
+        AltaUsuario AU = new AltaUsuario(nick, nom, ape, mail, pass, nacimiento, null, null, null);
     }
        
     @Override

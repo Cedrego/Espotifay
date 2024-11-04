@@ -606,7 +606,7 @@ public class IAltaPerfil extends javax.swing.JPanel {
                         Text11.setText("Ya existe un usuario con el correo " + mail + ", eliga otro correo");
                         Text11.setVisible(true);
                     }else{
-                        ctrl.crearArtista(nick, nombre, apellido, mail, password, dia, mes, anio, bio, link);
+                        ctrl.crearArtista(nick, nombre, apellido, mail, password, dia, mes, anio, bio, link, "");
                         Text11.setVisible(false);
                         Text11.setText("Se creo al artista "+nick+" con exito");
                         Text11.setVisible(true);
@@ -630,7 +630,7 @@ public class IAltaPerfil extends javax.swing.JPanel {
                     Text11.setText("Ya existe un usuario con el correo " + mail + ", eliga otro correo");
                     Text11.setVisible(true);
                 } else {
-                    ctrl.crearCliente(nick, nombre, apellido, mail, password, dia, mes, anio);
+                    ctrl.crearCliente(nick, nombre, apellido, mail, password, dia, mes, anio, "");
                     Text11.setVisible(false);
                     Text11.setText("Se creo el cliente " + nick + " con exito");
                     Text11.setVisible(true);

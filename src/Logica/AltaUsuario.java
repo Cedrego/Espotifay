@@ -16,9 +16,9 @@ public class AltaUsuario {
     Factory fabric = Factory.getInstance();
     ICtrl ctrl = fabric.getICtrl();
             
-    public AltaUsuario(String nick, String nom, String ape, String mail, String pass, DTFecha nac, String bio, String web){
+    public AltaUsuario(String nick, String nom, String ape, String mail, String pass, DTFecha nac, String bio, String web, String pic){
         if(bio == null){
-            Cliente nuevoCliente = new Cliente(nick, nom, ape, mail, pass, nac);
+            Cliente nuevoCliente = new Cliente(nick, nom, ape, mail, pass, nac, pic);
 
             ClienteJpaController JpaCliente = new ClienteJpaController();
 
@@ -28,7 +28,7 @@ public class AltaUsuario {
                 System.out.println("Error al guardar el cliente: " + e.getMessage());
             }
         }else{
-            Artista nuevoArtista = new Artista(nick, nom, ape, mail, pass, nac, bio, web);
+            Artista nuevoArtista = new Artista(nick, nom, ape, mail, pass, nac, bio, web, pic);
 
             ArtistaJpaController artistaJpaController = new ArtistaJpaController();
 

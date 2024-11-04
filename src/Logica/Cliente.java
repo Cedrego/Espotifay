@@ -78,8 +78,8 @@ public class Cliente extends Usuario {
     public Cliente() {
     }
 
-    public Cliente(String nick, String nom, String ape, String mail, String pass, DTFecha fech ) {
-        super(nick, nom, ape, pass, mail, fech);
+    public Cliente(String nick, String nom, String ape, String mail, String pass, DTFecha fech, String pic) {
+        super(nick, nom, ape, pass, mail, fech, pic);
         this.particular = new ArrayList();
         this.cliSigueA = new ArrayList();
         this.artSigueA = new ArrayList();
