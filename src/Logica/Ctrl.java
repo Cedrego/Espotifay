@@ -15,7 +15,6 @@ import Capa_Presentacion.DataParticular;
 import Capa_Presentacion.DataPorDefecto;
 import Capa_Presentacion.DataSuscripcion;
 import Capa_Presentacion.DataTema;
-import static Logica.Suscripcion_.Tipo;
 import Persistencia.AlbumJpaController;
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
