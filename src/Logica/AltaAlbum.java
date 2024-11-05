@@ -23,9 +23,9 @@ public class AltaAlbum {
     public AlbumJpaController albumJpaController = new AlbumJpaController();
     public ArtistaJpaController artistaJpaController = new ArtistaJpaController();
     
-    public AltaAlbum (String nombreAlbum, String nombreArtista, int anioCreacion, List<String> generos, List<DataTema> temas){
+    public AltaAlbum (String picAlbum, String nombreAlbum, String nombreArtista, int anioCreacion, List<String> generos, List<DataTema> temas){
 
-        Album albumNuevo = new Album(nombreAlbum, nombreArtista ,anioCreacion); //creo un album, ya inicializa las listas de genero y temas
+        Album albumNuevo = new Album(picAlbum, nombreAlbum, nombreArtista ,anioCreacion); //creo un album, ya inicializa las listas de genero y temas
 
         for (String genero : generos){
             albumNuevo.addGenero(generoJpaController.findGenero(genero));

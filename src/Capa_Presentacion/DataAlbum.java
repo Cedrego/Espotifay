@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataAlbum {
+    private String pic;
     private String nombre;
     private String artista;
     private int creacion;
@@ -16,7 +17,8 @@ public class DataAlbum {
     public DataAlbum() {
     }
 
-    public DataAlbum(String nombre, String artista, int creacion) {
+    public DataAlbum(String picA,String nombre, String artista, int creacion) {
+        this.pic=picA;
         this.nombre = nombre;
         this.artista = artista;
         this.creacion = creacion;
@@ -24,7 +26,8 @@ public class DataAlbum {
         this.generos = new ArrayList();
     }
     
-    public DataAlbum(String nombre, String artista, int creacion,List<DataTema> Temas,List<String> Generos) {
+    public DataAlbum(String picA, String nombre, String artista, int creacion,List<DataTema> Temas,List<String> Generos) {
+        this.pic=picA;
         this.nombre = nombre;
         this.artista = artista;
         this.creacion = creacion;
@@ -33,6 +36,10 @@ public class DataAlbum {
     }
    
     //Get variables
+    public String getPic() {
+        return pic;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -54,6 +61,9 @@ public class DataAlbum {
     }
 
     //Set variables
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
     public void setNombre(String nom) {
         this.nombre = nom;
     }

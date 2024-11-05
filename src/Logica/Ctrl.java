@@ -104,8 +104,8 @@ public class Ctrl implements ICtrl{
     
     //crear un objeto de tipo album
     @Override
-    public void CrearAlbum (String nombreA, String artista, int anioA, List<String> generosA, List<DataTema> temasA){
-        AltaAlbum AA = new AltaAlbum(nombreA,artista,anioA,generosA,temasA);
+    public void CrearAlbum (String picA, String nombreA, String artista, int anioA, List<String> generosA, List<DataTema> temasA){
+        AltaAlbum AA = new AltaAlbum(picA, nombreA,artista,anioA,generosA,temasA);
     };
     
     @Override
@@ -557,7 +557,7 @@ public class Ctrl implements ICtrl{
             generosAlbum.add(gen.getNombre());
         }
         //(String nombre, String artista, int creacion,List<DataTema> Temas,List<String> Generos) {
-        DataAlbum da = new DataAlbum(alb.getNombre(),alb.getArtista(),alb.getCreacion(),datosTema,generosAlbum);
+        DataAlbum da = new DataAlbum(alb.getPicture(),alb.getNombre(),alb.getArtista(),alb.getCreacion(),datosTema,generosAlbum);
         
         return da;
     }

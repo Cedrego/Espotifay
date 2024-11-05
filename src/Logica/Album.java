@@ -27,6 +27,8 @@ public class Album implements Serializable{
     private String artista;
     @Column (name="CREACION")
     private int creacion;
+    @Column (name="IMAGEN")
+    private String picture;
     @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tema> temas;
     @OneToMany
@@ -35,7 +37,8 @@ public class Album implements Serializable{
     public Album() {
     }
 
-    public Album(String nombre, String artista, int creacion) {
+    public Album(String pic, String nombre, String artista, int creacion) {
+        this.picture = pic;
         this.nombre = nombre;
         this.artista = artista;
         this.creacion = creacion;
@@ -45,6 +48,10 @@ public class Album implements Serializable{
 
    
     //Get variables
+    public String getPicture() {
+        return picture;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -68,6 +75,10 @@ public class Album implements Serializable{
     
     
     //Set variables
+    public void setPicture(String pic) {
+        this.picture = pic;
+    }
+    
     public void setNombre(String nom) {
         this.nombre = nom;
     }

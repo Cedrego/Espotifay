@@ -35,7 +35,7 @@ public interface ICtrl {
     public abstract void actualizarEstado(Long id, String nuevoEstado);
     public abstract void ChequeoVencimientoSUS();
     
-    public abstract void CrearAlbum (String nombreA, String artista, int anioA, List<String> generosA, List<DataTema> temasA);
+    public abstract void CrearAlbum (String picA, String nombreA, String artista, int anioA, List<String> generosA, List<DataTema> temasA);
     public abstract void CrearTema(DataTema dt);
     public abstract void crearGenero(String nomG, String padre);
     public abstract void crearCliente(String nick, String nom, String ape, String mail, String pass, int dia, String mes, int anio, String picture);
