@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -25,14 +26,18 @@ public abstract class Playlist implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     protected List<Tema> temas;
     //imagen;
+    @Column(name = "IMAGEN")
+    protected String imagen;
     
    public Playlist() {
         // Inicializar la lista aquí si se desea que todas las instancias tengan una lista de temas vacía
         this.temas = new ArrayList<>();
+        this.imagen = new String();
     }
     
-    public Playlist(String NuevoNombre) {
+    public Playlist(String NuevoNombre, String pic) {
         this.nombre = NuevoNombre;
+        this.imagen = pic;
         this.temas = new ArrayList<>();
     }
     
@@ -45,6 +50,10 @@ public abstract class Playlist implements Serializable {
         return temas;
     }
     
+    public String getImagen(){
+        return imagen;
+    }
+    
     public void setNombre(String NuevoNombre){
         this.nombre = NuevoNombre;
     }
@@ -53,7 +62,8 @@ public abstract class Playlist implements Serializable {
         this.temas = nuevosTemas;
     }
     
-    
-    
+    public void setImagen(String Imagen){
+        this.imagen = Imagen;
+    }
     
 }

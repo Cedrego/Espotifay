@@ -15,7 +15,6 @@ import Capa_Presentacion.DataParticular;
 import Capa_Presentacion.DataPorDefecto;
 import Capa_Presentacion.DataSuscripcion;
 import Capa_Presentacion.DataTema;
-import static Logica.Suscripcion_.Tipo;
 import Persistencia.AlbumJpaController;
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
@@ -148,7 +147,7 @@ public class Ctrl implements ICtrl{
             meses = 12;
         }
         DTFecha nacimiento = new DTFecha(dia, meses, anio);
-        AltaUsuario AU = new AltaUsuario(nick, nom, ape, mail, pass, nacimiento, bio, web, null);
+        AltaUsuario AU = new AltaUsuario(nick, nom, ape, mail, pass, nacimiento, bio, web, pic);
     }
     
     @Override
@@ -180,7 +179,7 @@ public class Ctrl implements ICtrl{
             meses = 12;
         }
         DTFecha nacimiento = new DTFecha(dia, meses, anio);
-        AltaUsuario AU = new AltaUsuario(nick, nom, ape, mail, pass, nacimiento, null, null, null);
+        AltaUsuario AU = new AltaUsuario(nick, nom, ape, mail, pass, nacimiento, null, null, pic);
     }
        
     @Override
@@ -330,8 +329,8 @@ public class Ctrl implements ICtrl{
     }
     
     @Override
-    public Particular CrearListParticular(String nombre, String nomCliente, String Fecha){
-        
+    public Particular CrearListParticular(String nombre, String nomCliente, String Fecha, String pic){
+        System.out.println("IMAGEN: "+pic);
         ManejadorUsuario mu = ManejadorUsuario.getInstance();
         Cliente cliente = mu.buscarCliente(nomCliente);
         // Parsear la fecha recibida en formato "dd-MM-yyyy"
@@ -343,7 +342,7 @@ public class Ctrl implements ICtrl{
         int Anio = fecha.getYear();
          // Crear la fecha tipo DTFecha
         DTFecha Fech = new DTFecha(Dia, Mes, Anio);
-        Particular nuevoParticular = new Particular(nombre, cliente,Fech);
+        Particular nuevoParticular = new Particular(nombre, cliente,Fech, pic);
         
         try {
             particularJpaController.create(nuevoParticular);
@@ -354,7 +353,7 @@ public class Ctrl implements ICtrl{
         return nuevoParticular;
     }
     @Override
-    public porDefecto CrearListPorDefecto(String nombre, String genero){
+    public porDefecto CrearListPorDefecto(String nombre, String genero, String pic){
         
         Genero Gen = generoJpaController.findGenero(genero);
         porDefecto nuevoPorDefecto = new porDefecto(nombre,Gen);//Uso el constructor de pordefcto
@@ -367,8 +366,9 @@ public class Ctrl implements ICtrl{
         return nuevoPorDefecto;
     }
     @Override
-    public void CreateLista(String Name, String Tipo, String GOP,String Fecha ){
-        CrearLista CL= new CrearLista(Name, Tipo, GOP,Fecha);
+    public void CreateLista(String Name, String Tipo, String GOP,String Fecha, String pic){
+        System.out.println("IMAGEN: "+pic);
+        CrearLista CL= new CrearLista(Name, Tipo, GOP, Fecha, pic);
     }
     
     @Override
@@ -580,7 +580,7 @@ public class Ctrl implements ICtrl{
         }
         
         //(String nombre, String artista, int creacion,List<DataTema> Temas,List<String> Generos) {
-        DataParticular dp = new DataParticular(part.getNombre(),part.getCliente().getNickname(),part.getPrivado(), datosTema);
+        DataParticular dp = new DataParticular(part.getNombre(),part.getCliente().getNickname(),part.getPrivado(), datosTema,part.getImagen());
         
         return dp;
     }
@@ -1569,7 +1569,7 @@ public class Ctrl implements ICtrl{
             ListaDeDataPorDefectoFav.add(this.obtenerDataPorDefecto(nomListaPorDef));
         }//playFavPD
         List<DataSuscripcion> DTSus = this.ObtenerSubscClietne(NickCli);//suscipciones
-        return new DataClienteAlt(NickCli, this.nombreCliente(NickCli), this.apellidoCliente(NickCli), this.mailCliente(NickCli), cl.getFecha(), ListaDeDataParticulares, CliSeguidos, Seguidores, ArtSeguidos, DTAlbumesFav, DataTemasFav, ListaDeDataPorDefectoFav, ListaDeDataParticularesFav,DTSus);
+        return new DataClienteAlt(NickCli, this.nombreCliente(NickCli), this.apellidoCliente(NickCli), this.mailCliente(NickCli), cl.getFecha(), ListaDeDataParticulares, CliSeguidos, Seguidores, ArtSeguidos, DTAlbumesFav, DataTemasFav, ListaDeDataPorDefectoFav, ListaDeDataParticularesFav,DTSus,cl.getImagen());
     }
     @Override
     public DataArtistaAlt getDataArtistaAlt(String NickArt){
@@ -1583,7 +1583,7 @@ public class Ctrl implements ICtrl{
         for (Cliente cli : art.getSeguidoPorA()) {
             Seguidores.add(cli.getNickname());
         }
-        return new DataArtistaAlt(NickArt, art.getNombre(), art.getApellido(), art.getCorreo(), art.getFecha(), art.getBiografia(), art.getSitioWeb(), DTAlb, Seguidores);
+        return new DataArtistaAlt(NickArt, art.getNombre(), art.getApellido(), art.getCorreo(), art.getFecha(), art.getBiografia(), art.getSitioWeb(), DTAlb, Seguidores,art.getImagen());
     }
 
     @Override
@@ -1603,7 +1603,7 @@ public class Ctrl implements ICtrl{
             for (String nomListaPart : this.listaPlaylistCliente(c.getNickname())) {
                 ListaDeDataParticulares.add(this.obtenerDataParticular(nomListaPart, c.getNickname()));
             }//particular
-            DTCliMin.add(new DataClienteMin(c.getNickname(),ListaDeDataParticulares));
+            DTCliMin.add(new DataClienteMin(c.getNickname(),ListaDeDataParticulares,c.getImagen()));
         }
         return DTCliMin;
     }

@@ -34,8 +34,9 @@ public class Particular extends Playlist implements Serializable {
     
     public Particular(){}
     
-    public Particular(String NuevoNombre, Cliente cli, DTFecha Fecha){
+    public Particular(String NuevoNombre, Cliente cli, DTFecha Fecha, String pic){
         this.nombre = NuevoNombre;
+        this.imagen = pic;
         this.privado = true;
         this.cliente = cli;
         this.temas = new ArrayList();

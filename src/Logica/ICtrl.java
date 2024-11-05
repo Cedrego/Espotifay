@@ -45,9 +45,9 @@ public interface ICtrl {
     public abstract void dejarSeguidorC(Cliente usuario, Cliente seguidor);
     public abstract void dejarSeguidorA(Artista usuario, Cliente seguidor);
     public abstract void InfiniteVoid();
-    public abstract void CreateLista(String Name, String Tipo, String GOP, String Fecha );
-    public abstract Particular CrearListParticular(String nombre, String nomCliente, String Fecha);
-    public abstract porDefecto CrearListPorDefecto(String nombre, String genero);
+    public abstract void CreateLista(String Name, String Tipo, String GOP, String Fecha, String pic);
+    public abstract Particular CrearListParticular(String nombre, String nomCliente, String Fecha, String pic);
+    public abstract porDefecto CrearListPorDefecto(String nombre, String genero, String pic);
     public abstract void Publicar(String lista,String cli);
     
     public abstract List<String> obtenerNombresDeGeneros();

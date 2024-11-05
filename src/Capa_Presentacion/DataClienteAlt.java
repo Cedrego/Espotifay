@@ -18,6 +18,7 @@ public class DataClienteAlt{
     private String apellido;
     private String correo;
     private DTFecha fecha;
+    private String picture;
     private List<DataParticular> DataPart; //coleccion
     private List<String> DataCliSeguido;
     private List<String> DataCliSeguidor;
@@ -31,13 +32,14 @@ public class DataClienteAlt{
     public DataClienteAlt() {
     }
 
-    public DataClienteAlt(String nick, String nom, String ape, String mail, DTFecha fech,List<DataParticular> DataP, List<String> DataCliSeguido,List<String> DataCliSeguidor, List<String> DataArtSeguido,List<DataAlbum> DataAlbFav, List<DataTema> DataTemaFav,List<DataPorDefecto> DataPorDefFav, List<DataParticular> DataPartFav, List<DataSuscripcion> DataSus) {
+    public DataClienteAlt(String nick, String nom, String ape, String mail, DTFecha fech,List<DataParticular> DataP, List<String> DataCliSeguido,List<String> DataCliSeguidor, List<String> DataArtSeguido,List<DataAlbum> DataAlbFav, List<DataTema> DataTemaFav,List<DataPorDefecto> DataPorDefFav, List<DataParticular> DataPartFav, List<DataSuscripcion> DataSus,String pic) {
         this.nickname = nick;
         this.nombre = nom;
         this.apellido = ape;
         this.correo = mail;
         this.fecha = fech;
         this.DataPart = DataP;
+        this.picture = pic;
         this.DataCliSeguido = DataCliSeguido;
         this.DataCliSeguidor = DataCliSeguidor;
         this.DataArtSeguido = DataArtSeguido;
@@ -53,6 +55,7 @@ public class DataClienteAlt{
         this.apellido = ape;
         this.correo = mail;
         this.fecha = fech;
+        this.picture = null;
         this.DataPart = new ArrayList();
         this.DataArtSeguido = new ArrayList();
         this.DataCliSeguidor = new ArrayList();
@@ -152,6 +155,10 @@ public class DataClienteAlt{
 
     public List<DataSuscripcion> getDataSuscripcion() {
         return DataSuscripcion;
+    }
+
+    public String getPicture() {
+        return picture;
     }
     
 }

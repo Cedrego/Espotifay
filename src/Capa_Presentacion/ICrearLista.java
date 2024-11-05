@@ -210,7 +210,7 @@ public class ICrearLista extends javax.swing.JPanel {
                 // Formatear la fecha como String (ejemplo: "dd-MM-yyyy")
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 String fechaFormateada = fechaActual.format(formato);
-               ctrl.CreateLista(NomList, (String) selectedItem, GoC,fechaFormateada);
+               ctrl.CreateLista(NomList, (String) selectedItem, GoC,fechaFormateada, null);
                Text4.setVisible(false);
                Text4.setText("Lista creada con exito");
                Text4.setVisible(true);

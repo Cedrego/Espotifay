@@ -25,10 +25,11 @@ public class CrearLista {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("pantallaPU");
     EntityManager em = emf.createEntityManager();
     
-    public CrearLista ( String name, String Tipo, String GOP, String Fecha){
+    public CrearLista ( String name, String Tipo, String GOP, String Fecha, String pic){
         ManejadorPlaylist mp = ManejadorPlaylist.getInstance();
         ManejadorMusica mm = ManejadorMusica.getInstance(); //consigo instancia de manejador de playlist
         ManejadorUsuario mu = ManejadorUsuario.getInstance(); //consigo instancia de manejador de Usuario
+        System.out.println("IMAGEN: "+pic);
         
         if("Particular".equals(Tipo)){
             // Buscar el cliente usando el nickname
@@ -36,7 +37,7 @@ public class CrearLista {
             query.setParameter("nickname", GOP); // Establecemos el parámetro
             Cliente cliente = query.getSingleResult(); // Intentamos obtener un único cliente
 
-            Particular nuevoPar = ctrl.CrearListParticular(name,cliente.getNickname(), Fecha);//Creo la instancia de playlist particular
+            Particular nuevoPar = ctrl.CrearListParticular(name,cliente.getNickname(), Fecha, pic);//Creo la instancia de playlist particular
             mp.addPartList(nuevoPar);//Agrego la instancia a la lista
             
              cliente.getParticular().add(nuevoPar); // Añadir la playlist particular al cliente
@@ -49,7 +50,7 @@ public class CrearLista {
         }
             em.refresh(cliente); // Recargar el estado del cliente desde la base de datos
         }else{
-            porDefecto nuevoPorDefecto = ctrl.CrearListPorDefecto(name, GOP);
+            porDefecto nuevoPorDefecto = ctrl.CrearListPorDefecto(name, GOP, pic);
  
         }
         

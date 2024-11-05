@@ -17,16 +17,17 @@ public class DataParticular  {
     private List<DataTema> Datatemas;
     private boolean privado;
     private String cliente;
-
+    private String imagen;
     
     
     public DataParticular(){}
     
-    public DataParticular(String NuevoNombre, String nickCliente, boolean priv, List<DataTema> DataTem){
+    public DataParticular(String NuevoNombre, String nickCliente, boolean priv, List<DataTema> DataTem, String pic){
         this.nombre = NuevoNombre;
         this.privado = priv;
         this.cliente = nickCliente;
         this.Datatemas = DataTem;
+        this.imagen = pic;
     }   
      
     //Setters
@@ -41,6 +42,10 @@ public class DataParticular  {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public void setImagen(String pic) {
+        this.imagen = pic;
     }
 
     public void setDatatemas(List<DataTema> Datatemas) {
@@ -58,6 +63,10 @@ public class DataParticular  {
 
     public String getNombre() {
         return nombre;
+    }
+    
+    public String getImagen() {
+        return imagen;
     }
 
     public List<DataTema> getDataTemas() {

@@ -18,7 +18,7 @@ public class DataArtistaAlt  {
     private String apellido;
     private String correo;
     private DTFecha fecha;
-    
+    private String picture;
     private String SitioWeb;
     private String Biografia;  
     private List<DataAlbum> Dataalbumes;
@@ -27,7 +27,7 @@ public class DataArtistaAlt  {
     public DataArtistaAlt() {
     }
 
-    public DataArtistaAlt(String nick, String nom, String ape, String mail, DTFecha fech, String bio, String webSite, List<DataAlbum> DataAlb, List<String> DataCli) {
+    public DataArtistaAlt(String nick, String nom, String ape, String mail, DTFecha fech, String bio, String webSite, List<DataAlbum> DataAlb, List<String> DataCli,String pic) {
         this.nickname = nick;
         this.nombre = nom;
         this.apellido = ape;
@@ -37,6 +37,7 @@ public class DataArtistaAlt  {
         this.Biografia = bio;
         this.Dataalbumes = DataAlb; 
         this.DataseguidoPorA = DataCli; 
+        this.picture = pic;
     }
     public DataArtistaAlt(String nick, String nom, String ape, String mail, DTFecha fech, String bio, String webSite){
         this.nickname = nick;
@@ -46,8 +47,9 @@ public class DataArtistaAlt  {
         this.fecha = fech;
         this.SitioWeb = webSite;
         this.Biografia = bio;
-        this.Dataalbumes = new ArrayList(); 
-        this.DataseguidoPorA = new ArrayList(); 
+        this.Dataalbumes = new ArrayList();
+        this.DataseguidoPorA = new ArrayList();
+        this.picture = null;
      }
     //Setters
     public void setNickname(String nickname) {
@@ -121,6 +123,10 @@ public class DataArtistaAlt  {
 
     public List<String> getDataseguidoPorA() {
         return DataseguidoPorA;
+    }
+
+    public String getPicture() {
+        return picture;
     }
 
 }
