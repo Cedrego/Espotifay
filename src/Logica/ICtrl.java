@@ -133,4 +133,6 @@ public interface ICtrl {
     public abstract List<DataTema> buscadorTema(String query);
     public abstract List<String> buscadorPart(String query);
     public abstract List<String> buscadorPD(String query);
+    public abstract List<String> buscadorCliente(String query);
+    public abstract List<String> buscadorArtista(String query);
 }

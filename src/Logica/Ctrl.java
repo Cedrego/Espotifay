@@ -1703,7 +1703,44 @@ public List<DataTema> buscadorTema(String query) {
         return albumes; // Devuelve la lista de nombres (String)
     }
 
-    
+    @Override
+    public List<String> buscadorCliente(String query){
+        EntityManager em = clienteController.getEntityManager();
+        List<String> cliente = new ArrayList<>(); // Lista para almacenar los nombres de los temas
+
+        try {
+            // Consulta para obtener solo los nombres que coinciden con la búsqueda (usando LIKE)
+            String sql = "SELECT c.NICK FROM cliente c WHERE c.NICK LIKE ?";
+            cliente = em.createNativeQuery(sql)
+                      .setParameter(1, "%" + query + "%") // Busca coincidencias parciales
+                      .getResultList();
+        } catch (NoResultException e) {
+            System.out.println("No se encontraron clientes con el nombre que contiene: " + query);
+        } finally {
+            em.close(); // Cerrar el EntityManager
+        }
+
+        return cliente; // Devuelve la lista de nombres (String)
+    }
+    @Override
+    public List<String> buscadorArtista(String query){
+        EntityManager em = artistaController.getEntityManager();
+        List<String> artista = new ArrayList<>(); // Lista para almacenar los nombres de los temas
+
+        try {
+            // Consulta para obtener solo los nombres que coinciden con la búsqueda (usando LIKE)
+            String sql = "SELECT a.NICK FROM artista a WHERE a.NICK LIKE ?";
+            artista = em.createNativeQuery(sql)
+                      .setParameter(1, "%" + query + "%") // Busca coincidencias parciales
+                      .getResultList();
+        } catch (NoResultException e) {
+            System.out.println("No se encontraron artistas con el nombre que contiene: " + query);
+        } finally {
+            em.close(); // Cerrar el EntityManager
+        }
+
+        return artista; // Devuelve la lista de nombres (String)
+    }
     @Override
     public List<String> buscadorPart(String query) {
         EntityManager em = particularJpaController.getEntityManager();
