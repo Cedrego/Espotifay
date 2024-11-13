@@ -1686,22 +1686,23 @@ public List<DataTema> buscadorTema(String query) {
     @Override
     public List<String> buscadorAlbum(String query) {
         EntityManager em = albumJpaController.getEntityManager();
-        List<String> albumes = new ArrayList<>(); // Lista para almacenar los nombres de los temas
+        List<String> albumes = new ArrayList<>();
 
         try {
-            // Consulta para obtener solo los nombres que coinciden con la búsqueda (usando LIKE)
-            String sql = "SELECT a.NOMBRE FROM album a WHERE a.NOMBRE LIKE ?";
+            // Consulta para obtener el nombre del álbum y el nombre del artista
+            String sql = "SELECT CONCAT(a.NOMBRE, '|', a.ARTISTA) AS album_artista FROM album a WHERE a.NOMBRE LIKE ?";
             albumes = em.createNativeQuery(sql)
-                      .setParameter(1, "%" + query + "%") // Busca coincidencias parciales
-                      .getResultList();
+                        .setParameter(1, "%" + query + "%") // Busca coincidencias parciales
+                        .getResultList();
         } catch (NoResultException e) {
-            System.out.println("No se encontraron albumes con el nombre que contiene: " + query);
+            System.out.println("No se encontraron álbumes con el nombre que contiene: " + query);
         } finally {
             em.close(); // Cerrar el EntityManager
         }
 
-        return albumes; // Devuelve la lista de nombres (String)
+        return albumes; // Devuelve la lista de nombres de álbum y artistas concatenados
     }
+
 
     @Override
     public List<String> buscadorCliente(String query){
@@ -1741,16 +1742,20 @@ public List<DataTema> buscadorTema(String query) {
 
         return artista; // Devuelve la lista de nombres (String)
     }
+    
     @Override
     public List<String> buscadorPart(String query) {
         EntityManager em = particularJpaController.getEntityManager();
-        List<String> particulares = new ArrayList<>(); // Lista para almacenar los nombres de las listas públicas
+        List<String> particulares = new ArrayList<>();
 
         try {
-            // Consulta para obtener solo los nombres de listas públicas que coinciden con la búsqueda
-            String sql = "SELECT p.NOMBRE FROM particular p WHERE p.PRIVADO = 0 AND p.NOMBRE LIKE ?";
+            // Consulta para obtener el nombre de la lista particular y el nickname del cliente
+            String sql = "SELECT CONCAT(p.NOMBRE, '|', c.NICK) AS lista_cliente " +
+                         "FROM particular p " +
+                         "JOIN cliente c ON p.CLIENTE_NICK = c.NICK " + // Ajuste de la relación entre las tablas
+                         "WHERE p.PRIVADO = 0 AND p.NOMBRE LIKE ?";
             particulares = em.createNativeQuery(sql)
-                             .setParameter(1, "%" + query + "%") // Establece el parámetro posicional
+                             .setParameter(1, "%" + query + "%") // Busca coincidencias parciales
                              .getResultList();
         } catch (NoResultException e) {
             System.out.println("No se encontraron listas públicas con el nombre que contiene: " + query);
@@ -1758,29 +1763,33 @@ public List<DataTema> buscadorTema(String query) {
             em.close(); // Cerrar el EntityManager
         }
 
-        return particulares; // Devuelve la lista de nombres (String)
+        return particulares; // Devuelve la lista de nombres de lista y nickname de cliente concatenados
     }
 
     
     @Override
-    public List<String> buscadorPD(String query){
+    public List<String> buscadorPD(String query) {
         EntityManager em = porDefectoJpaController.getEntityManager();
-        List<String> pordefecto = new ArrayList<>(); // Lista para almacenar los nombres de los temas
+        List<String> pordefecto = new ArrayList<>();
 
         try {
-            // Consulta para obtener solo los nombres que coinciden con la búsqueda (usando LIKE)
-            String sql = "SELECT pd.NOMBRE FROM pordefecto pd WHERE pd.NOMBRE LIKE ?";
+            // Consulta para obtener el nombre de la lista por defecto y el nombre del género
+            String sql = "SELECT CONCAT(pd.NOMBRE, '|', g.NOMBRE) AS lista_genero " +
+                         "FROM pordefecto pd " +
+                         "JOIN genero g ON pd.GENERO_NOMBRE = g.NOMBRE " + // Ajuste de la relación entre las tablas
+                         "WHERE pd.NOMBRE LIKE ?";
             pordefecto = em.createNativeQuery(sql)
-                      .setParameter(1, "%" + query + "%") // Busca coincidencias parciales
-                      .getResultList();
+                           .setParameter(1, "%" + query + "%") // Busca coincidencias parciales
+                           .getResultList();
         } catch (NoResultException e) {
-            System.out.println("No se encontraron albumes con el nombre que contiene: " + query);
+            System.out.println("No se encontraron listas por defecto con el nombre que contiene: " + query);
         } finally {
             em.close(); // Cerrar el EntityManager
         }
 
-        return pordefecto; // Devuelve la lista de nombres (String)
+        return pordefecto; // Devuelve la lista de nombres de lista y género concatenados
     }
+
     @Override
     public void ChequeoVencimientoSUS(){
         LocalDate fechaActual = LocalDate.now();
