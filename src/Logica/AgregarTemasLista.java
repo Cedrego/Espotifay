@@ -57,6 +57,7 @@ public class AgregarTemasLista {
                 e.printStackTrace(); // Manejo de errores
             }
         }
-   
+        
+        ctrl.aumentarPuntajeTema(tema.getNombre(), tema.getAlbum().getNombre(), "Listas");
     }   
 }

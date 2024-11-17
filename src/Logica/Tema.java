@@ -41,7 +41,13 @@ public class Tema implements Serializable {
     private List<Genero> generos;
     
     @Column(nullable = false)
-    private int puntaje = 0;
+    private int reproducciones = 0; //cuantas veces fue reproducido
+    @Column(nullable = false)
+    private int descargas = 0; //cuantas descargas tiene
+    @Column(nullable = false)
+    private int favoritos = 0; //cuantas veces fue guardado en favoritos
+    @Column(nullable = false)
+    private int listas = 0; //cuantas veces fue agregado a una lista particular o por defecto
     public Tema() {
     }
 
@@ -52,7 +58,10 @@ public class Tema implements Serializable {
         this.guardadoEn = guardadoT;
         this.generos = new ArrayList(); //inicializa lista de generos
         this.album = alb;
-        this.puntaje = 0;
+        this.reproducciones = 0;
+        this.descargas = 0;
+        this.favoritos = 0;
+        this.listas = 0;
     }
     
     //Get variables
@@ -82,8 +91,18 @@ public class Tema implements Serializable {
         return guardadoEn;
     }
     
-    public int getPuntaje(){
-        return puntaje;
+    public int getReproducciones(){
+        return reproducciones;
+    }
+    
+    public int getDescargas(){
+        return descargas;
+    }
+    public int getFavoritos(){
+        return favoritos;
+    }
+    public int getListas(){
+        return listas;
     }
     
     //Set variables
@@ -112,7 +131,19 @@ public class Tema implements Serializable {
         this.generos.add(gen);
     }
     
-    public void setPuntaje (int puntos){
-        this.puntaje = puntos;
+    public void setReproducciones (int rep){
+        this.reproducciones = rep;
+    }
+    
+    public void setDescargas (int desc){
+        this.descargas = desc;
+    }
+    
+    public void setFavoritos (int fav){
+        this.favoritos = fav;
+    }
+    
+    public void setListas (int list){
+        this.listas = list;
     }
 }

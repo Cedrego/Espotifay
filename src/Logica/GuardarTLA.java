@@ -32,6 +32,7 @@ public class GuardarTLA {
             String[] NombreTema = objeto.split("-");
             Tema tem = ctrl.obtenerTema(NombreTema[0], NombreTema[1]);
             cli.addTemaFav(tem);
+            ctrl.aumentarPuntajeTema(tem.getNombre(), tem.getAlbum().getNombre(), "Favoritos");
         }
         
         if(tipo.equalsIgnoreCase("Album")){

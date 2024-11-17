@@ -1791,34 +1791,125 @@ public List<DataTema> buscadorTema(String query) {
     }
     
     @Override
-    public void aumentarPuntajeTema(String nombreTema, String nombreAlbum){
-        EntityManager em = temaJpaController.getEntityManager(); 
-        try {
-            em.getTransaction().begin();
+    public void aumentarPuntajeTema(String nombreTema, String nombreAlbum, String tipoPuntaje){
+        EntityManager em = temaJpaController.getEntityManager();
+        //REPRODUCCIONES
+        if(tipoPuntaje.equalsIgnoreCase("Reproducciones")){
+            try {
+                em.getTransaction().begin();
 
-            // Consulta para incrementar el puntaje del tema específico
-            String sql = "UPDATE tema SET PUNTAJE = PUNTAJE + 1 WHERE NOMBRE = ? AND ALBUM_NOMBRE = ?";
-            int updatedRows = em.createNativeQuery(sql)
-                                .setParameter(1, nombreTema)
-                                .setParameter(2, nombreAlbum)
-                                .executeUpdate();
+                // Consulta para incrementar el puntaje del tema específico
+                String sql = "UPDATE tema SET REPRODUCCIONES = REPRODUCCIONES + 1 WHERE NOMBRE = ? AND ALBUM_NOMBRE = ?";
+                int updatedRows = em.createNativeQuery(sql)
+                                    .setParameter(1, nombreTema)
+                                    .setParameter(2, nombreAlbum)
+                                    .executeUpdate();
 
-            // Confirmar la transacción si se actualizó al menos un registro
-            if (updatedRows > 0) {
-                em.getTransaction().commit();
-            } else {
-                em.getTransaction().rollback();
-                System.out.println("No se encontró un tema con el nombre especificado en el álbum dado.");
+                // Confirmar la transacción si se actualizó al menos un registro
+                if (updatedRows > 0) {
+                    em.getTransaction().commit();
+                } else {
+                    em.getTransaction().rollback();
+                    System.out.println("No se encontró un tema con el nombre especificado en el álbum dado.");
+                }
+            } catch (Exception e) {
+                if (em.getTransaction().isActive()) {
+                    em.getTransaction().rollback();
+                }
+                System.out.println("Error al incrementar el puntaje del tema: " + e.getMessage());
+            } finally {
+                em.close();
             }
-        } catch (Exception e) {
-            if (em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
+        }
+        
+        //DESCARGAS
+        if(tipoPuntaje.equalsIgnoreCase("Descargas")){
+            try {
+                em.getTransaction().begin();
+
+                // Consulta para incrementar el puntaje del tema específico
+                String sql = "UPDATE tema SET DESCARGAS = DESCARGAS + 1 WHERE NOMBRE = ? AND ALBUM_NOMBRE = ?";
+                int updatedRows = em.createNativeQuery(sql)
+                                    .setParameter(1, nombreTema)
+                                    .setParameter(2, nombreAlbum)
+                                    .executeUpdate();
+
+                // Confirmar la transacción si se actualizó al menos un registro
+                if (updatedRows > 0) {
+                    em.getTransaction().commit();
+                } else {
+                    em.getTransaction().rollback();
+                    System.out.println("No se encontró un tema con el nombre especificado en el álbum dado.");
+                }
+            } catch (Exception e) {
+                if (em.getTransaction().isActive()) {
+                    em.getTransaction().rollback();
+                }
+                System.out.println("Error al incrementar el puntaje del tema: " + e.getMessage());
+            } finally {
+                em.close();
             }
-            System.out.println("Error al incrementar el puntaje del tema: " + e.getMessage());
-        } finally {
-            em.close();
+        }
+        
+        //FAVORITOS
+        if(tipoPuntaje.equalsIgnoreCase("Favoritos")){
+            try {
+                em.getTransaction().begin();
+
+                // Consulta para incrementar el puntaje del tema específico
+                String sql = "UPDATE tema SET FAVORITOS = FAVORITOS + 1 WHERE NOMBRE = ? AND ALBUM_NOMBRE = ?";
+                int updatedRows = em.createNativeQuery(sql)
+                                    .setParameter(1, nombreTema)
+                                    .setParameter(2, nombreAlbum)
+                                    .executeUpdate();
+
+                // Confirmar la transacción si se actualizó al menos un registro
+                if (updatedRows > 0) {
+                    em.getTransaction().commit();
+                } else {
+                    em.getTransaction().rollback();
+                    System.out.println("No se encontró un tema con el nombre especificado en el álbum dado.");
+                }
+            } catch (Exception e) {
+                if (em.getTransaction().isActive()) {
+                    em.getTransaction().rollback();
+                }
+                System.out.println("Error al incrementar el puntaje del tema: " + e.getMessage());
+            } finally {
+                em.close();
+            }
+        }
+        
+        //LISTAS
+        if(tipoPuntaje.equalsIgnoreCase("Listas")){
+            try {
+                em.getTransaction().begin();
+
+                // Consulta para incrementar el puntaje del tema específico
+                String sql = "UPDATE tema SET LISTAS = LISTAS + 1 WHERE NOMBRE = ? AND ALBUM_NOMBRE = ?";
+                int updatedRows = em.createNativeQuery(sql)
+                                    .setParameter(1, nombreTema)
+                                    .setParameter(2, nombreAlbum)
+                                    .executeUpdate();
+
+                // Confirmar la transacción si se actualizó al menos un registro
+                if (updatedRows > 0) {
+                    em.getTransaction().commit();
+                } else {
+                    em.getTransaction().rollback();
+                    System.out.println("No se encontró un tema con el nombre especificado en el álbum dado.");
+                }
+            } catch (Exception e) {
+                if (em.getTransaction().isActive()) {
+                    em.getTransaction().rollback();
+                }
+                System.out.println("Error al incrementar el puntaje del tema: " + e.getMessage());
+            } finally {
+                em.close();
+            }
         }
     }
+    
     @Override
     public void ChequeoVencimientoSUS(){
         LocalDate fechaActual = LocalDate.now();
