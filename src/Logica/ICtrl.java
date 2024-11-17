@@ -135,4 +135,7 @@ public interface ICtrl {
     public abstract List<String> buscadorPD(String query);
     public abstract List<String> buscadorCliente(String query);
     public abstract List<String> buscadorArtista(String query);
+    
+    //ArtistaEliminar
+    public abstract void DeleteArtista(String NickArtista);
 }
