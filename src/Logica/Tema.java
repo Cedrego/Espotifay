@@ -7,11 +7,11 @@ package Logica;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -39,7 +39,9 @@ public class Tema implements Serializable {
     
     @ManyToMany
     private List<Genero> generos;
-
+    
+    @Column(nullable = false)
+    private int puntaje = 0;
     public Tema() {
     }
 
@@ -50,6 +52,7 @@ public class Tema implements Serializable {
         this.guardadoEn = guardadoT;
         this.generos = new ArrayList(); //inicializa lista de generos
         this.album = alb;
+        this.puntaje = 0;
     }
     
     //Get variables
@@ -79,6 +82,10 @@ public class Tema implements Serializable {
         return guardadoEn;
     }
     
+    public int getPuntaje(){
+        return puntaje;
+    }
+    
     //Set variables
     public void setNombre(String nom) {
         this.nombre = nom;
@@ -103,5 +110,9 @@ public class Tema implements Serializable {
     //agregar a la  lista
     public void addGenero(Genero gen){
         this.generos.add(gen);
+    }
+    
+    public void setPuntaje (int puntos){
+        this.puntaje = puntos;
     }
 }

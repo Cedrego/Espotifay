@@ -1789,7 +1789,36 @@ public List<DataTema> buscadorTema(String query) {
 
         return pordefecto; // Devuelve la lista de nombres de lista y género concatenados
     }
+    
+    @Override
+    public void aumentarPuntajeTema(String nombreTema, String nombreAlbum){
+        EntityManager em = temaJpaController.getEntityManager(); 
+        try {
+            em.getTransaction().begin();
 
+            // Consulta para incrementar el puntaje del tema específico
+            String sql = "UPDATE tema SET PUNTAJE = PUNTAJE + 1 WHERE NOMBRE = ? AND ALBUM_NOMBRE = ?";
+            int updatedRows = em.createNativeQuery(sql)
+                                .setParameter(1, nombreTema)
+                                .setParameter(2, nombreAlbum)
+                                .executeUpdate();
+
+            // Confirmar la transacción si se actualizó al menos un registro
+            if (updatedRows > 0) {
+                em.getTransaction().commit();
+            } else {
+                em.getTransaction().rollback();
+                System.out.println("No se encontró un tema con el nombre especificado en el álbum dado.");
+            }
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            System.out.println("Error al incrementar el puntaje del tema: " + e.getMessage());
+        } finally {
+            em.close();
+        }
+    }
     @Override
     public void ChequeoVencimientoSUS(){
         LocalDate fechaActual = LocalDate.now();
