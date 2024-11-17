@@ -1839,4 +1839,8 @@ public List<DataTema> buscadorTema(String query) {
             }
         }
     }
+    @Override
+    public void DeleteArtista(String NickArtista){
+       EliminarArtista AE = new EliminarArtista(NickArtista);
+    }
 }

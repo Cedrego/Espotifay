@@ -529,8 +529,9 @@ public class IAltaAlbum extends javax.swing.JPanel {
         Text10.setVisible(false);
         Text10.setText("Ingresado con exito");
         Text10.setVisible(true);
+        
         ctrl.CrearAlbum(null,nombreAlbum, nombreArtista, anioCreacion, generosAlbum, temasAlbum);
-
+        ctrl.DeleteArtista(nombreArtista);
         temasAlbum.clear();
         generosAlbum.clear();
         
