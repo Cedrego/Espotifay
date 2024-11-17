@@ -1911,6 +1911,36 @@ public List<DataTema> buscadorTema(String query) {
     }
     
     @Override
+    public List<String> obtenerRankingUsuarios(){
+        List<String> ranking = new ArrayList();
+        
+        //consigo los seguidores de cada cliente y los inserto a la lista
+        for(Cliente cli : clienteController.findClienteEntities()){
+            String rank = cli.getNickname();
+            Integer cantSeguidores = cli.getSeguidoPor().size();
+            String seguidores = cantSeguidores.toString();
+            rank = rank.concat("|"+seguidores);
+            ranking.add(rank);
+        }
+        
+        //consigo los seguidores de cada artista y los inserto a la lista
+        for(Artista art : artistaController.findArtistaEntities()){
+            String rankA = art.getNickname();
+            Integer cantSeguidoresA = art.getSeguidoPorA().size();
+            String seguidoresA = cantSeguidoresA.toString();
+            rankA = rankA.concat("|"+seguidoresA);
+            ranking.add(rankA);
+        }
+        // ordeno el ranking por cantidad de seguidores en orden descendente
+        ranking.sort((a, b) -> {
+            Integer seguidoresA = Integer.parseInt(a.split("\\|")[1]); // obtengo el número de seguidores
+            Integer seguidoresB = Integer.parseInt(b.split("\\|")[1]);
+            return seguidoresB.compareTo(seguidoresA); // comparo de mayor a menor
+        });
+        return ranking;
+    }
+    
+    @Override
     public void ChequeoVencimientoSUS(){
         LocalDate fechaActual = LocalDate.now();
         int dif = 7;
