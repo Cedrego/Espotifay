@@ -51,12 +51,16 @@ public class AltaTema {
                 em.getTransaction().begin();
                 //INSERT INTO tema(IDTEMA, DURACION, GUARDADOEN, NOMBRE, ORDENALBUM, ALBUM_NOMBRE) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]')
                 // Inserta en la tabla de unión
-                em.createNativeQuery("INSERT INTO tema (DURACION, GUARDADOEN, NOMBRE, ORDENALBUM, ALBUM_NOMBRE) VALUES (?, ?, ?, ?, ?)")
+                em.createNativeQuery("INSERT INTO tema (DURACION, GUARDADOEN, NOMBRE, ORDENALBUM, ALBUM_NOMBRE, REPRODUCCIONES, DESCARGAS, FAVORITOS, LISTAS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")
                         .setParameter(1, temaNuevo.getDuracion())
                         .setParameter(2, temaNuevo.getDireccion())
                         .setParameter(3, temaNuevo.getNombre())
                         .setParameter(4, temaNuevo.getOrdenAlbum())
                         .setParameter(5, temaNuevo.getAlbum().getNombre())
+                        .setParameter(6, 0)
+                        .setParameter(7, 0)
+                        .setParameter(8, 0)
+                        .setParameter(9, 0)
                         .executeUpdate();
 
                 em.getTransaction().commit();
