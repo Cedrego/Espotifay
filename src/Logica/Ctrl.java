@@ -1920,6 +1920,7 @@ public List<DataTema> buscadorTema(String query) {
             Integer cantSeguidores = cli.getSeguidoPor().size();
             String seguidores = cantSeguidores.toString();
             rank = rank.concat("|"+seguidores);
+            rank = rank.concat("|"+"Cliente");
             ranking.add(rank);
         }
         
@@ -1929,6 +1930,7 @@ public List<DataTema> buscadorTema(String query) {
             Integer cantSeguidoresA = art.getSeguidoPorA().size();
             String seguidoresA = cantSeguidoresA.toString();
             rankA = rankA.concat("|"+seguidoresA);
+            rankA = rankA.concat("|"+"Artista");
             ranking.add(rankA);
         }
         // ordeno el ranking por cantidad de seguidores en orden descendente
