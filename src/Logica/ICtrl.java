@@ -7,6 +7,7 @@ package Logica;
 
 import Capa_Presentacion.DataAlbum;
 import Capa_Presentacion.DataArtistaAlt;
+import Capa_Presentacion.DataArtistaEliminado;
 import Capa_Presentacion.DataCliente;
 import Capa_Presentacion.DataClienteAlt;
 import Capa_Presentacion.DataClienteMin;
@@ -140,4 +141,5 @@ public interface ICtrl {
     
     //ArtistaEliminar
     public abstract void DeleteArtista(String NickArtista);
+    public abstract List<DataArtistaEliminado> ListaDataArtistaEliminado();
 }
