@@ -6,7 +6,7 @@ package Logica;
 
 
 import Capa_Presentacion.DataAlbum;
-import Capa_Presentacion.DataArtista;
+import Capa_Presentacion.DataArtistaEliminado;
 import Capa_Presentacion.DataArtistaAlt;
 import Capa_Presentacion.DataCliente;
 import Capa_Presentacion.DataClienteAlt;
@@ -18,6 +18,7 @@ import Capa_Presentacion.DataTema;
 import Persistencia.AlbumJpaController;
 import Persistencia.ClienteJpaController;
 import Persistencia.ArtistaJpaController;
+import Persistencia.ArtistasEliminadoJpaController;
 import Persistencia.GeneroJpaController;
 import Persistencia.ParticularJpaController;
 import Persistencia.SuscripcionJpaController;
@@ -56,6 +57,7 @@ public class Ctrl implements ICtrl{
     public ClienteJpaController clienteController = new ClienteJpaController();
     public ArtistaJpaController artistaController = new ArtistaJpaController();
     public SuscripcionJpaController suscripJpaController = new SuscripcionJpaController();
+    public ArtistasEliminadoJpaController artistaEliminadoController = new ArtistasEliminadoJpaController();
     public Ctrl(){}
     
     
@@ -1634,6 +1636,7 @@ public class Ctrl implements ICtrl{
         } catch (Exception e) {
         }
     }
+    @Override
     public void actualizarEstado(Long id, String nuevoEstado) {
             
         Suscripcion sus = suscripJpaController.findSuscripcion(id);
@@ -1933,5 +1936,15 @@ public List<DataTema> buscadorTema(String query) {
     @Override
     public void DeleteArtista(String NickArtista){
        EliminarArtista AE = new EliminarArtista(NickArtista);
+    }
+    @Override
+    public  List<DataArtistaEliminado> ListaDataArtistaEliminado(){
+        List<ArtistasEliminado> ArtEl = artistaEliminadoController.findArtistasEliminadoEntities();
+        List<DataArtistaEliminado> Resultado = new ArrayList();
+        for(ArtistasEliminado AE :ArtEl ){
+            DataArtistaEliminado DTAE = new DataArtistaEliminado(AE.getNickname(),AE.getNombre(),AE.getApellido(),AE.getCorreo(),AE.getFecha(),AE.getAlbumes(),AE.getTemas(),AE.getEliminado());
+            Resultado.add(DTAE);
+        }
+        return Resultado;
     }
 }
