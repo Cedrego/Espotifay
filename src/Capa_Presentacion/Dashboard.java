@@ -65,6 +65,7 @@ public class Dashboard extends javax.swing.JFrame {
         Logo = new javax.swing.JLabel();
         Content = new javax.swing.JPanel();
         jbActualizarEstadoSuscr = new javax.swing.JButton();
+        jbVerArtistasEliminados = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -217,6 +218,19 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jbVerArtistasEliminados.setBackground(new java.awt.Color(0, 204, 102));
+        jbVerArtistasEliminados.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jbVerArtistasEliminados.setText("Ver Artistas Eliminados");
+        jbVerArtistasEliminados.setActionCommand("Actualizar estado de Suscri");
+        jbVerArtistasEliminados.setMaximumSize(new java.awt.Dimension(116, 21));
+        jbVerArtistasEliminados.setMinimumSize(new java.awt.Dimension(116, 21));
+        jbVerArtistasEliminados.setPreferredSize(new java.awt.Dimension(116, 21));
+        jbVerArtistasEliminados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbVerArtistasEliminadosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -241,10 +255,11 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jbConsultarAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbConsultarLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbDejarSeguirU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbActualizarEstadoSuscr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbActualizarEstadoSuscr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbVerArtistasEliminados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,7 +296,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jbConsultarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbActualizarEstadoSuscr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbVerArtistasEliminados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
         );
 
@@ -379,6 +396,12 @@ public class Dashboard extends javax.swing.JFrame {
         ShowPanel(p);
     }//GEN-LAST:event_jbActualizarEstadoSuscrActionPerformed
 
+    private void jbVerArtistasEliminadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVerArtistasEliminadosActionPerformed
+        // TODO add your handling code here:
+        IArtistasEliminados p = new IArtistasEliminados();
+        ShowPanel(p);
+    }//GEN-LAST:event_jbVerArtistasEliminadosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -433,5 +456,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jbPublicarLista;
     private javax.swing.JButton jbQuitarTema;
     private javax.swing.JButton jbSeguirUsuario;
+    private javax.swing.JButton jbVerArtistasEliminados;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,11 +5,7 @@
 package Capa_Presentacion;
 
 import Logica.DTFecha;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 
 /**
  *
@@ -34,7 +30,7 @@ public class DataArtistaEliminado {
     private String Eliminado;
     
     public DataArtistaEliminado(){}
-     public DataArtistaEliminado(String nick, String nom, String ape, String mail, DTFecha fech, String Alb, String Tem, String Eliminad){
+    public DataArtistaEliminado(String nick, String nom, String ape, String mail, DTFecha fech, String Alb, String Tem, String Eliminad){
         this.nickname =nick;
         this.nombre = nom;
         this.apellido = ape;

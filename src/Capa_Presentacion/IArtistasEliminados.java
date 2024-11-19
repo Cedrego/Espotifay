@@ -6,6 +6,14 @@ package Capa_Presentacion;
 
 import Logica.Factory;
 import Logica.ICtrl;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -21,9 +29,50 @@ public class IArtistasEliminados extends javax.swing.JPanel {
     public IArtistasEliminados() {
         initComponents();
         //Cargar los leables
-        
-    }
+        jLabel1.setText("Artistas eliminados");
+        // Obtener la lista de DataArtistaEliminado
+        List<DataArtistaEliminado> listaArtistas = ctrl.ListaDataArtistaEliminado();
 
+        // Limpiar el JPanel y preparar para mostrar la información
+        jPanel1.removeAll();
+        jPanel1.setLayout(new BorderLayout());
+
+        // Crear un JScrollPane para manejar el desplazamiento si hay muchos artistas
+        JPanel contenidoPanel = new JPanel();
+        contenidoPanel.setLayout(new BoxLayout(contenidoPanel, BoxLayout.Y_AXIS));
+
+        // Agregar la información de cada artista al contenidoPanel
+        for (DataArtistaEliminado artista : listaArtistas) {
+            String info = "<html>Nickname: " + artista.getNickname() +
+                          "<br>Nombre: " + artista.getNombre() +
+                          "<br>Apellido: " + artista.getApellido() +
+                          "<br>Correo: " + artista.getCorreo() +
+                          "<br>Fecha Nac.: " + (artista.getFecha() != null ? artista.getFecha().toString() : "N/A") +
+                          "<br>Álbumes: " + artista.getAlbumes() +
+                          "<br>Temas: " + artista.getTemas() +
+                          "<br>Fecha Elim.: " + artista.getEliminado() +
+                          "</html>";
+                JLabel label = new JLabel(info);
+                label.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Margen alrededor del texto
+                contenidoPanel.add(label);
+            }
+
+            // Asegurar que el contenidoPanel tenga un tamaño preferido adecuado
+            contenidoPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, contenidoPanel.getPreferredSize().height));
+
+            // Envolver el contenidoPanel en un JScrollPane
+            JScrollPane scrollPane = new JScrollPane(contenidoPanel);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); // Barra vertical cuando sea necesario
+            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); // Barra horizontal cuando sea necesario
+
+            // Agregar el JScrollPane al jPanel1
+            jPanel1.setLayout(new BorderLayout());
+            jPanel1.add(scrollPane, BorderLayout.CENTER);
+
+            // Refrescar el jPanel1 para mostrar el nuevo contenido
+            jPanel1.revalidate();
+            jPanel1.repaint();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
