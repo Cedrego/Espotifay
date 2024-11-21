@@ -137,7 +137,8 @@ public interface ICtrl {
     public abstract List<String> buscadorCliente(String query);
     public abstract List<String> buscadorArtista(String query);
     public abstract void aumentarPuntajeTema(String nombreTema, String nombreAlbum, String tipoPuntaje);
-    public List<String> obtenerRankingUsuarios();
+    public abstract List<String> obtenerRankingUsuarios();
+    public abstract List<String> obtenerRankingCanciones();
     
     //ArtistaEliminar
     public abstract void DeleteArtista(String NickArtista);

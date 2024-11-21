@@ -1946,6 +1946,35 @@ public List<DataTema> buscadorTema(String query) {
     }
     
     @Override
+    public List<String> obtenerRankingCanciones(){
+        List<String> ranking = new ArrayList();
+        
+        for(Tema tem : temaJpaController.findTemaEntities()){
+            //en este primer string, los datos se guardan tal que: 
+            //[0-Nombre Tema] [1-Nombre Album] [2-puntaje total]
+            //[3-Reproducciones] [4-Descargas] [5-Favoritos] [6-Listas]
+            Integer puntuacion = tem.getReproducciones() + tem.getDescargas() + tem.getFavoritos() + tem.getListas();
+            String puntos = puntuacion.toString();
+            String rank = tem.getNombre();
+            rank = rank.concat("|"+tem.getAlbum().getNombre());
+            rank = rank.concat("|"+puntos);
+            rank = rank.concat("|"+tem.getReproducciones());
+            rank = rank.concat("|"+tem.getDescargas());
+            rank = rank.concat("|"+tem.getFavoritos());
+            rank = rank.concat("|"+tem.getListas());
+            ranking.add(rank);
+        }
+        
+        ranking.sort((a, b) -> {
+            Integer puntajeA = Integer.parseInt(a.split("\\|")[2]); // obtengo el puntaje
+            Integer puntajeB = Integer.parseInt(b.split("\\|")[2]);
+            return puntajeB.compareTo(puntajeA); // comparo de mayor a menor
+        });
+        
+        return ranking;
+    }
+    
+    @Override
     public void ChequeoVencimientoSUS(){
         LocalDate fechaActual = LocalDate.now();
         int dif = 7;
