@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author User
  */
 @Entity
-@Table(name = "artistaeliminados")
+@Table(name = "artista_eliminados")
 public class ArtistasEliminado implements Serializable {
     //Datos basicos
     @Id
