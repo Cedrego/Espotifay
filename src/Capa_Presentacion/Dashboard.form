@@ -44,28 +44,34 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="33" pref="33" max="-2" attributes="0"/>
-                          <Component id="Logo" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="33" pref="33" max="-2" attributes="0"/>
+                                  <Component id="Logo" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jbAltaPerfil" max="32767" attributes="0"/>
+                              <Component id="jbAltaGenero" max="32767" attributes="0"/>
+                              <Component id="jbAltaAlbum" max="32767" attributes="0"/>
+                              <Component id="jbCrearLista" max="32767" attributes="0"/>
+                              <Component id="jbAgregarTema" max="32767" attributes="0"/>
+                              <Component id="jbQuitarTema" max="32767" attributes="0"/>
+                              <Component id="jbPublicarLista" max="32767" attributes="0"/>
+                              <Component id="jbSeguirUsuario" max="32767" attributes="0"/>
+                              <Component id="jbGuardarTLA" max="32767" attributes="0"/>
+                              <Component id="jbEliminarTLA" max="32767" attributes="0"/>
+                              <Component id="jbConsultarPerfil" max="32767" attributes="0"/>
+                              <Component id="jbConsultarAlbum" max="32767" attributes="0"/>
+                              <Component id="jbConsultarLista" max="32767" attributes="0"/>
+                              <Component id="jbDejarSeguirU" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jbActualizarEstadoSuscr" max="32767" attributes="0"/>
+                              <Component id="jbVerArtistasEliminados" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <Component id="jbAltaPerfil" max="32767" attributes="0"/>
-                      <Component id="jbAltaGenero" max="32767" attributes="0"/>
-                      <Component id="jbAltaAlbum" max="32767" attributes="0"/>
-                      <Component id="jbCrearLista" max="32767" attributes="0"/>
-                      <Component id="jbAgregarTema" max="32767" attributes="0"/>
-                      <Component id="jbQuitarTema" max="32767" attributes="0"/>
-                      <Component id="jbPublicarLista" max="32767" attributes="0"/>
-                      <Component id="jbSeguirUsuario" max="32767" attributes="0"/>
-                      <Component id="jbGuardarTLA" max="32767" attributes="0"/>
-                      <Component id="jbEliminarTLA" max="32767" attributes="0"/>
-                      <Component id="jbConsultarPerfil" max="32767" attributes="0"/>
-                      <Component id="jbConsultarAlbum" max="32767" attributes="0"/>
-                      <Component id="jbConsultarLista" max="32767" attributes="0"/>
-                      <Component id="jbDejarSeguirU" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jbActualizarEstadoSuscr" max="32767" attributes="0"/>
-                      <Component id="jbVerArtistasEliminados" max="32767" attributes="0"/>
+                      <Component id="jbVerArtistasEliminados1" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="Content" min="-2" max="-2" attributes="0"/>
@@ -110,9 +116,11 @@
                   <Component id="jbActualizarEstadoSuscr" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jbVerArtistasEliminados" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jbVerArtistasEliminados1" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
-              <Component id="Content" pref="537" max="32767" attributes="0"/>
+              <Component id="Content" pref="573" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -390,6 +398,30 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbVerArtistasEliminadosActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbVerArtistasEliminados1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="cc" red="0" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Ver Registro de Acceso"/>
+            <Property name="actionCommand" type="java.lang.String" value="Actualizar estado de Suscri"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[116, 21]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[116, 21]"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[116, 21]"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbVerRegistroDeAccesoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

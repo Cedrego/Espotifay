@@ -139,7 +139,8 @@ public interface ICtrl {
     public abstract void aumentarPuntajeTema(String nombreTema, String nombreAlbum, String tipoPuntaje);
     public abstract List<String> obtenerRankingUsuarios();
     public abstract List<String> obtenerRankingCanciones();
-    
+    public abstract void registrarAcceso(String ip, String nickUsuario, String url, String browser, String sistemaOperativo, String metodoAcceso, String fechaHora);
+    public abstract List<String> conseguirRegistroAccesos();
     //ArtistaEliminar
     public abstract void DeleteArtista(String NickArtista);
     public abstract List<DataArtistaEliminado> ListaDataArtistaEliminado();

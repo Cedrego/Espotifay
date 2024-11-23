@@ -2008,4 +2008,62 @@ public List<DataTema> buscadorTema(String query) {
         }
         return Resultado;
     }
+    
+    @Override
+    public void registrarAcceso(String ip, String nickUsuario, String url, String browser, String sistemaOperativo, String metodoAcceso, String fechaHora){
+        EntityManager em = temaJpaController.getEntityManager();
+        try{
+            em.getTransaction().begin();
+
+            // Inserta en la tabla de unión
+            em.createNativeQuery("INSERT INTO registroacceso (ip, nickUsuario, url, browser, sistema_operativo, metodo_acceso, fechaHora) VALUES (?, ?, ?, ?, ?, ?, ?)")
+                    .setParameter(1, ip)
+                    .setParameter(2, nickUsuario)
+                    .setParameter(3, url)
+                    .setParameter(4, browser)
+                    .setParameter(5, sistemaOperativo)
+                    .setParameter(6, metodoAcceso)
+                    .setParameter(7, fechaHora)
+                    .executeUpdate();
+            
+            em.getTransaction().commit();
+            
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback(); // Revertir cambios en caso de error
+            }
+            e.printStackTrace();
+        } finally {
+            em.close(); // Cerrar EntityManager
+        }
+    }
+    
+    @Override
+    public List<String> conseguirRegistroAccesos(){
+        EntityManager em = temaJpaController.getEntityManager();
+        List<String> registros = new ArrayList<>();
+        try {
+            // Realiza el SELECT *
+            List<Object[]> resultados = em.createNativeQuery("SELECT * FROM registroacceso")
+                    .getResultList();
+
+            // Procesa cada fila del resultado
+            for (Object[] fila : resultados) {
+                // Convierte los valores de la fila en un String separado por '|'
+                StringBuilder registro = new StringBuilder();
+                for (int i = 0; i < fila.length; i++) {
+                    registro.append(fila[i] != null ? fila[i].toString() : "null"); // Maneja valores nulos
+                    if (i < fila.length - 1) {
+                        registro.append(" | "); // Agrega separador entre columnas
+                    }
+                }
+                registros.add(registro.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close(); // Cierra el EntityManager
+        }
+        return registros;
+    }
 }
