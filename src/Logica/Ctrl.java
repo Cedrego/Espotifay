@@ -2003,7 +2003,8 @@ public List<DataTema> buscadorTema(String query) {
         List<ArtistasEliminado> ArtEl = artistaEliminadoController.findArtistasEliminadoEntities();
         List<DataArtistaEliminado> Resultado = new ArrayList();
         for(ArtistasEliminado AE :ArtEl ){
-            DataArtistaEliminado DTAE = new DataArtistaEliminado(AE.getNickname(),AE.getNombre(),AE.getApellido(),AE.getCorreo(),AE.getFecha(),AE.getAlbumes(),AE.getTemas(),AE.getEliminado());
+            String fecha = AE.getFecha().getDia()+"/"+AE.getFecha().getMes()+"/"+AE.getFecha().getAnio();
+            DataArtistaEliminado DTAE = new DataArtistaEliminado(AE.getNickname(),AE.getNombre(),AE.getApellido(),AE.getCorreo(),fecha,AE.getAlbumes(),AE.getTemas(),AE.getEliminado());
             Resultado.add(DTAE);
         }
         return Resultado;

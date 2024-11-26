@@ -16,7 +16,7 @@ import javax.persistence.Table;
  * @author Franco
  */
 @Entity
-@Table(name = "registroAcceso")
+@Table(name = "registroacceso")
 public class RegistroAcceso implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Autoincremental

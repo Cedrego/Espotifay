@@ -21,7 +21,7 @@ public class DataArtistaEliminado {
 
     private String correo;
 
-    private DTFecha fecha;
+    private String fecha;
 
     private String albumes;//List<Album> albumes;
     private String temas;//List<Tema> temas;
@@ -30,7 +30,7 @@ public class DataArtistaEliminado {
     private String Eliminado;
     
     public DataArtistaEliminado(){}
-    public DataArtistaEliminado(String nick, String nom, String ape, String mail, DTFecha fech, String Alb, String Tem, String Eliminad){
+    public DataArtistaEliminado(String nick, String nom, String ape, String mail, String fech, String Alb, String Tem, String Eliminad){
         this.nickname =nick;
         this.nombre = nom;
         this.apellido = ape;
@@ -58,7 +58,7 @@ public class DataArtistaEliminado {
         this.correo = correo;
     }
 
-    public void setFecha(DTFecha fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -91,7 +91,7 @@ public class DataArtistaEliminado {
         return correo;
     }
 
-    public DTFecha getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
